@@ -1,0 +1,54 @@
+import { Box, Typography } from "@mui/material";
+import Header from "../components/Header";
+import NavigationSidebar from "../components/NavigationSidebar";
+import Footer from "../components/Footer";
+
+const Overview = () => {
+  return (
+    <Box className="h-[1080px] relative bg-[#101828] w-full overflow-hidden shrink-0 flex flex-col items-start leading-[normal] tracking-[normal] mq925:h-auto">
+      <Header />
+      <main className="self-stretch h-[955px] overflow-hidden shrink-0 flex items-start [row-gap:20px] max-w-full mq1825:flex-wrap">
+        <NavigationSidebar />
+        <section className="h-[948px] w-[1696px] overflow-hidden shrink-0 flex items-center justify-center !p-4 box-border gap-4 max-w-full text-left text-[#f8fafc] font-[Roboto] mq925:h-auto">
+          <Box className="h-[916px] flex-1 rounded-[10px] bg-[#1e2939] border-[#364153] border-solid border-[1px] box-border overflow-hidden flex flex-col items-start justify-center !pt-[15px] !pb-0 !pl-10 !pr-10 max-w-full shrink-0 mq925:h-auto">
+            <Typography
+              variant="h2"
+              component="h1"
+              className="!m-0 text-[32px] font-[Inter] font-bold text-[#f8fafc]"
+            >
+              Overview
+            </Typography>
+            <Typography
+              variant="body1"
+              className="!mt-4 !mb-0 text-[14px] text-[#cbd5e1] max-w-[880px]"
+            >
+              Đây là trang tổng quan hệ thống P&ID. Bạn có thể xem các thông tin
+              chính, trạng thái kết nối và nhanh chóng chuyển tới P&ID.
+            </Typography>
+            <Box className="mt-8 grid grid-cols-2 gap-4 w-full max-w-[900px]">
+              <Box className="rounded-[10px] bg-[#111827] border border-[#334155] p-5">
+                <Typography className="text-[#fff] font-semibold">Network Status</Typography>
+                <Typography className="text-[#94a3b8] mt-2">Connected</Typography>
+              </Box>
+              <Box className="rounded-[10px] bg-[#111827] border border-[#334155] p-5">
+                <Typography className="text-[#fff] font-semibold">Stations Online</Typography>
+                <Typography className="text-[#94a3b8] mt-2">8 / 8</Typography>
+              </Box>
+              <Box className="rounded-[10px] bg-[#111827] border border-[#334155] p-5">
+                <Typography className="text-[#fff] font-semibold">Current Flow</Typography>
+                <Typography className="text-[#94a3b8] mt-2">100 L/H</Typography>
+              </Box>
+              <Box className="rounded-[10px] bg-[#111827] border border-[#334155] p-5">
+                <Typography className="text-[#fff] font-semibold">System Mode</Typography>
+                <Typography className="text-[#94a3b8] mt-2">Normal</Typography>
+              </Box>
+            </Box>
+          </Box>
+        </section>
+      </main>
+      <Footer />
+    </Box>
+  );
+};
+
+export default Overview;
