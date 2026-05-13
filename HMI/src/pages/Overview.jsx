@@ -31,6 +31,7 @@ const Overview = () => {
             >
               Overview
             </Typography>
+
             <Typography
               variant="body1"
               className="!mt-4 !mb-0 text-[14px] text-[#cbd5e1] max-w-[880px]"
@@ -82,7 +83,7 @@ const Overview = () => {
                 : null}
             </Box>
 
-            <Box className="mt-8 grid grid-cols-2 gap-4 w-full max-w-[900px]">
+            <Box className="mt-4 grid grid-cols-4 gap-4 w-full w-full">
               {fallbackInfoCards.map((card) => (
                 <Box
                   key={card.title}
