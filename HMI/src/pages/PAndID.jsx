@@ -49,7 +49,7 @@ const PAndID = () => {
         <section className="h-[948px] w-[1696px] overflow-hidden shrink-0 flex items-start !p-4 box-border gap-4 max-w-full text-center text-xs text-[#ff0909] font-[Roboto] mq925:h-auto">
           <Box className="h-[916px] flex-1 overflow-hidden rounded-[10px] bg-[#1e2939] border-[#364153] border-solid border-[1px] box-border overflow-hidden flex flex-col items-start !pt-[15px] !pb-0 !pl-4 !pr-4 max-w-full shrink-0 mq925:h-auto">
             <Box className="relative self-stretch flex-1 w-full overflow-hidden rounded-[10px] bg-[#111827]">
-              <Box className="absolute inset-0 overflow-hidden rounded-[4px] border border-[#364153] bg-[#0f172a]">
+              <Box className="relative h-full w-full overflow-hidden rounded-[4px] border border-[#364153] bg-[#0f172a]">
                 <img
                   className="absolute inset-0 h-full w-full object-contain"
                   alt="P&ID background"
@@ -60,14 +60,14 @@ const PAndID = () => {
                   ref={svgObjectRef}
                   aria-label="Monitor items overlay"
                   className="absolute inset-0 h-full w-full"
-                  data="/Monitor items.svg"
+                  data="/Monitor%20items.svg"
                   onLoad={handleSvgLoad}
                   type="image/svg+xml"
                 >
                   <img
                     className="h-full w-full object-contain"
                     alt="Monitor items overlay"
-                    src="/Monitor items.svg"
+                    src="/Monitor%20items.svg"
                   />
                 </object>
               </Box>

@@ -1,102 +1,129 @@
-import { Box, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 import Header from "../components/Header";
 import NavigationSidebar from "../components/NavigationSidebar";
 import Footer from "../components/Footer";
-import EngineGauge from "../components/EngineGauge";
+import Container1 from "../components/Container1";
 import { usePolledPagePayload } from "../hooks/usePolledPagePayload";
 
-const fallbackInfoCards = [
-  { title: "Network Status", value: "Connected" },
-  { title: "Stations Online", value: "8 / 8" },
-  { title: "Current Flow", value: "100 L/H" },
-  { title: "System Mode", value: "Normal" },
-  { title: "Network Status", value: "Connected" },
-  { title: "Stations Online", value: "8 / 8" },
-  { title: "Current Flow", value: "100 L/H" },
-  { title: "System Mode", value: "Normal" },
-];
+const defaultEngineMetrics = {
+  runningHours: 0,
+  engineSpeed: 0,
+  foPress: 0,
+  loPress: 0,
+  loTemp: 0,
+  boostAir: 0,
+};
+
+const fallbackEngines = Array.from({ length: 4 }, (_, index) => ({
+  key: `engine_${index + 1}`,
+  title: `Engine ${index + 1}`,
+  serialNo: index + 1,
+  gauge: {
+    title: `Engine ${index + 1}`,
+    subtitle: "Awaiting backend mapping",
+    value: 0,
+    min: 0,
+    max: 100,
+    unit: "%",
+    color: "#22c55e",
+  },
+  metrics: defaultEngineMetrics,
+}));
+
+const getMetricValue = (metric, fallbackValue = 0) => {
+  if (metric && typeof metric === "object" && "value" in metric) {
+    return metric.value;
+  }
+
+  return metric ?? fallbackValue;
+};
+
+const normalizeEngine = (engine, index) => ({
+  key: engine.key ?? `engine_${index + 1}`,
+  title: engine.title ?? `Engine ${index + 1}`,
+  serialNo: engine.serialNo ?? index + 1,
+  gauge: {
+    title: engine.gauge?.title ?? engine.title ?? `Engine ${index + 1}`,
+    subtitle: engine.gauge?.subtitle ?? engine.subtitle ?? "Live engine data",
+    value: Number(engine.gauge?.value ?? engine.value ?? 0),
+    min: Number(engine.gauge?.min ?? engine.min ?? 0),
+    max: Number(engine.gauge?.max ?? engine.max ?? 100),
+    unit: engine.gauge?.unit ?? engine.unit ?? "%",
+    color: engine.gauge?.color ?? engine.color ?? "#22c55e",
+  },
+  metrics: {
+    runningHours: getMetricValue(
+      engine.metrics?.runningHours ?? engine.runningHours,
+      defaultEngineMetrics.runningHours
+    ),
+    engineSpeed: getMetricValue(
+      engine.metrics?.engineSpeed ?? engine.engineSpeed,
+      defaultEngineMetrics.engineSpeed
+    ),
+    foPress: getMetricValue(
+      engine.metrics?.foPress ?? engine.foPress,
+      defaultEngineMetrics.foPress
+    ),
+    loPress: getMetricValue(
+      engine.metrics?.loPress ?? engine.loPress,
+      defaultEngineMetrics.loPress
+    ),
+    loTemp: getMetricValue(
+      engine.metrics?.loTemp ?? engine.loTemp,
+      defaultEngineMetrics.loTemp
+    ),
+    boostAir: getMetricValue(
+      engine.metrics?.boostAir ?? engine.boostAir,
+      defaultEngineMetrics.boostAir
+    ),
+  },
+});
+
+const buildOverviewEngines = (payload) => {
+  const configuredEngines = payload?.sections?.engines;
+  if (Array.isArray(configuredEngines) && configuredEngines.length > 0) {
+    return configuredEngines.slice(0, 4).map(normalizeEngine);
+  }
+
+  const gauges = payload?.sections?.gauges ?? [];
+
+  return fallbackEngines.map((fallbackEngine, index) => {
+    const gauge = gauges[index];
+
+    if (!gauge) {
+      return fallbackEngine;
+    }
+
+    return normalizeEngine(
+      {
+        ...fallbackEngine,
+        ...gauge,
+        gauge: {
+          ...fallbackEngine.gauge,
+          ...gauge,
+        },
+      },
+      index
+    );
+  });
+};
 
 const Overview = () => {
   const { payload, isLoading, error, lastUpdated, pollIntervalMs } = usePolledPagePayload("overview");
-  const gauges = payload?.sections?.gauges ?? [];
   const modbusConnected = error ? false : payload ? true : null;
+  const overviewEngines = buildOverviewEngines(payload);
 
   return (
-    <Box className="h-[1080px] relative bg-[#101828] w-full overflow-hidden shrink-0 flex flex-col items-start leading-[normal] tracking-[normal] mq925:h-auto">
+    <Box className="min-h-screen relative bg-[#101828] w-full overflow-hidden shrink-0 flex flex-col items-start leading-[normal] tracking-[normal] mq925:h-auto">
       <Header modbusConnected={modbusConnected} />
-      <main className="self-stretch h-[955px] overflow-hidden shrink-0 flex items-start [row-gap:20px] max-w-full mq1825:flex-wrap">
+      <main className="self-stretch flex-1 overflow-hidden flex items-start [row-gap:20px] max-w-full mq1825:flex-wrap">
         <NavigationSidebar />
-        <section className="h-[948px] w-[1696px] overflow-hidden shrink-0 flex items-start justify-center !p-4 box-border gap-4 max-w-full text-left text-[#f8fafc] font-[Roboto] mq925:h-auto">
-          <Box className="h-[916px] flex-1 rounded-[10px] bg-[#1e2939] border-[#364153] border-solid border-[1px] box-border overflow-auto flex flex-col items-start !pt-[32px] !pb-[32px] !pl-10 !pr-10 max-w-full shrink-0 mq925:h-auto">
-            
-            <Typography
-              variant="h2"
-              component="h1"
-              className="!m-0 text-[32px] font-[Roboto] font-bold text-[#f8fafc]"
-            >
-              Overview
-            </Typography>
-
-            <Typography
-              variant="body1"
-              className="!mt-4 !mb-0 text-[14px] text-[#cbd5e1] max-w-[880px]"
-            >
-              This overview page now loads its gauge data from `/api/overview`, so the layout
-              stays stable while the data source can move from mock values to live Modbus-backed
-              values.
-            </Typography>
-
-            <Box className="mt-8 grid grid-cols-1 lg:grid-cols-4 gap-4 w-full">
-              {isLoading ? (
-                <Box className="lg:col-span-4 rounded-[12px] bg-[#111827] border border-[#334155] p-5">
-                  <Typography className="text-[#fff] font-semibold">Loading overview data...</Typography>
-                  <Typography className="text-[#94a3b8] mt-2">
-                    Requesting gauge values from the backend and following its polling interval.
-                  </Typography>
-                </Box>
-              ) : null}
-
-              {!isLoading && error ? (
-                <Box className="lg:col-span-4 rounded-[12px] bg-[#111827] border border-[#7f1d1d] p-5">
-                  <Typography className="text-[#fecaca] font-semibold">Unable to load overview</Typography>
-                  <Typography className="text-[#fca5a5] mt-2">{error}</Typography>
-                </Box>
-              ) : null}
-
-              {!isLoading && !error && gauges.length === 0 ? (
-                <Box className="lg:col-span-4 rounded-[12px] bg-[#111827] border border-[#334155] p-5">
-                  <Typography className="text-[#fff] font-semibold">No overview data configured</Typography>
-                  <Typography className="text-[#94a3b8] mt-2">
-                    The backend responded successfully but did not return any gauges.
-                  </Typography>
-                </Box>
-              ) : null}
-
-              {!isLoading && !error
-                ? gauges.map((engine) => (
-                    <EngineGauge
-                      key={engine.key}
-                      title={engine.title}
-                      subtitle={engine.subtitle}
-                      max={engine.max ?? 750}
-                      min={engine.min ?? 0}
-                      value={engine.value}
-                      unit={engine.unit}
-                      color={engine.color}
-                    />
-                  ))
-                : null}
-            </Box>
-
-           <Box className="mt-4 grid grid-cols-4 gap-4 w-full w-full"> 
-            {fallbackInfoCards.map((card) => ( 
-              <Box 
-              key={card.title} 
-              className="mt-0 grid grid-cols-2 rounded-[10px] bg-[#111827] border border-[#334155] p-5" > 
-              <Typography className="text-[#fff] font-semibold">{card.title}</Typography> 
-              <Typography className="text-[#94a3b8] mt-2">{card.value}</Typography>
-               </Box>
-               ))}
+        <section className="h-[948px] flex-1 overflow-hidden flex items-start justify-center !p-4 box-border gap-4 max-w-full text-left text-[#f8fafc] font-[Roboto] mq925:h-auto">
+          <Box className="flex-1 h-full overflow-auto rounded-[10px] bg-[#1e2939] border-[#364153] border-solid border-[1px] box-border flex flex-col items-start !pt-8 !pb-8 !pl-10 !pr-10 max-w-full shrink-0 mq925:h-auto">
+            <Box className="mt-4 grid grid-cols-1 xl:grid-cols-2 2xl:grid-cols-4 gap-4 w-full">
+              {overviewEngines.map((engine) => (
+                <Container1 key={engine.key} engine={engine} />
+              ))}
             </Box>
           </Box>
         </section>

@@ -1,6 +1,6 @@
 {
   "modbus": {
-    "host": "192.168.18.26",
+    "host": "10.0.0.205",
     "port": 502,
     "unit_id": 16,
     "timeout_seconds": 3,
@@ -8,11 +8,63 @@
   },
   "pages": {
     "overview": {
-      "gauges": [
-        { "key": "engine_1_load", "title": "Engine 1", "subtitle": "Main propulsion load", "source_type": "holding_register", "address": 40019, "scale": 1, "unit": "kW", "color": "#22c55e" },
-        { "key": "engine_2_load", "title": "Engine 2", "subtitle": "Auxiliary engine load", "source_type": "holding_register", "address": 40020, "scale": 1, "unit": "kW", "color": "#f59e0b" },
-        { "key": "engine_3_load", "title": "Engine 3", "subtitle": "Generator engine load", "source_type": "holding_register", "address": 40021, "scale": 1, "unit": "kW", "color": "#38bdf8" },
-        { "key": "engine_4_load", "title": "Engine 4", "subtitle": "Backup engine load", "source_type": "holding_register", "address": 40022, "scale": 1, "unit": "kW", "color": "#ef4444" }
+      "engines": [
+        {
+          "key": "engine_1",
+          "title": "Engine 1",
+          "serialNo": 1,
+          "gauge": { "title": "Engine 1", "subtitle": "Main propulsion load", "source_type": "holding_register", "address": 40019, "scale": 1, "min": 0, "max": 800, "unit": "kW", "color": "#22c55e" },
+          "metrics": {
+            "runningHours": { "source_type": "holding_register", "address": 40033, "scale": 1 },
+            "engineSpeed": { "source_type": "holding_register", "address": 40034, "scale": 1 },
+            "foPress": { "source_type": "holding_register", "address": 40035, "scale": 0.01 },
+            "loPress": { "source_type": "holding_register", "address": 40036, "scale": 0.01 },
+            "loTemp": { "source_type": "holding_register", "address": 40037, "scale": 1 },
+            "boostAir": { "source_type": "holding_register", "address": 40038, "scale": 0.01 }
+          }
+        },
+        {
+          "key": "engine_2",
+          "title": "Engine 2",
+          "serialNo": 2,
+          "gauge": { "title": "Engine 2", "subtitle": "Auxiliary engine load", "source_type": "holding_register", "address": 40020, "scale": 1, "min": 0, "max": 800, "unit": "kW", "color": "#f59e0b" },
+          "metrics": {
+            "runningHours": { "source_type": "holding_register", "address": 40039, "scale": 1 },
+            "engineSpeed": { "source_type": "holding_register", "address": 40040, "scale": 1 },
+            "foPress": { "source_type": "holding_register", "address": 40041, "scale": 0.01 },
+            "loPress": { "source_type": "holding_register", "address": 40042, "scale": 0.01 },
+            "loTemp": { "source_type": "holding_register", "address": 40043, "scale": 1 },
+            "boostAir": { "source_type": "holding_register", "address": 40044, "scale": 0.01 }
+          }
+        },
+        {
+          "key": "engine_3",
+          "title": "Engine 3",
+          "serialNo": 3,
+          "gauge": { "title": "Engine 3", "subtitle": "Generator engine load", "source_type": "holding_register", "address": 40021, "scale": 1, "min": 0, "max": 800, "unit": "kW", "color": "#38bdf8" },
+          "metrics": {
+            "runningHours": { "source_type": "holding_register", "address": 40045, "scale": 1 },
+            "engineSpeed": { "source_type": "holding_register", "address": 40046, "scale": 1 },
+            "foPress": { "source_type": "holding_register", "address": 40047, "scale": 0.01 },
+            "loPress": { "source_type": "holding_register", "address": 40048, "scale": 0.01 },
+            "loTemp": { "source_type": "holding_register", "address": 40049, "scale": 1 },
+            "boostAir": { "source_type": "holding_register", "address": 40050, "scale": 0.01 }
+          }
+        },
+        {
+          "key": "engine_4",
+          "title": "Engine 4",
+          "serialNo": 4,
+          "gauge": { "title": "Engine 4", "subtitle": "Backup engine load", "source_type": "holding_register", "address": 40022, "scale": 1, "min": 0, "max": 800, "unit": "kW", "color": "#ef4444" },
+          "metrics": {
+            "runningHours": { "source_type": "holding_register", "address": 40051, "scale": 1 },
+            "engineSpeed": { "source_type": "holding_register", "address": 40052, "scale": 1 },
+            "foPress": { "source_type": "holding_register", "address": 40053, "scale": 0.01 },
+            "loPress": { "source_type": "holding_register", "address": 40054, "scale": 0.1 },
+            "loTemp": { "source_type": "holding_register", "address": 40055, "scale": 1 },
+            "boostAir": { "source_type": "holding_register", "address": 40056, "scale": 0.01 }
+          }
+        }
       ]
     },
     "engine": {
@@ -33,6 +85,90 @@
       "status": [
         { "key": "engine_running", "label": "Engine Running", "source_type": "discrete_input", "address": 10001 }
       ]
+    },
+    "exhaust": {
+      "engines": [
+        {
+          "name": "Engine 1",
+          "cylinders": [
+            { "key": "engine_1_cyl_1_exh_temp", "name": "Cyl 1", "source_type": "holding_register", "address": 40057, "scale": 1, "unit": "C" },
+            { "key": "engine_1_cyl_2_exh_temp", "name": "Cyl 2", "source_type": "holding_register", "address": 40058, "scale": 1, "unit": "C" },
+            { "key": "engine_1_cyl_3_exh_temp", "name": "Cyl 3", "source_type": "holding_register", "address": 40059, "scale": 1, "unit": "C" },
+            { "key": "engine_1_cyl_4_exh_temp", "name": "Cyl 4", "source_type": "holding_register", "address": 40060, "scale": 1, "unit": "C" },
+            { "key": "engine_1_cyl_5_exh_temp", "name": "Cyl 5", "source_type": "holding_register", "address": 40061, "scale": 1, "unit": "C" },
+            { "key": "engine_1_cyl_6_exh_temp", "name": "Cyl 6", "source_type": "holding_register", "address": 40062, "scale": 1, "unit": "C" }
+          ]
+        },
+        {
+          "name": "Engine 2",
+          "cylinders": [
+            { "key": "engine_2_cyl_1_exh_temp", "name": "Cyl 1", "source_type": "holding_register", "address": 40063, "scale": 1, "unit": "C" },
+            { "key": "engine_2_cyl_2_exh_temp", "name": "Cyl 2", "source_type": "holding_register", "address": 40064, "scale": 1, "unit": "C" },
+            { "key": "engine_2_cyl_3_exh_temp", "name": "Cyl 3", "source_type": "holding_register", "address": 40065, "scale": 1, "unit": "C" },
+            { "key": "engine_2_cyl_4_exh_temp", "name": "Cyl 4", "source_type": "holding_register", "address": 40066, "scale": 1, "unit": "C" },
+            { "key": "engine_2_cyl_5_exh_temp", "name": "Cyl 5", "source_type": "holding_register", "address": 40067, "scale": 1, "unit": "C" },
+            { "key": "engine_2_cyl_6_exh_temp", "name": "Cyl 6", "source_type": "holding_register", "address": 40068, "scale": 1, "unit": "C" }
+          ]
+        },
+        {
+          "name": "Engine 3",
+          "cylinders": [
+            { "key": "engine_3_cyl_1_exh_temp", "name": "Cyl 1", "source_type": "holding_register", "address": 40069, "scale": 1, "unit": "C" },
+            { "key": "engine_3_cyl_2_exh_temp", "name": "Cyl 2", "source_type": "holding_register", "address": 40070, "scale": 1, "unit": "C" },
+            { "key": "engine_3_cyl_3_exh_temp", "name": "Cyl 3", "source_type": "holding_register", "address": 40071, "scale": 1, "unit": "C" },
+            { "key": "engine_3_cyl_4_exh_temp", "name": "Cyl 4", "source_type": "holding_register", "address": 40072, "scale": 1, "unit": "C" },
+            { "key": "engine_3_cyl_5_exh_temp", "name": "Cyl 5", "source_type": "holding_register", "address": 40073, "scale": 1, "unit": "C" },
+            { "key": "engine_3_cyl_6_exh_temp", "name": "Cyl 6", "source_type": "holding_register", "address": 40074, "scale": 1, "unit": "C" }
+          ]
+        },
+        {
+          "name": "Engine 4",
+          "cylinders": [
+            { "key": "engine_4_cyl_1_exh_temp", "name": "Cyl 1", "source_type": "holding_register", "address": 40075, "scale": 1, "unit": "C" },
+            { "key": "engine_4_cyl_2_exh_temp", "name": "Cyl 2", "source_type": "holding_register", "address": 40076, "scale": 1, "unit": "C" },
+            { "key": "engine_4_cyl_3_exh_temp", "name": "Cyl 3", "source_type": "holding_register", "address": 40077, "scale": 1, "unit": "C" },
+            { "key": "engine_4_cyl_4_exh_temp", "name": "Cyl 4", "source_type": "holding_register", "address": 40078, "scale": 1, "unit": "C" },
+            { "key": "engine_4_cyl_5_exh_temp", "name": "Cyl 5", "source_type": "holding_register", "address": 40079, "scale": 1, "unit": "C" },
+            { "key": "engine_4_cyl_6_exh_temp", "name": "Cyl 6", "source_type": "holding_register", "address": 40080, "scale": 1, "unit": "C" }
+          ]
+        }
+      ],
+      "turbocharger_temperatures": {
+        "engines": [
+          {
+            "name": "Engine 1",
+            "cylinders": [
+              { "key": "engine_1_tc_inlet_1_temp", "name": "T/C inlet 1", "source_type": "holding_register", "address": 40081, "scale": 1, "unit": "C" },
+              { "key": "engine_1_tc_inlet_2_temp", "name": "T/C inlet 2", "source_type": "holding_register", "address": 40082, "scale": 1, "unit": "C" },
+              { "key": "engine_1_tc_outlet_temp", "name": "T/C outlet", "source_type": "holding_register", "address": 40083, "scale": 1, "unit": "C" }
+            ]
+          },
+          {
+            "name": "Engine 2",
+            "cylinders": [
+              { "key": "engine_2_tc_inlet_1_temp", "name": "T/C inlet 1", "source_type": "holding_register", "address": 40084, "scale": 1, "unit": "C" },
+              { "key": "engine_2_tc_inlet_2_temp", "name": "T/C inlet 2", "source_type": "holding_register", "address": 40085, "scale": 1, "unit": "C" },
+              { "key": "engine_2_tc_outlet_temp", "name": "T/C outlet", "source_type": "holding_register", "address": 40086, "scale": 1, "unit": "C" }
+            ]
+          },
+          {
+            "name": "Engine 3",
+            "cylinders": [
+              { "key": "engine_3_tc_inlet_1_temp", "name": "T/C inlet 1", "source_type": "holding_register", "address": 40087, "scale": 1, "unit": "C" },
+              { "key": "engine_3_tc_inlet_2_temp", "name": "T/C inlet 2", "source_type": "holding_register", "address": 40088, "scale": 1, "unit": "C" },
+              { "key": "engine_3_tc_outlet_temp", "name": "T/C outlet", "source_type": "holding_register", "address": 40089, "scale": 1, "unit": "C" }
+            ]
+          },
+          {
+            "name": "Engine 4",
+            "cylinders": [
+              { "key": "engine_4_tc_inlet_1_temp", "name": "T/C inlet 1", "source_type": "holding_register", "address": 40090, "scale": 1, "unit": "C" },
+              { "key": "engine_4_tc_inlet_2_temp", "name": "T/C inlet 2", "source_type": "holding_register", "address": 40091, "scale": 1, "unit": "C" },
+              { "key": "engine_4_tc_outlet_temp", "name": "T/C outlet", "source_type": "holding_register", "address": 40092, "scale": 1, "unit": "C" }
+            ]
+          }
+        ]
+      }
     },
     "pid": {
       "flows": [

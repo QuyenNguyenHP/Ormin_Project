@@ -11,9 +11,15 @@ const NavigationSidebar = ({ className = "" }) => {
   const navIconClass = (isActive) =>
     `h-5 w-5 relative transition-all duration-300 ${
       isActive
-        ? "brightness-0 invert"
-        : "grayscale brightness-[0.7] group-hover:grayscale-0 group-hover:brightness-0 group-hover:invert"
+        ? ""
+        : ""
     }`;
+
+  const navIconStyle = (isActive) => ({
+    filter: isActive
+      ? "brightness(0) invert(1)"
+      : "brightness(0) saturate(100%) invert(69%) sepia(8%) saturate(319%) hue-rotate(176deg) brightness(93%) contrast(87%)",
+  });
 
   return (
     <section
@@ -35,6 +41,7 @@ const NavigationSidebar = ({ className = "" }) => {
           style={({ isActive }) => ({
             borderLeft: isActive ? "4px solid #51A2FF" : undefined,
             background: isActive ? "#155dfc" : undefined,
+            borderRadius: isActive ? "10px" : undefined,
           })}
         >
           {({ isActive }) => (
@@ -42,7 +49,8 @@ const NavigationSidebar = ({ className = "" }) => {
               <img
                 className={navIconClass(isActive)}
                 alt=""
-                src="/overview.png"
+                src="/overview.svg"
+                style={navIconStyle(isActive)}
               />
               <Box className="h-5 flex-1 flex items-start">
                 <div className="flex-1 relative leading-5 font-medium">Overview</div>
@@ -57,6 +65,7 @@ const NavigationSidebar = ({ className = "" }) => {
           style={({ isActive }) => ({
             borderLeft: isActive ? "4px solid #51A2FF" : undefined,
             background: isActive ? "#155DFC" : undefined,
+            borderRadius: isActive ? "10px" : undefined,
           })}
         >
           {({ isActive }) => (
@@ -64,7 +73,8 @@ const NavigationSidebar = ({ className = "" }) => {
               <img
                 className={navIconClass(isActive)}
                 alt=""
-                src="/Icon.svg"
+                src="/engine.svg"
+                style={navIconStyle(isActive)}
               />
               <Box className="h-5 flex-1 flex items-start">
                 <div className="flex-1 relative leading-5 font-medium">Engine</div>
@@ -79,6 +89,7 @@ const NavigationSidebar = ({ className = "" }) => {
           style={({ isActive }) => ({
             borderLeft: isActive ? "4px solid #51A2FF" : undefined,
             background: isActive ? "#155DFC" : undefined,
+            borderRadius: isActive ? "10px" : undefined,
           })}
         >
           {({ isActive }) => (
@@ -86,7 +97,8 @@ const NavigationSidebar = ({ className = "" }) => {
               <img
                 className={navIconClass(isActive)}
                 alt=""
-                src="/Icon.svg"
+                src="/power.svg"
+                style={navIconStyle(isActive)}
               />
               <Box className="h-5 flex-1 flex items-start">
                 <div className="flex-1 relative leading-5 font-medium">Power</div>
@@ -101,6 +113,7 @@ const NavigationSidebar = ({ className = "" }) => {
           style={({ isActive }) => ({
             borderLeft: isActive ? "4px solid #51A2FF" : undefined,
             background: isActive ? "#155DFC" : undefined,
+            borderRadius: isActive ? "10px" : undefined,
           })}
         >
           {({ isActive }) => (
@@ -108,7 +121,8 @@ const NavigationSidebar = ({ className = "" }) => {
               <img
                 className={navIconClass(isActive)}
                 alt=""
-                src="/Icon.svg"
+                src="/Exhaust.svg"
+                style={navIconStyle(isActive)}
               />
               <Box className="h-5 flex-1 flex items-start">
                 <div className="flex-1 relative leading-5 font-medium">Exhaust</div>
@@ -123,6 +137,7 @@ const NavigationSidebar = ({ className = "" }) => {
           style={({ isActive }) => ({
             borderLeft: isActive ? "4px solid #51A2FF" : undefined,
             background: isActive ? "#155DFC" : undefined,
+            borderRadius: isActive ? "10px" : undefined,
           })}
         >
           {({ isActive }) => (
@@ -131,6 +146,7 @@ const NavigationSidebar = ({ className = "" }) => {
                 className={navIconClass(isActive)}
                 alt=""
                 src="/P&ID.svg"
+                style={navIconStyle(isActive)}
               />
               <Box className="h-5 flex-1 flex items-start">
                 <div className="flex-1 relative leading-5 font-medium">{`P&ID`}</div>
@@ -145,6 +161,7 @@ const NavigationSidebar = ({ className = "" }) => {
           style={({ isActive }) => ({
             borderLeft: isActive ? "4px solid #51A2FF" : undefined,
             background: isActive ? "#155DFC" : undefined,
+            borderRadius: isActive ? "10px" : undefined,
           })}
         >
           {({ isActive }) => (
@@ -152,7 +169,8 @@ const NavigationSidebar = ({ className = "" }) => {
               <img
                 className={navIconClass(isActive)}
                 alt=""
-                src="/alarm.png"
+                src="/alarm.svg"
+                style={navIconStyle(isActive)}
               />
               <Box className="h-5 flex-1 flex items-start">
                 <div className="flex-1 relative leading-5 font-medium">Alarms</div>

@@ -8,6 +8,7 @@ import {
 import Overview from "./pages/Overview";
 import PAndID from "./pages/PAndID";
 import Engine from "./pages/Engine";
+import Exhaust from "./pages/Exhaust";
 import PlaceholderPage from "./pages/PlaceholderPage";
 
 function App() {
@@ -83,15 +84,7 @@ function App() {
           />
         }
       />
-      <Route
-        path="/exhaust"
-        element={
-          <PlaceholderPage
-            title="Exhaust"
-            subtitle="Exhaust system information will be displayed here."
-          />
-        }
-      />
+      <Route path="/exhaust" element={<Exhaust />} />
       <Route
         path="/alarms"
         element={

@@ -12,7 +12,18 @@ export const fetchPagePayload = async (pageName) => {
   const response = await fetch(`/api/${pageName}`);
 
   if (!response.ok) {
-    throw new Error(`${pageName} request failed with status ${response.status}`);
+    let errorMessage = `${pageName} request failed with status ${response.status}`;
+
+    try {
+      const errorPayload = await response.json();
+      if (errorPayload?.error) {
+        errorMessage = errorPayload.error;
+      }
+    } catch {
+      // Keep the fallback message when the error response is not JSON.
+    }
+
+    throw new Error(errorMessage);
   }
 
   return response.json();

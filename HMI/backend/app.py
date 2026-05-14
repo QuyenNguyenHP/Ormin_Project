@@ -73,12 +73,34 @@ def group_contiguous_addresses(addresses: list[int]) -> list[tuple[int, int]]:
     return groups
 
 
+def is_mapping_node(node: Any) -> bool:
+    """Return True when a config node describes one Modbus-backed value."""
+    return isinstance(node, dict) and "source_type" in node and "address" in node
+
+
+def flatten_mapping_nodes(config_node: Any) -> list[dict[str, Any]]:
+    """Recursively collect every Modbus mapping node from a config tree."""
+    if is_mapping_node(config_node):
+        return [config_node]
+
+    if isinstance(config_node, list):
+        mappings: list[dict[str, Any]] = []
+        for item in config_node:
+            mappings.extend(flatten_mapping_nodes(item))
+        return mappings
+
+    if isinstance(config_node, dict):
+        mappings: list[dict[str, Any]] = []
+        for value in config_node.values():
+            mappings.extend(flatten_mapping_nodes(value))
+        return mappings
+
+    return []
+
+
 def flatten_page_mappings(page_config: dict[str, Any]) -> list[dict[str, Any]]:
-    """Flatten all section mappings from a page config into one list."""
-    mappings: list[dict[str, Any]] = []
-    for section_items in page_config.values():
-        mappings.extend(section_items)
-    return mappings
+    """Flatten all Modbus mapping nodes from one page config into one list."""
+    return flatten_mapping_nodes(page_config)
 
 
 def filter_mappings_by_source_type(
@@ -192,36 +214,36 @@ def transform_mapping_value(
     raise ValueError(f"Unsupported source_type: {source_type}")
 
 
-def build_section_payload(
-    section_mappings: list[dict[str, Any]],
+def build_config_payload(
+    config_node: Any,
     holding_registers: dict[int, int],
     discrete_inputs: dict[int, int],
-) -> list[dict[str, Any]]:
-    """
-    Build one response section, preserving config metadata and adding the live value.
-
-    Example output item:
-    {
-      "key": "engine_1_load",
-      "title": "Engine 1",
-      "unit": "%",
-      "value": 72
-    }
-    """
-    section_payload: list[dict[str, Any]] = []
-
-    for mapping in section_mappings:
+) -> Any:
+    """Recursively build a payload tree from a config tree."""
+    if is_mapping_node(config_node):
         payload_item = {
             key: value
-            for key, value in mapping.items()
+            for key, value in config_node.items()
             if key not in {"address", "source_type", "scale"}
         }
         payload_item["value"] = transform_mapping_value(
-            mapping, holding_registers, discrete_inputs
+            config_node, holding_registers, discrete_inputs
         )
-        section_payload.append(payload_item)
+        return payload_item
 
-    return section_payload
+    if isinstance(config_node, list):
+        return [
+            build_config_payload(item, holding_registers, discrete_inputs)
+            for item in config_node
+        ]
+
+    if isinstance(config_node, dict):
+        return {
+            key: build_config_payload(value, holding_registers, discrete_inputs)
+            for key, value in config_node.items()
+        }
+
+    return config_node
 
 
 def get_page_config(page_name: str) -> dict[str, Any]:
@@ -244,12 +266,7 @@ def build_page_payload(page_name: str) -> dict[str, Any]:
     page_mappings = flatten_page_mappings(page_config)
     holding_registers, discrete_inputs = read_modbus_maps(page_mappings)
 
-    sections = {
-        section_name: build_section_payload(
-            section_mappings, holding_registers, discrete_inputs
-        )
-        for section_name, section_mappings in page_config.items()
-    }
+    sections = build_config_payload(page_config, holding_registers, discrete_inputs)
 
     return {
         "page": page_name,
