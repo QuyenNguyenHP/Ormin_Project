@@ -60,14 +60,14 @@ const PAndID = () => {
                   ref={svgObjectRef}
                   aria-label="Monitor items overlay"
                   className="absolute inset-0 h-full w-full"
-                  data="/Monitor%20items.svg"
+                  data="/Monitoritem_v2.svg"
                   onLoad={handleSvgLoad}
                   type="image/svg+xml"
                 >
                   <img
                     className="h-full w-full object-contain"
                     alt="Monitor items overlay"
-                    src="/Monitor%20items.svg"
+                    src="/Monitoritem_v2.svg"
                   />
                 </object>
               </Box>
