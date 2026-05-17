@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { Typography, Box } from "@mui/material";
 import PropTypes from "prop-types";
+import { useNavigate } from "react-router-dom";
 
 const Header = ({ className = "", modbusConnected = null }) => {
   const [currentTime, setCurrentTime] = useState("");
+  const navigate = useNavigate();
 
   const modbusStatus =
     modbusConnected === null
@@ -59,7 +61,11 @@ const Header = ({ className = "", modbusConnected = null }) => {
     <header
       className={`self-stretch shadow-[0px_10px_15px_-3px_#0000001a,_0px_4px_6px_-4px_#0000001a] bg-[#1e2939] border-[#364153] border-solid border-b-[2px] flex items-center justify-between !pt-4 !pb-4 !pl-6 !pr-6 gap-5 top-[0] z-[99] sticky text-left text-xl text-[#f3f4f6] font-[Roboto] ${className}`}
     >
-      <Box className="h-[58px] w-[597px] flex items-center gap-6">
+      <button
+        type="button"
+        onClick={() => navigate("/")}
+        className="h-[58px] w-[597px] flex items-center gap-6 bg-transparent border-0 p-0 text-left text-inherit cursor-pointer"
+      >
         <img
           className="h-[66px] w-[66px] [filter:drop-shadow(0px_4px_6px_#0000001a)_drop-shadow(0px_2px_4px_#0000001a)] rounded-[10px] object-cover shrink-0"
           loading="lazy"
@@ -118,7 +124,7 @@ const Header = ({ className = "", modbusConnected = null }) => {
             </Box>
           </Box>
         </Box>
-      </Box>
+      </button>
       <Box className="h-[46px] w-[300.1px] flex items-center gap-6 text-lg text-[#51a2ff] font-[Roboto] mq1350:w-16">
         <Box className="h-[46px] flex-1 rounded-[10px] bg-[#10182880] border-[#4a5565] border-solid border-[1px] box-border flex flex-col items-start !pt-[9px] !pb-px !pl-4 !pr-[15px] mq1350:hidden">
           <Typography

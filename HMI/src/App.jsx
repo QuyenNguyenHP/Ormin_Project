@@ -9,6 +9,7 @@ import Overview from "./pages/Overview";
 import PAndID from "./pages/PAndID";
 import Engine from "./pages/Engine";
 import Exhaust from "./pages/Exhaust";
+import FOConsumption from "./pages/FOConsumption";
 import PlaceholderPage from "./pages/PlaceholderPage";
 
 function App() {
@@ -43,6 +44,10 @@ function App() {
         title = "Power";
         metaDescription = "Power information page.";
         break;
+      case "/fo-consumption":
+        title = "F.O. Consumption";
+        metaDescription = "Fuel oil consumption history and flow comparison page.";
+        break;
       case "/exhaust":
         title = "Exhaust";
         metaDescription = "Exhaust system information page.";
@@ -75,6 +80,7 @@ function App() {
       <Route path="/" element={<Overview />} />
       <Route path="/pid" element={<PAndID />} />
       <Route path="/engine" element={<Engine />} />
+      <Route path="/fo-consumption" element={<FOConsumption />} />
       <Route
         path="/power"
         element={

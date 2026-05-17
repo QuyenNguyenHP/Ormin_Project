@@ -80,7 +80,7 @@ const Container1 = ({ engine, className = "" }) => {
 
   return (
     <Box
-      className={`rounded-[10px] bg-[#101828] border-[#364153] border-solid border-[1px] box-border max-w-full overflow-hidden flex flex-col items-start !pt-[17px] !pb-4 !pl-4 !pr-4 gap-3 leading-[normal] tracking-[normal] text-left text-[25px] text-[#fff] font-[Roboto] ${className}`}
+      className={`rounded-[10px] bg-[#10182866] border-[#364153] border-solid border-[1px] box-border max-w-full overflow-hidden flex flex-col items-start !pt-[17px] !pb-4 !pl-4 !pr-4 gap-3 leading-[normal] tracking-[normal] text-left text-[25px] text-[#fff] font-[Roboto] ${className}`}
     >
       <Box className="self-stretch shrink-0">
         <EngineGauge
@@ -90,7 +90,7 @@ const Container1 = ({ engine, className = "" }) => {
           min={Number(gauge.min ?? 0)}
           max={Number(gauge.max ?? 100)}
           unit={gauge.unit ?? "%"}
-          color={gauge.color ?? "#22c55e"}
+          color={gauge.color ?? "#377edb"}
         />
       </Box>
 

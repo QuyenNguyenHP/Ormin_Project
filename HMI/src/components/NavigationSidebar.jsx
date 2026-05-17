@@ -108,6 +108,32 @@ const NavigationSidebar = ({ className = "" }) => {
         </NavLink>
 
         <NavLink
+          to="/fo-consumption"
+          className={navItemClass}
+          style={({ isActive }) => ({
+            borderLeft: isActive ? "4px solid #51A2FF" : undefined,
+            background: isActive ? "#155DFC" : undefined,
+            borderRadius: isActive ? "10px" : undefined,
+          })}
+        >
+          {({ isActive }) => (
+            <>
+              <img
+                className={navIconClass(isActive)}
+                alt=""
+                src="/power.svg"
+                style={navIconStyle(isActive)}
+              />
+              <Box className="min-h-5 flex-1 flex items-start">
+                <div className="flex-1 relative leading-5 font-medium">
+                  F.O. Consumption
+                </div>
+              </Box>
+            </>
+          )}
+        </NavLink>
+
+        <NavLink
           to="/exhaust"
           className={navItemClass}
           style={({ isActive }) => ({

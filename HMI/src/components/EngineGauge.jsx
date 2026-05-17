@@ -109,7 +109,7 @@ const EngineGauge = ({
   }, [color, max, min, unit, value]);
 
   return (
-    <div className="rounded-[12px] bg-[#111827] border border-[#334155] p-5">
+    <div className="rounded-[12px] bg-transparent border border-[#334155] p-5">
       <div className="mb-4">
         <h3 className="m-0 text-[20px] font-roboto text-[#f8fafc]">{title}</h3>
         <p className="mt-2 mb-0 text-[13px] text-[#94a3b8]">{subtitle}</p>
