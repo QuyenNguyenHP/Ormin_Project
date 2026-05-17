@@ -140,6 +140,7 @@ const normalizeEngines = (backendEngines) => {
           title: group.title ?? `Group ${groupIndex + 1}`,
           metrics: Array.isArray(group.metrics)
             ? group.metrics.map((metric, metricIndex) => ({
+                ...metric,
                 key: metric.key ?? `metric_${metricIndex + 1}`,
                 label: metric.label ?? `Metric ${metricIndex + 1}`,
                 unit: metric.unit ?? "",
@@ -161,6 +162,10 @@ const ENGINE_GROUP_COLUMNS = {
   fuel_oil_system: 2,
   alternator_temperature: 3,
   lub_oil_system: 3,
+};
+
+const ENGINE_GROUP_TITLE_LINKS = {
+  exhaust_gas_temp: "/exhaust",
 };
 
 const buildEngineGroupColumns = (groups) => {
@@ -220,12 +225,29 @@ const Engine = () => {
               <Box
                 className="absolute inset-0"
                 sx={{
+                  "@keyframes engineImagePopIn": {
+                    "0%": {
+                      opacity: 0,
+                      transform: "scale(0.94)",
+                    },
+                    "65%": {
+                      opacity: 0.68,
+                      transform: "scale(1.02)",
+                    },
+                    "100%": {
+                      opacity: 0.6,
+                      transform: "scale(1)",
+                    },
+                  },
                   backgroundImage: "url('/engine_image.png')",
                   backgroundPosition: "center",
                   backgroundRepeat: "no-repeat",
                   backgroundSize: "90%",
                   opacity: 0.6,
                   filter: "saturate(0.9)",
+                  transformOrigin: "center",
+                  animation: "engineImagePopIn 900ms ease-out",
+                  willChange: "transform, opacity",
                 }}
               />
               <Box
@@ -253,7 +275,11 @@ const Engine = () => {
                   {selectedEngineColumns.map((columnGroups, columnIndex) => (
                     <Box key={`engine-column-${columnIndex}`} className="flex flex-col gap-4">
                       {columnGroups.map((group) => (
-                        <EngineMetricGroupCard key={group.key} group={group} />
+                        <EngineMetricGroupCard
+                          key={group.key}
+                          group={group}
+                          titleTo={ENGINE_GROUP_TITLE_LINKS[group.key] ?? ""}
+                        />
                       ))}
                     </Box>
                   ))}
@@ -261,7 +287,11 @@ const Engine = () => {
 
                 <Box className="mt-6 grid grid-cols-1 items-start gap-4 xl:hidden md:grid-cols-2">
                   {(selectedEngine?.groups ?? []).map((group) => (
-                    <EngineMetricGroupCard key={group.key} group={group} />
+                    <EngineMetricGroupCard
+                      key={group.key}
+                      group={group}
+                      titleTo={ENGINE_GROUP_TITLE_LINKS[group.key] ?? ""}
+                    />
                   ))}
                 </Box>
               </Box>

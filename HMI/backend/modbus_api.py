@@ -69,6 +69,21 @@ def group_contiguous_addresses(addresses: list[int]) -> list[tuple[int, int]]:
     return groups
 
 
+def split_address_group(
+    group_start: int, group_end: int, max_count: int
+) -> list[tuple[int, int]]:
+    """Split one contiguous address range into protocol-safe chunks."""
+    chunks: list[tuple[int, int]] = []
+    chunk_start = group_start
+
+    while chunk_start <= group_end:
+        chunk_end = min(chunk_start + max_count - 1, group_end)
+        chunks.append((chunk_start, chunk_end))
+        chunk_start = chunk_end + 1
+
+    return chunks
+
+
 def is_mapping_node(node: Any) -> bool:
     """Return True when a config node describes one Modbus-backed value."""
     return isinstance(node, dict) and "source_type" in node and "address" in node
@@ -106,6 +121,37 @@ def filter_mappings_by_source_type(
     return [mapping for mapping in mappings if mapping["source_type"] == source_type]
 
 
+def resolve_metric_state(
+    value: Any,
+    warning: Any = None,
+    alarm: Any = None,
+    direction: str = "high",
+) -> str:
+    """Return normal/warning/alarm for one numeric metric."""
+    numeric_value = value if isinstance(value, (int, float)) else None
+    if numeric_value is None:
+        try:
+            numeric_value = float(value)
+        except (TypeError, ValueError):
+            return "normal"
+
+    if warning is None and alarm is None:
+        return "normal"
+
+    if direction == "low":
+        if alarm is not None and numeric_value <= alarm:
+            return "alarm"
+        if warning is not None and numeric_value <= warning:
+            return "warning"
+        return "normal"
+
+    if alarm is not None and numeric_value >= alarm:
+        return "alarm"
+    if warning is not None and numeric_value >= warning:
+        return "warning"
+    return "normal"
+
+
 def open_modbus_client() -> ModbusTcpClient:
     """Create and connect a Modbus client using the configured connection settings."""
     client = ModbusTcpClient(
@@ -130,17 +176,20 @@ def read_holding_register_map(
     addresses = [int(mapping["address"]) for mapping in mappings]
 
     for group_start, group_end in group_contiguous_addresses(addresses):
-        count = group_end - group_start + 1
-        response = client.read_holding_registers(
-            address=modbus_address_to_offset(group_start, HOLDING_REGISTER_START),
-            count=count,
-            slave=MODBUS_CONFIG["unit_id"],
-        )
-        if response.isError():
-            raise RuntimeError(f"Failed to read holding registers {group_start}-{group_end}")
+        for chunk_start, chunk_end in split_address_group(group_start, group_end, max_count=125):
+            count = chunk_end - chunk_start + 1
+            response = client.read_holding_registers(
+                address=modbus_address_to_offset(chunk_start, HOLDING_REGISTER_START),
+                count=count,
+                slave=MODBUS_CONFIG["unit_id"],
+            )
+            if response.isError():
+                raise RuntimeError(
+                    f"Failed to read holding registers {chunk_start}-{chunk_end}"
+                )
 
-        for index, value in enumerate(response.registers):
-            register_map[group_start + index] = value
+            for index, value in enumerate(response.registers):
+                register_map[chunk_start + index] = value
 
     return register_map
 
@@ -216,6 +265,8 @@ def build_config_payload(
     config_node: Any,
     holding_registers: dict[int, int],
     discrete_inputs: dict[int, int],
+    threshold_lookup: dict[str, dict[str, Any]] | None = None,
+    node_key: str | None = None,
 ) -> Any:
     """Recursively build a payload tree from a config tree."""
     if is_mapping_node(config_node):
@@ -224,20 +275,49 @@ def build_config_payload(
             for key, value in config_node.items()
             if key not in {"address", "source_type", "scale"}
         }
+        metric_key = payload_item.get("key")
+        if not isinstance(metric_key, str) and isinstance(node_key, str):
+            metric_key = node_key
+        if "key" not in payload_item and isinstance(metric_key, str):
+            payload_item["key"] = metric_key
+        threshold_config = (
+            threshold_lookup.get(metric_key, {})
+            if threshold_lookup and isinstance(metric_key, str)
+            else {}
+        )
+        for threshold_key in ("warning", "alarm", "direction"):
+            if threshold_key in threshold_config and threshold_key not in payload_item:
+                payload_item[threshold_key] = threshold_config[threshold_key]
+
         payload_item["value"] = transform_mapping_value(
             config_node, holding_registers, discrete_inputs
         )
+        if payload_item.get("direction") in {"low", "high"} or (
+            payload_item.get("warning") is not None or payload_item.get("alarm") is not None
+        ):
+            payload_item["state"] = resolve_metric_state(
+                payload_item["value"],
+                payload_item.get("warning"),
+                payload_item.get("alarm"),
+                payload_item.get("direction", "high"),
+            )
         return payload_item
 
     if isinstance(config_node, list):
         return [
-            build_config_payload(item, holding_registers, discrete_inputs)
+            build_config_payload(item, holding_registers, discrete_inputs, threshold_lookup)
             for item in config_node
         ]
 
     if isinstance(config_node, dict):
         return {
-            key: build_config_payload(value, holding_registers, discrete_inputs)
+            key: build_config_payload(
+                value,
+                holding_registers,
+                discrete_inputs,
+                threshold_lookup,
+                key,
+            )
             for key, value in config_node.items()
         }
 
@@ -263,8 +343,16 @@ def build_page_payload(page_name: str) -> dict[str, Any]:
     page_config = get_page_config(page_name)
     page_mappings = flatten_page_mappings(page_config)
     holding_registers, discrete_inputs = read_modbus_maps(page_mappings)
-
-    sections = build_config_payload(page_config, holding_registers, discrete_inputs)
+    threshold_lookup = page_config.get("metric_thresholds", {})
+    payload_config = {
+        key: value for key, value in page_config.items() if key != "metric_thresholds"
+    }
+    sections = build_config_payload(
+        payload_config,
+        holding_registers,
+        discrete_inputs,
+        threshold_lookup,
+    )
 
     return {
         "page": page_name,

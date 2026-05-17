@@ -73,7 +73,15 @@
             "boostAir": { "source_type": "holding_register", "address": 40056, "scale": 0.01 }
           }
         }
-      ]
+      ],
+      "metric_thresholds": {
+        "runningHours": { "warning": 50000, "alarm": 70000, "direction": "high" },
+        "engineSpeed": { "warning": 900, "alarm": 1020, "direction": "high" },
+        "foPress": { "warning": 0.35, "alarm": 0.30, "direction": "low" },
+        "loPress": { "warning": 0.35, "alarm": 0.30, "direction": "low" },
+        "loTemp": { "warning": 300, "alarm": 360, "direction": "high" },
+        "boostAir": { "warning": 2.0, "alarm": 1.5, "direction": "low" }
+      }
     },
     "engine": {
       "engines": [
@@ -497,7 +505,55 @@
             }
           ]
         }
-      ]
+      ],
+      "metric_thresholds": {
+        "stator_winding_temp_u": { "warning": 120, "alarm": 130, "direction": "high" },
+        "stator_winding_temp_v": { "warning": 120, "alarm": 130, "direction": "high" },
+        "stator_winding_temp_w": { "warning": 120, "alarm": 130, "direction": "high" },
+        "de_bearing_temp": { "warning": 95, "alarm": 105, "direction": "high" },
+        "nde_bearing_temp": { "warning": 95, "alarm": 105, "direction": "high" },
+        "intake_air_pressure": { "warning": 0.35, "alarm": 0.30, "direction": "low" },
+        "air_receiver_pressure": { "warning": 0.35, "alarm": 0.30, "direction": "low" },
+        "engine_running_hours": { "warning": 50000, "alarm": 70000, "direction": "high" },
+        "engine_power": { "warning": 700, "alarm": 780, "direction": "high" },
+        "engine_speed": { "warning": 850, "alarm": 900, "direction": "high" },
+        "tc_outlet_temp": { "warning": 390, "alarm": 430, "direction": "high" },
+        "cyl_1_exhaust_temp": { "warning": 380, "alarm": 420, "direction": "high" },
+        "cyl_2_exhaust_temp": { "warning": 380, "alarm": 420, "direction": "high" },
+        "cyl_3_exhaust_temp": { "warning": 380, "alarm": 420, "direction": "high" },
+        "cyl_4_exhaust_temp": { "warning": 380, "alarm": 420, "direction": "high" },
+        "cyl_5_exhaust_temp": { "warning": 380, "alarm": 420, "direction": "high" },
+        "cyl_6_exhaust_temp": { "warning": 380, "alarm": 420, "direction": "high" },
+        "tc_inlet_temp": { "warning": 320, "alarm": 340, "direction": "high" },
+        "fuel_oil_pressure": { "warning": 5.5, "alarm": 4.5, "direction": "low" },
+        "do_engine_inlet_temp": { "warning": 55, "alarm": 65, "direction": "high" },
+        "do_engine_return_temp": { "warning": 60, "alarm": 70, "direction": "high" },
+        "ho_engine_inlet_temp": { "warning": 110, "alarm": 125, "direction": "high" },
+        "ho_engine_return_temp": { "warning": 120, "alarm": 135, "direction": "high" },
+        "do_transfer_flow": { "warning": 90, "alarm": 60, "direction": "low" },
+        "do_engine_inlet_flow": { "warning": 75, "alarm": 50, "direction": "low" },
+        "do_engine_return_flow": { "warning": 30, "alarm": 20, "direction": "low" },
+        "ho_transfer_flow": { "warning": 110, "alarm": 80, "direction": "low" },
+        "ho_engine_inlet_flow": { "warning": 95, "alarm": 70, "direction": "low" },
+        "ho_engine_return_flow": { "warning": 40, "alarm": 28, "direction": "low" },
+        "engine_lo_pressure": { "warning": 4.0, "alarm": 3.2, "direction": "low" },
+        "turbo_lo_pressure": { "warning": 2.0, "alarm": 1.5, "direction": "low" },
+        "lo_cooler_inlet_temp": { "warning": 70, "alarm": 80, "direction": "high" },
+        "lo_cooler_outlet_temp": { "warning": 65, "alarm": 75, "direction": "high" },
+        "oil_mist_level": { "warning": 60, "alarm": 80, "direction": "high" },
+        "omd_analog_signal": { "warning": 12, "alarm": 16, "direction": "high" },
+        "generator_voltage": { "warning": 470, "alarm": 490, "direction": "high" },
+        "generator_frequency": { "warning": 61.5, "alarm": 62.5, "direction": "high" },
+        "generator_power_factor": { "warning": 0.75, "alarm": 0.65, "direction": "low" },
+        "generator_current": { "warning": 650, "alarm": 750, "direction": "high" },
+        "jacket_water_pressure": { "warning": 2.8, "alarm": 2.2, "direction": "low" },
+        "cooler_water_pressure": { "warning": 2.2, "alarm": 1.7, "direction": "low" },
+        "jacket_water_inlet_temp": { "warning": 82, "alarm": 88, "direction": "high" },
+        "jacket_water_outlet_temp": { "warning": 90, "alarm": 96, "direction": "high" },
+        "cooler_water_inlet_temp": { "warning": 38, "alarm": 45, "direction": "high" },
+        "cooler_water_outlet_temp": { "warning": 45, "alarm": 52, "direction": "high" },
+        "cw_before_lo_cooler_temp": { "warning": 40, "alarm": 48, "direction": "high" }
+      }
     },
     "exhaust": {
       "engines": [

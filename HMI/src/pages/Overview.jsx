@@ -5,13 +5,15 @@ import Footer from "../components/Footer";
 import Container1 from "../components/Container1";
 import { usePolledPagePayload } from "../hooks/usePolledPagePayload";
 
+const defaultMetricPayload = { value: 0, state: "normal" };
+
 const defaultEngineMetrics = {
-  runningHours: 0,
-  engineSpeed: 0,
-  foPress: 0,
-  loPress: 0,
-  loTemp: 0,
-  boostAir: 0,
+  runningHours: defaultMetricPayload,
+  engineSpeed: defaultMetricPayload,
+  foPress: defaultMetricPayload,
+  loPress: defaultMetricPayload,
+  loTemp: defaultMetricPayload,
+  boostAir: defaultMetricPayload,
 };
 
 const fallbackEngines = Array.from({ length: 4 }, (_, index) => ({
@@ -30,12 +32,19 @@ const fallbackEngines = Array.from({ length: 4 }, (_, index) => ({
   metrics: defaultEngineMetrics,
 }));
 
-const getMetricValue = (metric, fallbackValue = 0) => {
+const normalizeMetricPayload = (metric, fallbackValue = 0) => {
   if (metric && typeof metric === "object" && "value" in metric) {
-    return metric.value;
+    return {
+      ...metric,
+      value: metric.value ?? fallbackValue,
+      state: metric.state ?? "normal",
+    };
   }
 
-  return metric ?? fallbackValue;
+  return {
+    value: metric ?? fallbackValue,
+    state: "normal",
+  };
 };
 
 const normalizeEngine = (engine, index) => ({
@@ -52,29 +61,29 @@ const normalizeEngine = (engine, index) => ({
     color: engine.gauge?.color ?? engine.color ?? "#22c55e",
   },
   metrics: {
-    runningHours: getMetricValue(
+    runningHours: normalizeMetricPayload(
       engine.metrics?.runningHours ?? engine.runningHours,
-      defaultEngineMetrics.runningHours
+      defaultMetricPayload.value
     ),
-    engineSpeed: getMetricValue(
+    engineSpeed: normalizeMetricPayload(
       engine.metrics?.engineSpeed ?? engine.engineSpeed,
-      defaultEngineMetrics.engineSpeed
+      defaultMetricPayload.value
     ),
-    foPress: getMetricValue(
+    foPress: normalizeMetricPayload(
       engine.metrics?.foPress ?? engine.foPress,
-      defaultEngineMetrics.foPress
+      defaultMetricPayload.value
     ),
-    loPress: getMetricValue(
+    loPress: normalizeMetricPayload(
       engine.metrics?.loPress ?? engine.loPress,
-      defaultEngineMetrics.loPress
+      defaultMetricPayload.value
     ),
-    loTemp: getMetricValue(
+    loTemp: normalizeMetricPayload(
       engine.metrics?.loTemp ?? engine.loTemp,
-      defaultEngineMetrics.loTemp
+      defaultMetricPayload.value
     ),
-    boostAir: getMetricValue(
+    boostAir: normalizeMetricPayload(
       engine.metrics?.boostAir ?? engine.boostAir,
-      defaultEngineMetrics.boostAir
+      defaultMetricPayload.value
     ),
   },
 });
