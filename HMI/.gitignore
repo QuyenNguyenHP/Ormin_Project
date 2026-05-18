@@ -23,6 +23,13 @@ pids
 *.seed
 *.log
 
+# Python cache
+__pycache__/
+*.pyc
+
+# Local SQLite data
+*.db
+
 # Editor directories and files
 .idea
 .vscode/
@@ -32,4 +39,3 @@ pids
 
 # OS-specific
 Thumbs.db
-
