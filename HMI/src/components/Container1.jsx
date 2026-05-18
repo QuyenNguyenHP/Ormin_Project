@@ -3,84 +3,70 @@ import PropTypes from "prop-types";
 import EngineGauge from "./EngineGauge";
 
 const metricDefinitions = [
-  { key: "runningHours", label: "Running hours" },
-  { key: "engineSpeed", label: "Engine Speed (rpm)", warning: 900, alarm: 1020 },
-  { key: "foPress", label: "F.O. press (Mpa)", warning: 0.35, alarm: 0.3, direction: "low"},
-  { key: "loPress", label: "L.O Press (Mpa)", warning: 0.35, alarm: 0.3, direction: "low" },
-  { key: "loTemp", label: "L.O Temp (C)", warning: 300, alarm: 360 },
-  { key: "boostAir", label: "BOOST AIR (Mpa)", warning: 2.0, alarm: 1.5, direction: "low" },
+  { key: "runningHours", label: "Running hours", unit: "h" },
+  { key: "engineSpeed", label: "Engine Speed", unit: "rpm" },
+  { key: "foPress", label: "F.O. press", unit: "MPa" },
+  { key: "loPress", label: "L.O Press", unit: "MPa" },
+  { key: "loTemp", label: "L.O Temp", unit: "°C" },
+  { key: "boostAir", label: "BOOST AIR", unit: "MPa" },
 ];
 
 const metricStateStyles = {
   normal: {
-    rowBackground: "#1e2939",
+    rowBackground: "transparent",
   },
   warning: {
-    rowBackground: "#f1b245",
+    rowBackground: "#f1b245cc",
   },
   alarm: {
-    rowBackground: "#f14949",
+    rowBackground: "#f14949cc",
   },
 };
 
-const formatMetricValue = (value) => {
+const formatMetricValue = (value, unit = "") => {
   if (value === null || value === undefined || value === "") {
     return "--";
   }
 
   if (typeof value === "number") {
-    return Number.isInteger(value) ? value : value.toFixed(2);
+    const formattedValue = Number.isInteger(value) ? value : value.toFixed(2);
+    return unit ? `${formattedValue} ${unit}` : formattedValue;
   }
 
-  return value;
+  return unit ? `${value} ${unit}` : value;
 };
 
-const getNumericMetricValue = (value) => {
-  const parsedValue = Number(value);
-  return Number.isFinite(parsedValue) ? parsedValue : null;
-};
-
-const getMetricState = (value, metricDefinition) => {
-  const numericValue = getNumericMetricValue(value);
-
-  if (numericValue === null) {
-    return "normal";
-  }
-
-  if (metricDefinition.direction === "low") {
-    if (metricDefinition.alarm !== undefined && numericValue <= metricDefinition.alarm) {
-      return "alarm";
-    }
-
-    if (metricDefinition.warning !== undefined && numericValue <= metricDefinition.warning) {
-      return "warning";
-    }
-
-    return "normal";
-  }
-
-  if (metricDefinition.alarm !== undefined && numericValue >= metricDefinition.alarm) {
-    return "alarm";
-  }
-
-  if (metricDefinition.warning !== undefined && numericValue >= metricDefinition.warning) {
-    return "warning";
+const getMetricState = (metricPayload) => {
+  if (
+    metricPayload &&
+    typeof metricPayload === "object" &&
+    typeof metricPayload.state === "string" &&
+    metricPayload.state in metricStateStyles
+  ) {
+    return metricPayload.state;
   }
 
   return "normal";
 };
 
+const getMetricValue = (metricPayload) => {
+  if (metricPayload && typeof metricPayload === "object" && "value" in metricPayload) {
+    return metricPayload.value;
+  }
+
+  return metricPayload;
+};
+
 const Container1 = ({ engine, className = "" }) => {
   const {
     title,
-    serialNo,
     gauge = {},
     metrics = {},
   } = engine;
 
   return (
     <Box
-      className={`rounded-[10px] bg-[#101828] border-[#364153] border-solid border-[1px] box-border max-w-full overflow-hidden flex flex-col items-start !pt-[17px] !pb-4 !pl-4 !pr-4 gap-3 leading-[normal] tracking-[normal] text-left text-[25px] text-[#fff] font-[Roboto] ${className}`}
+      className={`rounded-[10px] bg-[#10182866] border-[#364153] border-solid border-[1px] box-border max-w-full overflow-hidden flex flex-col items-start !pt-[17px] !pb-4 !pl-4 !pr-4 gap-3 leading-[normal] tracking-[normal] text-left text-[25px] text-[#fff] font-[Roboto] ${className}`}
     >
       <Box className="self-stretch shrink-0">
         <EngineGauge
@@ -90,22 +76,20 @@ const Container1 = ({ engine, className = "" }) => {
           min={Number(gauge.min ?? 0)}
           max={Number(gauge.max ?? 100)}
           unit={gauge.unit ?? "%"}
-          color={gauge.color ?? "#22c55e"}
+          color={gauge.color ?? "#377edb"}
         />
       </Box>
 
       {metricDefinitions.map((metric) => {
-        const metricValue = metrics[metric.key];
-        const metricState = getMetricState(metricValue, metric);
+        const metricPayload = metrics[metric.key];
+        const metricValue = getMetricValue(metricPayload);
+        const metricState = getMetricState(metricPayload);
         const stateStyle = metricStateStyles[metricState];
 
         return (
           <Box
             key={metric.key}
             className="self-stretch min-h-[50px] rounded-[10px] border-[#364153] border-solid border-[1px] box-border overflow-hidden shrink-0 flex items-center justify-between gap-4 !py-2 !pl-2 !pr-2"
-            sx={{
-              backgroundColor: stateStyle.rowBackground,
-            }}
           >
             <Typography
               className="!m-0 flex-1 relative inline-block shrink-0"
@@ -115,14 +99,21 @@ const Container1 = ({ engine, className = "" }) => {
             >
               {metric.label}
             </Typography>
-            <Typography
-              className="!m-0 relative text-right"
-              variant="inherit"
-              variantMapping={{ inherit: "h3" }}
-              sx={{ fontSize: "16px", fontWeight: "600", lineHeight: 1.25 }}
+            <Box
+              className="rounded-[8px] !px-2 !py-1"
+              sx={{
+                backgroundColor: stateStyle.rowBackground,
+              }}
             >
-              {formatMetricValue(metricValue)}
-            </Typography>
+              <Typography
+                className="!m-0 relative text-right"
+                variant="inherit"
+                variantMapping={{ inherit: "h3" }}
+                sx={{ fontSize: "16px", fontWeight: "600", lineHeight: 1.25 }}
+              >
+                {formatMetricValue(metricValue, metric.unit)}
+              </Typography>
+            </Box>
           </Box>
         );
       })}
@@ -140,13 +131,22 @@ const gaugePropType = PropTypes.shape({
   value: PropTypes.number,
 });
 
+const metricPayloadPropType = PropTypes.oneOfType([
+  PropTypes.number,
+  PropTypes.string,
+  PropTypes.shape({
+    state: PropTypes.oneOf(["normal", "warning", "alarm"]),
+    value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  }),
+]);
+
 const metricsPropType = PropTypes.shape({
-  boostAir: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  engineSpeed: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  foPress: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  loPress: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  loTemp: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  runningHours: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  boostAir: metricPayloadPropType,
+  engineSpeed: metricPayloadPropType,
+  foPress: metricPayloadPropType,
+  loPress: metricPayloadPropType,
+  loTemp: metricPayloadPropType,
+  runningHours: metricPayloadPropType,
 });
 
 Container1.propTypes = {

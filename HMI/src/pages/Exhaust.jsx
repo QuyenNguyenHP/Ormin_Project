@@ -4,6 +4,7 @@ import Header from "../components/Header";
 import NavigationSidebar from "../components/NavigationSidebar";
 import Footer from "../components/Footer";
 import Cylinder_exh_temp from "../components/Cylinder_exh_temp";
+import DashboardButton from "../components/DashboardButton";
 import { usePolledPagePayload } from "../hooks/usePolledPagePayload";
 
 const fallbackCylinderEngines = [
@@ -111,28 +112,13 @@ const SelectEngineButtons = ({ engineNames, selectedEngineNames, onToggleEngine 
       const isActive = selectedEngineNames.includes(engineName);
 
       return (
-        <Box
+        <DashboardButton
           key={engineName}
-          component="button"
-          type="button"
           onClick={() => onToggleEngine(engineName)}
-          className="rounded-[10px] border border-solid !px-4 !py-2 text-[14px] font-semibold transition-all duration-200"
-          sx={{
-            background: isActive
-              ? "linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%)"
-              : "linear-gradient(135deg, #0f172a 0%, #111827 100%)",
-            borderColor: isActive ? "#60a5fa" : "#334155",
-            boxShadow: isActive
-              ? "0 10px 24px rgba(37, 99, 235, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.12)"
-              : "inset 0 1px 0 rgba(255, 255, 255, 0.04)",
-            color: isActive ? "#ffffff" : "#cbd5e1",
-            opacity: isActive ? 1 : 0.82,
-            transform: isActive ? "translateY(-1px)" : "translateY(0)",
-            cursor: "pointer",
-          }}
+          active={isActive}
         >
           {engineName}
-        </Box>
+        </DashboardButton>
       );
     })}
   </Box>
