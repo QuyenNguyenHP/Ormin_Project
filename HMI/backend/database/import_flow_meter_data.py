@@ -22,6 +22,7 @@ REQUIRED_COLUMNS = [
     "Value",
     "Unit",
 ]
+DEFAULT_DELIMITER_CANDIDATES = ",;|\t"
 
 
 def parse_args() -> argparse.Namespace:
@@ -46,9 +47,17 @@ def parse_args() -> argparse.Namespace:
         help=f"Target SQLite table name. Default: {DEFAULT_TABLE_NAME}",
     )
     parser.add_argument(
-        "--append",
+        "--replace",
         action="store_true",
-        help="Append into the existing table instead of clearing it first.",
+        help="Drop and recreate the target table before importing.",
+    )
+    parser.add_argument(
+        "--delimiter",
+        default=None,
+        help=(
+            "Optional CSV delimiter override. If omitted, the importer auto-detects "
+            "common delimiters such as ';' and ','."
+        ),
     )
     return parser.parse_args()
 
@@ -70,8 +79,21 @@ def create_table(connection: sqlite3.Connection, table_name: str) -> None:
             "Channel Description" TEXT NOT NULL,
             "Timestamp" DATETIME NOT NULL,
             "Value" REAL NOT NULL,
-            "Unit" TEXT NOT NULL
+            "Unit" TEXT NOT NULL,
+            UNIQUE ("Engine", "Channel Description", "Timestamp")
         )
+        """
+    )
+    connection.execute(
+        f"""
+        CREATE INDEX IF NOT EXISTS {quote_identifier(f'idx_{table_name}_engine_timestamp')}
+        ON {quoted_table} ("Engine", "Timestamp")
+        """
+    )
+    connection.execute(
+        f"""
+        CREATE UNIQUE INDEX IF NOT EXISTS {quote_identifier(f'uniq_{table_name}_engine_channel_timestamp')}
+        ON {quoted_table} ("Engine", "Channel Description", "Timestamp")
         """
     )
 
@@ -84,6 +106,41 @@ def truncate_table(connection: sqlite3.Connection, table_name: str) -> None:
 def drop_table(connection: sqlite3.Connection, table_name: str) -> None:
     quoted_table = quote_identifier(table_name)
     connection.execute(f"DROP TABLE IF EXISTS {quoted_table}")
+
+
+def detect_csv_dialect(source_path: Path, delimiter_override: str | None) -> csv.Dialect:
+    if delimiter_override:
+        class ExplicitDialect(csv.excel):
+            delimiter = delimiter_override
+
+        return ExplicitDialect
+
+    with source_path.open("r", encoding="utf-8-sig", newline="") as csv_file:
+        sample = csv_file.read(4096)
+
+    try:
+        return csv.Sniffer().sniff(sample, delimiters=DEFAULT_DELIMITER_CANDIDATES)
+    except csv.Error:
+        class FallbackDialect(csv.excel):
+            delimiter = ";"
+
+        return FallbackDialect
+
+
+def normalize_header_row(fieldnames: list[str] | None) -> list[str]:
+    if not fieldnames:
+        raise ValueError("CSV header row is missing.")
+
+    normalized_headers = [str(fieldname).strip() for fieldname in fieldnames]
+    missing_columns = [column for column in REQUIRED_COLUMNS if column not in normalized_headers]
+    if missing_columns:
+        raise ValueError(
+            "CSV header is missing required columns: "
+            + ", ".join(missing_columns)
+            + f". Found: {normalized_headers}"
+        )
+
+    return normalized_headers
 
 
 def normalize_row(row: dict[str, str], row_number: int) -> tuple[int, str, str, float, str]:
@@ -103,7 +160,8 @@ def normalize_row(row: dict[str, str], row_number: int) -> tuple[int, str, str, 
     unit = str(row["Unit"]).strip()
 
     try:
-        value = float(str(row["Value"]).strip())
+        raw_value = str(row["Value"]).strip().replace(",", ".")
+        value = float(raw_value)
     except ValueError as exc:
         raise ValueError(f"Row {row_number} has invalid Value: {row['Value']}") from exc
 
@@ -126,23 +184,51 @@ def normalize_row(row: dict[str, str], row_number: int) -> tuple[int, str, str, 
     return engine, channel_description, timestamp, value, unit
 
 
-def read_csv_rows(source_path: Path) -> Iterable[tuple[int, str, str, float, str]]:
+def read_csv_rows(
+    source_path: Path, delimiter_override: str | None = None
+) -> Iterable[tuple[int, str, str, float, str]]:
+    dialect = detect_csv_dialect(source_path, delimiter_override)
+
     with source_path.open("r", encoding="utf-8-sig", newline="") as csv_file:
-        reader = csv.DictReader(csv_file)
+        reader = csv.DictReader(csv_file, dialect=dialect)
+        reader.fieldnames = normalize_header_row(reader.fieldnames)
         for row_number, row in enumerate(reader, start=2):
-            yield normalize_row(row, row_number)
+            if row is None:
+                continue
+
+            normalized_row = {
+                str(key).strip(): ("" if value is None else str(value).strip())
+                for key, value in row.items()
+                if key is not None
+            }
+            if not any(normalized_row.values()):
+                continue
+
+            yield normalize_row(normalized_row, row_number)
 
 
 def import_rows(
     connection: sqlite3.Connection,
     table_name: str,
     rows: Iterable[tuple[int, str, str, float, str]],
-) -> int:
+) -> tuple[int, int]:
     quoted_table = quote_identifier(table_name)
     cursor = connection.cursor()
     inserted_count = 0
+    updated_count = 0
 
     for row in rows:
+        existing_row = connection.execute(
+            f"""
+            SELECT "Value", "Unit"
+            FROM {quoted_table}
+            WHERE "Engine" = ?
+              AND "Channel Description" = ?
+              AND "Timestamp" = ?
+            """,
+            row[:3],
+        ).fetchone()
+
         cursor.execute(
             f"""
             INSERT INTO {quoted_table} (
@@ -153,12 +239,21 @@ def import_rows(
                 "Unit"
             )
             VALUES (?, ?, ?, ?, ?)
+            ON CONFLICT("Engine", "Channel Description", "Timestamp")
+            DO UPDATE SET
+                "Value" = excluded."Value",
+                "Unit" = excluded."Unit"
             """,
             row,
         )
-        inserted_count += 1
+        if existing_row is None:
+            inserted_count += 1
+            continue
 
-    return inserted_count
+        if float(existing_row[0]) != row[3] or str(existing_row[1]) != row[4]:
+            updated_count += 1
+
+    return inserted_count, updated_count
 
 
 def main() -> None:
@@ -172,18 +267,23 @@ def main() -> None:
     ensure_parent_directory(db_path)
 
     with sqlite3.connect(db_path) as connection:
-        if args.append:
-            create_table(connection, args.table)
-        else:
+        if args.replace:
             drop_table(connection, args.table)
             create_table(connection, args.table)
-        inserted_count = import_rows(connection, args.table, read_csv_rows(source_path))
+        else:
+            create_table(connection, args.table)
+        inserted_count, updated_count = import_rows(
+            connection,
+            args.table,
+            read_csv_rows(source_path, args.delimiter),
+        )
         connection.commit()
 
     print(f"Database: {db_path}")
     print(f"Table: {args.table}")
     print(f"Source: {source_path}")
     print(f"Inserted rows: {inserted_count}")
+    print(f"Updated rows: {updated_count}")
 
 
 if __name__ == "__main__":
