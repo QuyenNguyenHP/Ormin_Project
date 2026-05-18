@@ -1,238 +1,290 @@
-# 🚢 HMI Monitor Dashboard
+# 🚢 DRUMS HMI Dashboard
 
-HMI này dùng:
+Frontend HMI dashboard cho hệ thống DRUMS, dùng để hiển thị dữ liệu máy chính, exhaust, P&ID và lịch sử tiêu thụ F.O. từ 2 nguồn dữ liệu:
 
-- ⚛️ React + Vite cho frontend
-- 🐍 Flask + `pymodbus` cho backend
-- 🔌 Modbus TCP để đọc dữ liệu thật từ PLC / thiết bị
+- ⚡ Modbus TCP cho dữ liệu live
+- 🗄️ SQLite cho lịch sử `F.O. Consumption`
 
-Kiến trúc hiện tại đã thống nhất theo kiểu **page-based API**:
-
-- `Overview.jsx` gọi `/api/overview`
-- `Engine.jsx` gọi `/api/engine`
-- `PAndID.jsx` gọi `/api/pid`
-- `/api/debug/modbus-snapshot` chỉ dùng để debug raw Modbus khi cần
-
----
-
-## ✨ Kiến trúc tổng thể
+Project hiện chạy theo mô hình:
 
 ```text
-Frontend page
-  -> gọi /api/<page_name>
-Backend Flask
-  -> đọc config theo page trong backend_config.json
-  -> gom các địa chỉ Modbus cần dùng
-  -> đọc Modbus theo nhóm địa chỉ liên tiếp
-  -> map dữ liệu thành JSON phù hợp cho page
-PLC / Modbus TCP device
+React + Vite frontend
+  -> gọi /api/*
+Flask backend
+  -> modbus_api.py đọc live data từ PLC/Modbus
+  -> database_api.py đọc lịch sử từ SQLite
 ```
 
-Ví dụ:
+## ✨ Tech Stack
 
-- `/api/overview` trả dữ liệu gauge cho trang Overview
-- `/api/engine` trả dữ liệu bar chart + summary cho trang Engine
-- `/api/pid` trả dữ liệu flow + digital cho trang P&ID
-- `/api/debug/modbus-snapshot` trả dữ liệu thô để kiểm tra nhanh
+- `React 19`
+- `Vite 6`
+- `React Router 7`
+- `MUI 7`
+- `Tailwind CSS 4`
+- `ECharts 5`
+- `Flask 3`
+- `pymodbus 3`
+- `sqlite3`
 
----
+## 🧭 Các màn hình hiện có
+
+- `Overview` tại `/`
+- `Engine` tại `/engine`
+- `F.O. Consumption` tại `/fo-consumption`
+- `Exhaust` tại `/exhaust`
+- `P&ID` tại `/pid`
+- `Power` tại `/power` hiện là placeholder
+- `Alarms` tại `/alarms` hiện là placeholder
+
+## 🧠 Kiến trúc dữ liệu hiện tại
+
+### 1. Live Modbus pages
+
+Các trang dưới đây dùng chung hook polling `src/hooks/usePolledPagePayload.js`:
+
+- `Overview`
+- `Engine`
+- `Exhaust`
+- `P&ID`
+
+Luồng hoạt động:
+
+```text
+Page
+  -> usePolledPagePayload("page-name")
+  -> fetch /api/<page-name>
+  -> backend/modbus_api.py
+  -> backend/backend_config.json
+  -> Modbus TCP device
+```
+
+Backend sẽ:
+
+1. Đọc cấu hình page từ `backend/backend_config.json`
+2. Flatten tất cả mapping nodes
+3. Gom địa chỉ Modbus liền kề để đọc theo batch
+4. Đọc holding registers và discrete inputs
+5. Scale / round / gán threshold state
+6. Trả payload dạng `sections + meta`
+
+### 2. Historical database page
+
+Trang `F.O. Consumption` không dùng polling Modbus. Trang này gọi:
+
+- `GET /api/fo-consumption`
+
+Luồng hoạt động:
+
+```text
+FOConsumption.jsx
+  -> fetchFOConsumptionHistory(...)
+  -> backend/database_api.py
+  -> SQLite database/flow_meter_history.db
+```
+
+Trang này hỗ trợ:
+
+- chọn khoảng thời gian UTC bằng `datetime-local`
+- dịch khung thời gian `Prev 24h` / `Next 24h`
+- so sánh `flow in` và `flow out` theo từng engine
+- tính tiêu thụ từ phần chênh lệch lưu lượng
 
 ## 📁 Cấu trúc thư mục chính
 
 ```text
-backend/
-  app.py
-  backend_config.json
-  requirements.txt
+HMI/
+  backend/
+    app.py
+    modbus_api.py
+    database_api.py
+    backend_config.json
+    requirements.txt
+    database/
+      flow_meter_history.db
 
-public/
-  Monitor items.svg
-  Monitor items 1.svg
-  P&IDbackground.png
+  public/
+    Monitoritem_v2.svg
+    P&IDbackground.png
+    engine_image.png
+    *.svg icons
 
-src/
-  components/
-    EngineBarChart.jsx
-    EngineGauge.jsx
-  pages/
-    Overview.jsx
-    Engine.jsx
-    PAndID.jsx
-  services/
-    pidMonitorApi.js
-  utils/
-    PIDMonitor.js
+  src/
+    components/
+      EngineGauge.jsx
+      EngineMetricGroupCard.jsx
+      FOConsumptionChart.jsx
+      Cylinder_exh_temp.jsx
+      Header.jsx
+      Footer.jsx
+      NavigationSidebar.jsx
+    hooks/
+      usePolledPagePayload.js
+    pages/
+      Overview.jsx
+      Engine.jsx
+      FOConsumption.jsx
+      Exhaust.jsx
+      PAndID.jsx
+      PlaceholderPage.jsx
+    services/
+      pidMonitorApi.js
+    utils/
+      PIDMonitor.js
 ```
 
----
+## 🔌 API endpoints
+
+### Modbus endpoints
+
+- `GET /api/overview`
+- `GET /api/engine`
+- `GET /api/exhaust`
+- `GET /api/pid`
+- `GET /api/debug/modbus-snapshot`
+
+### Database endpoint
+
+- `GET /api/fo-consumption`
+
+Query params hỗ trợ:
+
+- `windowMinutes`
+- `startTime`
+- `endTime`
+
+Lưu ý:
+
+- `startTime` và `endTime` phải đi cùng nhau
+- nếu không truyền range tuyệt đối, backend sẽ lấy cửa sổ mặc định từ config
 
 ## ⚙️ Cấu hình backend
 
-File cấu hình chính:
+File chính:
 
-[`backend/backend_config.json`](./backend/backend_config.json)
+- [backend/backend_config.json](./backend/backend_config.json)
 
-Cấu trúc hiện tại:
+Cấu trúc lớn hiện tại:
 
 ```json
 {
   "modbus": {
-    "host": "10.0.0.205",
+    "host": "192.168.18.26",
     "port": 502,
     "unit_id": 16,
     "timeout_seconds": 3,
     "poll_interval_ms": 2000
   },
+  "fo_consumption": {
+    "database_path": "database/flow_meter_history.db",
+    "table_name": "flow_meter_history",
+    "default_window_minutes": 1440,
+    "default_end_engine_count": 4
+  },
   "pages": {
-    "overview": {
-      "gauges": []
-    },
-    "engine": {
-      "bar_chart": [],
-      "summary": [],
-      "status": []
-    },
-    "pid": {
-      "flows": [],
-      "digitals": []
-    }
+    "overview": {},
+    "engine": {},
+    "exhaust": {},
+    "pid": {}
   }
 }
 ```
 
-### 🔎 Ý nghĩa
+### Ý nghĩa nhanh
 
-#### `modbus`
+- `modbus.host`, `port`, `unit_id`: kết nối PLC / gateway Modbus
+- `poll_interval_ms`: chu kỳ polling frontend tham chiếu từ `meta.pollIntervalMs`
+- `fo_consumption.database_path`: file SQLite cho lịch sử F.O.
+- `pages.*`: mapping dữ liệu cho từng trang
 
-- `host`: IP của PLC / thiết bị Modbus TCP
-- `port`: thường là `502`
-- `unit_id`: slave id / unit id
-- `timeout_seconds`: timeout mỗi lần đọc
-- `poll_interval_ms`: chu kỳ polling frontend có thể tham khảo
+## 🧪 Mapping và rule trong Modbus backend
 
-#### `pages`
+Trong `modbus_api.py`, mỗi metric mapping thường có:
 
-Mỗi page có các section riêng.
+- `source_type`
+- `address`
+- `scale`
+- `precision`
+- `unit`
+- `warning`
+- `alarm`
+- `direction`
 
-Ví dụ:
+Backend hiện hỗ trợ:
 
-- `overview.gauges` cho gauge
-- `engine.bar_chart` cho biểu đồ cột
-- `engine.summary` cho các giá trị text
-- `engine.status` cho trạng thái số
-- `pid.flows` và `pid.digitals` cho trang P&ID
+- `holding_register`
+- `discrete_input`
 
----
+Threshold state được gán thành:
 
-## 🔌 Quy ước địa chỉ Modbus
+- `normal`
+- `warning`
+- `alarm`
 
-Trong config, bạn nhập địa chỉ theo kiểu tài liệu PLC quen dùng:
+Và dùng ở frontend để tô trạng thái cho metric cards.
 
-- `40001` cho holding register
-- `10001` cho discrete input
+## 🖥️ Mô tả từng page
 
-Backend sẽ tự đổi về offset `0-based` cho `pymodbus`.
+### `Overview`
 
-Ví dụ:
+- Hiển thị 4 engine cards
+- Mỗi card có 1 gauge và 6 metrics chính
+- Dùng `Container1.jsx` + `EngineGauge.jsx`
 
-- `40001` -> offset `0`
-- `40002` -> offset `1`
-- `10001` -> offset `0`
+### `Engine`
 
----
+- Cho chọn engine đang xem
+- Chia metric thành nhiều nhóm như:
+  - alternator temperature
+  - engine parameters
+  - exhaust gas temp
+  - fuel oil system
+  - fuel oil flow system
+  - lub oil system
+  - oil mist detection
+  - PMS
+  - cooling water system
+- Có liên kết từ group `exhaust_gas_temp` sang trang `/exhaust`
 
-## 🐍 Backend hoạt động như thế nào
+### `Exhaust`
+
+- Cho bật/tắt nhiều engine cùng lúc
+- Có 2 biểu đồ:
+  - nhiệt độ xả từng cylinder
+  - nhiệt độ turbocharger
+- Có summary card tính điểm nóng nhất và trung bình
+
+### `F.O. Consumption`
+
+- Hiển thị 4 chart theo engine
+- Tự nhóm bản ghi thành `flowIn`, `flowOut`, `bandGap`
+- Chart dùng `ECharts`
+- Có zoom, double-click reset zoom và hiệu ứng pop-in
+
+### `P&ID`
+
+- Render nền bằng `P&IDbackground.png`
+- Overlay `Monitoritem_v2.svg`
+- Dùng `src/utils/PIDMonitor.js` để cập nhật text flow và digital state theo `id` trong SVG
+
+## 🧰 Frontend services và hooks
 
 File chính:
 
-[`backend/app.py`](./backend/app.py)
+- [src/services/pidMonitorApi.js](./src/services/pidMonitorApi.js)
+- [src/hooks/usePolledPagePayload.js](./src/hooks/usePolledPagePayload.js)
 
-Luồng chính:
+Các hàm đang dùng:
 
-1. 📥 load config từ `backend_config.json`
-2. 📄 lấy config của page đang được gọi
-3. 🧮 gom tất cả địa chỉ cần đọc
-4. ⚡ nhóm các địa chỉ liên tiếp để giảm số lần đọc Modbus
-5. 🔄 đọc holding registers và discrete inputs
-6. 🧩 map dữ liệu thô thành payload có nghĩa
-7. 📤 trả JSON cho frontend
+- `fetchPagePayload(pageName)`
+- `fetchDebugModbusSnapshot()`
+- `fetchFOConsumptionHistory({ windowMinutes, startTime, endTime })`
 
-Backend hiện có 2 kiểu API:
+Hook `usePolledPagePayload(pageName)` hiện:
 
-### API chính theo page
-
-```text
-/api/<page_name>
-```
-
-Ví dụ:
-
-- `GET /api/overview`
-- `GET /api/engine`
-- `GET /api/pid`
-
-### API debug raw Modbus
-
-```text
-/api/debug/modbus-snapshot
-```
-
-API này hữu ích khi bạn muốn:
-
-- kiểm tra PLC có trả dữ liệu không
-- xem giá trị raw trước khi map
-- so sánh xem lỗi nằm ở Modbus hay ở logic mapping
-
----
-
-## ⚛️ Frontend hoạt động như thế nào
-
-Service gọi API nằm ở:
-
-[`src/services/pidMonitorApi.js`](./src/services/pidMonitorApi.js)
-
-Hiện có:
-
-- `fetchPagePayload(pageName)` cho API chính theo page
-- `fetchDebugModbusSnapshot()` cho API debug
-
-### `Overview.jsx`
-
-[`src/pages/Overview.jsx`](./src/pages/Overview.jsx)
-
-Trang này:
-
-- gọi `/api/overview`
-- lấy `sections.gauges`
-- render bằng `EngineGauge`
-- có `loading`, `error`, `empty state`
-
-### `Engine.jsx`
-
-[`src/pages/Engine.jsx`](./src/pages/Engine.jsx)
-
-Trang này:
-
-- gọi `/api/engine`
-- lấy `sections.bar_chart`
-- lấy `sections.summary`
-- lấy `sections.status`
-- render `EngineBarChart` + summary card
-- có `loading`, `error`, `empty state`
-
-### `PAndID.jsx`
-
-[`src/pages/PAndID.jsx`](./src/pages/PAndID.jsx)
-
-Trang này hiện dùng:
-
-- `/api/pid`
-- `buildPIDMonitorDataFromPagePayload()`
-- `updatePIDMonitorElements()`
-
-để cập nhật text flow và trạng thái digital trong SVG `Monitor items.svg`.
-
----
+- tự poll lại theo `meta.pollIntervalMs`
+- fallback về `2000ms` nếu backend lỗi
+- trả về `payload`, `isLoading`, `error`, `lastUpdated`, `pollIntervalMs`
 
 ## 🚀 Chạy local
 
@@ -248,201 +300,108 @@ npm install
 pip install -r backend/requirements.txt
 ```
 
-### 3. Chạy backend
+### 3. Chạy backend Flask
 
 ```bash
 python backend/app.py
 ```
 
-Backend chạy mặc định ở:
+Backend mặc định:
 
 ```text
 http://127.0.0.1:8001
 ```
 
-Ví dụ test nhanh:
-
-```text
-http://127.0.0.1:8001/api/overview
-http://127.0.0.1:8001/api/engine
-http://127.0.0.1:8001/api/pid
-http://127.0.0.1:8001/api/debug/modbus-snapshot
-```
-
-### 4. Chạy frontend
+### 4. Chạy frontend Vite
 
 ```bash
 npm run start
 ```
 
-Frontend Vite thường chạy ở:
+Frontend mặc định:
 
 ```text
 http://localhost:5173
 ```
 
----
+## 🌐 Vite proxy
 
-## 🌐 Proxy frontend
+File:
 
-Vite đã được cấu hình để frontend có thể gọi `/api/*` qua backend.
+- [vite.config.mjs](./vite.config.mjs)
 
-Ý tưởng là:
-
-```text
-Frontend -> /api/overview
-Vite proxy -> http://127.0.0.1:8001/api/overview
-```
-
-Nếu có lỗi gọi API, hãy kiểm tra:
-
-- backend có đang chạy không
-- `vite.config.mjs` có proxy đúng không
-- trình duyệt có báo lỗi network không
-
----
-
-## 🛠️ Ví dụ response
-
-### `/api/overview`
-
-```json
-{
-  "page": "overview",
-  "sections": {
-    "gauges": [
-      {
-        "key": "engine_1_load",
-        "title": "Engine 1",
-        "subtitle": "Main propulsion load",
-        "unit": "%",
-        "color": "#22c55e",
-        "value": 72
-      }
-    ]
-  }
-}
-```
-
-### `/api/pid`
-
-```json
-{
-  "page": "pid",
-  "sections": {
-    "flows": [
-      {
-        "key": "flow_1",
-        "name": "Flow 1",
-        "unit": "L/H",
-        "value": 100
-      }
-    ],
-    "digitals": [
-      {
-        "key": "pump_1",
-        "label": "Pump 1",
-        "value": true
-      }
-    ]
-  }
-}
-```
-
-### `/api/debug/modbus-snapshot`
-
-```json
-{
-  "holdingRegisters": {
-    "40001": 72,
-    "40002": 64
-  },
-  "discreteInputs": {
-    "10001": 1
-  }
-}
-```
-
----
-
-## 🧪 Mẫu mở rộng page mới
-
-Nếu bạn muốn thêm page mới, ví dụ `power`, flow nên là:
-
-1. 🗂️ thêm `pages.power` trong `backend_config.json`
-2. ⚛️ tạo `Power.jsx`
-3. 🔌 trong page gọi:
+Proxy hiện tại:
 
 ```js
-fetchPagePayload("power");
+server: {
+  proxy: {
+    "/api": "http://127.0.0.1:8001",
+  },
+}
 ```
 
-4. 🎨 render dữ liệu vào component phù hợp
+Nghĩa là frontend chỉ cần gọi:
 
-Bạn không cần viết API route riêng nếu vẫn dùng pattern `/api/<page_name>`.
+```text
+/api/overview
+/api/engine
+/api/exhaust
+/api/pid
+/api/fo-consumption
+```
 
----
+## 🛠️ Build
 
-## 📌 Gợi ý cải tiến tiếp theo
+```bash
+npm run build
+```
 
-- 🔁 thêm polling tự động theo `poll_interval_ms`
-- 🧱 thêm cache backend để tránh đọc Modbus quá nhiều
-- ❤️ thêm `/api/health`
-- 📝 thêm logging lỗi Modbus
-- 🧪 thêm test cho logic mapping
-- 📊 thêm các page mới như `power`, `alarms`, `exhaust`
+Output sẽ nằm ở thư mục:
 
----
+```text
+build/
+```
 
-## 🐞 Troubleshooting
+## 🧯 Troubleshooting
 
 ### Frontend không có dữ liệu
 
-Kiểm tra:
+- kiểm tra Flask backend có đang chạy không
+- kiểm tra Vite proxy còn đúng không
+- mở DevTools để xem request `/api/*`
+- kiểm tra backend có trả `error` JSON không
 
-- backend đã chạy chưa
-- `/api/overview`, `/api/engine`, `/api/pid` có trả JSON không
-- Vite proxy có hoạt động không
-- console trình duyệt có báo lỗi không
+### Không kết nối được Modbus
 
-### Backend không kết nối được Modbus
+- kiểm tra `modbus.host`
+- kiểm tra `modbus.port`
+- kiểm tra `modbus.unit_id`
+- kiểm tra firewall / routing tới PLC
 
-Kiểm tra:
+### `F.O. Consumption` không có dữ liệu
 
-- `host`
-- `port`
-- `unit_id`
-- firewall
-- thiết bị có bật Modbus TCP không
+- kiểm tra file SQLite tại `backend/database/flow_meter_history.db`
+- kiểm tra `fo_consumption.table_name` trong config
+- kiểm tra range UTC đang chọn có dữ liệu thật hay không
 
-### `PAndID` không cập nhật SVG
+### `P&ID` không update đúng
 
-Kiểm tra:
+- kiểm tra response `/api/pid`
+- kiểm tra `id` trong `Monitoritem_v2.svg`
+- kiểm tra mapping trong `src/utils/PIDMonitor.js`
 
-- `/api/pid` có trả dữ liệu không
-- `Monitor items.svg` có đúng `id` không
-- `PIDMonitor.js` có đang map đúng trường không
+## 📝 Ghi chú hiện trạng source
 
-### Python không chạy được
+- ✅ README này đã cập nhật theo source hiện tại trong `HMI`
+- ✅ Có cả mô tả Modbus API và SQLite API
+- ✅ Đã phản ánh đúng các route `Overview`, `Engine`, `Exhaust`, `F.O. Consumption`, `P&ID`
+- ✅ `Power` và `Alarms` hiện vẫn là placeholder
+- ℹ️ Hiện chưa thấy test automation riêng cho frontend/backend trong thư mục `HMI`
 
-Nếu máy đang trỏ vào alias của Microsoft Store, hãy cài Python chính thức từ:
+## 💡 Gợi ý cải tiến tiếp theo
 
-- https://www.python.org/downloads/
-
-Sau đó kiểm tra lại:
-
-```bash
-python --version
-```
-
----
-
-## 📄 Ghi chú
-
-README này hiện đã khớp với code hiện tại:
-
-- ✅ API chính theo page
-- ✅ `Overview`, `Engine`, `PAndID` đều dùng page-based API
-- ✅ endpoint debug raw riêng vẫn được giữ lại
-- ✅ config nhóm theo page
-- ✅ frontend gọi API qua service chung
+- thêm `health` endpoint cho backend
+- thêm logging rõ hơn cho lỗi Modbus / SQLite
+- thêm test cho `PIDMonitor.js`, chart data transforms, và payload builders
+- tách riêng config thresholds thành file độc lập nếu tiếp tục mở rộng
+- thêm tài liệu deploy cho thư mục `deloy_Raspberry_pi/`

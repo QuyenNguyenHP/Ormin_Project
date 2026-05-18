@@ -44,14 +44,14 @@ Make sure you have:
 - the repository already cloned onto the Pi, for example:
 
 ```bash
-cd /home/pi
+cd /home/drums
 git clone <repo-url> Ormin_Project_V5
 ```
 
 In this guide, the project path is assumed to be:
 
 ```text
-/home/pi/Ormin_Project_V5/HMI
+/home/drums/Ormin_Project_V5/HMI
 ```
 
 If your real path is different, replace it everywhere in the commands below.
@@ -61,7 +61,7 @@ If your real path is different, replace it everywhere in the commands below.
 ```bash
 sudo apt update
 sudo apt upgrade -y
-sudo apt install -y apache2 python3 python3-venv python3-pip nodejs npm chromium-browser unclutter
+sudo apt install -y apache2 python3 python3-pip nodejs npm chromium unclutter
 ```
 
 Check versions:
@@ -71,21 +71,13 @@ python3 --version
 node --version
 npm --version
 apache2 -v
-chromium-browser --version
-```
-
-If `chromium-browser` does not exist on your Raspberry Pi OS image, try:
-
-```bash
 chromium --version
 ```
-
-If needed, replace `chromium-browser` with `chromium` in the kiosk section later.
 
 ## 📁 4. Prepare the source code on the Pi
 
 ```bash
-cd /home/pi/Ormin_Project_V5/HMI
+cd /home/drums/Ormin_Project_V5/HMI
 ```
 
 Check the main project folders:
@@ -107,13 +99,13 @@ You should see at least:
 The current backend config file is:
 
 ```text
-/home/pi/Ormin_Project_V5/HMI/backend/backend_config.json
+/home/drums/Ormin_Project_V5/HMI/backend/backend_config.json
 ```
 
 Open it:
 
 ```bash
-nano /home/pi/Ormin_Project_V5/HMI/backend/backend_config.json
+nano /home/drums/Ormin_Project_V5/HMI/backend/backend_config.json
 ```
 
 Check and update the `modbus` block:
@@ -146,19 +138,12 @@ If the Pi cannot reach the PLC, fix the network issue first before continuing.
 
 ## 🐍 6. Install and test the Flask backend
 
-### 6.1 Create a virtual environment
+### 6.1 Install backend dependencies directly on the Pi
 
 ```bash
-cd /home/pi/Ormin_Project_V5/HMI
-python3 -m venv .venv
-```
-
-### 6.2 Install backend dependencies
-
-```bash
-source .venv/bin/activate
-pip install --upgrade pip
-pip install -r backend/requirements.txt
+cd /home/drums/Ormin_Project_V5/HMI
+python3 -m pip install --upgrade pip
+python3 -m pip install -r backend/requirements.txt --break-system-packages
 ```
 
 The current `requirements.txt` includes:
@@ -167,12 +152,11 @@ The current `requirements.txt` includes:
 - `flask-cors`
 - `pymodbus`
 
-### 6.3 Run the backend manually for testing
+### 6.2 Run the backend manually for testing
 
 ```bash
-cd /home/pi/Ormin_Project_V5/HMI
-source .venv/bin/activate
-python backend/app.py
+cd /home/drums/Ormin_Project_V5/HMI
+python3 backend/app.py
 ```
 
 The backend listens on:
@@ -215,10 +199,10 @@ Wants=network-online.target
 
 [Service]
 Type=simple
-User=pi
-WorkingDirectory=/home/pi/Ormin_Project_V5/HMI
+User=drums
+WorkingDirectory=/home/drums/Ormin_Project_V5/HMI
 Environment=PYTHONUNBUFFERED=1
-ExecStart=/home/pi/Ormin_Project_V5/HMI/.venv/bin/python /home/pi/Ormin_Project_V5/HMI/backend/app.py
+ExecStart=/usr/bin/python3 /home/drums/Ormin_Project_V5/HMI/backend/app.py
 Restart=always
 RestartSec=3
 
@@ -226,7 +210,7 @@ RestartSec=3
 WantedBy=multi-user.target
 ```
 
-If your Raspberry Pi username is not `pi`, update the `User=` line.
+If your Raspberry Pi username is not `drums`, update the `User=` line.
 
 Reload and enable the service:
 
@@ -259,7 +243,7 @@ curl http://127.0.0.1:8001/api/overview
 ### 8.1 Install frontend dependencies
 
 ```bash
-cd /home/pi/Ormin_Project_V5/HMI
+cd /home/drums/Ormin_Project_V5/HMI
 npm install
 ```
 
@@ -272,13 +256,13 @@ npm run build
 According to `vite.config.mjs`, the frontend output is:
 
 ```text
-/home/pi/Ormin_Project_V5/HMI/build
+/home/drums/Ormin_Project_V5/HMI/build
 ```
 
 Verify it:
 
 ```bash
-ls /home/pi/Ormin_Project_V5/HMI/build
+ls /home/drums/Ormin_Project_V5/HMI/build
 ```
 
 You should see at least:
@@ -308,9 +292,9 @@ Use this content:
 ```apache
 <VirtualHost *:80>
     ServerAdmin webmaster@localhost
-    DocumentRoot /home/pi/Ormin_Project_V5/HMI/build
+    DocumentRoot /home/drums/Ormin_Project_V5/HMI/build
 
-    <Directory /home/pi/Ormin_Project_V5/HMI/build>
+    <Directory /home/drums/Ormin_Project_V5/HMI/build>
         Options Indexes FollowSymLinks
         AllowOverride All
         Require all granted
@@ -371,17 +355,17 @@ hostname -I
 If the frontend does not load static files, make sure directory permissions allow Apache to read them:
 
 ```bash
-sudo chmod o+rx /home/pi
-sudo chmod -R o+rX /home/pi/Ormin_Project_V5/HMI/build
+sudo chmod o+rx /home/drums
+sudo chmod -R o+rX /home/drums/Ormin_Project_V5/HMI/build
 ```
 
 If needed, you can also fix ownership:
 
 ```bash
-sudo chown -R pi:pi /home/pi/Ormin_Project_V5
+sudo chown -R drums:drums /home/drums/Ormin_Project_V5
 ```
 
-Only run that `chown` if the project should really belong to user `pi`.
+Only run that `chown` if the project should really belong to user `drums`.
 
 ## 🖥️ 11. Configure kiosk mode on Raspberry Pi
 
@@ -413,8 +397,8 @@ Then exit `raspi-config`.
 ### 11.2 Create the kiosk launch script
 
 ```bash
-mkdir -p /home/pi/kiosk
-nano /home/pi/kiosk/start-kiosk.sh
+mkdir -p /home/drums/kiosk
+nano /home/drums/kiosk/start-kiosk.sh
 ```
 
 Use this content:
@@ -423,35 +407,60 @@ Use this content:
 #!/bin/bash
 set -e
 
+export DISPLAY=:0
+export XAUTHORITY=/home/drums/.Xauthority
+
+# Give Desktop and Apache a few seconds to come up cleanly.
+sleep 8
+
+# Wait until Apache is actually serving the frontend before opening Chromium.
+for i in {1..30}; do
+  if curl -fsS http://127.0.0.1 >/dev/null; then
+    break
+  fi
+  sleep 2
+done
+
 xset s off
 xset -dpms
 xset s noblank
 
 unclutter -idle 0.5 -root &
 
-chromium-browser \
+# Prevent duplicate Chromium kiosk windows after repeated logins/restarts.
+pkill -f "chromium.*127.0.0.1" || true
+
+chromium \
   --noerrdialogs \
   --disable-infobars \
   --kiosk \
   --incognito \
+  --password-store=basic \
+  --use-mock-keychain \
   --disable-session-crashed-bubble \
   --check-for-update-interval=31536000 \
-  http://127.0.0.1
+  http://127.0.0.1 >/home/drums/kiosk/chromium-kiosk.log 2>&1 &
 ```
 
-If your OS uses `chromium` instead of `chromium-browser`, update that command.
+Why these extra flags matter:
+
+- `Choose password for new keyring` is a desktop keyring prompt, usually from Chromium trying to store credentials or secrets.
+- In kiosk mode, this popup is undesirable because it blocks the screen until someone clicks it.
+- `--password-store=basic` tells Chromium not to use the desktop secret service / keyring backend.
+- `--use-mock-keychain` further reduces the chance of Chromium asking for a keyring unlock dialog.
+- For a kiosk HMI screen, this is usually the simplest way to disable the popup.
 
 Make it executable:
 
 ```bash
-chmod +x /home/pi/kiosk/start-kiosk.sh
+chmod +x /home/drums/kiosk/start-kiosk.sh
 ```
 
 ### 11.3 Create the Desktop autostart entry
 
 ```bash
-mkdir -p /home/pi/.config/autostart
-nano /home/pi/.config/autostart/ormin-hmi-kiosk.desktop
+mkdir -p /home/drums/.config/autostart
+nano /home/drums/.config/autostart/ormin-hmi-kiosk.desktop
 ```
 
 Use this content:
@@ -460,11 +469,35 @@ Use this content:
 [Desktop Entry]
 Type=Application
 Name=Ormin HMI Kiosk
-Exec=/home/pi/kiosk/start-kiosk.sh
+Exec=/home/drums/kiosk/start-kiosk.sh
 X-GNOME-Autostart-enabled=true
+Terminal=false
 ```
 
-### 11.4 Reboot and test kiosk mode
+### 11.4 Fallback: use LXDE session autostart if the `.desktop` file does not launch Chromium
+
+On some Raspberry Pi OS Desktop images, `~/.config/autostart/*.desktop` does not reliably start kiosk apps after reboot. If that happens, add the script to the LXDE session autostart too:
+
+```bash
+mkdir -p /home/drums/.config/lxsession/LXDE-pi
+nano /home/drums/.config/lxsession/LXDE-pi/autostart
+```
+
+Use this content:
+
+```text
+@/home/drums/kiosk/start-kiosk.sh
+```
+
+If your Pi uses a different LXDE profile name, check what exists with:
+
+```bash
+ls /home/drums/.config/lxsession
+```
+
+and place the `autostart` file in the matching folder.
+
+### 11.5 Reboot and test kiosk mode
 
 ```bash
 sudo reboot
@@ -477,27 +510,35 @@ After reboot, you should get:
 - ✅ Desktop auto-login
 - ✅ Chromium opened full screen on the HMI page
 
+Important:
+
+- You do **not** run `npm start` after reboot in this production setup.
+- `npm start` is only for local development with the Vite dev server.
+- On Raspberry Pi production deployment, the frontend is the static build inside `HMI/build`.
+- That built frontend is served automatically by `apache2`.
+- Chromium kiosk only opens `http://127.0.0.1`, which is already served by Apache.
+- If Chromium still does not auto-open after reboot, keep the `.desktop` entry and also enable the LXDE autostart fallback above.
+
 ## 🔄 12. Update workflow when new code is deployed
 
 Whenever you pull new code:
 
 ```bash
-cd /home/pi/Ormin_Project_V5
+cd /home/drums/Ormin_Project_V5
 git pull
 ```
 
 If backend dependencies changed:
 
 ```bash
-cd /home/pi/Ormin_Project_V5/HMI
-source .venv/bin/activate
-pip install -r backend/requirements.txt
+cd /home/drums/Ormin_Project_V5/HMI
+python3 -m pip install -r backend/requirements.txt
 ```
 
 If frontend code changed:
 
 ```bash
-cd /home/pi/Ormin_Project_V5/HMI
+cd /home/drums/Ormin_Project_V5/HMI
 npm install
 npm run build
 ```
@@ -579,7 +620,7 @@ sudo tail -f /var/log/apache2/ormin-hmi-error.log
 Also verify that `DocumentRoot` points to:
 
 ```text
-/home/pi/Ormin_Project_V5/HMI/build
+/home/drums/Ormin_Project_V5/HMI/build
 ```
 
 ### 14.3 Backend cannot connect to Modbus
@@ -603,20 +644,20 @@ ping -c 4 10.0.0.205
 Check the autostart files:
 
 ```bash
-cat /home/pi/.config/autostart/ormin-hmi-kiosk.desktop
-cat /home/pi/kiosk/start-kiosk.sh
+cat /home/drums/.config/autostart/ormin-hmi-kiosk.desktop
+cat /home/drums/kiosk/start-kiosk.sh
 ```
 
 Check permissions:
 
 ```bash
-ls -l /home/pi/kiosk/start-kiosk.sh
+ls -l /home/drums/kiosk/start-kiosk.sh
 ```
 
 Test the script manually from a Desktop terminal:
 
 ```bash
-/home/pi/kiosk/start-kiosk.sh
+/home/drums/kiosk/start-kiosk.sh
 ```
 
 ### 14.5 The display still blanks after some time
@@ -631,29 +672,70 @@ xset s noblank
 
 If the screen still blanks, check `raspi-config` for any screen blanking option and disable it there too.
 
+### 14.6 Chromium shows `Choose password for new keyring`
+
+What it is:
+
+- This popup comes from the desktop keyring system, not from your HMI app.
+- Chromium is trying to use the OS credential store for saved passwords, cookies, or secrets.
+- In kiosk mode this is not useful and should normally be disabled.
+
+How to fix it:
+
+1. Edit the kiosk script:
+
+```bash
+nano /home/drums/kiosk/start-kiosk.sh
+```
+
+2. Make sure the Chromium command contains these flags:
+
+```bash
+--password-store=basic \
+--use-mock-keychain \
+```
+
+3. Save the file, then reboot:
+
+```bash
+sudo reboot
+```
+
+If the popup still appears, clear the existing Chromium profile data once and let kiosk create a fresh session:
+
+```bash
+mv /home/drums/.config/chromium /home/drums/.config/chromium.backup.$(date +%Y%m%d-%H%M%S)
+sudo reboot
+```
+
+Warning:
+
+- This removes old Chromium local profile state such as saved sessions, settings, and cookies from the active profile.
+- For a dedicated kiosk Pi, this is usually acceptable.
+
 ## 📌 15. Important file locations
 
 - Backend code:
-  `/home/pi/Ormin_Project_V5/HMI/backend/app.py`
+  `/home/drums/Ormin_Project_V5/HMI/backend/app.py`
 - Backend config:
-  `/home/pi/Ormin_Project_V5/HMI/backend/backend_config.json`
+  `/home/drums/Ormin_Project_V5/HMI/backend/backend_config.json`
 - Frontend build output:
-  `/home/pi/Ormin_Project_V5/HMI/build`
+  `/home/drums/Ormin_Project_V5/HMI/build`
 - Backend service:
   `/etc/systemd/system/ormin-hmi-backend.service`
 - Apache site:
   `/etc/apache2/sites-available/ormin-hmi.conf`
 - Kiosk script:
-  `/home/pi/kiosk/start-kiosk.sh`
+  `/home/drums/kiosk/start-kiosk.sh`
 - Kiosk autostart:
-  `/home/pi/.config/autostart/ormin-hmi-kiosk.desktop`
+  `/home/drums/.config/autostart/ormin-hmi-kiosk.desktop`
 
 ## ⚡ 16. Quick command summary
 
 ### Build the frontend
 
 ```bash
-cd /home/pi/Ormin_Project_V5/HMI
+cd /home/drums/Ormin_Project_V5/HMI
 npm run build
 ```
 

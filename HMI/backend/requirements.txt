@@ -1,3 +1,11 @@
 Flask==3.0.3
 flask-cors==4.0.1
 pymodbus==3.8.3
+
+# SQLite support is used by database_api.py via Python's built-in sqlite3 module.
+# No extra pip package is required for sqlite3 on standard Python installs.
+
+# for frontend development
+nodejs 
+npm
+apache2

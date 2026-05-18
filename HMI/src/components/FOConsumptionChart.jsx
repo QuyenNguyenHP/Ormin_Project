@@ -2,6 +2,23 @@ import { useEffect, useRef, useMemo } from "react";
 import PropTypes from "prop-types";
 import * as echarts from "echarts";
 
+const foConsumptionChartPopInKeyframes = `
+  @keyframes foConsumptionChartPopIn {
+    0% {
+      opacity: 0;
+      transform: scale(0.94);
+    }
+    65% {
+      opacity: 0.68;
+      transform: scale(1.02);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+`;
+
 const pad = (value) => String(value).padStart(2, "0");
 
 const formatUtcAxisTime = (timestampMs) => {
@@ -361,30 +378,40 @@ const FOConsumptionChart = ({
   }, [chartData, flowInLabel, flowOutLabel, unit, rangeStartMs, rangeEndMs, emptyMessage]);
 
   return (
-    <div className="w-full rounded-[12px] bg-[#11182766] border border-[#334155] p-1 pb-0">
-      {(title || subtitle) && (
-        <div className="mb-1 flex flex-col xl:flex-row xl:items-start xl:justify-between gap-2">
-          <div className="flex flex-col gap-2">
-            {title ? <h3 className="m-0 text-[18px] font-roboto text-[#f8fafc]">{title}</h3> : null}
-          </div>
+    <>
+      <style>{foConsumptionChartPopInKeyframes}</style>
+      <div
+        className="w-full rounded-[12px] bg-[#11182766] border border-[#334155] p-1 pb-0"
+        style={{
+          animation: "foConsumptionChartPopIn 900ms ease-out",
+          transformOrigin: "center",
+          willChange: "transform, opacity",
+        }}
+      >
+        {(title || subtitle) && (
+          <div className="mb-1 flex flex-col xl:flex-row xl:items-start xl:justify-between gap-2">
+            <div className="flex flex-col gap-2">
+              {title ? <h3 className="m-0 text-[18px] font-roboto text-[#f8fafc]">{title}</h3> : null}
+            </div>
 
-          <div className="grid grid-cols-2 gap-3 min-w-[250px]">
-            <div className="rounded-[10px] border border-[#334155] bg-[#111827] !px-3 !py-2">
-              <div className="text-[11px] uppercase text-[#64748b]">Consumption</div>
-              <div className="mt-1 text-[18px] font-semibold text-[#facc15]">
-                {Number(totalConsumptionLitres ?? 0).toFixed(2)} L
+            <div className="grid grid-cols-2 gap-3 min-w-[250px]">
+              <div className="rounded-[10px] border border-[#334155] bg-[#111827] !px-3 !py-2">
+                <div className="text-[11px] uppercase text-[#64748b]">Consumption</div>
+                <div className="mt-1 text-[18px] font-semibold text-[#facc15]">
+                  {Number(totalConsumptionLitres ?? 0).toFixed(2)} L
+                </div>
+              </div>
+
+              <div className="rounded-[10px] border border-[#334155] bg-[#111827] !px-3 !py-2">
+                <div className="text-[11px] uppercase text-[#64748b]">Samples</div>
+                <div className="mt-1 text-[18px] font-semibold text-[#e2e8f0]">{chartData.length}</div>
               </div>
             </div>
-
-            <div className="rounded-[10px] border border-[#334155] bg-[#111827] !px-3 !py-2">
-              <div className="text-[11px] uppercase text-[#64748b]">Samples</div>
-              <div className="mt-1 text-[18px] font-semibold text-[#e2e8f0]">{chartData.length}</div>
-            </div>
           </div>
-        </div>
-      )}
-      <div ref={chartRef} className="w-full" style={{ height: `${chartHeight}px` }} />
-    </div>
+        )}
+        <div ref={chartRef} className="w-full" style={{ height: `${chartHeight}px` }} />
+      </div>
+    </>
   );
 };
 
