@@ -10,6 +10,7 @@ import PAndID from "./pages/PAndID";
 import Engine from "./pages/Engine";
 import Exhaust from "./pages/Exhaust";
 import FOConsumption from "./pages/FOConsumption";
+import Power from "./pages/Power";
 import PlaceholderPage from "./pages/PlaceholderPage";
 
 function App() {
@@ -81,15 +82,7 @@ function App() {
       <Route path="/pid" element={<PAndID />} />
       <Route path="/engine" element={<Engine />} />
       <Route path="/fo-consumption" element={<FOConsumption />} />
-      <Route
-        path="/power"
-        element={
-          <PlaceholderPage
-            title="Power"
-            subtitle="Power information will be displayed here."
-          />
-        }
-      />
+      <Route path="/power" element={<Power />} />
       <Route path="/exhaust" element={<Exhaust />} />
       <Route
         path="/alarms"
