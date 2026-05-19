@@ -1,7 +1,7 @@
 {
   "database_path": "database/database",
   "modbus": {
-    "host": "192.168.18.26",
+    "host": "10.0.0.205",
     "port": 502,
     "unit_id": 16,
     "timeout_seconds": 3,
@@ -15,7 +15,19 @@
     "default_window_minutes": 1440,
     "default_end_engine_count": 4
   },
-  "power_history": {
+  "pressure_trend_history": {
+    "database_path": "database/database",
+    "table_name": "database",
+    "timestamp_column": "Timestamp",
+    "engine_column": "Engine",
+    "channel_description_column": "Channel Description",
+    "channel_description_value": "Engine Power",
+    "value_column": "Value",
+    "unit_column": "Unit",
+    "default_unit": "kW",
+    "series_label": "Engine Power"
+  },
+  "exh_temp_trend_history": {
     "database_path": "database/database",
     "table_name": "database",
     "timestamp_column": "Timestamp",
@@ -566,90 +578,6 @@
         "cooler_water_inlet_temp": { "warning": 38, "alarm": 45, "direction": "high" },
         "cooler_water_outlet_temp": { "warning": 45, "alarm": 52, "direction": "high" },
         "cw_before_lo_cooler_temp": { "warning": 40, "alarm": 48, "direction": "high" }
-      }
-    },
-    "exhaust": {
-      "engines": [
-        {
-          "name": "Engine 1",
-          "cylinders": [
-            { "key": "engine_1_cyl_1_exh_temp", "name": "Cyl 1", "source_type": "holding_register", "address": 40057, "scale": 1, "unit": "C" },
-            { "key": "engine_1_cyl_2_exh_temp", "name": "Cyl 2", "source_type": "holding_register", "address": 40058, "scale": 1, "unit": "C" },
-            { "key": "engine_1_cyl_3_exh_temp", "name": "Cyl 3", "source_type": "holding_register", "address": 40059, "scale": 1, "unit": "C" },
-            { "key": "engine_1_cyl_4_exh_temp", "name": "Cyl 4", "source_type": "holding_register", "address": 40060, "scale": 1, "unit": "C" },
-            { "key": "engine_1_cyl_5_exh_temp", "name": "Cyl 5", "source_type": "holding_register", "address": 40061, "scale": 1, "unit": "C" },
-            { "key": "engine_1_cyl_6_exh_temp", "name": "Cyl 6", "source_type": "holding_register", "address": 40062, "scale": 1, "unit": "C" }
-          ]
-        },
-        {
-          "name": "Engine 2",
-          "cylinders": [
-            { "key": "engine_2_cyl_1_exh_temp", "name": "Cyl 1", "source_type": "holding_register", "address": 40063, "scale": 1, "unit": "C" },
-            { "key": "engine_2_cyl_2_exh_temp", "name": "Cyl 2", "source_type": "holding_register", "address": 40064, "scale": 1, "unit": "C" },
-            { "key": "engine_2_cyl_3_exh_temp", "name": "Cyl 3", "source_type": "holding_register", "address": 40065, "scale": 1, "unit": "C" },
-            { "key": "engine_2_cyl_4_exh_temp", "name": "Cyl 4", "source_type": "holding_register", "address": 40066, "scale": 1, "unit": "C" },
-            { "key": "engine_2_cyl_5_exh_temp", "name": "Cyl 5", "source_type": "holding_register", "address": 40067, "scale": 1, "unit": "C" },
-            { "key": "engine_2_cyl_6_exh_temp", "name": "Cyl 6", "source_type": "holding_register", "address": 40068, "scale": 1, "unit": "C" }
-          ]
-        },
-        {
-          "name": "Engine 3",
-          "cylinders": [
-            { "key": "engine_3_cyl_1_exh_temp", "name": "Cyl 1", "source_type": "holding_register", "address": 40069, "scale": 1, "unit": "C" },
-            { "key": "engine_3_cyl_2_exh_temp", "name": "Cyl 2", "source_type": "holding_register", "address": 40070, "scale": 1, "unit": "C" },
-            { "key": "engine_3_cyl_3_exh_temp", "name": "Cyl 3", "source_type": "holding_register", "address": 40071, "scale": 1, "unit": "C" },
-            { "key": "engine_3_cyl_4_exh_temp", "name": "Cyl 4", "source_type": "holding_register", "address": 40072, "scale": 1, "unit": "C" },
-            { "key": "engine_3_cyl_5_exh_temp", "name": "Cyl 5", "source_type": "holding_register", "address": 40073, "scale": 1, "unit": "C" },
-            { "key": "engine_3_cyl_6_exh_temp", "name": "Cyl 6", "source_type": "holding_register", "address": 40074, "scale": 1, "unit": "C" }
-          ]
-        },
-        {
-          "name": "Engine 4",
-          "cylinders": [
-            { "key": "engine_4_cyl_1_exh_temp", "name": "Cyl 1", "source_type": "holding_register", "address": 40075, "scale": 1, "unit": "C" },
-            { "key": "engine_4_cyl_2_exh_temp", "name": "Cyl 2", "source_type": "holding_register", "address": 40076, "scale": 1, "unit": "C" },
-            { "key": "engine_4_cyl_3_exh_temp", "name": "Cyl 3", "source_type": "holding_register", "address": 40077, "scale": 1, "unit": "C" },
-            { "key": "engine_4_cyl_4_exh_temp", "name": "Cyl 4", "source_type": "holding_register", "address": 40078, "scale": 1, "unit": "C" },
-            { "key": "engine_4_cyl_5_exh_temp", "name": "Cyl 5", "source_type": "holding_register", "address": 40079, "scale": 1, "unit": "C" },
-            { "key": "engine_4_cyl_6_exh_temp", "name": "Cyl 6", "source_type": "holding_register", "address": 40080, "scale": 1, "unit": "C" }
-          ]
-        }
-      ],
-      "turbocharger_temperatures": {
-        "engines": [
-          {
-            "name": "Engine 1",
-            "cylinders": [
-              { "key": "engine_1_tc_inlet_1_temp", "name": "T/C inlet 1", "source_type": "holding_register", "address": 40081, "scale": 1, "unit": "C" },
-              { "key": "engine_1_tc_inlet_2_temp", "name": "T/C inlet 2", "source_type": "holding_register", "address": 40082, "scale": 1, "unit": "C" },
-              { "key": "engine_1_tc_outlet_temp", "name": "T/C outlet", "source_type": "holding_register", "address": 40083, "scale": 1, "unit": "C" }
-            ]
-          },
-          {
-            "name": "Engine 2",
-            "cylinders": [
-              { "key": "engine_2_tc_inlet_1_temp", "name": "T/C inlet 1", "source_type": "holding_register", "address": 40084, "scale": 1, "unit": "C" },
-              { "key": "engine_2_tc_inlet_2_temp", "name": "T/C inlet 2", "source_type": "holding_register", "address": 40085, "scale": 1, "unit": "C" },
-              { "key": "engine_2_tc_outlet_temp", "name": "T/C outlet", "source_type": "holding_register", "address": 40086, "scale": 1, "unit": "C" }
-            ]
-          },
-          {
-            "name": "Engine 3",
-            "cylinders": [
-              { "key": "engine_3_tc_inlet_1_temp", "name": "T/C inlet 1", "source_type": "holding_register", "address": 40087, "scale": 1, "unit": "C" },
-              { "key": "engine_3_tc_inlet_2_temp", "name": "T/C inlet 2", "source_type": "holding_register", "address": 40088, "scale": 1, "unit": "C" },
-              { "key": "engine_3_tc_outlet_temp", "name": "T/C outlet", "source_type": "holding_register", "address": 40089, "scale": 1, "unit": "C" }
-            ]
-          },
-          {
-            "name": "Engine 4",
-            "cylinders": [
-              { "key": "engine_4_tc_inlet_1_temp", "name": "T/C inlet 1", "source_type": "holding_register", "address": 40090, "scale": 1, "unit": "C" },
-              { "key": "engine_4_tc_inlet_2_temp", "name": "T/C inlet 2", "source_type": "holding_register", "address": 40091, "scale": 1, "unit": "C" },
-              { "key": "engine_4_tc_outlet_temp", "name": "T/C outlet", "source_type": "holding_register", "address": 40092, "scale": 1, "unit": "C" }
-            ]
-          }
-        ]
       }
     },
     "pid": {

@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import PropTypes from "prop-types";
 import * as echarts from "echarts";
 
@@ -19,11 +19,55 @@ const timeSeriesLineChartPopInKeyframes = `
   }
 `;
 
+const defaultSeriesColors = ["#22c55e", "#38bdf8", "#f97316", "#e879f9", "#facc15", "#fb7185"];
+
 const pad = (value) => String(value).padStart(2, "0");
 
 const formatUtcAxisTime = (timestampMs) => {
   const date = new Date(timestampMs);
   return `${pad(date.getUTCHours())}:${pad(date.getUTCMinutes())}`;
+};
+
+const calculateSeriesAverages = (chartData, series) =>
+  series.map((seriesItem, index) => {
+    const color = seriesItem.color ?? defaultSeriesColors[index % defaultSeriesColors.length];
+
+    if (!Array.isArray(chartData) || chartData.length === 0) {
+      return {
+        ...seriesItem,
+        color,
+        average: null,
+      };
+    }
+
+    const numericValues = chartData
+      .map((item) => Number(item?.[seriesItem.dataKey]))
+      .filter((value) => Number.isFinite(value));
+
+    if (numericValues.length === 0) {
+      return {
+        ...seriesItem,
+        color,
+        average: null,
+      };
+    }
+
+    const total = numericValues.reduce((sum, value) => sum + value, 0);
+
+    return {
+      ...seriesItem,
+      color,
+      average: total / numericValues.length,
+    };
+  });
+
+const formatAverageValue = (value, precision, unit) => {
+  if (!Number.isFinite(value)) {
+    return "--";
+  }
+
+  const normalizedPrecision = Number.isInteger(precision) ? precision : 2;
+  return `${value.toFixed(normalizedPrecision)}${unit ? ` ${unit}` : ""}`;
 };
 
 const buildChartOption = ({
@@ -33,13 +77,25 @@ const buildChartOption = ({
   rangeEndMs,
   emptyMessage,
   yAxisName,
+  yAxes,
 }) => {
   const normalizedSeries = series.map((item, index) => ({
     lineWidth: 3,
     smooth: 0.22,
+    yAxisIndex: 0,
     ...item,
-    color: item.color ?? ["#22c55e", "#38bdf8", "#f97316", "#e879f9", "#facc15", "#fb7185"][index % 6],
+    color: item.color ?? defaultSeriesColors[index % defaultSeriesColors.length],
   }));
+
+  const resolvedYAxes =
+    Array.isArray(yAxes) && yAxes.length > 0
+      ? yAxes
+      : [
+          {
+            name: yAxisName,
+            position: "left",
+          },
+        ];
 
   const source = chartData.map((item) => {
     const point = {
@@ -74,9 +130,9 @@ const buildChartOption = ({
     },
     grid: {
       top: 42,
-      right: 28,
+      right: resolvedYAxes.length > 1 ? 64 : 28,
       bottom: 28,
-      left: 58,
+      left: resolvedYAxes.length > 1 ? 64 : 58,
     },
     tooltip: {
       trigger: "axis",
@@ -103,7 +159,8 @@ const buildChartOption = ({
           const precision = Number.isInteger(seriesConfig.precision)
             ? seriesConfig.precision
             : 2;
-          const unit = seriesConfig.unit ?? yAxisName ?? "";
+          const fallbackAxis = resolvedYAxes[seriesConfig.yAxisIndex ?? 0];
+          const unit = seriesConfig.unit ?? fallbackAxis?.name ?? yAxisName ?? "";
 
           return `${row.marker ?? ""}${row.seriesName}: ${value.toFixed(precision)}${unit ? ` ${unit}` : ""}`;
         });
@@ -140,12 +197,16 @@ const buildChartOption = ({
         zoomOnMouseWheel: true,
       },
     ],
-    yAxis: {
+    yAxis: resolvedYAxes.map((axisConfig, axisIndex) => ({
       type: "value",
-      name: yAxisName,
+      name: axisConfig?.name ?? "",
+      position: axisConfig?.position ?? (axisIndex === 0 ? "left" : "right"),
       nameTextStyle: {
         color: "#94a3b8",
-        padding: [0, 0, 0, 8],
+        padding:
+          (axisConfig?.position ?? (axisIndex === 0 ? "left" : "right")) === "right"
+            ? [0, 0, 0, 0]
+            : [0, 0, 0, 8],
       },
       axisLine: {
         show: false,
@@ -156,18 +217,24 @@ const buildChartOption = ({
       axisLabel: {
         color: "#94a3b8",
       },
-      splitLine: {
-        lineStyle: {
-          color: "#1e293b",
-          type: "dashed",
-        },
-      },
-    },
+      splitLine:
+        axisIndex === 0
+          ? {
+              lineStyle: {
+                color: "#1e293b",
+                type: "dashed",
+              },
+            }
+          : {
+              show: false,
+            },
+    })),
     series: [
       ...normalizedSeries.map((seriesItem) => ({
         name: seriesItem.name,
         type: "line",
         datasetId: "raw",
+        yAxisIndex: seriesItem.yAxisIndex ?? 0,
         encode: {
           x: "timestampMs",
           y: seriesItem.dataKey,
@@ -220,11 +287,17 @@ const TimeSeriesLineChart = ({
   subtitle = "",
   emptyMessage = "No data returned for the selected window.",
   yAxisName = "",
+  yAxes = [],
 }) => {
   const chartRef = useRef(null);
   const chartInstanceRef = useRef(null);
   const resizeObserverRef = useRef(null);
   const hasLoggedChartErrorRef = useRef(false);
+  const [isAverageVisible, setIsAverageVisible] = useState(true);
+  const seriesAverages = useMemo(
+    () => calculateSeriesAverages(chartData, series),
+    [chartData, series]
+  );
 
   useEffect(() => {
     if (!chartRef.current) {
@@ -270,6 +343,7 @@ const TimeSeriesLineChart = ({
           rangeEndMs,
           emptyMessage,
           yAxisName,
+          yAxes,
         }),
         { notMerge: true, lazyUpdate: true }
       );
@@ -279,7 +353,7 @@ const TimeSeriesLineChart = ({
         hasLoggedChartErrorRef.current = true;
       }
     }
-  }, [chartData, series, rangeStartMs, rangeEndMs, emptyMessage, yAxisName]);
+  }, [chartData, series, rangeStartMs, rangeEndMs, emptyMessage, yAxisName, yAxes]);
 
   return (
     <>
@@ -292,17 +366,93 @@ const TimeSeriesLineChart = ({
           willChange: "transform, opacity",
         }}
       >
-        {(title || subtitle) && (
+        {title && (
           <div className="mb-3 flex flex-col gap-1 px-2 pt-2">
-            {title ? (
-              <h3 className="m-0 text-[18px] font-roboto text-[#f8fafc]">{title}</h3>
-            ) : null}
-            {subtitle ? (
-              <p className="m-0 text-[13px] text-[#94a3b8]">{subtitle}</p>
-            ) : null}
+            <h3 className="m-0 text-[18px] font-roboto text-[#f8fafc]">{title}</h3>
           </div>
         )}
-        <div ref={chartRef} className="w-full" style={{ height: `${chartHeight}px` }} />
+        <div className="relative w-full">
+          <div ref={chartRef} className="w-full" style={{ height: `${chartHeight}px` }} />
+          {seriesAverages.length ? (
+            <button
+              type="button"
+              className="absolute right-3 top-1 z-[2] flex h-9 w-9 items-center justify-center rounded-[8px] border border-[#334155] bg-[#0b1220e6] text-[#cbd5e1] transition hover:border-[#475569] hover:text-[#f8fafc]"
+              onClick={() => setIsAverageVisible((currentValue) => !currentValue)}
+              aria-label={isAverageVisible ? "Hide average" : "Show average"}
+              title={isAverageVisible ? "Hide average" : "Show average"}
+            >
+              {isAverageVisible ? (
+                <svg
+                  aria-hidden="true"
+                  className="h-4 w-4"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M3 8H13"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                  />
+                </svg>
+              ) : (
+                <svg
+                  aria-hidden="true"
+                  className="h-4 w-4"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <rect
+                    x="4.25"
+                    y="4.25"
+                    width="7.5"
+                    height="7.5"
+                    rx="0.75"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                  />
+                  <path
+                    d="M6 4V3.5C6 3.22386 6.22386 3 6.5 3H12.5C12.7761 3 13 3.22386 13 3.5V9.5C13 9.77614 12.7761 10 12.5 10H12"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              )}
+            </button>
+          ) : null}
+          {seriesAverages.length && isAverageVisible ? (
+            <div className="pointer-events-none absolute right-3 top-1 rounded-[10px] border border-[#334155] bg-[#0b1220cc] px-3 py-2 text-left shadow-[0_10px_30px_rgba(2,6,23,0.3)] backdrop-blur-sm">
+              <p className="m-0 text-[11px] font-semibold uppercase tracking-[0.12em] text-[#64748b]">
+                Average
+              </p>
+              <div className="mt-1 flex flex-col gap-1">
+                {seriesAverages.map((seriesItem) => (
+                  <div
+                    key={seriesItem.dataKey}
+                    className="flex items-center justify-start gap-2 text-[13px] text-[#e2e8f0]"
+                  >
+                    <span
+                      className="inline-block h-2.5 w-2.5 rounded-full"
+                      style={{ backgroundColor: seriesItem.color ?? "#38bdf8" }}
+                    />
+                    <span className="font-medium text-[#cbd5e1]">{seriesItem.name}:</span>
+                    <span className="font-semibold text-[#f8fafc]">
+                      {formatAverageValue(
+                        seriesItem.average,
+                        seriesItem.precision,
+                        seriesItem.unit ?? yAxisName
+                      )}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ) : null}
+        </div>
       </div>
     </>
   );
@@ -332,6 +482,12 @@ TimeSeriesLineChart.propTypes = {
   ).isRequired,
   subtitle: PropTypes.string,
   title: PropTypes.string,
+  yAxes: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string,
+      position: PropTypes.oneOf(["left", "right"]),
+    })
+  ),
   yAxisName: PropTypes.string,
 };
 

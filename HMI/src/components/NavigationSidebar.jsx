@@ -84,7 +84,7 @@ const NavigationSidebar = ({ className = "" }) => {
         </NavLink>
 
         <NavLink
-          to="/power"
+          to="/pressure_trend"
           className={navItemClass}
           style={({ isActive }) => ({
             borderLeft: isActive ? "4px solid #51A2FF" : undefined,
@@ -97,11 +97,37 @@ const NavigationSidebar = ({ className = "" }) => {
               <img
                 className={navIconClass(isActive)}
                 alt=""
-                src="/power.svg"
+                src="/pressure_trend.svg"
                 style={navIconStyle(isActive)}
               />
               <Box className="h-5 flex-1 flex items-start">
-                <div className="flex-1 relative leading-5 font-medium">Power</div>
+                <div className="flex-1 relative leading-5 font-medium">Pressure Trend</div>
+              </Box>
+            </>
+          )}
+        </NavLink>
+
+        <NavLink
+          to="/exh_temp_trend"
+          className={navItemClass}
+          style={({ isActive }) => ({
+            borderLeft: isActive ? "4px solid #51A2FF" : undefined,
+            background: isActive ? "#155DFC" : undefined,
+            borderRadius: isActive ? "10px" : undefined,
+          })}
+        >
+          {({ isActive }) => (
+            <>
+              <img
+                className={navIconClass(isActive)}
+                alt=""
+                src="/Exhaust.svg"
+                style={navIconStyle(isActive)}
+              />
+              <Box className="min-h-5 flex-1 flex items-start">
+                <div className="flex-1 relative leading-5 font-medium">
+                  Exh TempTrend
+                </div>
               </Box>
             </>
           )}
@@ -121,37 +147,13 @@ const NavigationSidebar = ({ className = "" }) => {
               <img
                 className={navIconClass(isActive)}
                 alt=""
-                src="/power.svg"
+                src="/pressure_trend.svg"
                 style={navIconStyle(isActive)}
               />
               <Box className="min-h-5 flex-1 flex items-start">
                 <div className="flex-1 relative leading-5 font-medium">
                   F.O. Consumption
                 </div>
-              </Box>
-            </>
-          )}
-        </NavLink>
-
-        <NavLink
-          to="/exhaust"
-          className={navItemClass}
-          style={({ isActive }) => ({
-            borderLeft: isActive ? "4px solid #51A2FF" : undefined,
-            background: isActive ? "#155DFC" : undefined,
-            borderRadius: isActive ? "10px" : undefined,
-          })}
-        >
-          {({ isActive }) => (
-            <>
-              <img
-                className={navIconClass(isActive)}
-                alt=""
-                src="/Exhaust.svg"
-                style={navIconStyle(isActive)}
-              />
-              <Box className="h-5 flex-1 flex items-start">
-                <div className="flex-1 relative leading-5 font-medium">Exhaust</div>
               </Box>
             </>
           )}

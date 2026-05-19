@@ -8,9 +8,9 @@ import {
 import Overview from "./pages/Overview";
 import PAndID from "./pages/PAndID";
 import Engine from "./pages/Engine";
-import Exhaust from "./pages/Exhaust";
+import ExhTempTrend from "./pages/ExhTempTrend";
 import FOConsumption from "./pages/FOConsumption";
-import Power from "./pages/Power";
+import PressureTrend from "./pages/PressureTrend";
 import PlaceholderPage from "./pages/PlaceholderPage";
 
 function App() {
@@ -41,17 +41,17 @@ function App() {
         title = "Engine";
         metaDescription = "Engine monitoring page.";
         break;
-      case "/power":
-        title = "Power";
-        metaDescription = "Power information page.";
+      case "/pressure_trend":
+        title = "Pressure Trend";
+        metaDescription = "Pressure trend page with load comparison.";
+        break;
+      case "/exh_temp_trend":
+        title = "Exh TempTrend";
+        metaDescription = "Exhaust temperature trend page with load comparison.";
         break;
       case "/fo-consumption":
         title = "F.O. Consumption";
         metaDescription = "Fuel oil consumption history and flow comparison page.";
-        break;
-      case "/exhaust":
-        title = "Exhaust";
-        metaDescription = "Exhaust system information page.";
         break;
       case "/alarms":
         title = "Alarms";
@@ -82,8 +82,8 @@ function App() {
       <Route path="/pid" element={<PAndID />} />
       <Route path="/engine" element={<Engine />} />
       <Route path="/fo-consumption" element={<FOConsumption />} />
-      <Route path="/power" element={<Power />} />
-      <Route path="/exhaust" element={<Exhaust />} />
+      <Route path="/pressure_trend" element={<PressureTrend />} />
+      <Route path="/exh_temp_trend" element={<ExhTempTrend />} />
       <Route
         path="/alarms"
         element={
