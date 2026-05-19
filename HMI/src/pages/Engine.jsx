@@ -165,8 +165,8 @@ const ENGINE_GROUP_COLUMNS = {
 };
 
 const ENGINE_GROUP_TITLE_LINKS = {
-  engine_parameters: "/power",
-  exhaust_gas_temp: "/exhaust",
+  engine_parameters: "/pressure_trend",
+  exhaust_gas_temp: "/exh_temp_trend",
 };
 
 const buildEngineGroupColumns = (groups) => {
