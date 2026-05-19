@@ -1,7 +1,7 @@
 {
   "database_path": "database/database",
   "modbus": {
-    "host": "192.168.18.26",
+    "host": "10.0.0.205",
     "port": 502,
     "unit_id": 16,
     "timeout_seconds": 3,
