@@ -1,4 +1,5 @@
 {
+  "database_path": "database/database",
   "modbus": {
     "host": "192.168.18.26",
     "port": 502,
@@ -7,12 +8,24 @@
     "poll_interval_ms": 2000
   },
   "fo_consumption": {
-    "database_path": "database/flow_meter_history.db",
-    "table_name": "flow_meter_history",
+    "database_path": "database/database",
+    "table_name": "database",
     "timestamp_format": "%d/%m/%Y %H:%M",
     "timestamp_timezone": "UTC",
     "default_window_minutes": 1440,
     "default_end_engine_count": 4
+  },
+  "power_history": {
+    "database_path": "database/database",
+    "table_name": "database",
+    "timestamp_column": "Timestamp",
+    "engine_column": "Engine",
+    "channel_description_column": "Channel Description",
+    "channel_description_value": "Engine Power",
+    "value_column": "Value",
+    "unit_column": "Unit",
+    "default_unit": "kW",
+    "series_label": "Engine Power"
   },
   "pages": {
     "overview": {

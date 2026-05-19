@@ -67,3 +67,47 @@ export const fetchFOConsumptionHistory = async ({
 
   return response.json();
 };
+
+export const fetchPowerHistory = async ({
+  engine,
+  windowMinutes,
+  startTime,
+  endTime,
+} = {}) => {
+  const url = new URL("/api/power", window.location.origin);
+
+  if (Number.isFinite(engine) && engine > 0) {
+    url.searchParams.set("engine", String(engine));
+  }
+
+  if (Number.isFinite(windowMinutes) && windowMinutes > 0) {
+    url.searchParams.set("windowMinutes", String(windowMinutes));
+  }
+
+  if (startTime) {
+    url.searchParams.set("startTime", startTime);
+  }
+
+  if (endTime) {
+    url.searchParams.set("endTime", endTime);
+  }
+
+  const response = await fetch(url.pathname + url.search);
+
+  if (!response.ok) {
+    let errorMessage = `power request failed with status ${response.status}`;
+
+    try {
+      const errorPayload = await response.json();
+      if (errorPayload?.error) {
+        errorMessage = errorPayload.error;
+      }
+    } catch {
+      // Keep the fallback message when the error response is not JSON.
+    }
+
+    throw new Error(errorMessage);
+  }
+
+  return response.json();
+};

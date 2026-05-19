@@ -9,9 +9,9 @@ from typing import Iterable
 
 
 BASE_DIR = Path(__file__).resolve().parent
-DEFAULT_DB_PATH = BASE_DIR / "flow_meter_history.db"
+DEFAULT_DB_PATH = BASE_DIR / "database"
 DEFAULT_CSV_PATH = BASE_DIR / "mock_do_flow_meter_data.csv"
-DEFAULT_TABLE_NAME = "flow_meter_history"
+DEFAULT_TABLE_NAME = "database"
 CSV_TIMESTAMP_FORMAT = "%d/%m/%Y %H:%M"
 DATABASE_TIMESTAMP_FORMAT = "%Y-%m-%d %H:%M:%S"
 
@@ -160,7 +160,12 @@ def normalize_row(row: dict[str, str], row_number: int) -> tuple[int, str, str, 
     unit = str(row["Unit"]).strip()
 
     try:
-        raw_value = str(row["Value"]).strip().replace(",", ".")
+        raw_value = (
+            str(row["Value"])
+            .strip()
+            .replace(" ", ".")
+            .replace(",", ".")
+        )
         value = float(raw_value)
     except ValueError as exc:
         raise ValueError(f"Row {row_number} has invalid Value: {row['Value']}") from exc
