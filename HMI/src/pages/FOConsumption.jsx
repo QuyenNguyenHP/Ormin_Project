@@ -76,6 +76,9 @@ const isOutputChannel = (description) => {
   );
 };
 
+const isEnginePowerChannel = (description) =>
+  normalizeDescription(description) === "engine power";
+
 const formatUtcLabel = (timestampMs) => {
   const date = new Date(timestampMs);
   return [
@@ -88,6 +91,7 @@ const buildEngineChartData = (records) => {
   const timestampMap = new Map();
   const inputLabels = new Set();
   const outputLabels = new Set();
+  const powerLabels = new Set();
 
   records.forEach((record) => {
     const timestampMs = Number(record.timestampMs ?? 0);
@@ -96,7 +100,9 @@ const buildEngineChartData = (records) => {
       timestampMs,
       flowIn: 0,
       flowOut: 0,
+      enginePower: null,
       unit: record.unit ?? "L/h",
+      powerUnit: "kW",
     };
 
     if (isInputChannel(record.channelDescription)) {
@@ -105,6 +111,10 @@ const buildEngineChartData = (records) => {
     } else if (isOutputChannel(record.channelDescription)) {
       existingPoint.flowOut = Number(record.value ?? 0);
       outputLabels.add(record.channelDescription);
+    } else if (isEnginePowerChannel(record.channelDescription)) {
+      existingPoint.enginePower = Number(record.value ?? 0);
+      existingPoint.powerUnit = record.unit ?? existingPoint.powerUnit ?? "kW";
+      powerLabels.add(record.channelDescription);
     }
 
     existingPoint.bandBase = Math.min(existingPoint.flowIn, existingPoint.flowOut);
@@ -123,6 +133,11 @@ const buildEngineChartData = (records) => {
     flowInLabel: Array.from(inputLabels)[0] ?? "Flow Input",
     flowOutLabel: Array.from(outputLabels)[0] ?? "Flow Output",
     unit: chartData[0]?.unit ?? records[0]?.unit ?? "L/h",
+    powerLabel: Array.from(powerLabels)[0] ?? "Engine Power",
+    powerUnit:
+      chartData.find((point) => point.powerUnit)?.powerUnit ??
+      records.find((record) => isEnginePowerChannel(record.channelDescription))?.unit ??
+      "kW",
   };
 };
 
@@ -329,6 +344,8 @@ const FOConsumption = () => {
                       chartData={engineCard.chartData}
                       flowInLabel={engineCard.flowInLabel}
                       flowOutLabel={engineCard.flowOutLabel}
+                      powerLabel={engineCard.powerLabel}
+                      powerUnit={engineCard.powerUnit}
                       unit={engineCard.unit}
                       rangeStartMs={engineCard.rangeStartMs}
                       rangeEndMs={engineCard.rangeEndMs}

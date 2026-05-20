@@ -30,7 +30,9 @@ const buildChartOption = ({
   chartData,
   flowInLabel,
   flowOutLabel,
+  powerLabel,
   unit,
+  powerUnit,
   rangeStartMs,
   rangeEndMs,
   emptyMessage,
@@ -40,12 +42,17 @@ const buildChartOption = ({
     timestampMs: Number(item.timestampMs ?? 0),
     flowIn: Number(item.flowIn ?? 0),
     flowOut: Number(item.flowOut ?? 0),
+    enginePower:
+      item.enginePower == null || Number.isNaN(Number(item.enginePower))
+        ? null
+        : Number(item.enginePower),
     bandBase: Number(item.bandBase ?? 0),
     bandGap: Number(item.bandGap ?? 0),
   }));
 
   const LEGEND_IN = "F.O in";
   const LEGEND_OUT = "F.O out";
+  const LEGEND_POWER = powerLabel || "Engine Power";
   const rangeMarkers =
     rangeStartMs != null && rangeEndMs != null
       ? [{ xAxis: rangeStartMs }, { xAxis: rangeEndMs }]
@@ -54,13 +61,13 @@ const buildChartOption = ({
   return {
     animationDuration: 250,
     animationDurationUpdate: 200,
-    color: ["#f97316", "#38bdf8"],
+    color: ["#f97316", "#38bdf8", "#ef4444"],
     backgroundColor: "transparent",
     dataset: [{ id: "raw", source }],
     legend: {
       left: "center",
       top: 8,
-      data: [LEGEND_IN, LEGEND_OUT],
+      data: [LEGEND_IN, LEGEND_OUT, LEGEND_POWER],
       textStyle: {
         color: "#cbd5e1",
       },
@@ -92,16 +99,21 @@ const buildChartOption = ({
           firstRow?.data?.timestampLabel ?? formatUtcAxisTime(firstRow?.axisValue ?? 0);
         const flowInRow = rows.find((row) => row.seriesName === LEGEND_IN);
         const flowOutRow = rows.find((row) => row.seriesName === LEGEND_OUT);
+        const powerRow = rows.find((row) => row.seriesName === LEGEND_POWER);
         const flowInValue = Number(flowInRow?.value?.flowIn ?? 0);
         const flowOutValue = Number(flowOutRow?.value?.flowOut ?? 0);
         const deltaValue = Math.abs(flowInValue - flowOutValue);
+        const powerValue = powerRow?.value?.enginePower;
 
-          return [
-            timestampLabel,
-            `${flowInRow?.marker ?? ""}${LEGEND_IN}: ${flowInValue.toFixed(2)} ${unit}`,
-            `${flowOutRow?.marker ?? ""}${LEGEND_OUT}: ${flowOutValue.toFixed(2)} ${unit}`,
-            `<span style="color:#facc15">Band:</span> ${deltaValue.toFixed(2)} ${unit}`,
-          ].join("<br/>");
+        return [
+          timestampLabel,
+          `${flowInRow?.marker ?? ""}${LEGEND_IN}: ${flowInValue.toFixed(2)} ${unit}`,
+          `${flowOutRow?.marker ?? ""}${LEGEND_OUT}: ${flowOutValue.toFixed(2)} ${unit}`,
+          `<span style="color:#facc15">Band:</span> ${deltaValue.toFixed(2)} ${unit}`,
+          powerValue == null
+            ? `${powerRow?.marker ?? ""}${LEGEND_POWER}: n/a`
+            : `${powerRow?.marker ?? ""}${LEGEND_POWER}: ${Number(powerValue).toFixed(2)} ${powerUnit}`,
+        ].join("<br/>");
       },
     },
     xAxis: {
@@ -133,29 +145,52 @@ const buildChartOption = ({
         zoomOnMouseWheel: true,
       },
     ],
-    yAxis: {
-      type: "value",
-      name: unit,
-      nameTextStyle: {
-        color: "#94a3b8",
-        padding: [0, 0, 0, 8],
-      },
-      axisLine: {
-        show: false,
-      },
-      axisTick: {
-        show: false,
-      },
-      axisLabel: {
-        color: "#94a3b8",
-      },
-      splitLine: {
-        lineStyle: {
-          color: "#1e293b",
-          type: "dashed",
+    yAxis: [
+      {
+        type: "value",
+        name: unit,
+        nameTextStyle: {
+          color: "#94a3b8",
+          padding: [0, 0, 0, 8],
+        },
+        axisLine: {
+          show: false,
+        },
+        axisTick: {
+          show: false,
+        },
+        axisLabel: {
+          color: "#94a3b8",
+        },
+        splitLine: {
+          lineStyle: {
+            color: "#1e293b",
+            type: "dashed",
+          },
         },
       },
-    },
+      {
+        type: "value",
+        name: powerUnit,
+        position: "right",
+        nameTextStyle: {
+          color: "#fca5a5",
+          padding: [0, 8, 0, 0],
+        },
+        axisLine: {
+          show: false,
+        },
+        axisTick: {
+          show: false,
+        },
+        axisLabel: {
+          color: "#fca5a5",
+        },
+        splitLine: {
+          show: false,
+        },
+      },
+    ],
     series: [
       {
         name: "band-base",
@@ -215,6 +250,7 @@ const buildChartOption = ({
           x: "timestampMs",
           y: "flowIn",
         },
+        yAxisIndex: 0,
         showSymbol: false,
         smooth: 0.22,
         lineStyle: {
@@ -243,6 +279,7 @@ const buildChartOption = ({
           x: "timestampMs",
           y: "flowOut",
         },
+        yAxisIndex: 0,
         showSymbol: false,
         smooth: 0.22,
         lineStyle: {
@@ -250,6 +287,25 @@ const buildChartOption = ({
         },
         itemStyle: {
           color: "#38bdf8",
+        },
+      },
+      {
+        name: LEGEND_POWER,
+        type: "line",
+        datasetId: "raw",
+        encode: {
+          x: "timestampMs",
+          y: "enginePower",
+        },
+        yAxisIndex: 1,
+        connectNulls: false,
+        showSymbol: false,
+        smooth: 0.18,
+        lineStyle: {
+          width: 2.5,
+        },
+        itemStyle: {
+          color: "#ef4444",
         },
       },
       {
@@ -284,6 +340,8 @@ const FOConsumptionChart = ({
   chartData,
   flowInLabel,
   flowOutLabel,
+  powerLabel = "Engine Power",
+  powerUnit = "kW",
   unit,
   rangeStartMs,
   rangeEndMs,
@@ -362,7 +420,9 @@ const FOConsumptionChart = ({
           chartData,
           flowInLabel,
           flowOutLabel,
+          powerLabel,
           unit,
+          powerUnit,
           rangeStartMs,
           rangeEndMs,
           emptyMessage,
@@ -375,7 +435,17 @@ const FOConsumptionChart = ({
         hasLoggedChartErrorRef.current = true;
       }
     }
-  }, [chartData, flowInLabel, flowOutLabel, unit, rangeStartMs, rangeEndMs, emptyMessage]);
+  }, [
+    chartData,
+    flowInLabel,
+    flowOutLabel,
+    powerLabel,
+    unit,
+    powerUnit,
+    rangeStartMs,
+    rangeEndMs,
+    emptyMessage,
+  ]);
 
   return (
     <>
@@ -422,6 +492,7 @@ FOConsumptionChart.propTypes = {
       bandGap: PropTypes.number,
       flowIn: PropTypes.number,
       flowOut: PropTypes.number,
+      enginePower: PropTypes.number,
       timestamp: PropTypes.string,
       timestampMs: PropTypes.number,
     })
@@ -429,6 +500,8 @@ FOConsumptionChart.propTypes = {
   chartHeight: PropTypes.number,
   flowInLabel: PropTypes.string.isRequired,
   flowOutLabel: PropTypes.string.isRequired,
+  powerLabel: PropTypes.string,
+  powerUnit: PropTypes.string,
   emptyMessage: PropTypes.string,
   rangeEndMs: PropTypes.number,
   rangeStartMs: PropTypes.number,

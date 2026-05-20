@@ -42,8 +42,29 @@ DATABASE_PATH = resolve_database_path(
     "flow_meter_history.db",
 )
 TABLE_NAME = FO_CONFIG.get("table_name", "database").replace('"', '""')
+FO_TIMESTAMP_COLUMN = FO_CONFIG.get("timestamp_column", "Timestamp").replace('"', '""')
+FO_ENGINE_COLUMN = FO_CONFIG.get("engine_column", "Engine").replace('"', '""')
+FO_CHANNEL_DESCRIPTION_COLUMN = FO_CONFIG.get(
+    "channel_description_column", "Channel Description"
+).replace('"', '""')
+FO_VALUE_COLUMN = FO_CONFIG.get("value_column", "Value").replace('"', '""')
+FO_UNIT_COLUMN = FO_CONFIG.get("unit_column", "Unit").replace('"', '""')
 DEFAULT_WINDOW_MINUTES = int(FO_CONFIG.get("default_window_minutes", 1440))
 DEFAULT_ENGINE_COUNT = int(FO_CONFIG.get("default_end_engine_count", 4))
+FO_ENGINE_POWER_CHANNEL_DESCRIPTION = FO_CONFIG.get(
+    "engine_power_channel_description_value", "Engine Power"
+)
+FO_ENGINE_POWER_DEFAULT_UNIT = FO_CONFIG.get("engine_power_default_unit", "kW")
+FO_INPUT_CHANNEL_KEYWORDS = [
+    str(keyword).strip().lower()
+    for keyword in FO_CONFIG.get("input_channel_keywords", ["input", "inlet", "flow in"])
+    if str(keyword).strip()
+]
+FO_OUTPUT_CHANNEL_KEYWORDS = [
+    str(keyword).strip().lower()
+    for keyword in FO_CONFIG.get("output_channel_keywords", ["output", "outlet", "flow out"])
+    if str(keyword).strip()
+]
 PRESSURE_TREND_CONFIG = CONFIG.get("pressure_trend_history", {})
 PRESSURE_TREND_DATABASE_PATH = resolve_database_path(
     PRESSURE_TREND_CONFIG.get("database_path", ""),
@@ -88,6 +109,23 @@ EXH_TEMP_TREND_SERIES_LABEL = EXH_TEMP_TREND_CONFIG.get("series_label", "Power")
 
 def quote_identifier(identifier: str) -> str:
     return '"' + identifier.replace('"', '""') + '"'
+
+
+def normalize_channel_description(description: Any) -> str:
+    return str(description or "").strip().lower()
+
+
+def is_fo_relevant_channel_description(description: Any) -> bool:
+    normalized = normalize_channel_description(description)
+    if not normalized:
+        return False
+
+    if normalized == normalize_channel_description(FO_ENGINE_POWER_CHANNEL_DESCRIPTION):
+        return True
+
+    return any(keyword in normalized for keyword in FO_INPUT_CHANNEL_KEYWORDS) or any(
+        keyword in normalized for keyword in FO_OUTPUT_CHANNEL_KEYWORDS
+    )
 
 
 def validate_range_arguments(start_time: str | None, end_time: str | None) -> None:
@@ -143,82 +181,108 @@ def build_payload(
         range_row = resolve_history_range(
             connection,
             TABLE_NAME,
-            "Timestamp",
+            FO_TIMESTAMP_COLUMN,
             window_minutes,
             start_time,
             end_time,
         )
 
+        quoted_table = quote_identifier(TABLE_NAME)
+        quoted_engine_column = quote_identifier(FO_ENGINE_COLUMN)
+        quoted_channel_description_column = quote_identifier(FO_CHANNEL_DESCRIPTION_COLUMN)
+        quoted_timestamp_column = quote_identifier(FO_TIMESTAMP_COLUMN)
+        quoted_value_column = quote_identifier(FO_VALUE_COLUMN)
+        quoted_unit_column = quote_identifier(FO_UNIT_COLUMN)
+
         if start_time and end_time:
             records = connection.execute(
                 f"""
                 SELECT
-                    "Engine" AS engine,
-                    "Channel Description" AS channelDescription,
-                    CAST(unixepoch("Timestamp") * 1000 AS INTEGER) AS timestampMs,
-                    substr(strftime('%Y', "Timestamp"), 3, 2) || '-' ||
-                    strftime('%m', "Timestamp") || '.' ||
-                    strftime('%d', "Timestamp") || ' ' ||
-                    strftime('%H', "Timestamp") || '-' ||
-                    strftime('%M', "Timestamp") || '-' ||
-                    strftime('%S', "Timestamp") AS timestampLabel,
-                    "Value" AS value,
-                    "Unit" AS unit
-                FROM "{TABLE_NAME}"
-                WHERE "Timestamp" BETWEEN MIN(datetime(?, 'utc'), datetime(?, 'utc'))
-                                      AND MAX(datetime(?, 'utc'), datetime(?, 'utc'))
-                ORDER BY "Engine", "Timestamp"
+                    {quoted_engine_column} AS engine,
+                    {quoted_channel_description_column} AS channelDescription,
+                    CAST(unixepoch({quoted_timestamp_column}) * 1000 AS INTEGER) AS timestampMs,
+                    substr(strftime('%Y', {quoted_timestamp_column}), 3, 2) || '-' ||
+                    strftime('%m', {quoted_timestamp_column}) || '.' ||
+                    strftime('%d', {quoted_timestamp_column}) || ' ' ||
+                    strftime('%H', {quoted_timestamp_column}) || '-' ||
+                    strftime('%M', {quoted_timestamp_column}) || '-' ||
+                    strftime('%S', {quoted_timestamp_column}) AS timestampLabel,
+                    {quoted_value_column} AS value,
+                    COALESCE({quoted_unit_column}, ?) AS unit
+                FROM {quoted_table}
+                WHERE {quoted_timestamp_column} BETWEEN MIN(datetime(?, 'utc'), datetime(?, 'utc'))
+                                                    AND MAX(datetime(?, 'utc'), datetime(?, 'utc'))
+                ORDER BY {quoted_engine_column}, {quoted_timestamp_column}
                 """,
-                (start_time, end_time, start_time, end_time),
+                (
+                    FO_ENGINE_POWER_DEFAULT_UNIT,
+                    start_time,
+                    end_time,
+                    start_time,
+                    end_time,
+                ),
             ).fetchall()
         else:
             minutes = max(1, int(window_minutes or DEFAULT_WINDOW_MINUTES))
             range_row = connection.execute(
                 f"""
                 SELECT
-                    CAST(unixepoch(MAX("Timestamp"), '-{minutes} minutes') * 1000 AS INTEGER) AS rangeStartMs,
-                    CAST(unixepoch(MAX("Timestamp")) * 1000 AS INTEGER) AS rangeEndMs
-                FROM "{TABLE_NAME}"
+                    CAST(unixepoch(MAX({quoted_timestamp_column}), '-{minutes} minutes') * 1000 AS INTEGER) AS rangeStartMs,
+                    CAST(unixepoch(MAX({quoted_timestamp_column})) * 1000 AS INTEGER) AS rangeEndMs
+                FROM {quoted_table}
                 """
             ).fetchone()
             records = connection.execute(
                 f"""
                 SELECT
-                    "Engine" AS engine,
-                    "Channel Description" AS channelDescription,
-                    CAST(unixepoch("Timestamp") * 1000 AS INTEGER) AS timestampMs,
-                    substr(strftime('%Y', "Timestamp"), 3, 2) || '-' ||
-                    strftime('%m', "Timestamp") || '.' ||
-                    strftime('%d', "Timestamp") || ' ' ||
-                    strftime('%H', "Timestamp") || '-' ||
-                    strftime('%M', "Timestamp") || '-' ||
-                    strftime('%S', "Timestamp") AS timestampLabel,
-                    "Value" AS value,
-                    "Unit" AS unit
-                FROM "{TABLE_NAME}"
-                WHERE "Timestamp" BETWEEN datetime((SELECT MAX("Timestamp") FROM "{TABLE_NAME}"), '-{minutes} minutes')
-                                      AND (SELECT MAX("Timestamp") FROM "{TABLE_NAME}")
-                ORDER BY "Engine", "Timestamp"
+                    {quoted_engine_column} AS engine,
+                    {quoted_channel_description_column} AS channelDescription,
+                    CAST(unixepoch({quoted_timestamp_column}) * 1000 AS INTEGER) AS timestampMs,
+                    substr(strftime('%Y', {quoted_timestamp_column}), 3, 2) || '-' ||
+                    strftime('%m', {quoted_timestamp_column}) || '.' ||
+                    strftime('%d', {quoted_timestamp_column}) || ' ' ||
+                    strftime('%H', {quoted_timestamp_column}) || '-' ||
+                    strftime('%M', {quoted_timestamp_column}) || '-' ||
+                    strftime('%S', {quoted_timestamp_column}) AS timestampLabel,
+                    {quoted_value_column} AS value,
+                    COALESCE({quoted_unit_column}, ?) AS unit
+                FROM {quoted_table}
+                WHERE {quoted_timestamp_column} BETWEEN datetime(
+                        (SELECT MAX({quoted_timestamp_column}) FROM {quoted_table}),
+                        '-{minutes} minutes'
+                      )
+                      AND (SELECT MAX({quoted_timestamp_column}) FROM {quoted_table})
+                ORDER BY {quoted_engine_column}, {quoted_timestamp_column}
                 """
+                ,
+                (FO_ENGINE_POWER_DEFAULT_UNIT,),
             ).fetchall()
 
         engines = connection.execute(
             f"""
-            SELECT DISTINCT "Engine" AS engine
-            FROM "{TABLE_NAME}"
-            ORDER BY "Engine"
+            SELECT DISTINCT {quoted_engine_column} AS engine
+            FROM {quoted_table}
+            ORDER BY {quoted_engine_column}
             LIMIT ?
             """,
             (DEFAULT_ENGINE_COUNT,),
         ).fetchall()
 
+    filtered_records = [
+        dict(row)
+        for row in records
+        if is_fo_relevant_channel_description(row["channelDescription"])
+    ]
+
     return {
         "page": "fo-consumption",
-        "records": [dict(row) for row in records],
+        "records": filtered_records,
         "engines": [int(row["engine"]) for row in engines],
         "meta": {
             "rangeStartMs": range_row["rangeStartMs"],
             "rangeEndMs": range_row["rangeEndMs"],
+            "powerChannelDescription": FO_ENGINE_POWER_CHANNEL_DESCRIPTION,
+            "powerUnit": FO_ENGINE_POWER_DEFAULT_UNIT,
         },
     }
 

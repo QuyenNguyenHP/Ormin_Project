@@ -10,10 +10,19 @@
   "fo_consumption": {
     "database_path": "database/database",
     "table_name": "database",
+    "timestamp_column": "Timestamp",
+    "engine_column": "Engine",
+    "channel_description_column": "Channel Description",
+    "value_column": "Value",
+    "unit_column": "Unit",
     "timestamp_format": "%d/%m/%Y %H:%M",
     "timestamp_timezone": "UTC",
     "default_window_minutes": 1440,
-    "default_end_engine_count": 4
+    "default_end_engine_count": 4,
+    "engine_power_channel_description_value": "Engine Power",
+    "engine_power_default_unit": "kW",
+    "input_channel_keywords": ["input", "inlet", "flow in"],
+    "output_channel_keywords": ["output", "outlet", "flow out"]
   },
   "pressure_trend_history": {
     "database_path": "database/database",
