@@ -105,6 +105,7 @@ EXH_TEMP_TREND_VALUE_COLUMN = EXH_TEMP_TREND_CONFIG.get("value_column", "Value")
 EXH_TEMP_TREND_UNIT_COLUMN = EXH_TEMP_TREND_CONFIG.get("unit_column", "Unit").replace('"', '""')
 EXH_TEMP_TREND_DEFAULT_UNIT = EXH_TEMP_TREND_CONFIG.get("default_unit", "kW")
 EXH_TEMP_TREND_SERIES_LABEL = EXH_TEMP_TREND_CONFIG.get("series_label", "Power")
+MIN_VISIBLE_ENGINE_NUMBER = 1
 
 
 def quote_identifier(identifier: str) -> str:
@@ -113,6 +114,13 @@ def quote_identifier(identifier: str) -> str:
 
 def normalize_channel_description(description: Any) -> str:
     return str(description or "").strip().lower()
+
+
+def is_visible_engine_number(engine_value: Any) -> bool:
+    try:
+        return int(engine_value) >= MIN_VISIBLE_ENGINE_NUMBER
+    except (TypeError, ValueError):
+        return False
 
 
 def is_fo_relevant_channel_description(description: Any) -> bool:
@@ -262,16 +270,18 @@ def build_payload(
             f"""
             SELECT DISTINCT {quoted_engine_column} AS engine
             FROM {quoted_table}
+            WHERE {quoted_engine_column} >= ?
             ORDER BY {quoted_engine_column}
             LIMIT ?
             """,
-            (DEFAULT_ENGINE_COUNT,),
+            (MIN_VISIBLE_ENGINE_NUMBER, DEFAULT_ENGINE_COUNT),
         ).fetchall()
 
     filtered_records = [
         dict(row)
         for row in records
-        if is_fo_relevant_channel_description(row["channelDescription"])
+        if is_visible_engine_number(row["engine"])
+        and is_fo_relevant_channel_description(row["channelDescription"])
     ]
 
     return {
@@ -317,8 +327,11 @@ def build_pressure_trend_payload(
             f"""
             SELECT DISTINCT {quoted_engine_column} AS engine
             FROM {quoted_table}
+            WHERE {quoted_engine_column} >= ?
             ORDER BY {quoted_engine_column}
             """
+            ,
+            (MIN_VISIBLE_ENGINE_NUMBER,),
         ).fetchall()
 
         resolved_channel_descriptions = [
@@ -347,7 +360,12 @@ def build_pressure_trend_payload(
                 },
             }
 
-        resolved_engine_number = int(engine_number or engines[0]["engine"])
+        requested_engine_number = (
+            int(engine_number)
+            if engine_number is not None and is_visible_engine_number(engine_number)
+            else None
+        )
+        resolved_engine_number = requested_engine_number or int(engines[0]["engine"])
         range_row = resolve_history_range(
             connection,
             PRESSURE_TREND_TABLE_NAME,
@@ -490,8 +508,11 @@ def build_exh_temp_trend_payload(
             f"""
             SELECT DISTINCT {quoted_engine_column} AS engine
             FROM {quoted_table}
+            WHERE {quoted_engine_column} >= ?
             ORDER BY {quoted_engine_column}
             """
+            ,
+            (MIN_VISIBLE_ENGINE_NUMBER,),
         ).fetchall()
 
         resolved_channel_descriptions = [
@@ -520,7 +541,12 @@ def build_exh_temp_trend_payload(
                 },
             }
 
-        resolved_engine_number = int(engine_number or engines[0]["engine"])
+        requested_engine_number = (
+            int(engine_number)
+            if engine_number is not None and is_visible_engine_number(engine_number)
+            else None
+        )
+        resolved_engine_number = requested_engine_number or int(engines[0]["engine"])
         range_row = resolve_history_range(
             connection,
             EXH_TEMP_TREND_TABLE_NAME,

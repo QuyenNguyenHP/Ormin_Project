@@ -1,7 +1,7 @@
 {
   "database_path": "database/database",
   "modbus": {
-    "host": "10.0.0.205",
+    "host": "10.0.0.204",
     "port": 502,
     "unit_id": 16,
     "timeout_seconds": 3,
@@ -55,66 +55,66 @@
           "key": "engine_1",
           "title": "Engine 1",
           "serialNo": 1,
-          "gauge": { "title": "Engine 1", "subtitle": "Main propulsion load", "source_type": "holding_register", "address": 40019, "scale": 1, "min": 0, "max": 800, "unit": "kW", "color": "#22c55e" },
+          "gauge": { "key": "engine_power", "label": "Engine Power", "title": "Engine 1", "subtitle": "Main propulsion load", "source_type": "holding_register", "address": 40101, "scale": 1, "min": 0, "max": 800, "unit": "kW", "color": "#22c55e" },
           "metrics": {
-            "runningHours": { "source_type": "holding_register", "address": 40033, "scale": 1 },
-            "engineSpeed": { "source_type": "holding_register", "address": 40034, "scale": 1 },
-            "foPress": { "source_type": "holding_register", "address": 40035, "scale": 0.01 },
-            "loPress": { "source_type": "holding_register", "address": 40036, "scale": 0.01 },
-            "loTemp": { "source_type": "holding_register", "address": 40037, "scale": 1 },
-            "boostAir": { "source_type": "holding_register", "address": 40038, "scale": 0.01 }
+            "runningHours": { "key": "engine_running_hours", "label": "Engine Running Hours", "source_type": "holding_register", "address": 40100, "scale": 1, "unit": "h" },
+            "engineSpeed": { "key": "engine_speed", "label": "Engine Speed", "source_type": "holding_register", "address": 40102, "scale": 1, "unit": "rpm" },
+            "foPress": { "key": "fuel_oil_pressure", "label": "Fuel Oil Pressure", "source_type": "holding_register", "address": 40035, "scale": 0.01, "precision": 2, "unit": "MPa" },
+            "loPress": { "key": "lub_oil_pressure", "label": "Lub Oil Pressure", "source_type": "holding_register", "address": 40036, "scale": 0.01, "precision": 2, "unit": "MPa" },
+            "loTemp": { "key": "lub_oil_temperature", "label": "Lub Oil Temperature", "source_type": "holding_register", "address": 40037, "scale": 1, "unit": "C" },
+            "boostAir": { "key": "boost_air_pressure", "label": "Boost Air Pressure", "source_type": "holding_register", "address": 40038, "scale": 0.01, "precision": 2, "unit": "bar" }
           }
         },
         {
           "key": "engine_2",
           "title": "Engine 2",
           "serialNo": 2,
-          "gauge": { "title": "Engine 2", "subtitle": "Auxiliary engine load", "source_type": "holding_register", "address": 40020, "scale": 1, "min": 0, "max": 800, "unit": "kW", "color": "#f59e0b" },
+          "gauge": { "key": "engine_power", "label": "Engine Power", "title": "Engine 2", "subtitle": "Auxiliary engine load", "source_type": "holding_register", "address": 40147, "scale": 1, "min": 0, "max": 800, "unit": "kW", "color": "#f59e0b" },
           "metrics": {
-            "runningHours": { "source_type": "holding_register", "address": 40039, "scale": 1 },
-            "engineSpeed": { "source_type": "holding_register", "address": 40040, "scale": 1 },
-            "foPress": { "source_type": "holding_register", "address": 40041, "scale": 0.01 },
-            "loPress": { "source_type": "holding_register", "address": 40042, "scale": 0.01 },
-            "loTemp": { "source_type": "holding_register", "address": 40043, "scale": 1 },
-            "boostAir": { "source_type": "holding_register", "address": 40044, "scale": 0.01 }
+            "runningHours": { "key": "engine_running_hours", "label": "Engine Running Hours", "source_type": "holding_register", "address": 40146, "scale": 1, "unit": "h" },
+            "engineSpeed": { "key": "engine_speed", "label": "Engine Speed", "source_type": "holding_register", "address": 40148, "scale": 1, "unit": "rpm" },
+            "foPress": { "key": "fuel_oil_pressure", "label": "Fuel Oil Pressure", "source_type": "holding_register", "address": 40041, "scale": 0.01, "precision": 2, "unit": "MPa" },
+            "loPress": { "key": "lub_oil_pressure", "label": "Lub Oil Pressure", "source_type": "holding_register", "address": 40042, "scale": 0.01, "precision": 2, "unit": "MPa" },
+            "loTemp": { "key": "lub_oil_temperature", "label": "Lub Oil Temperature", "source_type": "holding_register", "address": 40043, "scale": 1, "unit": "C" },
+            "boostAir": { "key": "boost_air_pressure", "label": "Boost Air Pressure", "source_type": "holding_register", "address": 40044, "scale": 0.01, "precision": 2, "unit": "bar" }
           }
         },
         {
           "key": "engine_3",
           "title": "Engine 3",
           "serialNo": 3,
-          "gauge": { "title": "Engine 3", "subtitle": "Generator engine load", "source_type": "holding_register", "address": 40021, "scale": 1, "min": 0, "max": 800, "unit": "kW", "color": "#38bdf8" },
+          "gauge": { "key": "engine_power", "label": "Engine Power", "title": "Engine 3", "subtitle": "Generator engine load", "source_type": "holding_register", "address": 40193, "scale": 1, "min": 0, "max": 800, "unit": "kW", "color": "#38bdf8" },
           "metrics": {
-            "runningHours": { "source_type": "holding_register", "address": 40045, "scale": 1 },
-            "engineSpeed": { "source_type": "holding_register", "address": 40046, "scale": 1 },
-            "foPress": { "source_type": "holding_register", "address": 40047, "scale": 0.01 },
-            "loPress": { "source_type": "holding_register", "address": 40048, "scale": 0.01 },
-            "loTemp": { "source_type": "holding_register", "address": 40049, "scale": 1 },
-            "boostAir": { "source_type": "holding_register", "address": 40050, "scale": 0.01 }
+            "runningHours": { "key": "engine_running_hours", "label": "Engine Running Hours", "source_type": "holding_register", "address": 40192, "scale": 1, "unit": "h" },
+            "engineSpeed": { "key": "engine_speed", "label": "Engine Speed", "source_type": "holding_register", "address": 40194, "scale": 1, "unit": "rpm" },
+            "foPress": { "key": "fuel_oil_pressure", "label": "Fuel Oil Pressure", "source_type": "holding_register", "address": 40047, "scale": 0.01, "precision": 2, "unit": "MPa" },
+            "loPress": { "key": "lub_oil_pressure", "label": "Lub Oil Pressure", "source_type": "holding_register", "address": 40048, "scale": 0.01, "precision": 2, "unit": "MPa" },
+            "loTemp": { "key": "lub_oil_temperature", "label": "Lub Oil Temperature", "source_type": "holding_register", "address": 40049, "scale": 1, "unit": "C" },
+            "boostAir": { "key": "boost_air_pressure", "label": "Boost Air Pressure", "source_type": "holding_register", "address": 40050, "scale": 0.01, "precision": 2, "unit": "bar" }
           }
         },
         {
           "key": "engine_4",
           "title": "Engine 4",
           "serialNo": 4,
-          "gauge": { "title": "Engine 4", "subtitle": "Backup engine load", "source_type": "holding_register", "address": 40022, "scale": 1, "min": 0, "max": 800, "unit": "kW", "color": "#ef4444" },
+          "gauge": { "key": "engine_power", "label": "Engine Power", "title": "Engine 4", "subtitle": "Backup engine load", "source_type": "holding_register", "address": 40239, "scale": 1, "min": 0, "max": 800, "unit": "kW", "color": "#ef4444" },
           "metrics": {
-            "runningHours": { "source_type": "holding_register", "address": 40051, "scale": 1 },
-            "engineSpeed": { "source_type": "holding_register", "address": 40052, "scale": 1 },
-            "foPress": { "source_type": "holding_register", "address": 40053, "scale": 0.01 },
-            "loPress": { "source_type": "holding_register", "address": 40054, "scale": 0.1 },
-            "loTemp": { "source_type": "holding_register", "address": 40055, "scale": 1 },
-            "boostAir": { "source_type": "holding_register", "address": 40056, "scale": 0.01 }
+            "runningHours": { "key": "engine_running_hours", "label": "Engine Running Hours", "source_type": "holding_register", "address": 40238, "scale": 1, "unit": "h" },
+            "engineSpeed": { "key": "engine_speed", "label": "Engine Speed", "source_type": "holding_register", "address": 40240, "scale": 1, "unit": "rpm" },
+            "foPress": { "key": "fuel_oil_pressure", "label": "Fuel Oil Pressure", "source_type": "holding_register", "address": 40053, "scale": 0.01, "precision": 2, "unit": "MPa" },
+            "loPress": { "key": "lub_oil_pressure", "label": "Lub Oil Pressure", "source_type": "holding_register", "address": 40054, "scale": 0.1, "precision": 1, "unit": "MPa" },
+            "loTemp": { "key": "lub_oil_temperature", "label": "Lub Oil Temperature", "source_type": "holding_register", "address": 40055, "scale": 1, "unit": "C" },
+            "boostAir": { "key": "boost_air_pressure", "label": "Boost Air Pressure", "source_type": "holding_register", "address": 40056, "scale": 0.01, "precision": 2, "unit": "bar" }
           }
         }
       ],
       "metric_thresholds": {
-        "runningHours": { "warning": 50000, "alarm": 70000, "direction": "high" },
-        "engineSpeed": { "warning": 900, "alarm": 1020, "direction": "high" },
-        "foPress": { "warning": 0.35, "alarm": 0.30, "direction": "low" },
-        "loPress": { "warning": 0.35, "alarm": 0.30, "direction": "low" },
-        "loTemp": { "warning": 300, "alarm": 360, "direction": "high" },
-        "boostAir": { "warning": 2.0, "alarm": 1.5, "direction": "low" }
+        "engine_running_hours": { "warning": 50000, "alarm": 70000, "direction": "high" },
+        "engine_speed": { "warning": 900, "alarm": 1020, "direction": "high" },
+        "fuel_oil_pressure": { "warning": 0.35, "alarm": 0.30, "direction": "low" },
+        "lub_oil_pressure": { "warning": 0.35, "alarm": 0.30, "direction": "low" },
+        "lub_oil_temperature": { "warning": 300, "alarm": 360, "direction": "high" },
+        "boost_air_pressure": { "warning": 2.0, "alarm": 1.5, "direction": "low" }
       }
     },
     "engine": {

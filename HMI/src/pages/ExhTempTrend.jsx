@@ -7,6 +7,9 @@ import DashboardButton from "../components/DashboardButton";
 import TimeSeriesLineChart from "../components/TimeSeriesLineChart";
 import { fetchExhTempTrendHistory } from "../services/pidMonitorApi";
 
+const LIVE_POLL_INTERVAL_MS = 6000;
+const LIVE_VIEWPORT_LATEST_DATA_RATIO = 2 / 3;
+
 const exhaustTempSeriesConfig = [
   {
     channelDescription: "T/C Outlet Temp",
@@ -99,6 +102,62 @@ const shiftUtcInputValue = (inputValue, deltaHours) => {
 
 const buildEngineLabel = (engineNumber) => `Engine ${engineNumber}`;
 
+const buildHistoryRequestOptions = (engineNumber, range) =>
+  range
+    ? {
+        engine: engineNumber,
+        startTime: new Date(range.startMs).toISOString(),
+        endTime: new Date(range.endMs).toISOString(),
+      }
+    : {
+        engine: engineNumber,
+      };
+
+const getLatestTimestampMs = (records) =>
+  (Array.isArray(records) ? records : []).reduce((latestTimestampMs, record) => {
+    const timestampMs = Number(record?.timestampMs ?? 0);
+    return timestampMs > latestTimestampMs ? timestampMs : latestTimestampMs;
+  }, 0);
+
+const mergeTrendRecords = (currentRecords, nextRecords) => {
+  const mergedByKey = new Map();
+
+  [...(Array.isArray(currentRecords) ? currentRecords : []), ...(Array.isArray(nextRecords) ? nextRecords : [])]
+    .forEach((record) => {
+      const timestampMs = Number(record?.timestampMs ?? 0);
+      const engine = Number(record?.engine ?? 0);
+      const channelDescription = String(record?.channelDescription ?? "");
+      const recordKey = `${engine}|${channelDescription}|${timestampMs}`;
+      mergedByKey.set(recordKey, record);
+    });
+
+  return Array.from(mergedByKey.values()).sort(
+    (leftRecord, rightRecord) => Number(leftRecord?.timestampMs ?? 0) - Number(rightRecord?.timestampMs ?? 0)
+  );
+};
+
+const mergeTrendPayload = (currentPayload, nextPayload) => {
+  if (!currentPayload) {
+    return nextPayload;
+  }
+
+  if (!nextPayload) {
+    return currentPayload;
+  }
+
+  return {
+    ...currentPayload,
+    ...nextPayload,
+    records: mergeTrendRecords(currentPayload.records, nextPayload.records),
+    meta: {
+      ...currentPayload.meta,
+      ...nextPayload.meta,
+      rangeStartMs: currentPayload?.meta?.rangeStartMs ?? nextPayload?.meta?.rangeStartMs ?? null,
+      rangeEndMs: nextPayload?.meta?.rangeEndMs ?? currentPayload?.meta?.rangeEndMs ?? null,
+    },
+  };
+};
+
 const ExhTempTrend = () => {
   const [payload, setPayload] = useState(null);
   const [temperaturePayload, setTemperaturePayload] = useState(null);
@@ -110,6 +169,7 @@ const ExhTempTrend = () => {
   const [draftEndInput, setDraftEndInput] = useState("");
   const [appliedRange, setAppliedRange] = useState(null);
   const [selectedEngine, setSelectedEngine] = useState(1);
+  const [isLiveMode, setIsLiveMode] = useState(false);
 
   useEffect(() => {
     let isActive = true;
@@ -118,15 +178,7 @@ const ExhTempTrend = () => {
       setIsLoading(true);
 
       try {
-        const requestOptions = appliedRange
-          ? {
-              engine: selectedEngine,
-              startTime: new Date(appliedRange.startMs).toISOString(),
-              endTime: new Date(appliedRange.endMs).toISOString(),
-            }
-          : {
-              engine: selectedEngine,
-            };
+        const requestOptions = buildHistoryRequestOptions(selectedEngine, appliedRange);
         const [nextPayload, nextTemperaturePayload] = await Promise.all([
           fetchExhTempTrendHistory(requestOptions),
           fetchExhTempTrendHistory({
@@ -186,6 +238,86 @@ const ExhTempTrend = () => {
       setSelectedEngine(payload.engines[0]);
     }
   }, [payload, selectedEngine]);
+
+  useEffect(() => {
+    if (!isLiveMode || isLoading || !payload || !temperaturePayload) {
+      return undefined;
+    }
+
+    let isActive = true;
+    let isFetching = false;
+
+    setPollIntervalMs(LIVE_POLL_INTERVAL_MS);
+
+    const pollLiveData = async () => {
+      if (!isActive || isFetching) {
+        return;
+      }
+
+      isFetching = true;
+
+      try {
+        const latestTimestampMs = Math.max(
+          getLatestTimestampMs(payload?.records),
+          getLatestTimestampMs(temperaturePayload?.records)
+        );
+        const incrementalRequest = {
+          engine: selectedEngine,
+          startTime: new Date(latestTimestampMs || Date.now()).toISOString(),
+          endTime: new Date().toISOString(),
+        };
+        const [nextPayload, nextTemperaturePayload] = await Promise.all([
+          fetchExhTempTrendHistory(incrementalRequest),
+          fetchExhTempTrendHistory({
+            ...incrementalRequest,
+            channelDescriptions: exhaustTempSeriesConfig.map(
+              (seriesItem) => seriesItem.channelDescription
+            ),
+          }),
+        ]);
+
+        if (!isActive) {
+          return;
+        }
+
+        setPayload((currentPayload) => mergeTrendPayload(currentPayload, nextPayload));
+        setTemperaturePayload((currentPayload) =>
+          mergeTrendPayload(currentPayload, nextTemperaturePayload)
+        );
+        setLastUpdated(new Date());
+        setError("");
+        setDraftEndInput(
+          (currentValue) =>
+            toUtcInputValue(nextPayload?.meta?.rangeEndMs) || currentValue
+        );
+      } catch (loadError) {
+        if (!isActive) {
+          return;
+        }
+
+        setError(
+          loadError instanceof Error
+            ? loadError.message
+            : "Failed to update live exhaust temperature trend data."
+        );
+      } finally {
+        isFetching = false;
+      }
+    };
+
+    const intervalId = window.setInterval(pollLiveData, LIVE_POLL_INTERVAL_MS);
+
+    return () => {
+      isActive = false;
+      window.clearInterval(intervalId);
+    };
+  }, [isLiveMode, isLoading, payload, temperaturePayload, selectedEngine]);
+
+  useEffect(() => {
+    if (!isLiveMode) {
+      setPollIntervalMs(null);
+    }
+  }, [isLiveMode]);
 
   const effectiveSelectedEngine = availableEngines.includes(selectedEngine)
     ? selectedEngine
@@ -277,6 +409,42 @@ const ExhTempTrend = () => {
     [loadSeriesLabel, loadUnit]
   );
 
+  const chartRange = useMemo(() => {
+    const baseRangeStartMs =
+      temperaturePayload?.meta?.rangeStartMs ?? payload?.meta?.rangeStartMs ?? null;
+    const baseRangeEndMs =
+      temperaturePayload?.meta?.rangeEndMs ?? payload?.meta?.rangeEndMs ?? null;
+
+    if (!isLiveMode || !baseRangeStartMs || !baseRangeEndMs || baseRangeEndMs <= baseRangeStartMs) {
+      return {
+        rangeStartMs: baseRangeStartMs,
+        rangeEndMs: baseRangeEndMs,
+      };
+    }
+
+    const latestTimestampMs = Math.max(
+      getLatestTimestampMs(payload?.records),
+      getLatestTimestampMs(temperaturePayload?.records),
+      Number(baseRangeEndMs)
+    );
+    const elapsedRangeMs = latestTimestampMs - Number(baseRangeStartMs);
+
+    if (elapsedRangeMs <= 0) {
+      return {
+        rangeStartMs: baseRangeStartMs,
+        rangeEndMs: baseRangeEndMs,
+      };
+    }
+
+    const paddedRangeEndMs =
+      Number(baseRangeStartMs) + elapsedRangeMs / LIVE_VIEWPORT_LATEST_DATA_RATIO;
+
+    return {
+      rangeStartMs: Number(baseRangeStartMs),
+      rangeEndMs: Math.max(paddedRangeEndMs, Number(baseRangeEndMs)),
+    };
+  }, [isLiveMode, payload, temperaturePayload]);
+
   const handleApplyRange = () => {
     const startMs = fromUtcInputValue(draftStartInput);
     const endMs = fromUtcInputValue(draftEndInput);
@@ -312,6 +480,10 @@ const ExhTempTrend = () => {
 
     setError("");
     setAppliedRange({ startMs: nextStartMs, endMs: nextEndMs });
+  };
+
+  const handleToggleLiveMode = () => {
+    setIsLiveMode((currentValue) => !currentValue);
   };
 
   return (
@@ -359,6 +531,24 @@ const ExhTempTrend = () => {
                       <DashboardButton onClick={handleApplyRange} active>
                         Apply
                       </DashboardButton>
+                      <DashboardButton
+                        onClick={handleToggleLiveMode}
+                        active={isLiveMode}
+                        sx={
+                          isLiveMode
+                            ? {
+                                background:
+                                  "linear-gradient(135deg, #dc2626 0%, #b91c1c 100%)",
+                                borderColor: "#f87171",
+                                boxShadow:
+                                  "0 10px 24px rgba(220, 38, 38, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.12)",
+                                color: "#ffffff",
+                              }
+                            : {}
+                        }
+                      >
+                        Live
+                      </DashboardButton>
                     </Box>
 
                     <Box className="flex flex-wrap items-center justify-end gap-3">
@@ -389,8 +579,9 @@ const ExhTempTrend = () => {
                 <TimeSeriesLineChart
                   chartData={combinedChartData}
                   series={combinedSeries}
-                  rangeStartMs={temperaturePayload?.meta?.rangeStartMs ?? payload?.meta?.rangeStartMs ?? null}
-                  rangeEndMs={temperaturePayload?.meta?.rangeEndMs ?? payload?.meta?.rangeEndMs ?? null}
+                  rangeStartMs={chartRange.rangeStartMs}
+                  rangeEndMs={chartRange.rangeEndMs}
+                  mergeUpdates={isLiveMode}
                   chartHeight={660}
                   title={`${buildEngineLabel(effectiveSelectedEngine)} Load and Exhaust Temperature Trends`}
                   yAxes={[

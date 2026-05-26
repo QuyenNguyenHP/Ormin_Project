@@ -288,6 +288,7 @@ const TimeSeriesLineChart = ({
   emptyMessage = "No data returned for the selected window.",
   yAxisName = "",
   yAxes = [],
+  mergeUpdates = false,
 }) => {
   const chartRef = useRef(null);
   const chartInstanceRef = useRef(null);
@@ -345,7 +346,7 @@ const TimeSeriesLineChart = ({
           yAxisName,
           yAxes,
         }),
-        { notMerge: true, lazyUpdate: true }
+        { notMerge: !mergeUpdates, lazyUpdate: true }
       );
     } catch (error) {
       if (!hasLoggedChartErrorRef.current) {
@@ -353,7 +354,16 @@ const TimeSeriesLineChart = ({
         hasLoggedChartErrorRef.current = true;
       }
     }
-  }, [chartData, series, rangeStartMs, rangeEndMs, emptyMessage, yAxisName, yAxes]);
+  }, [
+    chartData,
+    series,
+    rangeStartMs,
+    rangeEndMs,
+    emptyMessage,
+    yAxisName,
+    yAxes,
+    mergeUpdates,
+  ]);
 
   return (
     <>
@@ -469,6 +479,7 @@ TimeSeriesLineChart.propTypes = {
   emptyMessage: PropTypes.string,
   rangeEndMs: PropTypes.number,
   rangeStartMs: PropTypes.number,
+  mergeUpdates: PropTypes.bool,
   series: PropTypes.arrayOf(
     PropTypes.shape({
       color: PropTypes.string,
