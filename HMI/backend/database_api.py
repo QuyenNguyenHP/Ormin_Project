@@ -51,20 +51,35 @@ FO_VALUE_COLUMN = FO_CONFIG.get("value_column", "Value").replace('"', '""')
 FO_UNIT_COLUMN = FO_CONFIG.get("unit_column", "Unit").replace('"', '""')
 DEFAULT_WINDOW_MINUTES = int(FO_CONFIG.get("default_window_minutes", 1440))
 DEFAULT_ENGINE_COUNT = int(FO_CONFIG.get("default_end_engine_count", 4))
+FO_SOURCE_ENGINE_INDEX = int(FO_CONFIG.get("source_engine_index", 0))
 FO_ENGINE_POWER_CHANNEL_DESCRIPTION = FO_CONFIG.get(
     "engine_power_channel_description_value", "Engine Power"
 )
 FO_ENGINE_POWER_DEFAULT_UNIT = FO_CONFIG.get("engine_power_default_unit", "kW")
-FO_INPUT_CHANNEL_KEYWORDS = [
-    str(keyword).strip().lower()
-    for keyword in FO_CONFIG.get("input_channel_keywords", ["input", "inlet", "flow in"])
-    if str(keyword).strip()
-]
-FO_OUTPUT_CHANNEL_KEYWORDS = [
-    str(keyword).strip().lower()
-    for keyword in FO_CONFIG.get("output_channel_keywords", ["output", "outlet", "flow out"])
-    if str(keyword).strip()
-]
+FO_DISPLAY_ENGINES = FO_CONFIG.get("display_engines", [])
+HO_CONFIG = CONFIG.get("ho_consumption", {})
+HO_DATABASE_PATH = resolve_database_path(
+    HO_CONFIG.get("database_path", ""),
+    str(SHARED_DATABASE_PATH.relative_to(BASE_DIR)) if SHARED_DATABASE_PATH.is_relative_to(BASE_DIR) else "",
+    "database/database",
+    "flow_meter_history.db",
+)
+HO_TABLE_NAME = HO_CONFIG.get("table_name", "database").replace('"', '""')
+HO_TIMESTAMP_COLUMN = HO_CONFIG.get("timestamp_column", "Timestamp").replace('"', '""')
+HO_ENGINE_COLUMN = HO_CONFIG.get("engine_column", "Engine").replace('"', '""')
+HO_CHANNEL_DESCRIPTION_COLUMN = HO_CONFIG.get(
+    "channel_description_column", "Channel Description"
+).replace('"', '""')
+HO_VALUE_COLUMN = HO_CONFIG.get("value_column", "Value").replace('"', '""')
+HO_UNIT_COLUMN = HO_CONFIG.get("unit_column", "Unit").replace('"', '""')
+HO_DEFAULT_WINDOW_MINUTES = int(HO_CONFIG.get("default_window_minutes", DEFAULT_WINDOW_MINUTES))
+HO_DEFAULT_ENGINE_COUNT = int(HO_CONFIG.get("default_end_engine_count", 4))
+HO_SOURCE_ENGINE_INDEX = int(HO_CONFIG.get("source_engine_index", 0))
+HO_ENGINE_POWER_CHANNEL_DESCRIPTION = HO_CONFIG.get(
+    "engine_power_channel_description_value", "Engine Power"
+)
+HO_ENGINE_POWER_DEFAULT_UNIT = HO_CONFIG.get("engine_power_default_unit", "kW")
+HO_DISPLAY_ENGINES = HO_CONFIG.get("display_engines", [])
 PRESSURE_TREND_CONFIG = CONFIG.get("pressure_trend_history", {})
 PRESSURE_TREND_DATABASE_PATH = resolve_database_path(
     PRESSURE_TREND_CONFIG.get("database_path", ""),
@@ -112,10 +127,6 @@ def quote_identifier(identifier: str) -> str:
     return '"' + identifier.replace('"', '""') + '"'
 
 
-def normalize_channel_description(description: Any) -> str:
-    return str(description or "").strip().lower()
-
-
 def is_visible_engine_number(engine_value: Any) -> bool:
     try:
         return int(engine_value) >= MIN_VISIBLE_ENGINE_NUMBER
@@ -123,16 +134,62 @@ def is_visible_engine_number(engine_value: Any) -> bool:
         return False
 
 
-def is_fo_relevant_channel_description(description: Any) -> bool:
-    normalized = normalize_channel_description(description)
-    if not normalized:
-        return False
+def build_display_engine_configs(
+    display_engines: list[dict[str, Any]],
+    source_engine_index: int,
+    default_engine_count: int,
+    power_channel_description: str,
+) -> list[dict[str, Any]]:
+    if display_engines:
+        return [
+            {
+                "displayEngine": int(engine_config.get("display_engine")),
+                "sourceEngine": int(
+                    engine_config.get("source_engine", source_engine_index)
+                ),
+                "inletChannelDescription": str(
+                    engine_config.get("inlet_channel_description", "")
+                ),
+                "outletChannelDescription": str(
+                    engine_config.get("outlet_channel_description", "")
+                ),
+                "powerChannelDescription": str(
+                    engine_config.get(
+                        "power_channel_description", power_channel_description
+                    )
+                ),
+            }
+            for engine_config in display_engines
+            if engine_config.get("display_engine") is not None
+        ]
 
-    if normalized == normalize_channel_description(FO_ENGINE_POWER_CHANNEL_DESCRIPTION):
-        return True
+    return [
+        {
+            "displayEngine": engine_number,
+            "sourceEngine": engine_number,
+            "inletChannelDescription": "",
+            "outletChannelDescription": "",
+            "powerChannelDescription": power_channel_description,
+        }
+        for engine_number in range(1, default_engine_count + 1)
+    ]
 
-    return any(keyword in normalized for keyword in FO_INPUT_CHANNEL_KEYWORDS) or any(
-        keyword in normalized for keyword in FO_OUTPUT_CHANNEL_KEYWORDS
+
+def build_fo_display_engine_configs() -> list[dict[str, Any]]:
+    return build_display_engine_configs(
+        FO_DISPLAY_ENGINES,
+        FO_SOURCE_ENGINE_INDEX,
+        DEFAULT_ENGINE_COUNT,
+        FO_ENGINE_POWER_CHANNEL_DESCRIPTION,
+    )
+
+
+def build_ho_display_engine_configs() -> list[dict[str, Any]]:
+    return build_display_engine_configs(
+        HO_DISPLAY_ENGINES,
+        HO_SOURCE_ENGINE_INDEX,
+        HO_DEFAULT_ENGINE_COUNT,
+        HO_ENGINE_POWER_CHANNEL_DESCRIPTION,
     )
 
 
@@ -178,31 +235,114 @@ def build_payload(
     start_time: str | None = None,
     end_time: str | None = None,
 ) -> dict[str, Any]:
-    """Read F.O. consumption data from SQLite and return it as-is for the frontend."""
-    if not DATABASE_PATH.exists():
-        raise FileNotFoundError(f"F.O. consumption database not found: {DATABASE_PATH}")
+    return build_consumption_payload(
+        page_key="do-consumption",
+        label="D.O.",
+        database_path=DATABASE_PATH,
+        table_name=TABLE_NAME,
+        timestamp_column=FO_TIMESTAMP_COLUMN,
+        engine_column=FO_ENGINE_COLUMN,
+        channel_description_column=FO_CHANNEL_DESCRIPTION_COLUMN,
+        value_column=FO_VALUE_COLUMN,
+        unit_column=FO_UNIT_COLUMN,
+        default_window_minutes=DEFAULT_WINDOW_MINUTES,
+        power_channel_description=FO_ENGINE_POWER_CHANNEL_DESCRIPTION,
+        power_default_unit=FO_ENGINE_POWER_DEFAULT_UNIT,
+        display_engine_configs=build_fo_display_engine_configs(),
+        window_minutes=window_minutes,
+        start_time=start_time,
+        end_time=end_time,
+    )
+
+
+def build_ho_payload(
+    window_minutes: int | None = None,
+    start_time: str | None = None,
+    end_time: str | None = None,
+) -> dict[str, Any]:
+    return build_consumption_payload(
+        page_key="ho-consumption",
+        label="H.O.",
+        database_path=HO_DATABASE_PATH,
+        table_name=HO_TABLE_NAME,
+        timestamp_column=HO_TIMESTAMP_COLUMN,
+        engine_column=HO_ENGINE_COLUMN,
+        channel_description_column=HO_CHANNEL_DESCRIPTION_COLUMN,
+        value_column=HO_VALUE_COLUMN,
+        unit_column=HO_UNIT_COLUMN,
+        default_window_minutes=HO_DEFAULT_WINDOW_MINUTES,
+        power_channel_description=HO_ENGINE_POWER_CHANNEL_DESCRIPTION,
+        power_default_unit=HO_ENGINE_POWER_DEFAULT_UNIT,
+        display_engine_configs=build_ho_display_engine_configs(),
+        window_minutes=window_minutes,
+        start_time=start_time,
+        end_time=end_time,
+    )
+
+
+def build_consumption_payload(
+    *,
+    page_key: str,
+    label: str,
+    database_path: Path,
+    table_name: str,
+    timestamp_column: str,
+    engine_column: str,
+    channel_description_column: str,
+    value_column: str,
+    unit_column: str,
+    default_window_minutes: int,
+    power_channel_description: str,
+    power_default_unit: str,
+    display_engine_configs: list[dict[str, Any]],
+    window_minutes: int | None = None,
+    start_time: str | None = None,
+    end_time: str | None = None,
+) -> dict[str, Any]:
+    """Read consumption data from SQLite and return it as-is for the frontend."""
+    if not database_path.exists():
+        raise FileNotFoundError(f"{label} consumption database not found: {database_path}")
     validate_range_arguments(start_time, end_time)
 
-    with sqlite3.connect(DATABASE_PATH) as connection:
+    with sqlite3.connect(database_path) as connection:
         connection.row_factory = sqlite3.Row
+        quoted_table = quote_identifier(table_name)
+        quoted_engine_column = quote_identifier(engine_column)
+        quoted_channel_description_column = quote_identifier(channel_description_column)
+        quoted_timestamp_column = quote_identifier(timestamp_column)
+        quoted_value_column = quote_identifier(value_column)
+        quoted_unit_column = quote_identifier(unit_column)
 
-        range_row = resolve_history_range(
-            connection,
-            TABLE_NAME,
-            FO_TIMESTAMP_COLUMN,
-            window_minutes,
-            start_time,
-            end_time,
+        resolved_source_engines = sorted(
+            {
+                int(engine_config["sourceEngine"])
+                for engine_config in display_engine_configs
+            }
         )
-
-        quoted_table = quote_identifier(TABLE_NAME)
-        quoted_engine_column = quote_identifier(FO_ENGINE_COLUMN)
-        quoted_channel_description_column = quote_identifier(FO_CHANNEL_DESCRIPTION_COLUMN)
-        quoted_timestamp_column = quote_identifier(FO_TIMESTAMP_COLUMN)
-        quoted_value_column = quote_identifier(FO_VALUE_COLUMN)
-        quoted_unit_column = quote_identifier(FO_UNIT_COLUMN)
+        resolved_channel_descriptions = sorted(
+            {
+                channel_description
+                for engine_config in display_engine_configs
+                for channel_description in (
+                    engine_config.get("inletChannelDescription"),
+                    engine_config.get("outletChannelDescription"),
+                    engine_config.get("powerChannelDescription"),
+                )
+                if channel_description
+            }
+        )
+        engine_placeholders = ", ".join(["?"] * len(resolved_source_engines))
+        channel_placeholders = ", ".join(["?"] * len(resolved_channel_descriptions))
 
         if start_time and end_time:
+            range_row = resolve_history_range(
+                connection,
+                table_name,
+                timestamp_column,
+                window_minutes,
+                start_time,
+                end_time,
+            )
             records = connection.execute(
                 f"""
                 SELECT
@@ -218,12 +358,16 @@ def build_payload(
                     {quoted_value_column} AS value,
                     COALESCE({quoted_unit_column}, ?) AS unit
                 FROM {quoted_table}
-                WHERE {quoted_timestamp_column} BETWEEN MIN(datetime(?, 'utc'), datetime(?, 'utc'))
+                WHERE {quoted_engine_column} IN ({engine_placeholders})
+                  AND {quoted_channel_description_column} IN ({channel_placeholders})
+                  AND {quoted_timestamp_column} BETWEEN MIN(datetime(?, 'utc'), datetime(?, 'utc'))
                                                     AND MAX(datetime(?, 'utc'), datetime(?, 'utc'))
                 ORDER BY {quoted_engine_column}, {quoted_timestamp_column}
                 """,
                 (
-                    FO_ENGINE_POWER_DEFAULT_UNIT,
+                    power_default_unit,
+                    *resolved_source_engines,
+                    *resolved_channel_descriptions,
                     start_time,
                     end_time,
                     start_time,
@@ -231,7 +375,7 @@ def build_payload(
                 ),
             ).fetchall()
         else:
-            minutes = max(1, int(window_minutes or DEFAULT_WINDOW_MINUTES))
+            minutes = max(1, int(window_minutes or default_window_minutes))
             range_row = connection.execute(
                 f"""
                 SELECT
@@ -255,7 +399,9 @@ def build_payload(
                     {quoted_value_column} AS value,
                     COALESCE({quoted_unit_column}, ?) AS unit
                 FROM {quoted_table}
-                WHERE {quoted_timestamp_column} BETWEEN datetime(
+                WHERE {quoted_engine_column} IN ({engine_placeholders})
+                  AND {quoted_channel_description_column} IN ({channel_placeholders})
+                  AND {quoted_timestamp_column} BETWEEN datetime(
                         (SELECT MAX({quoted_timestamp_column}) FROM {quoted_table}),
                         '-{minutes} minutes'
                       )
@@ -263,36 +409,49 @@ def build_payload(
                 ORDER BY {quoted_engine_column}, {quoted_timestamp_column}
                 """
                 ,
-                (FO_ENGINE_POWER_DEFAULT_UNIT,),
+                (
+                    power_default_unit,
+                    *resolved_source_engines,
+                    *resolved_channel_descriptions,
+                ),
             ).fetchall()
+    filtered_records = []
+    for row in records:
+        row_dict = dict(row)
+        row_engine_number = int(row_dict.get("engine", 0))
+        row_channel_description = str(row_dict.get("channelDescription", ""))
 
-        engines = connection.execute(
-            f"""
-            SELECT DISTINCT {quoted_engine_column} AS engine
-            FROM {quoted_table}
-            WHERE {quoted_engine_column} >= ?
-            ORDER BY {quoted_engine_column}
-            LIMIT ?
-            """,
-            (MIN_VISIBLE_ENGINE_NUMBER, DEFAULT_ENGINE_COUNT),
-        ).fetchall()
+        for engine_config in display_engine_configs:
+            if row_engine_number != int(engine_config["sourceEngine"]):
+                continue
 
-    filtered_records = [
-        dict(row)
-        for row in records
-        if is_visible_engine_number(row["engine"])
-        and is_fo_relevant_channel_description(row["channelDescription"])
-    ]
+            if row_channel_description not in {
+                engine_config.get("inletChannelDescription"),
+                engine_config.get("outletChannelDescription"),
+                engine_config.get("powerChannelDescription"),
+            }:
+                continue
+
+            filtered_records.append(
+                {
+                    **row_dict,
+                    "engine": int(engine_config["displayEngine"]),
+                }
+            )
 
     return {
-        "page": "fo-consumption",
+        "page": page_key,
         "records": filtered_records,
-        "engines": [int(row["engine"]) for row in engines],
+        "engines": [
+            int(engine_config["displayEngine"])
+            for engine_config in display_engine_configs
+        ],
         "meta": {
             "rangeStartMs": range_row["rangeStartMs"],
             "rangeEndMs": range_row["rangeEndMs"],
-            "powerChannelDescription": FO_ENGINE_POWER_CHANNEL_DESCRIPTION,
-            "powerUnit": FO_ENGINE_POWER_DEFAULT_UNIT,
+            "powerChannelDescription": power_channel_description,
+            "powerUnit": power_default_unit,
+            "displayEngines": display_engine_configs,
         },
     }
 
@@ -659,14 +818,34 @@ def build_exh_temp_trend_payload(
     }
 
 
+@database_api.get("/api/do-consumption")
 @database_api.get("/api/fo-consumption")
-def get_fo_consumption_route() -> Any:
-    """Return F.O. consumption data for the selected time range."""
+def get_do_consumption_route() -> Any:
+    """Return D.O. consumption data for the selected time range."""
     try:
         return jsonify(
             build_payload(
                 window_minutes=request.args.get(
                     "windowMinutes", default=DEFAULT_WINDOW_MINUTES, type=int
+                ),
+                start_time=request.args.get("startTime", default=None, type=str),
+                end_time=request.args.get("endTime", default=None, type=str),
+            )
+        )
+    except ValueError as exc:
+        return jsonify({"error": str(exc)}), 400
+    except Exception as exc:  # pragma: no cover - runtime error surface
+        return jsonify({"error": str(exc)}), 500
+
+
+@database_api.get("/api/ho-consumption")
+def get_ho_consumption_route() -> Any:
+    """Return H.O. consumption data for the selected time range."""
+    try:
+        return jsonify(
+            build_ho_payload(
+                window_minutes=request.args.get(
+                    "windowMinutes", default=HO_DEFAULT_WINDOW_MINUTES, type=int
                 ),
                 start_time=request.args.get("startTime", default=None, type=str),
                 end_time=request.args.get("endTime", default=None, type=str),

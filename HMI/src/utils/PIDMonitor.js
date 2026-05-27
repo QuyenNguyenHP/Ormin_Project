@@ -1,14 +1,30 @@
-export const FLOW_IDS = Array.from(
-  { length: 18 },
-  (_, index) => `Flow${index + 1}`
-);
+export const FLOW_IDS = [
+  "D.O Transfer Flow",
+  "H.O Transfer Flow",
+  "D.O Inlet Flow DG#1",
+  "H.O Inlet Flow DG#1",
+  "D.O Inlet Flow DG#2",
+  "Flow6",
+  "Flow7",
+  "Flow8",
+  "Flow9",
+  "Flow10",
+  "Flow11",
+  "Flow12",
+  "Flow13",
+  "Flow14",
+  "Flow15",
+  "Flow16",
+  "Flow17",
+  "Flow18",
+];
 
 export const FLOW_MAPPINGS = [
-  { id: "Flow1", register: 40001, scale: 1, unit: "L/H" },
-  { id: "Flow2", register: 40002, scale: 1, unit: "L/H" },
-  { id: "Flow3", register: 40003, scale: 1, unit: "L/H" },
-  { id: "Flow4", register: 40004, scale: 1, unit: "L/H" },
-  { id: "Flow5", register: 40005, scale: 1, unit: "L/H" },
+  { id: "D.O Transfer Flow", register: 40001, scale: 1, unit: "L/H" },
+  { id: "H.O Transfer Flow", register: 40002, scale: 1, unit: "L/H" },
+  { id: "D.O Inlet Flow DG#1", register: 40003, scale: 1, unit: "L/H" },
+  { id: "H.O Inlet Flow DG#1", register: 40004, scale: 1, unit: "L/H" },
+  { id: "D.O Inlet Flow DG#2", register: 40005, scale: 1, unit: "L/H" },
   { id: "Flow6", register: 40006, scale: 1, unit: "L/H" },
   { id: "Flow7", register: 40007, scale: 1, unit: "L/H" },
   { id: "Flow8", register: 40008, scale: 1, unit: "L/H" },
@@ -195,7 +211,7 @@ export const buildPIDMonitorDataFromPagePayload = (payload = {}) => {
   const digitals = payload.sections?.digitals ?? [];
 
   const flowData = flows.reduce((accumulator, flowItem, index) => {
-    const flowId = FLOW_IDS[index];
+    const flowId = flowItem.name ?? flowItem.key ?? FLOW_IDS[index];
     if (!flowId) {
       return accumulator;
     }

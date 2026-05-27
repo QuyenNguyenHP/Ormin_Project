@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import {
   Routes,
   Route,
+  Navigate,
   useNavigationType,
   useLocation,
 } from "react-router-dom";
@@ -9,7 +10,8 @@ import Overview from "./pages/Overview";
 import PAndID from "./pages/PAndID";
 import Engine from "./pages/Engine";
 import ExhTempTrend from "./pages/ExhTempTrend";
-import FOConsumption from "./pages/FOConsumption";
+import DOConsumption from "./pages/DOConsumption";
+import HOConsumption from "./pages/HOConsumption";
 import PressureTrend from "./pages/PressureTrend";
 import PlaceholderPage from "./pages/PlaceholderPage";
 
@@ -50,8 +52,13 @@ function App() {
         metaDescription = "Exhaust temperature trend page with load comparison.";
         break;
       case "/fo-consumption":
-        title = "F.O. Consumption";
-        metaDescription = "Fuel oil consumption history and flow comparison page.";
+      case "/do-consumption":
+        title = "D.O Consumption";
+        metaDescription = "Diesel oil consumption history and flow comparison page.";
+        break;
+      case "/ho-consumption":
+        title = "H.O Consumption";
+        metaDescription = "Heavy oil consumption history and flow comparison page.";
         break;
       case "/alarms":
         title = "Alarms";
@@ -81,7 +88,9 @@ function App() {
       <Route path="/" element={<Overview />} />
       <Route path="/pid" element={<PAndID />} />
       <Route path="/engine" element={<Engine />} />
-      <Route path="/fo-consumption" element={<FOConsumption />} />
+      <Route path="/fo-consumption" element={<Navigate to="/do-consumption" replace />} />
+      <Route path="/do-consumption" element={<DOConsumption />} />
+      <Route path="/ho-consumption" element={<HOConsumption />} />
       <Route path="/pressure_trend" element={<PressureTrend />} />
       <Route path="/exh_temp_trend" element={<ExhTempTrend />} />
       <Route

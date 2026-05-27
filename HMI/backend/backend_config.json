@@ -1,7 +1,7 @@
 {
   "database_path": "database/database",
   "modbus": {
-    "host": "10.0.0.204",
+    "host": "192.168.18.26",
     "port": 502,
     "unit_id": 16,
     "timeout_seconds": 3,
@@ -19,10 +19,79 @@
     "timestamp_timezone": "UTC",
     "default_window_minutes": 1440,
     "default_end_engine_count": 4,
+    "source_engine_index": 0,
     "engine_power_channel_description_value": "Engine Power",
     "engine_power_default_unit": "kW",
+    "display_engines": [
+      {
+        "display_engine": 1,
+        "source_engine": 0,
+        "inlet_channel_description": "D.O Inlet Flow DG#1",
+        "outlet_channel_description": "D.O Out Flow DG#1"
+      },
+      {
+        "display_engine": 2,
+        "source_engine": 0,
+        "inlet_channel_description": "D.O Inlet Flow DG#2",
+        "outlet_channel_description": "D.O Out Flow DG#2"
+      },
+      {
+        "display_engine": 3,
+        "source_engine": 0,
+        "inlet_channel_description": "D.O Inlet Flow DG#3",
+        "outlet_channel_description": "D.O Out Flow DG#3"
+      },
+      {
+        "display_engine": 4,
+        "source_engine": 0,
+        "inlet_channel_description": "D.O Inlet Flow DG#4",
+        "outlet_channel_description": "D.O Out Flow DG#4"
+      }
+    ],
     "input_channel_keywords": ["input", "inlet", "flow in"],
     "output_channel_keywords": ["output", "outlet", "flow out"]
+  },
+  "ho_consumption": {
+    "database_path": "database/database",
+    "table_name": "database",
+    "timestamp_column": "Timestamp",
+    "engine_column": "Engine",
+    "channel_description_column": "Channel Description",
+    "value_column": "Value",
+    "unit_column": "Unit",
+    "timestamp_format": "%d/%m/%Y %H:%M",
+    "timestamp_timezone": "UTC",
+    "default_window_minutes": 1440,
+    "default_end_engine_count": 4,
+    "source_engine_index": 0,
+    "engine_power_channel_description_value": "Engine Power",
+    "engine_power_default_unit": "kW",
+    "display_engines": [
+      {
+        "display_engine": 1,
+        "source_engine": 0,
+        "inlet_channel_description": "H.O Inlet Flow DG#1",
+        "outlet_channel_description": "H.O Out Flow DG#1"
+      },
+      {
+        "display_engine": 2,
+        "source_engine": 0,
+        "inlet_channel_description": "H.O Inlet Flow DG#2",
+        "outlet_channel_description": "H.O Out Flow DG#2"
+      },
+      {
+        "display_engine": 3,
+        "source_engine": 0,
+        "inlet_channel_description": "H.O Inlet Flow DG#3",
+        "outlet_channel_description": "H.O Out Flow DG#3"
+      },
+      {
+        "display_engine": 4,
+        "source_engine": 0,
+        "inlet_channel_description": "H.O Inlet Flow DG#4",
+        "outlet_channel_description": "H.O Out Flow DG#4"
+      }
+    ]
   },
   "pressure_trend_history": {
     "database_path": "database/database",
@@ -591,24 +660,24 @@
     },
     "pid": {
       "flows": [
-        { "key": "flow_1", "name": "Flow 1", "source_type": "holding_register", "address": 40001, "scale": 1, "unit": "L/H" },
-        { "key": "flow_2", "name": "Flow 2", "source_type": "holding_register", "address": 40002, "scale": 1, "unit": "L/H" },
-        { "key": "flow_3", "name": "Flow 3", "source_type": "holding_register", "address": 40003, "scale": 1, "unit": "L/H" },
-        { "key": "flow_4", "name": "Flow 4", "source_type": "holding_register", "address": 40004, "scale": 1, "unit": "L/H" },
-        { "key": "flow_5", "name": "Flow 5", "source_type": "holding_register", "address": 40005, "scale": 1, "unit": "L/H" },
-        { "key": "flow_6", "name": "Flow 6", "source_type": "holding_register", "address": 40006, "scale": 1, "unit": "L/H" },
-        { "key": "flow_7", "name": "Flow 7", "source_type": "holding_register", "address": 40007, "scale": 1, "unit": "L/H" },
-        { "key": "flow_8", "name": "Flow 8", "source_type": "holding_register", "address": 40008, "scale": 1, "unit": "L/H" },
-        { "key": "flow_9", "name": "Flow 9", "source_type": "holding_register", "address": 40009, "scale": 1, "unit": "L/H" },
-        { "key": "flow_10", "name": "Flow 10", "source_type": "holding_register", "address": 40010, "scale": 1, "unit": "L/H" },
-        { "key": "flow_11", "name": "Flow 11", "source_type": "holding_register", "address": 40011, "scale": 1, "unit": "L/H" },
-        { "key": "flow_12", "name": "Flow 12", "source_type": "holding_register", "address": 40012, "scale": 1, "unit": "L/H" },
-        { "key": "flow_13", "name": "Flow 13", "source_type": "holding_register", "address": 40013, "scale": 1, "unit": "L/H" },
-        { "key": "flow_14", "name": "Flow 14", "source_type": "holding_register", "address": 40014, "scale": 1, "unit": "L/H" },
-        { "key": "flow_15", "name": "Flow 15", "source_type": "holding_register", "address": 40015, "scale": 1, "unit": "L/H" },
-        { "key": "flow_16", "name": "Flow 16", "source_type": "holding_register", "address": 40016, "scale": 1, "unit": "L/H" },
-        { "key": "flow_17", "name": "Flow 17", "source_type": "holding_register", "address": 40017, "scale": 1, "unit": "L/H" },
-        { "key": "flow_18", "name": "Flow 18", "source_type": "holding_register", "address": 40018, "scale": 1, "unit": "L/H" }
+        { "key": "D.O Transfer Flow", "name": "D.O Transfer Flow", "source_type": "holding_register", "address": 40001, "scale": 1, "unit": "L/H" },
+        { "key": "H.O Transfer Flow", "name": "H.O Transfer Flow", "source_type": "holding_register", "address": 40002, "scale": 1, "unit": "L/H" },
+        { "key": "D.O Inlet Flow DG#1", "name": "D.O Inlet Flow DG#1", "source_type": "holding_register", "address": 40003, "scale": 1, "unit": "L/H" },
+        { "key": "H.O Inlet Flow DG#1", "name": "H.O Inlet Flow DG#1", "source_type": "holding_register", "address": 40004, "scale": 1, "unit": "L/H" },
+        { "key": "D.O Inlet Flow DG#2", "name": "D.O Inlet Flow DG#2", "source_type": "holding_register", "address": 40005, "scale": 1, "unit": "L/H" },
+        { "key": "H.O Inlet Flow DG#2", "name": "H.O Inlet Flow DG#2", "source_type": "holding_register", "address": 40006, "scale": 1, "unit": "L/H" },
+        { "key": "D.O Inlet Flow DG#3", "name": "D.O Inlet Flow DG#3", "source_type": "holding_register", "address": 40007, "scale": 1, "unit": "L/H" },
+        { "key": "H.O Inlet Flow DG#3", "name": "H.O Inlet Flow DG#3", "source_type": "holding_register", "address": 40008, "scale": 1, "unit": "L/H" },
+        { "key": "D.O Inlet Flow DG#4", "name": "D.O Inlet Flow DG#4", "source_type": "holding_register", "address": 40009, "scale": 1, "unit": "L/H" },
+        { "key": "H.O Inlet Flow DG#4", "name": "H.O Inlet Flow DG#4", "source_type": "holding_register", "address": 40010, "scale": 1, "unit": "L/H" },
+        { "key": "D.O Outlet Flow DG#1", "name": "D.O Outlet Flow DG#1", "source_type": "holding_register", "address": 40011, "scale": 1, "unit": "L/H" },
+        { "key": "H.O Outlet Flow DG#1", "name": "H.O Outlet Flow DG#1", "source_type": "holding_register", "address": 40012, "scale": 1, "unit": "L/H" },
+        { "key": "D.O Outlet Flow DG#2", "name": "D.O Outlet Flow DG#2", "source_type": "holding_register", "address": 40013, "scale": 1, "unit": "L/H" },
+        { "key": "H.O Outlet Flow DG#2", "name": "H.O Outlet Flow DG#2", "source_type": "holding_register", "address": 40014, "scale": 1, "unit": "L/H" },
+        { "key": "D.O Outlet Flow DG#3", "name": "D.O Outlet Flow DG#3", "source_type": "holding_register", "address": 40015, "scale": 1, "unit": "L/H" },
+        { "key": "H.O Outlet Flow DG#3", "name": "H.O Outlet Flow DG#3", "source_type": "holding_register", "address": 40016, "scale": 1, "unit": "L/H" },
+        { "key": "D.O Outlet Flow DG#4", "name": "D.O Outlet Flow DG#4", "source_type": "holding_register", "address": 40017, "scale": 1, "unit": "L/H" },
+        { "key": "H.O Outlet Flow DG#4", "name": "H.O Outlet Flow DG#4", "source_type": "holding_register", "address": 40018, "scale": 1, "unit": "L/H" }
       ],
       "digitals": [
         { "key": "pump_1", "label": "pump 1", "source_type": "discrete_input", "address": 10001 },

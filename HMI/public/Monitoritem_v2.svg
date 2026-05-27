@@ -35,23 +35,23 @@
 <rect id="TS1_H.O.service.tank" x="665.734" y="308.323" width="24.3177" height="17.526" stroke="#99A1AF" stroke-width="2"/>
 <rect id="TSH_H.O.service.tank" x="577" y="309" width="45" height="18" stroke="#99A1AF" stroke-width="2"/>
 <rect id="LL_H.O.service.tank" x="631.776" y="283.703" width="11.5833" height="11.5833" stroke="#99A1AF" stroke-width="2"/>
-<text id="Flow18" x="1504.42" y="679.891" fill="#fdfdfd00" font-family="Consolas, monospace" font-size="12" font-weight="700" dominant-baseline="hanging">100 L/H</text>
-<text id="Flow17" x="1504.42" y="628.953" fill="#fdfdfd00" font-family="Consolas, monospace" font-size="12" font-weight="700" dominant-baseline="hanging">100 L/H</text>
-<text id="Flow16" x="1504.42" y="487.177" fill="#fdfdfd00" font-family="Consolas, monospace" font-size="12" font-weight="700" dominant-baseline="hanging">100 L/H</text>
-<text id="Flow15" x="1502.72" y="435.391" fill="#fdfdfd00" font-family="Consolas, monospace" font-size="12" font-weight="700" dominant-baseline="hanging">100 L/H</text>
-<text id="Flow14" x="1505.27" y="293.615" fill="#fdfdfd00" font-family="Consolas, monospace" font-size="12" font-weight="700" dominant-baseline="hanging">100 L/H</text>
-<text id="Flow13" x="1504.42" y="242.677" fill="#fdfdfd00" font-family="Consolas, monospace" font-size="12" font-weight="700" dominant-baseline="hanging">100 L/H</text>
-<text id="Flow12" x="1502.72" y="99.2031" fill="#fdfdfd00" font-family="Consolas, monospace" font-size="12" font-weight="700" dominant-baseline="hanging">100 L/H</text>
-<text id="Flow11" x="1501.87" y="48.2656" fill="#fdfdfd00" font-family="Consolas, monospace" font-size="12" font-weight="700" dominant-baseline="hanging">100 L/H</text>
-<text id="Flow10" x="1155.5" y="733.375" fill="#fdfdfd00" font-family="Consolas, monospace" font-size="12" font-weight="700" dominant-baseline="hanging">100 L/H</text>
-<text id="Flow9" x="1155.5" y="679.891" fill="#fdfdfd00" font-family="Consolas, monospace" font-size="12" font-weight="700" dominant-baseline="hanging">100 L/H</text>
-<text id="Flow8" x="1158.04" y="539.812" fill="#fdfdfd00" font-family="Consolas, monospace" font-size="12" font-weight="700" dominant-baseline="hanging">100 L/H</text>
-<text id="Flow7" x="1158.04" y="484.63" fill="#fdfdfd00" font-family="Consolas, monospace" font-size="12" font-weight="700" dominant-baseline="hanging">100 L/H</text>
-<text id="Flow6" x="1157.2" y="347.099" fill="#fdfdfd00" font-family="Consolas, monospace" font-size="12" font-weight="700" dominant-baseline="hanging">100 L/H</text>
-<text id="Flow5" x="1157.2" y="290.219" fill="#fdfdfd00" font-family="Consolas, monospace" font-size="12" font-weight="700" dominant-baseline="hanging">100 L/H</text>
-<text id="Flow4" x="1158.04" y="145" fill="#fdfdfd00" font-family="Consolas, monospace" font-size="12" font-weight="700" dominant-baseline="hanging">100 L/H</text>
-<text id="Flow3" x="1158.04" y="90" fill="#fdfdfd00" font-family="Consolas, monospace" font-size="12" font-weight="700" dominant-baseline="hanging">100 L/H</text>
-<text id="Flow2" x="329.04" y="450.672" fill="#fdfdfd00" font-family="Consolas, monospace" font-size="12" font-weight="700" dominant-baseline="hanging">100 L/H</text>
-<text id="Flow1" x="329.462" y="162.026" fill="#fdfdfd00" font-family="Consolas, monospace" font-size="12" font-weight="700" dominant-baseline="hanging">100 L/H</text>
+<text id="H.O Outlet Flow DG#4" x="1504.42" y="679.891" fill="#fdfdfd00" font-family="Consolas, monospace" font-size="12" font-weight="700" dominant-baseline="hanging">100 L/H</text>
+<text id="D.O Outlet Flow DG#4" x="1504.42" y="628.953" fill="#fdfdfd00" font-family="Consolas, monospace" font-size="12" font-weight="700" dominant-baseline="hanging">100 L/H</text>
+<text id="H.O Outlet Flow DG#3" x="1504.42" y="487.177" fill="#fdfdfd00" font-family="Consolas, monospace" font-size="12" font-weight="700" dominant-baseline="hanging">100 L/H</text>
+<text id="D.O Outlet Flow DG#3" x="1502.72" y="435.391" fill="#fdfdfd00" font-family="Consolas, monospace" font-size="12" font-weight="700" dominant-baseline="hanging">100 L/H</text>
+<text id="H.O Outlet Flow DG#2" x="1505.27" y="293.615" fill="#fdfdfd00" font-family="Consolas, monospace" font-size="12" font-weight="700" dominant-baseline="hanging">100 L/H</text>
+<text id="D.O Outlet Flow DG#2" x="1504.42" y="242.677" fill="#fdfdfd00" font-family="Consolas, monospace" font-size="12" font-weight="700" dominant-baseline="hanging">100 L/H</text>
+<text id="H.O Outlet Flow DG#1" x="1502.72" y="99.2031" fill="#fdfdfd00" font-family="Consolas, monospace" font-size="12" font-weight="700" dominant-baseline="hanging">100 L/H</text>
+<text id="D.O Outlet Flow DG#1" x="1501.87" y="48.2656" fill="#fdfdfd00" font-family="Consolas, monospace" font-size="12" font-weight="700" dominant-baseline="hanging">100 L/H</text>
+<text id="H.O Inlet Flow DG#4" x="1155.5" y="733.375" fill="#fdfdfd00" font-family="Consolas, monospace" font-size="12" font-weight="700" dominant-baseline="hanging">100 L/H</text>
+<text id="D.O Inlet Flow DG#4" x="1155.5" y="679.891" fill="#fdfdfd00" font-family="Consolas, monospace" font-size="12" font-weight="700" dominant-baseline="hanging">100 L/H</text>
+<text id="H.O Inlet Flow DG#3" x="1158.04" y="539.812" fill="#fdfdfd00" font-family="Consolas, monospace" font-size="12" font-weight="700" dominant-baseline="hanging">100 L/H</text>
+<text id="D.O Inlet Flow DG#3" x="1158.04" y="484.63" fill="#fdfdfd00" font-family="Consolas, monospace" font-size="12" font-weight="700" dominant-baseline="hanging">100 L/H</text>
+<text id="H.O Inlet Flow DG#2" x="1157.2" y="347.099" fill="#fdfdfd00" font-family="Consolas, monospace" font-size="12" font-weight="700" dominant-baseline="hanging">100 L/H</text>
+<text id="D.O Inlet Flow DG#2" x="1157.2" y="290.219" fill="#fdfdfd00" font-family="Consolas, monospace" font-size="12" font-weight="700" dominant-baseline="hanging">100 L/H</text>
+<text id="H.O Inlet Flow DG#1" x="1158.04" y="145" fill="#fdfdfd00" font-family="Consolas, monospace" font-size="12" font-weight="700" dominant-baseline="hanging">100 L/H</text>
+<text id="D.O Inlet Flow DG#1" x="1158.04" y="90" fill="#fdfdfd00" font-family="Consolas, monospace" font-size="12" font-weight="700" dominant-baseline="hanging">100 L/H</text>
+<text id="H.O Transfer Flow" x="329.04" y="450.672" fill="#fdfdfd00" font-family="Consolas, monospace" font-size="12" font-weight="700" dominant-baseline="hanging">100 L/H</text>
+<text id="D.O Transfer Flow" x="329.462" y="162.026" fill="#fdfdfd00" font-family="Consolas, monospace" font-size="12" font-weight="700" dominant-baseline="hanging">100 L/H</text>
 </g>
 </svg>

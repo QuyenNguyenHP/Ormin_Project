@@ -50,8 +50,8 @@ const buildChartOption = ({
     bandGap: Number(item.bandGap ?? 0),
   }));
 
-  const LEGEND_IN = "F.O in";
-  const LEGEND_OUT = "F.O out";
+  const LEGEND_IN = flowInLabel || "D.O in";
+  const LEGEND_OUT = flowOutLabel || "D.O out";
   const LEGEND_POWER = powerLabel || "Engine Power";
   const rangeMarkers =
     rangeStartMs != null && rangeEndMs != null
@@ -431,7 +431,7 @@ const FOConsumptionChart = ({
       );
     } catch (error) {
       if (!hasLoggedChartErrorRef.current) {
-        console.error("Failed to render F.O. consumption chart:", error);
+        console.error("Failed to render D.O. consumption chart:", error);
         hasLoggedChartErrorRef.current = true;
       }
     }

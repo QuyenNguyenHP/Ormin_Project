@@ -1,22 +1,44 @@
 import { useEffect, useMemo, useState } from "react";
-import { Box, Typography } from "@mui/material";
+import { Box, CircularProgress, Typography } from "@mui/material";
 import Header from "../components/Header";
 import NavigationSidebar from "../components/NavigationSidebar";
 import Footer from "../components/Footer";
 import DashboardButton from "../components/DashboardButton";
 import TimeSeriesLineChart from "../components/TimeSeriesLineChart";
-import { fetchPressureTrendHistory } from "../services/pidMonitorApi";
+import {
+  fetchModbusStatus,
+  fetchPressureTrendHistory,
+} from "../services/pidMonitorApi";
 
 const LIVE_POLL_INTERVAL_MS = 6000;
 const LIVE_VIEWPORT_LATEST_DATA_RATIO = 2 / 3;
+const MODBUS_STATUS_POLL_INTERVAL_MS = 6000;
+const MAX_RANGE_MS = 7 * 24 * 3600000;
 
-const pressureSeriesConfig = [
+const pressureTrendSeriesConfig = [
+  {
+    channelDescription: "Engine Power",
+    dataKey: "enginePower",
+    name: "Engine Power",
+    color: "#c57e22",
+    precision: 2,
+    yAxisIndex: 1,
+    defaultUnit: "kW",
+  },
   {
     channelDescription: "Fuel Oil Pressure",
     dataKey: "fuelOilPressure",
     name: "Fuel Oil Pressure",
     color: "#f97316",
     precision: 2,
+    yAxisIndex: 0,
+    defaultUnit: "MPa",
+    transformValue: (value, unit) => {
+      const numericValue = Number(value ?? 0);
+      return String(unit ?? "").trim().toLowerCase() === "bar"
+        ? numericValue / 10
+        : numericValue;
+    },
   },
   {
     channelDescription: "Engine LO Pressure",
@@ -24,6 +46,14 @@ const pressureSeriesConfig = [
     name: "Engine LO Pressure",
     color: "#38bdf8",
     precision: 2,
+    yAxisIndex: 0,
+    defaultUnit: "MPa",
+    transformValue: (value, unit) => {
+      const numericValue = Number(value ?? 0);
+      return String(unit ?? "").trim().toLowerCase() === "bar"
+        ? numericValue / 10
+        : numericValue;
+    },
   },
   {
     channelDescription: "Intake Air Pressure",
@@ -31,6 +61,14 @@ const pressureSeriesConfig = [
     name: "Intake Air Pressure",
     color: "#22c55e",
     precision: 2,
+    yAxisIndex: 0,
+    defaultUnit: "MPa",
+    transformValue: (value, unit) => {
+      const numericValue = Number(value ?? 0);
+      return String(unit ?? "").trim().toLowerCase() === "bar"
+        ? numericValue / 10
+        : numericValue;
+    },
   },
   {
     channelDescription: "Cooler Water Pressure",
@@ -38,19 +76,16 @@ const pressureSeriesConfig = [
     name: "Cooler Water Pressure",
     color: "#e879f9",
     precision: 2,
+    yAxisIndex: 0,
+    defaultUnit: "MPa",
+    transformValue: (value, unit) => {
+      const numericValue = Number(value ?? 0);
+      return String(unit ?? "").trim().toLowerCase() === "bar"
+        ? numericValue / 10
+        : numericValue;
+    },
   },
 ];
-
-const normalizePressureValueToMpa = (value, unit) => {
-  const numericValue = Number(value ?? 0);
-  const normalizedUnit = String(unit ?? "").trim().toLowerCase();
-
-  if (normalizedUnit === "bar") {
-    return numericValue / 10;
-  }
-
-  return numericValue;
-};
 
 const pad = (value) => String(value).padStart(2, "0");
 
@@ -83,18 +118,21 @@ const shiftUtcInputValue = (inputValue, deltaHours) => {
   return toUtcInputValue(timestampMs + deltaHours * 3600000);
 };
 
+const isRangeTooLong = (startMs, endMs) => endMs - startMs >= MAX_RANGE_MS;
 const buildEngineLabel = (engineNumber) => `Engine ${engineNumber}`;
 
-const buildHistoryRequestOptions = (engineNumber, range) =>
-  range
+const buildHistoryRequestOptions = (engineNumber, range) => ({
+  engine: engineNumber,
+  ...(range
     ? {
-        engine: engineNumber,
         startTime: new Date(range.startMs).toISOString(),
         endTime: new Date(range.endMs).toISOString(),
       }
-    : {
-        engine: engineNumber,
-      };
+    : {}),
+  channelDescriptions: pressureTrendSeriesConfig.map(
+    (seriesItem) => seriesItem.channelDescription
+  ),
+});
 
 const getLatestTimestampMs = (records) =>
   (Array.isArray(records) ? records : []).reduce((latestTimestampMs, record) => {
@@ -146,9 +184,53 @@ const mergeTrendPayload = (currentPayload, nextPayload) => {
   };
 };
 
+const buildChartData = (records) => {
+  const rowsByTimestamp = new Map();
+
+  (Array.isArray(records) ? records : []).forEach((record) => {
+    const timestampMs = Number(record.timestampMs ?? 0);
+    const existingRow = rowsByTimestamp.get(timestampMs) ?? {
+      timestampLabel: record.timestampLabel,
+      timestampMs,
+    };
+    const matchingSeries = pressureTrendSeriesConfig.find(
+      (seriesItem) => seriesItem.channelDescription === record.channelDescription
+    );
+
+    if (!matchingSeries) {
+      return;
+    }
+
+    existingRow[matchingSeries.dataKey] = matchingSeries.transformValue
+      ? matchingSeries.transformValue(record.value, record.unit)
+      : Number(record.value ?? 0);
+    rowsByTimestamp.set(timestampMs, existingRow);
+  });
+
+  return Array.from(rowsByTimestamp.values()).sort(
+    (leftRow, rightRow) => leftRow.timestampMs - rightRow.timestampMs
+  );
+};
+
+const buildChartSeries = (records) =>
+  pressureTrendSeriesConfig.map((seriesItem) => {
+    const firstMatchingRecord = (Array.isArray(records) ? records : []).find(
+      (record) => record.channelDescription === seriesItem.channelDescription
+    );
+
+    return {
+      name: firstMatchingRecord?.channelDescription ?? seriesItem.name,
+      dataKey: seriesItem.dataKey,
+      color: seriesItem.color,
+      unit: firstMatchingRecord?.unit ?? seriesItem.defaultUnit,
+      precision: seriesItem.precision,
+      yAxisIndex: seriesItem.yAxisIndex,
+    };
+  });
+
 const PressureTrend = () => {
   const [payload, setPayload] = useState(null);
-  const [pressurePayload, setPressurePayload] = useState(null);
+  const [modbusConnected, setModbusConnected] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
   const [lastUpdated, setLastUpdated] = useState(null);
@@ -162,27 +244,50 @@ const PressureTrend = () => {
   useEffect(() => {
     let isActive = true;
 
+    const loadModbusStatus = async () => {
+      try {
+        const statusPayload = await fetchModbusStatus();
+
+        if (!isActive) {
+          return;
+        }
+
+        setModbusConnected(Boolean(statusPayload?.connected));
+      } catch {
+        if (isActive) {
+          setModbusConnected(false);
+        }
+      }
+    };
+
+    loadModbusStatus();
+    const intervalId = window.setInterval(
+      loadModbusStatus,
+      MODBUS_STATUS_POLL_INTERVAL_MS
+    );
+
+    return () => {
+      isActive = false;
+      window.clearInterval(intervalId);
+    };
+  }, []);
+
+  useEffect(() => {
+    let isActive = true;
+
     const load = async () => {
       setIsLoading(true);
 
       try {
-        const requestOptions = buildHistoryRequestOptions(selectedEngine, appliedRange);
-        const [nextPayload, nextPressurePayload] = await Promise.all([
-          fetchPressureTrendHistory(requestOptions),
-          fetchPressureTrendHistory({
-            ...requestOptions,
-            channelDescriptions: pressureSeriesConfig.map(
-              (seriesItem) => seriesItem.channelDescription
-            ),
-          }),
-        ]);
+        const nextPayload = await fetchPressureTrendHistory(
+          buildHistoryRequestOptions(selectedEngine, appliedRange)
+        );
 
         if (!isActive) {
           return;
         }
 
         setPayload(nextPayload);
-        setPressurePayload(nextPressurePayload);
         setError("");
         setLastUpdated(new Date());
         setPollIntervalMs(null);
@@ -198,7 +303,6 @@ const PressureTrend = () => {
         }
 
         setPayload(null);
-        setPressurePayload(null);
         setError(
           loadError instanceof Error
             ? loadError.message
@@ -218,7 +322,6 @@ const PressureTrend = () => {
     };
   }, [appliedRange, selectedEngine]);
 
-  const modbusConnected = error ? false : payload ? true : null;
   const availableEngines = payload?.engines?.length ? payload.engines : [1, 2, 3, 4];
 
   useEffect(() => {
@@ -228,7 +331,7 @@ const PressureTrend = () => {
   }, [payload, selectedEngine]);
 
   useEffect(() => {
-    if (!isLiveMode || isLoading || !payload || !pressurePayload) {
+    if (!isLiveMode || isLoading || !payload) {
       return undefined;
     }
 
@@ -245,33 +348,18 @@ const PressureTrend = () => {
       isFetching = true;
 
       try {
-        const latestTimestampMs = Math.max(
-          getLatestTimestampMs(payload?.records),
-          getLatestTimestampMs(pressurePayload?.records)
-        );
-        const incrementalRequest = {
-          engine: selectedEngine,
+        const latestTimestampMs = getLatestTimestampMs(payload?.records);
+        const nextPayload = await fetchPressureTrendHistory({
+          ...buildHistoryRequestOptions(selectedEngine),
           startTime: new Date(latestTimestampMs || Date.now()).toISOString(),
           endTime: new Date().toISOString(),
-        };
-        const [nextPayload, nextPressurePayload] = await Promise.all([
-          fetchPressureTrendHistory(incrementalRequest),
-          fetchPressureTrendHistory({
-            ...incrementalRequest,
-            channelDescriptions: pressureSeriesConfig.map(
-              (seriesItem) => seriesItem.channelDescription
-            ),
-          }),
-        ]);
+        });
 
         if (!isActive) {
           return;
         }
 
         setPayload((currentPayload) => mergeTrendPayload(currentPayload, nextPayload));
-        setPressurePayload((currentPayload) =>
-          mergeTrendPayload(currentPayload, nextPressurePayload)
-        );
         setLastUpdated(new Date());
         setError("");
         setDraftEndInput(
@@ -299,7 +387,7 @@ const PressureTrend = () => {
       isActive = false;
       window.clearInterval(intervalId);
     };
-  }, [isLiveMode, isLoading, payload, pressurePayload, selectedEngine]);
+  }, [isLiveMode, isLoading, payload, selectedEngine]);
 
   useEffect(() => {
     if (!isLiveMode) {
@@ -310,101 +398,12 @@ const PressureTrend = () => {
   const effectiveSelectedEngine = availableEngines.includes(selectedEngine)
     ? selectedEngine
     : availableEngines[0];
-  const records = Array.isArray(payload?.records) ? payload.records : [];
-  const loadChartData = records.map((record) => ({
-    timestampLabel: record.timestampLabel,
-    timestampMs: Number(record.timestampMs ?? 0),
-    loadValue: Number(record.value ?? 0),
-  }));
-  const unit = payload?.meta?.unit ?? payload?.records?.[0]?.unit ?? "kW";
-  const seriesLabel = payload?.meta?.seriesLabel ?? "Engine Power";
-
-  const pressureChartData = useMemo(() => {
-    const pressureRecords = Array.isArray(pressurePayload?.records)
-      ? pressurePayload.records
-      : [];
-    const rowsByTimestamp = new Map();
-
-    pressureRecords.forEach((record) => {
-      const timestampMs = Number(record.timestampMs ?? 0);
-      const existingRow = rowsByTimestamp.get(timestampMs) ?? {
-        timestampLabel: record.timestampLabel,
-        timestampMs,
-      };
-      const matchingSeries = pressureSeriesConfig.find(
-        (seriesItem) => seriesItem.channelDescription === record.channelDescription
-      );
-
-      if (!matchingSeries) {
-        return;
-      }
-
-      existingRow[matchingSeries.dataKey] = normalizePressureValueToMpa(
-        record.value,
-        record.unit
-      );
-      rowsByTimestamp.set(timestampMs, existingRow);
-    });
-
-    return Array.from(rowsByTimestamp.values()).sort(
-      (leftRow, rightRow) => leftRow.timestampMs - rightRow.timestampMs
-    );
-  }, [pressurePayload]);
-
-  const combinedChartData = useMemo(() => {
-    const rowsByTimestamp = new Map();
-
-    loadChartData.forEach((record) => {
-      rowsByTimestamp.set(record.timestampMs, { ...record });
-    });
-
-    pressureChartData.forEach((record) => {
-      const existingRow = rowsByTimestamp.get(record.timestampMs) ?? {
-        timestampLabel: record.timestampLabel,
-        timestampMs: record.timestampMs,
-      };
-
-      pressureSeriesConfig.forEach((seriesItem) => {
-        if (Number.isFinite(record[seriesItem.dataKey])) {
-          existingRow[seriesItem.dataKey] = record[seriesItem.dataKey];
-        }
-      });
-
-      rowsByTimestamp.set(record.timestampMs, existingRow);
-    });
-
-    return Array.from(rowsByTimestamp.values()).sort(
-      (leftRow, rightRow) => leftRow.timestampMs - rightRow.timestampMs
-    );
-  }, [loadChartData, pressureChartData]);
-
-  const combinedSeries = useMemo(
-    () => [
-      {
-        name: seriesLabel,
-        dataKey: "loadValue",
-        color: "#c57e22",
-        unit,
-        precision: 2,
-        yAxisIndex: 1,
-      },
-      ...pressureSeriesConfig.map((seriesItem) => ({
-        name: seriesItem.name,
-        dataKey: seriesItem.dataKey,
-        color: seriesItem.color,
-        precision: seriesItem.precision,
-        unit: "MPa",
-        yAxisIndex: 0,
-      })),
-    ],
-    [seriesLabel, unit]
-  );
+  const chartData = useMemo(() => buildChartData(payload?.records), [payload]);
+  const series = useMemo(() => buildChartSeries(payload?.records), [payload]);
 
   const chartRange = useMemo(() => {
-    const baseRangeStartMs =
-      pressurePayload?.meta?.rangeStartMs ?? payload?.meta?.rangeStartMs ?? null;
-    const baseRangeEndMs =
-      pressurePayload?.meta?.rangeEndMs ?? payload?.meta?.rangeEndMs ?? null;
+    const baseRangeStartMs = payload?.meta?.rangeStartMs ?? null;
+    const baseRangeEndMs = payload?.meta?.rangeEndMs ?? null;
 
     if (
       !isLiveMode ||
@@ -420,7 +419,6 @@ const PressureTrend = () => {
 
     const latestTimestampMs = Math.max(
       getLatestTimestampMs(payload?.records),
-      getLatestTimestampMs(pressurePayload?.records),
       Number(baseRangeEndMs)
     );
     const elapsedRangeMs = latestTimestampMs - Number(baseRangeStartMs);
@@ -439,7 +437,7 @@ const PressureTrend = () => {
       rangeStartMs: Number(baseRangeStartMs),
       rangeEndMs: Math.max(paddedRangeEndMs, Number(baseRangeEndMs)),
     };
-  }, [isLiveMode, payload, pressurePayload]);
+  }, [isLiveMode, payload]);
 
   const handleApplyRange = () => {
     const startMs = fromUtcInputValue(draftStartInput);
@@ -452,6 +450,11 @@ const PressureTrend = () => {
 
     if (startMs >= endMs) {
       setError("From (UTC) must be earlier than To (UTC).");
+      return;
+    }
+
+    if (isRangeTooLong(startMs, endMs)) {
+      setError("Selected UTC range must be shorter than 7 days.");
       return;
     }
 
@@ -474,6 +477,11 @@ const PressureTrend = () => {
       return;
     }
 
+    if (isRangeTooLong(nextStartMs, nextEndMs)) {
+      setError("Selected UTC range must be shorter than 7 days.");
+      return;
+    }
+
     setError("");
     setAppliedRange({ startMs: nextStartMs, endMs: nextEndMs });
   };
@@ -488,7 +496,17 @@ const PressureTrend = () => {
       <main className="self-stretch flex-1 overflow-hidden flex items-start [row-gap:20px] max-w-full mq1825:flex-wrap">
         <NavigationSidebar />
         <section className="flex-1 overflow-hidden flex items-start justify-center !p-4 box-border gap-4 max-w-full text-left text-[#f8fafc] font-[Roboto] mq925:h-auto">
-          <Box className="flex-1 min-h-[916px] overflow-auto rounded-[10px] bg-[#1e2939] border-[#364153] border-solid border-[1px] box-border flex flex-col items-start !p-6 max-w-full shrink-0">
+          <Box className="relative flex-1 min-h-[916px] overflow-auto rounded-[10px] bg-[#1e2939] border-[#364153] border-solid border-[1px] box-border flex flex-col items-start !p-6 max-w-full shrink-0">
+            {isLoading ? (
+              <Box className="absolute inset-0 z-10 flex items-center justify-center rounded-[10px] bg-[#0f172ab3] backdrop-blur-[2px]">
+                <Box className="flex flex-col items-center gap-3 rounded-[14px] border border-[#334155] bg-[#111827] !px-6 !py-5 shadow-[0_18px_40px_rgba(15,23,42,0.45)]">
+                  <CircularProgress size={40} thickness={4.5} sx={{ color: "#38bdf8" }} />
+                  <Typography className="text-[14px] font-semibold text-[#dbeafe]">
+                    Loading data
+                  </Typography>
+                </Box>
+              </Box>
+            ) : null}
             <Box className="w-full flex flex-col gap-6">
               <Box className="w-full flex flex-col gap-4">
                 <Box className="w-full rounded-[14px] border border-[#334155] bg-[#111827] !px-3 !py-3">
@@ -573,8 +591,8 @@ const PressureTrend = () => {
 
               <Box className="w-full rounded-[12px] border border-[#334155] bg-[#0f172a] !p-4">
                 <TimeSeriesLineChart
-                  chartData={combinedChartData}
-                  series={combinedSeries}
+                  chartData={chartData}
+                  series={series}
                   rangeStartMs={chartRange.rangeStartMs}
                   rangeEndMs={chartRange.rangeEndMs}
                   mergeUpdates={isLiveMode}

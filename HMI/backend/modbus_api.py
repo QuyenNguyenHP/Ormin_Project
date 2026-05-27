@@ -388,11 +388,38 @@ def build_debug_modbus_snapshot() -> dict[str, Any]:
     }
 
 
+def build_modbus_status_payload() -> dict[str, Any]:
+    """Return the current Modbus connectivity state without reading page mappings."""
+    client = ModbusTcpClient(
+        host=MODBUS_CONFIG["host"],
+        port=MODBUS_CONFIG["port"],
+        timeout=MODBUS_CONFIG["timeout_seconds"],
+    )
+
+    try:
+        is_connected = bool(client.connect())
+        return {
+            "connected": is_connected,
+            "meta": build_meta(),
+        }
+    finally:
+        client.close()
+
+
 @modbus_api.get("/api/debug/modbus-snapshot")
 def get_debug_modbus_snapshot_route() -> Any:
     """Serve a raw Modbus snapshot for debugging and integration checks."""
     try:
         return jsonify(build_debug_modbus_snapshot())
+    except Exception as exc:  # pragma: no cover - runtime error surface
+        return jsonify({"error": str(exc)}), 500
+
+
+@modbus_api.get("/api/modbus-status")
+def get_modbus_status_route() -> Any:
+    """Serve the current Modbus connectivity state for UI status indicators."""
+    try:
+        return jsonify(build_modbus_status_payload())
     except Exception as exc:  # pragma: no cover - runtime error surface
         return jsonify({"error": str(exc)}), 500
 

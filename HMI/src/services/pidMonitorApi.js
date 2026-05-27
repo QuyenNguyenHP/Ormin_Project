@@ -8,6 +8,27 @@ export const fetchDebugModbusSnapshot = async () => {
   return response.json();
 };
 
+export const fetchModbusStatus = async () => {
+  const response = await fetch("/api/modbus-status");
+
+  if (!response.ok) {
+    let errorMessage = `modbus-status request failed with status ${response.status}`;
+
+    try {
+      const errorPayload = await response.json();
+      if (errorPayload?.error) {
+        errorMessage = errorPayload.error;
+      }
+    } catch {
+      // Keep the fallback message when the error response is not JSON.
+    }
+
+    throw new Error(errorMessage);
+  }
+
+  return response.json();
+};
+
 export const fetchPagePayload = async (pageName) => {
   const response = await fetch(`/api/${pageName}`);
 
@@ -29,12 +50,12 @@ export const fetchPagePayload = async (pageName) => {
   return response.json();
 };
 
-export const fetchFOConsumptionHistory = async ({
+const fetchConsumptionHistory = async (apiPath, {
   windowMinutes,
   startTime,
   endTime,
 } = {}) => {
-  const url = new URL("/api/fo-consumption", window.location.origin);
+  const url = new URL(apiPath, window.location.origin);
 
   if (Number.isFinite(windowMinutes) && windowMinutes > 0) {
     url.searchParams.set("windowMinutes", String(windowMinutes));
@@ -51,7 +72,7 @@ export const fetchFOConsumptionHistory = async ({
   const response = await fetch(url.pathname + url.search);
 
   if (!response.ok) {
-    let errorMessage = `fo-consumption request failed with status ${response.status}`;
+    let errorMessage = `${apiPath} request failed with status ${response.status}`;
 
     try {
       const errorPayload = await response.json();
@@ -67,6 +88,15 @@ export const fetchFOConsumptionHistory = async ({
 
   return response.json();
 };
+
+export const fetchDOConsumptionHistory = async (options = {}) =>
+  fetchConsumptionHistory("/api/do-consumption", options);
+
+export const fetchHOConsumptionHistory = async (options = {}) =>
+  fetchConsumptionHistory("/api/ho-consumption", options);
+
+export const fetchFOConsumptionHistory = async (options = {}) =>
+  fetchConsumptionHistory("/api/fo-consumption", options);
 
 export const fetchPressureTrendHistory = async ({
   engine,

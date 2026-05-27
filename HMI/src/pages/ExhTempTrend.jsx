@@ -1,22 +1,38 @@
 import { useEffect, useMemo, useState } from "react";
-import { Box, Typography } from "@mui/material";
+import { Box, CircularProgress, Typography } from "@mui/material";
 import Header from "../components/Header";
 import NavigationSidebar from "../components/NavigationSidebar";
 import Footer from "../components/Footer";
 import DashboardButton from "../components/DashboardButton";
 import TimeSeriesLineChart from "../components/TimeSeriesLineChart";
-import { fetchExhTempTrendHistory } from "../services/pidMonitorApi";
+import {
+  fetchExhTempTrendHistory,
+  fetchModbusStatus,
+} from "../services/pidMonitorApi";
 
 const LIVE_POLL_INTERVAL_MS = 6000;
 const LIVE_VIEWPORT_LATEST_DATA_RATIO = 2 / 3;
+const MODBUS_STATUS_POLL_INTERVAL_MS = 6000;
+const MAX_RANGE_MS = 7 * 24 * 3600000;
 
-const exhaustTempSeriesConfig = [
+const exhTempTrendSeriesConfig = [
+  {
+    channelDescription: "Engine Power",
+    dataKey: "enginePower",
+    name: "Engine Power",
+    color: "#c52222",
+    precision: 2,
+    yAxisIndex: 1,
+    defaultUnit: "kW",
+  },
   {
     channelDescription: "T/C Outlet Temp",
     dataKey: "tcOutletTemp",
     name: "T/C Outlet Temp",
     color: "#f97316",
     precision: 1,
+    yAxisIndex: 0,
+    defaultUnit: "C",
   },
   {
     channelDescription: "Cyl 1 Exhaust Temp",
@@ -24,6 +40,8 @@ const exhaustTempSeriesConfig = [
     name: "Cyl 1 Exhaust Temp",
     color: "#38bdf8",
     precision: 1,
+    yAxisIndex: 0,
+    defaultUnit: "C",
   },
   {
     channelDescription: "Cyl 2 Exhaust Temp",
@@ -31,6 +49,8 @@ const exhaustTempSeriesConfig = [
     name: "Cyl 2 Exhaust Temp",
     color: "#22c55e",
     precision: 1,
+    yAxisIndex: 0,
+    defaultUnit: "C",
   },
   {
     channelDescription: "Cyl 3 Exhaust Temp",
@@ -38,6 +58,8 @@ const exhaustTempSeriesConfig = [
     name: "Cyl 3 Exhaust Temp",
     color: "#e879f9",
     precision: 1,
+    yAxisIndex: 0,
+    defaultUnit: "C",
   },
   {
     channelDescription: "Cyl 4 Exhaust Temp",
@@ -45,6 +67,8 @@ const exhaustTempSeriesConfig = [
     name: "Cyl 4 Exhaust Temp",
     color: "#facc15",
     precision: 1,
+    yAxisIndex: 0,
+    defaultUnit: "C",
   },
   {
     channelDescription: "Cyl 5 Exhaust Temp",
@@ -52,6 +76,8 @@ const exhaustTempSeriesConfig = [
     name: "Cyl 5 Exhaust Temp",
     color: "#fb7185",
     precision: 1,
+    yAxisIndex: 0,
+    defaultUnit: "C",
   },
   {
     channelDescription: "Cyl 6 Exhaust Temp",
@@ -59,6 +85,8 @@ const exhaustTempSeriesConfig = [
     name: "Cyl 6 Exhaust Temp",
     color: "#60a5fa",
     precision: 1,
+    yAxisIndex: 0,
+    defaultUnit: "C",
   },
   {
     channelDescription: "T/C Inlet Temp",
@@ -66,6 +94,8 @@ const exhaustTempSeriesConfig = [
     name: "T/C Inlet Temp",
     color: "#34d399",
     precision: 1,
+    yAxisIndex: 0,
+    defaultUnit: "C",
   },
 ];
 
@@ -100,18 +130,21 @@ const shiftUtcInputValue = (inputValue, deltaHours) => {
   return toUtcInputValue(timestampMs + deltaHours * 3600000);
 };
 
+const isRangeTooLong = (startMs, endMs) => endMs - startMs >= MAX_RANGE_MS;
 const buildEngineLabel = (engineNumber) => `Engine ${engineNumber}`;
 
-const buildHistoryRequestOptions = (engineNumber, range) =>
-  range
+const buildHistoryRequestOptions = (engineNumber, range) => ({
+  engine: engineNumber,
+  ...(range
     ? {
-        engine: engineNumber,
         startTime: new Date(range.startMs).toISOString(),
         endTime: new Date(range.endMs).toISOString(),
       }
-    : {
-        engine: engineNumber,
-      };
+    : {}),
+  channelDescriptions: exhTempTrendSeriesConfig.map(
+    (seriesItem) => seriesItem.channelDescription
+  ),
+});
 
 const getLatestTimestampMs = (records) =>
   (Array.isArray(records) ? records : []).reduce((latestTimestampMs, record) => {
@@ -122,17 +155,20 @@ const getLatestTimestampMs = (records) =>
 const mergeTrendRecords = (currentRecords, nextRecords) => {
   const mergedByKey = new Map();
 
-  [...(Array.isArray(currentRecords) ? currentRecords : []), ...(Array.isArray(nextRecords) ? nextRecords : [])]
-    .forEach((record) => {
-      const timestampMs = Number(record?.timestampMs ?? 0);
-      const engine = Number(record?.engine ?? 0);
-      const channelDescription = String(record?.channelDescription ?? "");
-      const recordKey = `${engine}|${channelDescription}|${timestampMs}`;
-      mergedByKey.set(recordKey, record);
-    });
+  [
+    ...(Array.isArray(currentRecords) ? currentRecords : []),
+    ...(Array.isArray(nextRecords) ? nextRecords : []),
+  ].forEach((record) => {
+    const timestampMs = Number(record?.timestampMs ?? 0);
+    const engine = Number(record?.engine ?? 0);
+    const channelDescription = String(record?.channelDescription ?? "");
+    const recordKey = `${engine}|${channelDescription}|${timestampMs}`;
+    mergedByKey.set(recordKey, record);
+  });
 
   return Array.from(mergedByKey.values()).sort(
-    (leftRecord, rightRecord) => Number(leftRecord?.timestampMs ?? 0) - Number(rightRecord?.timestampMs ?? 0)
+    (leftRecord, rightRecord) =>
+      Number(leftRecord?.timestampMs ?? 0) - Number(rightRecord?.timestampMs ?? 0)
   );
 };
 
@@ -152,15 +188,59 @@ const mergeTrendPayload = (currentPayload, nextPayload) => {
     meta: {
       ...currentPayload.meta,
       ...nextPayload.meta,
-      rangeStartMs: currentPayload?.meta?.rangeStartMs ?? nextPayload?.meta?.rangeStartMs ?? null,
-      rangeEndMs: nextPayload?.meta?.rangeEndMs ?? currentPayload?.meta?.rangeEndMs ?? null,
+      rangeStartMs:
+        currentPayload?.meta?.rangeStartMs ?? nextPayload?.meta?.rangeStartMs ?? null,
+      rangeEndMs:
+        nextPayload?.meta?.rangeEndMs ?? currentPayload?.meta?.rangeEndMs ?? null,
     },
   };
 };
 
+const buildChartData = (records) => {
+  const rowsByTimestamp = new Map();
+
+  (Array.isArray(records) ? records : []).forEach((record) => {
+    const timestampMs = Number(record.timestampMs ?? 0);
+    const existingRow = rowsByTimestamp.get(timestampMs) ?? {
+      timestampLabel: record.timestampLabel,
+      timestampMs,
+    };
+    const matchingSeries = exhTempTrendSeriesConfig.find(
+      (seriesItem) => seriesItem.channelDescription === record.channelDescription
+    );
+
+    if (!matchingSeries) {
+      return;
+    }
+
+    existingRow[matchingSeries.dataKey] = Number(record.value ?? 0);
+    rowsByTimestamp.set(timestampMs, existingRow);
+  });
+
+  return Array.from(rowsByTimestamp.values()).sort(
+    (leftRow, rightRow) => leftRow.timestampMs - rightRow.timestampMs
+  );
+};
+
+const buildChartSeries = (records) =>
+  exhTempTrendSeriesConfig.map((seriesItem) => {
+    const firstMatchingRecord = (Array.isArray(records) ? records : []).find(
+      (record) => record.channelDescription === seriesItem.channelDescription
+    );
+
+    return {
+      name: firstMatchingRecord?.channelDescription ?? seriesItem.name,
+      dataKey: seriesItem.dataKey,
+      color: seriesItem.color,
+      unit: firstMatchingRecord?.unit ?? seriesItem.defaultUnit,
+      precision: seriesItem.precision,
+      yAxisIndex: seriesItem.yAxisIndex,
+    };
+  });
+
 const ExhTempTrend = () => {
   const [payload, setPayload] = useState(null);
-  const [temperaturePayload, setTemperaturePayload] = useState(null);
+  const [modbusConnected, setModbusConnected] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
   const [lastUpdated, setLastUpdated] = useState(null);
@@ -174,27 +254,50 @@ const ExhTempTrend = () => {
   useEffect(() => {
     let isActive = true;
 
+    const loadModbusStatus = async () => {
+      try {
+        const statusPayload = await fetchModbusStatus();
+
+        if (!isActive) {
+          return;
+        }
+
+        setModbusConnected(Boolean(statusPayload?.connected));
+      } catch {
+        if (isActive) {
+          setModbusConnected(false);
+        }
+      }
+    };
+
+    loadModbusStatus();
+    const intervalId = window.setInterval(
+      loadModbusStatus,
+      MODBUS_STATUS_POLL_INTERVAL_MS
+    );
+
+    return () => {
+      isActive = false;
+      window.clearInterval(intervalId);
+    };
+  }, []);
+
+  useEffect(() => {
+    let isActive = true;
+
     const load = async () => {
       setIsLoading(true);
 
       try {
-        const requestOptions = buildHistoryRequestOptions(selectedEngine, appliedRange);
-        const [nextPayload, nextTemperaturePayload] = await Promise.all([
-          fetchExhTempTrendHistory(requestOptions),
-          fetchExhTempTrendHistory({
-            ...requestOptions,
-            channelDescriptions: exhaustTempSeriesConfig.map(
-              (seriesItem) => seriesItem.channelDescription
-            ),
-          }),
-        ]);
+        const nextPayload = await fetchExhTempTrendHistory(
+          buildHistoryRequestOptions(selectedEngine, appliedRange)
+        );
 
         if (!isActive) {
           return;
         }
 
         setPayload(nextPayload);
-        setTemperaturePayload(nextTemperaturePayload);
         setError("");
         setLastUpdated(new Date());
         setPollIntervalMs(null);
@@ -210,7 +313,6 @@ const ExhTempTrend = () => {
         }
 
         setPayload(null);
-        setTemperaturePayload(null);
         setError(
           loadError instanceof Error
             ? loadError.message
@@ -230,7 +332,6 @@ const ExhTempTrend = () => {
     };
   }, [appliedRange, selectedEngine]);
 
-  const modbusConnected = error ? false : payload ? true : null;
   const availableEngines = payload?.engines?.length ? payload.engines : [1, 2, 3, 4];
 
   useEffect(() => {
@@ -240,7 +341,7 @@ const ExhTempTrend = () => {
   }, [payload, selectedEngine]);
 
   useEffect(() => {
-    if (!isLiveMode || isLoading || !payload || !temperaturePayload) {
+    if (!isLiveMode || isLoading || !payload) {
       return undefined;
     }
 
@@ -257,33 +358,18 @@ const ExhTempTrend = () => {
       isFetching = true;
 
       try {
-        const latestTimestampMs = Math.max(
-          getLatestTimestampMs(payload?.records),
-          getLatestTimestampMs(temperaturePayload?.records)
-        );
-        const incrementalRequest = {
-          engine: selectedEngine,
+        const latestTimestampMs = getLatestTimestampMs(payload?.records);
+        const nextPayload = await fetchExhTempTrendHistory({
+          ...buildHistoryRequestOptions(selectedEngine),
           startTime: new Date(latestTimestampMs || Date.now()).toISOString(),
           endTime: new Date().toISOString(),
-        };
-        const [nextPayload, nextTemperaturePayload] = await Promise.all([
-          fetchExhTempTrendHistory(incrementalRequest),
-          fetchExhTempTrendHistory({
-            ...incrementalRequest,
-            channelDescriptions: exhaustTempSeriesConfig.map(
-              (seriesItem) => seriesItem.channelDescription
-            ),
-          }),
-        ]);
+        });
 
         if (!isActive) {
           return;
         }
 
         setPayload((currentPayload) => mergeTrendPayload(currentPayload, nextPayload));
-        setTemperaturePayload((currentPayload) =>
-          mergeTrendPayload(currentPayload, nextTemperaturePayload)
-        );
         setLastUpdated(new Date());
         setError("");
         setDraftEndInput(
@@ -311,7 +397,7 @@ const ExhTempTrend = () => {
       isActive = false;
       window.clearInterval(intervalId);
     };
-  }, [isLiveMode, isLoading, payload, temperaturePayload, selectedEngine]);
+  }, [isLiveMode, isLoading, payload, selectedEngine]);
 
   useEffect(() => {
     if (!isLiveMode) {
@@ -322,100 +408,19 @@ const ExhTempTrend = () => {
   const effectiveSelectedEngine = availableEngines.includes(selectedEngine)
     ? selectedEngine
     : availableEngines[0];
-  const records = Array.isArray(payload?.records) ? payload.records : [];
-  const loadChartData = records.map((record) => ({
-    timestampLabel: record.timestampLabel,
-    timestampMs: Number(record.timestampMs ?? 0),
-    loadValue: Number(record.value ?? 0),
-  }));
-  const loadUnit = payload?.meta?.unit ?? payload?.records?.[0]?.unit ?? "kW";
-  const loadSeriesLabel = payload?.meta?.seriesLabel ?? "Engine Power";
-
-  const temperatureChartData = useMemo(() => {
-    const temperatureRecords = Array.isArray(temperaturePayload?.records)
-      ? temperaturePayload.records
-      : [];
-    const rowsByTimestamp = new Map();
-
-    temperatureRecords.forEach((record) => {
-      const timestampMs = Number(record.timestampMs ?? 0);
-      const existingRow = rowsByTimestamp.get(timestampMs) ?? {
-        timestampLabel: record.timestampLabel,
-        timestampMs,
-      };
-      const matchingSeries = exhaustTempSeriesConfig.find(
-        (seriesItem) => seriesItem.channelDescription === record.channelDescription
-      );
-
-      if (!matchingSeries) {
-        return;
-      }
-
-      existingRow[matchingSeries.dataKey] = Number(record.value ?? 0);
-      rowsByTimestamp.set(timestampMs, existingRow);
-    });
-
-    return Array.from(rowsByTimestamp.values()).sort(
-      (leftRow, rightRow) => leftRow.timestampMs - rightRow.timestampMs
-    );
-  }, [temperaturePayload]);
-
-  const combinedChartData = useMemo(() => {
-    const rowsByTimestamp = new Map();
-
-    loadChartData.forEach((record) => {
-      rowsByTimestamp.set(record.timestampMs, { ...record });
-    });
-
-    temperatureChartData.forEach((record) => {
-      const existingRow = rowsByTimestamp.get(record.timestampMs) ?? {
-        timestampLabel: record.timestampLabel,
-        timestampMs: record.timestampMs,
-      };
-
-      exhaustTempSeriesConfig.forEach((seriesItem) => {
-        if (Number.isFinite(record[seriesItem.dataKey])) {
-          existingRow[seriesItem.dataKey] = record[seriesItem.dataKey];
-        }
-      });
-
-      rowsByTimestamp.set(record.timestampMs, existingRow);
-    });
-
-    return Array.from(rowsByTimestamp.values()).sort(
-      (leftRow, rightRow) => leftRow.timestampMs - rightRow.timestampMs
-    );
-  }, [loadChartData, temperatureChartData]);
-
-  const combinedSeries = useMemo(
-    () => [
-      {
-        name: loadSeriesLabel,
-        dataKey: "loadValue",
-        color: "#c57e22",
-        unit: loadUnit,
-        precision: 2,
-        yAxisIndex: 1,
-      },
-      ...exhaustTempSeriesConfig.map((seriesItem) => ({
-        name: seriesItem.name,
-        dataKey: seriesItem.dataKey,
-        color: seriesItem.color,
-        precision: seriesItem.precision,
-        unit: "C",
-        yAxisIndex: 0,
-      })),
-    ],
-    [loadSeriesLabel, loadUnit]
-  );
+  const chartData = useMemo(() => buildChartData(payload?.records), [payload]);
+  const series = useMemo(() => buildChartSeries(payload?.records), [payload]);
 
   const chartRange = useMemo(() => {
-    const baseRangeStartMs =
-      temperaturePayload?.meta?.rangeStartMs ?? payload?.meta?.rangeStartMs ?? null;
-    const baseRangeEndMs =
-      temperaturePayload?.meta?.rangeEndMs ?? payload?.meta?.rangeEndMs ?? null;
+    const baseRangeStartMs = payload?.meta?.rangeStartMs ?? null;
+    const baseRangeEndMs = payload?.meta?.rangeEndMs ?? null;
 
-    if (!isLiveMode || !baseRangeStartMs || !baseRangeEndMs || baseRangeEndMs <= baseRangeStartMs) {
+    if (
+      !isLiveMode ||
+      !baseRangeStartMs ||
+      !baseRangeEndMs ||
+      baseRangeEndMs <= baseRangeStartMs
+    ) {
       return {
         rangeStartMs: baseRangeStartMs,
         rangeEndMs: baseRangeEndMs,
@@ -424,7 +429,6 @@ const ExhTempTrend = () => {
 
     const latestTimestampMs = Math.max(
       getLatestTimestampMs(payload?.records),
-      getLatestTimestampMs(temperaturePayload?.records),
       Number(baseRangeEndMs)
     );
     const elapsedRangeMs = latestTimestampMs - Number(baseRangeStartMs);
@@ -443,7 +447,7 @@ const ExhTempTrend = () => {
       rangeStartMs: Number(baseRangeStartMs),
       rangeEndMs: Math.max(paddedRangeEndMs, Number(baseRangeEndMs)),
     };
-  }, [isLiveMode, payload, temperaturePayload]);
+  }, [isLiveMode, payload]);
 
   const handleApplyRange = () => {
     const startMs = fromUtcInputValue(draftStartInput);
@@ -456,6 +460,11 @@ const ExhTempTrend = () => {
 
     if (startMs >= endMs) {
       setError("From (UTC) must be earlier than To (UTC).");
+      return;
+    }
+
+    if (isRangeTooLong(startMs, endMs)) {
+      setError("Selected UTC range must be shorter than 7 days.");
       return;
     }
 
@@ -478,6 +487,11 @@ const ExhTempTrend = () => {
       return;
     }
 
+    if (isRangeTooLong(nextStartMs, nextEndMs)) {
+      setError("Selected UTC range must be shorter than 7 days.");
+      return;
+    }
+
     setError("");
     setAppliedRange({ startMs: nextStartMs, endMs: nextEndMs });
   };
@@ -492,7 +506,17 @@ const ExhTempTrend = () => {
       <main className="self-stretch flex-1 overflow-hidden flex items-start [row-gap:20px] max-w-full mq1825:flex-wrap">
         <NavigationSidebar />
         <section className="flex-1 overflow-hidden flex items-start justify-center !p-4 box-border gap-4 max-w-full text-left text-[#f8fafc] font-[Roboto] mq925:h-auto">
-          <Box className="flex-1 min-h-[916px] overflow-auto rounded-[10px] bg-[#1e2939] border-[#364153] border-solid border-[1px] box-border flex flex-col items-start !p-6 max-w-full shrink-0">
+          <Box className="relative flex-1 min-h-[916px] overflow-auto rounded-[10px] bg-[#1e2939] border-[#364153] border-solid border-[1px] box-border flex flex-col items-start !p-6 max-w-full shrink-0">
+            {isLoading ? (
+              <Box className="absolute inset-0 z-10 flex items-center justify-center rounded-[10px] bg-[#0f172ab3] backdrop-blur-[2px]">
+                <Box className="flex flex-col items-center gap-3 rounded-[14px] border border-[#334155] bg-[#111827] !px-6 !py-5 shadow-[0_18px_40px_rgba(15,23,42,0.45)]">
+                  <CircularProgress size={40} thickness={4.5} sx={{ color: "#38bdf8" }} />
+                  <Typography className="text-[14px] font-semibold text-[#dbeafe]">
+                    Loading data
+                  </Typography>
+                </Box>
+              </Box>
+            ) : null}
             <Box className="w-full flex flex-col gap-6">
               <Box className="w-full flex flex-col gap-4">
                 <Box className="w-full rounded-[14px] border border-[#334155] bg-[#111827] !px-3 !py-3">
@@ -577,8 +601,8 @@ const ExhTempTrend = () => {
 
               <Box className="w-full rounded-[12px] border border-[#334155] bg-[#0f172a] !p-4">
                 <TimeSeriesLineChart
-                  chartData={combinedChartData}
-                  series={combinedSeries}
+                  chartData={chartData}
+                  series={series}
                   rangeStartMs={chartRange.rangeStartMs}
                   rangeEndMs={chartRange.rangeEndMs}
                   mergeUpdates={isLiveMode}
