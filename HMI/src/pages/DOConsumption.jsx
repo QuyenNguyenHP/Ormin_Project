@@ -93,6 +93,7 @@ const buildEngineSeriesConfigMap = (payload) => {
       powerChannelDescription: String(
         engineConfig?.powerChannelDescription ?? payload?.meta?.powerChannelDescription ?? "Engine Power"
       ),
+      powerDisplayLabel: String(engineConfig?.powerDisplayLabel ?? "Engine Load"),
     };
     return configMap;
   }, {});
@@ -142,7 +143,7 @@ const buildEngineChartData = (records, engineSeriesConfig) => {
     flowInLabel: engineSeriesConfig.inletChannelDescription,
     flowOutLabel: engineSeriesConfig.outletChannelDescription,
     unit: chartData[0]?.unit ?? records[0]?.unit ?? "L/h",
-    powerLabel: engineSeriesConfig.powerChannelDescription,
+    powerLabel: engineSeriesConfig.powerDisplayLabel ?? "Engine Load",
     powerUnit:
       chartData.find((point) => point.powerUnit)?.powerUnit ??
       records.find(
@@ -174,6 +175,9 @@ const buildEngineCards = (payload) => {
         `D.O Out Flow DG#${engineNumber}`,
       powerChannelDescription:
         engineSeriesConfigMap[engineNumber]?.powerChannelDescription ?? "Engine Power",
+      powerDisplayLabel:
+        engineSeriesConfigMap[engineNumber]?.powerDisplayLabel ??
+        `Engine ${engineNumber} Load`,
     });
 
     return {

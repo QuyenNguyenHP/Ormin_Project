@@ -12,7 +12,12 @@ BASE_DIR = Path(__file__).resolve().parent
 DEFAULT_DB_PATH = BASE_DIR / "database"
 DEFAULT_CSV_PATH = BASE_DIR / "mock_do_flow_meter_data.csv"
 DEFAULT_TABLE_NAME = "database"
-CSV_TIMESTAMP_FORMAT = "%d/%m/%Y %H:%M"
+CSV_TIMESTAMP_FORMATS = (
+    "%d/%m/%Y %H:%M",
+    "%m/%d/%Y %H:%M",
+    "%Y-%m-%d %H:%M:%S",
+    "%Y-%m-%d %H:%M",
+)
 DATABASE_TIMESTAMP_FORMAT = "%Y-%m-%d %H:%M:%S"
 
 REQUIRED_COLUMNS = [
@@ -143,6 +148,24 @@ def normalize_header_row(fieldnames: list[str] | None) -> list[str]:
     return normalized_headers
 
 
+def parse_timestamp(raw_timestamp: str, row_number: int) -> str:
+    normalized_timestamp = raw_timestamp.strip()
+
+    for timestamp_format in CSV_TIMESTAMP_FORMATS:
+        try:
+            return datetime.strptime(
+                normalized_timestamp, timestamp_format
+            ).strftime(DATABASE_TIMESTAMP_FORMAT)
+        except ValueError:
+            continue
+
+    supported_formats = ", ".join(CSV_TIMESTAMP_FORMATS)
+    raise ValueError(
+        f"Row {row_number} has invalid Timestamp: {raw_timestamp}. "
+        f"Supported formats: {supported_formats}"
+    )
+
+
 def normalize_row(row: dict[str, str], row_number: int) -> tuple[int, str, str, float, str]:
     missing_columns = [column for column in REQUIRED_COLUMNS if column not in row]
     if missing_columns:
@@ -177,14 +200,7 @@ def normalize_row(row: dict[str, str], row_number: int) -> tuple[int, str, str, 
     if not unit:
         raise ValueError(f"Row {row_number} has an empty Unit")
 
-    try:
-        timestamp = datetime.strptime(raw_timestamp, CSV_TIMESTAMP_FORMAT).strftime(
-            DATABASE_TIMESTAMP_FORMAT
-        )
-    except ValueError as exc:
-        raise ValueError(
-            f"Row {row_number} has invalid Timestamp: {row['Timestamp']}"
-        ) from exc
+    timestamp = parse_timestamp(raw_timestamp, row_number)
 
     return engine, channel_description, timestamp, value, unit
 

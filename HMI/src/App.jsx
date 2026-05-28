@@ -14,6 +14,7 @@ import DOConsumption from "./pages/DOConsumption";
 import HOConsumption from "./pages/HOConsumption";
 import PressureTrend from "./pages/PressureTrend";
 import PlaceholderPage from "./pages/PlaceholderPage";
+import PageTourStudio from "./pages/PageTourStudio";
 
 function App() {
   const action = useNavigationType();
@@ -64,6 +65,10 @@ function App() {
         title = "Alarms";
         metaDescription = "System alarms page.";
         break;
+      case "/page-tour-studio":
+        title = "Page Tour Studio";
+        metaDescription = "Record a guided introduction video for the frontend pages.";
+        break;
       default:
         title = "Overview | P&ID";
         metaDescription = "System overview page.";
@@ -93,6 +98,7 @@ function App() {
       <Route path="/ho-consumption" element={<HOConsumption />} />
       <Route path="/pressure_trend" element={<PressureTrend />} />
       <Route path="/exh_temp_trend" element={<ExhTempTrend />} />
+      <Route path="/page-tour-studio" element={<PageTourStudio />} />
       <Route
         path="/alarms"
         element={

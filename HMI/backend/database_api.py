@@ -147,6 +147,12 @@ def build_display_engine_configs(
                 "sourceEngine": int(
                     engine_config.get("source_engine", source_engine_index)
                 ),
+                "powerSourceEngine": int(
+                    engine_config.get(
+                        "power_source_engine",
+                        engine_config.get("source_engine", source_engine_index),
+                    )
+                ),
                 "inletChannelDescription": str(
                     engine_config.get("inlet_channel_description", "")
                 ),
@@ -158,6 +164,9 @@ def build_display_engine_configs(
                         "power_channel_description", power_channel_description
                     )
                 ),
+                "powerDisplayLabel": str(
+                    engine_config.get("power_display_label", "Engine Load")
+                ),
             }
             for engine_config in display_engines
             if engine_config.get("display_engine") is not None
@@ -167,9 +176,11 @@ def build_display_engine_configs(
         {
             "displayEngine": engine_number,
             "sourceEngine": engine_number,
+            "powerSourceEngine": engine_number,
             "inletChannelDescription": "",
             "outletChannelDescription": "",
             "powerChannelDescription": power_channel_description,
+            "powerDisplayLabel": "Engine Load",
         }
         for engine_number in range(1, default_engine_count + 1)
     ]
@@ -318,6 +329,14 @@ def build_consumption_payload(
                 int(engine_config["sourceEngine"])
                 for engine_config in display_engine_configs
             }
+            | {
+                int(
+                    engine_config.get(
+                        "powerSourceEngine", engine_config["sourceEngine"]
+                    )
+                )
+                for engine_config in display_engine_configs
+            }
         )
         resolved_channel_descriptions = sorted(
             {
@@ -422,14 +441,25 @@ def build_consumption_payload(
         row_channel_description = str(row_dict.get("channelDescription", ""))
 
         for engine_config in display_engine_configs:
-            if row_engine_number != int(engine_config["sourceEngine"]):
-                continue
-
-            if row_channel_description not in {
+            source_engine_number = int(engine_config["sourceEngine"])
+            power_source_engine_number = int(
+                engine_config.get("powerSourceEngine", source_engine_number)
+            )
+            is_flow_channel = row_channel_description in {
                 engine_config.get("inletChannelDescription"),
                 engine_config.get("outletChannelDescription"),
-                engine_config.get("powerChannelDescription"),
-            }:
+            }
+            is_power_channel = (
+                row_channel_description == engine_config.get("powerChannelDescription")
+            )
+
+            if is_flow_channel and row_engine_number != source_engine_number:
+                continue
+
+            if is_power_channel and row_engine_number != power_source_engine_number:
+                continue
+
+            if not is_flow_channel and not is_power_channel:
                 continue
 
             filtered_records.append(

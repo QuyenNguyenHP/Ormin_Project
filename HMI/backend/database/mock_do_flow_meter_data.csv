@@ -1,1729 +1,2097 @@
-Engine,Channel Description,Timestamp,Value,Unit
-1,D.O flow meter (input),17/5/2026 0:00,4.09,L/h
-1,D.O flow meter (output),17/5/2026 0:00,4.68,L/h
-1,D.O flow meter (input),17/5/2026 1:00,5.75,L/h
-1,D.O flow meter (output),17/5/2026 1:00,5.15,L/h
-1,D.O flow meter (input),17/5/2026 2:00,6.53,L/h
-1,D.O flow meter (output),17/5/2026 2:00,8.61,L/h
-1,D.O flow meter (input),17/5/2026 3:00,8.75,L/h
-1,D.O flow meter (output),17/5/2026 3:00,8.22,L/h
-1,D.O flow meter (input),17/5/2026 4:00,4.58,L/h
-1,D.O flow meter (output),17/5/2026 4:00,4.32,L/h
-1,D.O flow meter (input),17/5/2026 5:00,4.06,L/h
-1,D.O flow meter (output),17/5/2026 5:00,4.67,L/h
-1,D.O flow meter (input),17/5/2026 6:00,6.82,L/h
-1,D.O flow meter (output),17/5/2026 6:00,8.9,L/h
-1,D.O flow meter (input),17/5/2026 7:00,7.44,L/h
-1,D.O flow meter (output),17/5/2026 7:00,6.11,L/h
-1,D.O flow meter (input),17/5/2026 8:00,4.56,L/h
-1,D.O flow meter (output),17/5/2026 8:00,5.78,L/h
-1,D.O flow meter (input),17/5/2026 9:00,4.36,L/h
-1,D.O flow meter (output),17/5/2026 9:00,4.11,L/h
-1,D.O flow meter (input),17/5/2026 10:00,9.78,L/h
-1,D.O flow meter (output),17/5/2026 10:00,6.34,L/h
-1,D.O flow meter (input),17/5/2026 11:00,7.64,L/h
-1,D.O flow meter (output),17/5/2026 11:00,6.14,L/h
-1,D.O flow meter (input),17/5/2026 12:00,4.49,L/h
-1,D.O flow meter (output),17/5/2026 12:00,5.16,L/h
-1,D.O flow meter (input),17/5/2026 13:00,4.14,L/h
-1,D.O flow meter (output),17/5/2026 13:00,4.87,L/h
-1,D.O flow meter (input),17/5/2026 14:00,7.71,L/h
-1,D.O flow meter (output),17/5/2026 14:00,8.23,L/h
-1,D.O flow meter (input),17/5/2026 15:00,6.91,L/h
-1,D.O flow meter (output),17/5/2026 15:00,6.56,L/h
-1,D.O flow meter (input),17/5/2026 16:00,4.98,L/h
-1,D.O flow meter (output),17/5/2026 16:00,4.15,L/h
-1,D.O flow meter (input),17/5/2026 17:00,4.54,L/h
-1,D.O flow meter (output),17/5/2026 17:00,4.68,L/h
-1,D.O flow meter (input),17/5/2026 18:00,8.54,L/h
-1,D.O flow meter (output),17/5/2026 18:00,9.77,L/h
-1,D.O flow meter (input),17/5/2026 19:00,8.19,L/h
-1,D.O flow meter (output),17/5/2026 19:00,8.95,L/h
-1,D.O flow meter (input),17/5/2026 20:00,4.83,L/h
-1,D.O flow meter (output),17/5/2026 20:00,5.62,L/h
-1,D.O flow meter (input),17/5/2026 21:00,4.95,L/h
-1,D.O flow meter (output),17/5/2026 21:00,5.19,L/h
-1,D.O flow meter (input),17/5/2026 22:00,8.61,L/h
-1,D.O flow meter (output),17/5/2026 22:00,7.97,L/h
-1,D.O flow meter (input),17/5/2026 23:00,9.49,L/h
-1,D.O flow meter (output),17/5/2026 23:00,9.53,L/h
-1,D.O flow meter (input),18/5/2026 0:00,5.54,L/h
-1,D.O flow meter (output),18/5/2026 0:00,4.05,L/h
-1,D.O flow meter (input),18/5/2026 1:00,4.64,L/h
-1,D.O flow meter (output),18/5/2026 1:00,4.86,L/h
-1,D.O flow meter (input),18/5/2026 2:00,8.14,L/h
-1,D.O flow meter (output),18/5/2026 2:00,7.09,L/h
-1,D.O flow meter (input),18/5/2026 3:00,9.38,L/h
-1,D.O flow meter (output),18/5/2026 3:00,9.14,L/h
-1,D.O flow meter (input),18/5/2026 4:00,5.64,L/h
-1,D.O flow meter (output),18/5/2026 4:00,4.19,L/h
-1,D.O flow meter (input),18/5/2026 5:00,4.32,L/h
-1,D.O flow meter (output),18/5/2026 5:00,5.45,L/h
-1,D.O flow meter (input),18/5/2026 6:00,8.39,L/h
-1,D.O flow meter (output),18/5/2026 6:00,8.56,L/h
-1,D.O flow meter (input),18/5/2026 7:00,8.93,L/h
-1,D.O flow meter (output),18/5/2026 7:00,8.94,L/h
-1,D.O flow meter (input),18/5/2026 8:00,4.95,L/h
-1,D.O flow meter (output),18/5/2026 8:00,5.49,L/h
-1,D.O flow meter (input),18/5/2026 9:00,5.97,L/h
-1,D.O flow meter (output),18/5/2026 9:00,4.15,L/h
-1,D.O flow meter (input),18/5/2026 10:00,9.09,L/h
-1,D.O flow meter (output),18/5/2026 10:00,6.55,L/h
-1,D.O flow meter (input),18/5/2026 11:00,9.73,L/h
-1,D.O flow meter (output),18/5/2026 11:00,8.66,L/h
-1,D.O flow meter (input),18/5/2026 12:00,5.46,L/h
-1,D.O flow meter (output),18/5/2026 12:00,5.35,L/h
-1,D.O flow meter (input),18/5/2026 13:00,5.46,L/h
-1,D.O flow meter (output),18/5/2026 13:00,4.12,L/h
-1,D.O flow meter (input),18/5/2026 14:00,7.63,L/h
-1,D.O flow meter (output),18/5/2026 14:00,9.79,L/h
-1,D.O flow meter (input),18/5/2026 15:00,9.53,L/h
-1,D.O flow meter (output),18/5/2026 15:00,6.96,L/h
-1,D.O flow meter (input),18/5/2026 16:00,5.96,L/h
-1,D.O flow meter (output),18/5/2026 16:00,5.93,L/h
-1,D.O flow meter (input),18/5/2026 17:00,4.88,L/h
-1,D.O flow meter (output),18/5/2026 17:00,4.68,L/h
-1,D.O flow meter (input),18/5/2026 18:00,8.52,L/h
-1,D.O flow meter (output),18/5/2026 18:00,9.15,L/h
-1,D.O flow meter (input),18/5/2026 19:00,6.22,L/h
-1,D.O flow meter (output),18/5/2026 19:00,9.38,L/h
-1,D.O flow meter (input),18/5/2026 20:00,5.7,L/h
-1,D.O flow meter (output),18/5/2026 20:00,4.37,L/h
-1,D.O flow meter (input),18/5/2026 21:00,5.41,L/h 
-1,D.O flow meter (output),18/5/2026 21:00,4.81,L/h
-1,D.O flow meter (input),18/5/2026 22:00,7.99,L/h
-1,D.O flow meter (output),18/5/2026 22:00,6.72,L/h
-1,D.O flow meter (input),18/5/2026 23:00,7.96,L/h
-1,D.O flow meter (output),18/5/2026 23:00,9.31,L/h
-2,D.O flow meter (input),17/5/2026 0:00,5.54,L/h
-2,D.O flow meter (output),17/5/2026 0:00,4.25,L/h
-2,D.O flow meter (input),17/5/2026 1:00,4.01,L/h
-2,D.O flow meter (output),17/5/2026 1:00,5.61,L/h
-2,D.O flow meter (input),17/5/2026 2:00,9.35,L/h
-2,D.O flow meter (output),17/5/2026 2:00,9.25,L/h
-2,D.O flow meter (input),17/5/2026 3:00,8.8,L/h
-2,D.O flow meter (output),17/5/2026 3:00,7.15,L/h
-2,D.O flow meter (input),17/5/2026 4:00,4.13,L/h
-2,D.O flow meter (output),17/5/2026 4:00,5.35,L/h
-2,D.O flow meter (input),17/5/2026 5:00,5.56,L/h
-2,D.O flow meter (output),17/5/2026 5:00,5.6,L/h
-2,D.O flow meter (input),17/5/2026 6:00,8.73,L/h
-2,D.O flow meter (output),17/5/2026 6:00,7.47,L/h
-2,D.O flow meter (input),17/5/2026 7:00,8.07,L/h
-2,D.O flow meter (output),17/5/2026 7:00,6.36,L/h
-2,D.O flow meter (input),17/5/2026 8:00,4.33,L/h
-2,D.O flow meter (output),17/5/2026 8:00,5.7,L/h
-2,D.O flow meter (input),17/5/2026 9:00,5.96,L/h
-2,D.O flow meter (output),17/5/2026 9:00,5.26,L/h
-2,D.O flow meter (input),17/5/2026 10:00,7.82,L/h
-2,D.O flow meter (output),17/5/2026 10:00,8.83,L/h
-2,D.O flow meter (input),17/5/2026 11:00,6.9,L/h
-2,D.O flow meter (output),17/5/2026 11:00,6.77,L/h
-2,D.O flow meter (input),17/5/2026 12:00,4.98,L/h
-2,D.O flow meter (output),17/5/2026 12:00,4.48,L/h
-2,D.O flow meter (input),17/5/2026 13:00,5.9,L/h
-2,D.O flow meter (output),17/5/2026 13:00,5.27,L/h
-2,D.O flow meter (input),17/5/2026 14:00,6.87,L/h
-2,D.O flow meter (output),17/5/2026 14:00,6.37,L/h
-2,D.O flow meter (input),17/5/2026 15:00,9.06,L/h
-2,D.O flow meter (output),17/5/2026 15:00,7.86,L/h
-2,D.O flow meter (input),17/5/2026 16:00,4.97,L/h
-2,D.O flow meter (output),17/5/2026 16:00,5.41,L/h
-2,D.O flow meter (input),17/5/2026 17:00,5.75,L/h
-2,D.O flow meter (output),17/5/2026 17:00,5.01,L/h
-2,D.O flow meter (input),17/5/2026 18:00,7.39,L/h
-2,D.O flow meter (output),17/5/2026 18:00,9.5,L/h
-2,D.O flow meter (input),17/5/2026 19:00,9.08,L/h
-2,D.O flow meter (output),17/5/2026 19:00,7.33,L/h
-2,D.O flow meter (input),17/5/2026 20:00,4.74,L/h
-2,D.O flow meter (output),17/5/2026 20:00,4.52,L/h
-2,D.O flow meter (input),17/5/2026 21:00,4.4,L/h
-2,D.O flow meter (output),17/5/2026 21:00,5.6,L/h
-2,D.O flow meter (input),17/5/2026 22:00,8.86,L/h
-2,D.O flow meter (output),17/5/2026 22:00,9.73,L/h
-2,D.O flow meter (input),17/5/2026 23:00,8.11,L/h
-2,D.O flow meter (output),17/5/2026 23:00,8.84,L/h
-2,D.O flow meter (input),18/5/2026 0:00,4.75,L/h
-2,D.O flow meter (output),18/5/2026 0:00,4.76,L/h
-2,D.O flow meter (input),18/5/2026 1:00,5.43,L/h 
-2,D.O flow meter (output),18/5/2026 1:00,4.38,L/h
-2,D.O flow meter (input),18/5/2026 2:00,6.92,L/h
-2,D.O flow meter (output),18/5/2026 2:00,7.92,L/h
-2,D.O flow meter (input),18/5/2026 3:00,6.11,L/h
-2,D.O flow meter (output),18/5/2026 3:00,7.64,L/h
-2,D.O flow meter (input),18/5/2026 4:00,4.43,L/h
-2,D.O flow meter (output),18/5/2026 4:00,5.36,L/h
-2,D.O flow meter (input),18/5/2026 5:00,5.46,L/h
-2,D.O flow meter (output),18/5/2026 5:00,4.88,L/h
-2,D.O flow meter (input),18/5/2026 6:00,9.14,L/h
-2,D.O flow meter (output),18/5/2026 6:00,7.06,L/h
-2,D.O flow meter (input),18/5/2026 7:00,9.06,L/h
-2,D.O flow meter (output),18/5/2026 7:00,9.05,L/h
-2,D.O flow meter (input),18/5/2026 8:00,4.68,L/h
-2,D.O flow meter (output),18/5/2026 8:00,5.68,L/h
-2,D.O flow meter (input),18/5/2026 9:00,5.6,L/h
-2,D.O flow meter (output),18/5/2026 9:00,4.12,L/h
-2,D.O flow meter (input),18/5/2026 10:00,9.47,L/h
-2,D.O flow meter (output),18/5/2026 10:00,6.4,L/h
-2,D.O flow meter (input),18/5/2026 11:00,6.81,L/h
-2,D.O flow meter (output),18/5/2026 11:00,8.26,L/h
-2,D.O flow meter (input),18/5/2026 12:00,5.85,L/h
-2,D.O flow meter (output),18/5/2026 12:00,4.83,L/h
-2,D.O flow meter (input),18/5/2026 13:00,5.63,L/h
-2,D.O flow meter (output),18/5/2026 13:00,5.24,L/h
-2,D.O flow meter (input),18/5/2026 14:00,7.76,L/h
-2,D.O flow meter (output),18/5/2026 14:00,6.42,L/h
-2,D.O flow meter (input),18/5/2026 15:00,6.55,L/h
-2,D.O flow meter (output),18/5/2026 15:00,7.87,L/h
-2,D.O flow meter (input),18/5/2026 16:00,4.26,L/h
-2,D.O flow meter (output),18/5/2026 16:00,5.77,L/h
-2,D.O flow meter (input),18/5/2026 17:00,4.4,L/h
-2,D.O flow meter (output),18/5/2026 17:00,4.04,L/h
-2,D.O flow meter (input),18/5/2026 18:00,9.16,L/h
-2,D.O flow meter (output),18/5/2026 18:00,8.89,L/h
-2,D.O flow meter (input),18/5/2026 19:00,8.54,L/h
-2,D.O flow meter (output),18/5/2026 19:00,6.67,L/h
-2,D.O flow meter (input),18/5/2026 20:00,4.73,L/h
-2,D.O flow meter (output),18/5/2026 20:00,5.57,L/h
-2,D.O flow meter (input),18/5/2026 21:00,5.39,L/h
-2,D.O flow meter (output),18/5/2026 21:00,5.44,L/h
-2,D.O flow meter (input),18/5/2026 22:00,5.26,L/h
-2,D.O flow meter (output),18/5/2026 22:00,4.67,L/h
-2,D.O flow meter (input),18/5/2026 23:00,5.72,L/h
-2,D.O flow meter (output),18/5/2026 23:00,4.54,L/h
-3,D.O flow meter (input),17/5/2026 0:00,6.28,L/h
-3,D.O flow meter (output),17/5/2026 0:00,9,L/h
-3,D.O flow meter (input),17/5/2026 1:00,8.59,L/h
-3,D.O flow meter (output),17/5/2026 1:00,6.84,L/h
-3,D.O flow meter (input),17/5/2026 2:00,4.83,L/h
-3,D.O flow meter (output),17/5/2026 2:00,4.4,L/h
-3,D.O flow meter (input),17/5/2026 3:00,5.13,L/h
-3,D.O flow meter (output),17/5/2026 3:00,5.31,L/h
-3,D.O flow meter (input),17/5/2026 4:00,8.33,L/h
-3,D.O flow meter (output),17/5/2026 4:00,8.52,L/h
-3,D.O flow meter (input),17/5/2026 5:00,8.15,L/h
-3,D.O flow meter (output),17/5/2026 5:00,7.93,L/h
-3,D.O flow meter (input),17/5/2026 6:00,5.29,L/h
-3,D.O flow meter (output),17/5/2026 6:00,5.08,L/h
-3,D.O flow meter (input),17/5/2026 7:00,5.03,L/h
-3,D.O flow meter (output),17/5/2026 7:00,4.44,L/h
-3,D.O flow meter (input),17/5/2026 8:00,6.3,L/h
-3,D.O flow meter (output),17/5/2026 8:00,9.36,L/h
-3,D.O flow meter (input),17/5/2026 9:00,9.44,L/h
-3,D.O flow meter (output),17/5/2026 9:00,9.01,L/h
-3,D.O flow meter (input),17/5/2026 10:00,4.49,L/h
-3,D.O flow meter (output),17/5/2026 10:00,5.8,L/h
-3,D.O flow meter (input),17/5/2026 11:00,5.36,L/h
-3,D.O flow meter (output),17/5/2026 11:00,4.34,L/h
-3,D.O flow meter (input),17/5/2026 12:00,9.79,L/h
-3,D.O flow meter (output),17/5/2026 12:00,6.03,L/h
-3,D.O flow meter (input),17/5/2026 13:00,9.05,L/h
-3,D.O flow meter (output),17/5/2026 13:00,9.79,L/h
-3,D.O flow meter (input),17/5/2026 14:00,4.84,L/h
-3,D.O flow meter (output),17/5/2026 14:00,5.93,L/h
-3,D.O flow meter (input),17/5/2026 15:00,4.5,L/h
-3,D.O flow meter (output),17/5/2026 15:00,4.11,L/h
-3,D.O flow meter (input),17/5/2026 16:00,6.85,L/h
-3,D.O flow meter (output),17/5/2026 16:00,9.07,L/h
-3,D.O flow meter (input),17/5/2026 17:00,7.55,L/h
-3,D.O flow meter (output),17/5/2026 17:00,7.17,L/h
-3,D.O flow meter (input),17/5/2026 18:00,4.39,L/h
-3,D.O flow meter (output),17/5/2026 18:00,5.33,L/h
-3,D.O flow meter (input),17/5/2026 19:00,5.87,L/h
-3,D.O flow meter (output),17/5/2026 19:00,5.52,L/h
-3,D.O flow meter (input),17/5/2026 20:00,7.13,L/h
-3,D.O flow meter (output),17/5/2026 20:00,7.97,L/h
-3,D.O flow meter (input),17/5/2026 21:00,9.09,L/h
-3,D.O flow meter (output),17/5/2026 21:00,6.07,L/h
-3,D.O flow meter (input),17/5/2026 22:00,4.49,L/h
-3,D.O flow meter (output),17/5/2026 22:00,4.26,L/h
-3,D.O flow meter (input),17/5/2026 23:00,4.69,L/h
-3,D.O flow meter (output),17/5/2026 23:00,5.2,L/h
-3,D.O flow meter (input),18/5/2026 0:00,9.19,L/h
-3,D.O flow meter (output),18/5/2026 0:00,9.11,L/h
-3,D.O flow meter (input),18/5/2026 1:00,9.71,L/h
-3,D.O flow meter (output),18/5/2026 1:00,8.18,L/h
-3,D.O flow meter (input),18/5/2026 2:00,4.17,L/h
-3,D.O flow meter (output),18/5/2026 2:00,4.39,L/h
-3,D.O flow meter (input),18/5/2026 3:00,4.04,L/h
-3,D.O flow meter (output),18/5/2026 3:00,5.37,L/h
-3,D.O flow meter (input),18/5/2026 4:00,7.93,L/h
-3,D.O flow meter (output),18/5/2026 4:00,8.07,L/h
-3,D.O flow meter (input),18/5/2026 5:00,6.3,L/h
-3,D.O flow meter (output),18/5/2026 5:00,6.78,L/h
-3,D.O flow meter (input),18/5/2026 6:00,4.7,L/h
-3,D.O flow meter (output),18/5/2026 6:00,4.59,L/h
-3,D.O flow meter (input),18/5/2026 7:00,4.9,L/h
-3,D.O flow meter (output),18/5/2026 7:00,4.67,L/h
-3,D.O flow meter (input),18/5/2026 8:00,7.66,L/h
-3,D.O flow meter (output),18/5/2026 8:00,9.75,L/h
-3,D.O flow meter (input),18/5/2026 9:00,8.05,L/h
-3,D.O flow meter (output),18/5/2026 9:00,7.79,L/h
-3,D.O flow meter (input),18/5/2026 10:00,5.87,L/h
-3,D.O flow meter (output),18/5/2026 10:00,4.04,L/h
-3,D.O flow meter (input),18/5/2026 11:00,5.12,L/h
-3,D.O flow meter (output),18/5/2026 11:00,4.6,L/h
-3,D.O flow meter (input),18/5/2026 12:00,6.72,L/h
-3,D.O flow meter (output),18/5/2026 12:00,6.53,L/h
-3,D.O flow meter (input),18/5/2026 13:00,7.76,L/h
-3,D.O flow meter (output),18/5/2026 13:00,6.43,L/h
-3,D.O flow meter (input),18/5/2026 14:00,4.32,L/h
-3,D.O flow meter (output),18/5/2026 14:00,4.03,L/h
-3,D.O flow meter (input),18/5/2026 15:00,4.8,L/h
-3,D.O flow meter (output),18/5/2026 15:00,4.56,L/h
-3,D.O flow meter (input),18/5/2026 16:00,9.07,L/h
-3,D.O flow meter (output),18/5/2026 16:00,6.42,L/h
-3,D.O flow meter (input),18/5/2026 17:00,6.19,L/h
-3,D.O flow meter (output),18/5/2026 17:00,8.81,L/h
-3,D.O flow meter (input),18/5/2026 18:00,4.75,L/h
-3,D.O flow meter (output),18/5/2026 18:00,5.75,L/h
-3,D.O flow meter (input),18/5/2026 19:00,4.38,L/h
-3,D.O flow meter (output),18/5/2026 19:00,4.6,L/h
-3,D.O flow meter (input),18/5/2026 20:00,7.81,L/h
-3,D.O flow meter (output),18/5/2026 20:00,7.33,L/h
-3,D.O flow meter (input),18/5/2026 21:00,6.5,L/h
-3,D.O flow meter (output),18/5/2026 21:00,8.92,L/h
-3,D.O flow meter (input),18/5/2026 22:00,4.65,L/h
-3,D.O flow meter (output),18/5/2026 22:00,5.28,L/h
-3,D.O flow meter (input),18/5/2026 23:00,4.55,L/h
-3,D.O flow meter (output),18/5/2026 23:00,4.74,L/h
-4,D.O flow meter (input),17/5/2026 0:00,7.69,L/h
-4,D.O flow meter (output),17/5/2026 0:00,7.9,L/h
-4,D.O flow meter (input),17/5/2026 1:00,6.07,L/h
-4,D.O flow meter (output),17/5/2026 1:00,6.45,L/h
-4,D.O flow meter (input),17/5/2026 2:00,4.7,L/h
-4,D.O flow meter (output),17/5/2026 2:00,4.26,L/h
-4,D.O flow meter (input),17/5/2026 3:00,5.36,L/h
-4,D.O flow meter (output),17/5/2026 3:00,4.82,L/h
-4,D.O flow meter (input),17/5/2026 4:00,9.35,L/h
-4,D.O flow meter (output),17/5/2026 4:00,6.83,L/h
-4,D.O flow meter (input),17/5/2026 5:00,9.77,L/h
-4,D.O flow meter (output),17/5/2026 5:00,9.81,L/h
-4,D.O flow meter (input),17/5/2026 6:00,5.49,L/h
-4,D.O flow meter (output),17/5/2026 6:00,4.65,L/h
-4,D.O flow meter (input),17/5/2026 7:00,4.97,L/h
-4,D.O flow meter (output),17/5/2026 7:00,4.34,L/h
-4,D.O flow meter (input),17/5/2026 8:00,8.29,L/h
-4,D.O flow meter (output),17/5/2026 8:00,9.08,L/h
-4,D.O flow meter (input),17/5/2026 9:00,7.84,L/h
-4,D.O flow meter (output),17/5/2026 9:00,8.51,L/h
-4,D.O flow meter (input),17/5/2026 10:00,5.75,L/h
-4,D.O flow meter (output),17/5/2026 10:00,4.21,L/h
-4,D.O flow meter (input),17/5/2026 11:00,4.92,L/h
-4,D.O flow meter (output),17/5/2026 11:00,4.06,L/h
-4,D.O flow meter (input),17/5/2026 12:00,6.97,L/h
-4,D.O flow meter (output),17/5/2026 12:00,8.86,L/h
-4,D.O flow meter (input),17/5/2026 13:00,9.62,L/h
-4,D.O flow meter (output),17/5/2026 13:00,8.76,L/h
-4,D.O flow meter (input),17/5/2026 14:00,5.76,L/h
-4,D.O flow meter (output),17/5/2026 14:00,5.99,L/h
-4,D.O flow meter (input),17/5/2026 15:00,4.01,L/h
-4,D.O flow meter (output),17/5/2026 15:00,4.69,L/h
-4,D.O flow meter (input),17/5/2026 16:00,8.87,L/h
-4,D.O flow meter (output),17/5/2026 16:00,9.19,L/h
-4,D.O flow meter (input),17/5/2026 17:00,6.91,L/h
-4,D.O flow meter (output),17/5/2026 17:00,6.01,L/h
-4,D.O flow meter (input),17/5/2026 18:00,5.7,L/h
-4,D.O flow meter (output),17/5/2026 18:00,4.23,L/h
-4,D.O flow meter (input),17/5/2026 19:00,4.56,L/h
-4,D.O flow meter (output),17/5/2026 19:00,4.9,L/h
-4,D.O flow meter (input),17/5/2026 20:00,7.57,L/h
-4,D.O flow meter (output),17/5/2026 20:00,6.44,L/h
-4,D.O flow meter (input),17/5/2026 21:00,9.94,L/h
-4,D.O flow meter (output),17/5/2026 21:00,8.48,L/h
-4,D.O flow meter (input),17/5/2026 22:00,5.07,L/h
-4,D.O flow meter (output),17/5/2026 22:00,4.63,L/h
-4,D.O flow meter (input),17/5/2026 23:00,5.71,L/h
-4,D.O flow meter (output),17/5/2026 23:00,4.2,L/h
-4,D.O flow meter (input),18/5/2026 0:00,7.06,L/h
-4,D.O flow meter (output),18/5/2026 0:00,9.79,L/h
-4,D.O flow meter (input),18/5/2026 1:00,6.26,L/h
-4,D.O flow meter (output),18/5/2026 1:00,8.42,L/h
-4,D.O flow meter (input),18/5/2026 2:00,5.48,L/h
-4,D.O flow meter (output),18/5/2026 2:00,4.41,L/h
-4,D.O flow meter (input),18/5/2026 3:00,4.79,L/h
-4,D.O flow meter (output),18/5/2026 3:00,4.05,L/h
-4,D.O flow meter (input),18/5/2026 4:00,7.78,L/h
-4,D.O flow meter (output),18/5/2026 4:00,6.81,L/h
-4,D.O flow meter (input),18/5/2026 5:00,9.27,L/h
-4,D.O flow meter (output),18/5/2026 5:00,6.58,L/h
-4,D.O flow meter (input),18/5/2026 6:00,4.58,L/h
-4,D.O flow meter (output),18/5/2026 6:00,5.93,L/h
-4,D.O flow meter (input),18/5/2026 7:00,4.11,L/h
-4,D.O flow meter (output),18/5/2026 7:00,4.68,L/h
-4,D.O flow meter (input),18/5/2026 8:00,7,L/h
-4,D.O flow meter (output),18/5/2026 8:00,9.95,L/h
-4,D.O flow meter (input),18/5/2026 9:00,9.76,L/h
-4,D.O flow meter (output),18/5/2026 9:00,9.85,L/h
-4,D.O flow meter (input),18/5/2026 10:00,5.45,L/h
-4,D.O flow meter (output),18/5/2026 10:00,4.82,L/h
-4,D.O flow meter (input),18/5/2026 11:00,5.54,L/h
-4,D.O flow meter (output),18/5/2026 11:00,4.87,L/h
-4,D.O flow meter (input),18/5/2026 12:00,8.85,L/h
-4,D.O flow meter (output),18/5/2026 12:00,6.77,L/h
-4,D.O flow meter (input),18/5/2026 13:00,6.82,L/h
-4,D.O flow meter (output),18/5/2026 13:00,9.65,L/h
-4,D.O flow meter (input),18/5/2026 14:00,5.42,L/h
-4,D.O flow meter (output),18/5/2026 14:00,5.87,L/h
-4,D.O flow meter (input),18/5/2026 15:00,5.6,L/h
-4,D.O flow meter (output),18/5/2026 15:00,5.4,L/h
-4,D.O flow meter (input),18/5/2026 16:00,6.78,L/h
-4,D.O flow meter (output),18/5/2026 16:00,6.17,L/h
-4,D.O flow meter (input),18/5/2026 17:00,8.16,L/h
-4,D.O flow meter (output),18/5/2026 17:00,6.31,L/h
-4,D.O flow meter (input),18/5/2026 18:00,5.04,L/h
-4,D.O flow meter (output),18/5/2026 18:00,4.18,L/h
-4,D.O flow meter (input),18/5/2026 19:00,4.28,L/h
-4,D.O flow meter (output),18/5/2026 19:00,5.93,L/h
-4,D.O flow meter (input),18/5/2026 20:00,6.58,L/h
-4,D.O flow meter (output),18/5/2026 20:00,4.68,L/h
-4,D.O flow meter (input),18/5/2026 21:00,9.85,L/h
-4,D.O flow meter (output),18/5/2026 21:00,4.87,L/h
-4,D.O flow meter (input),18/5/2026 22:00,9.65,L/h
-4,D.O flow meter (output),18/5/2026 22:00,5.4,L/h
-4,D.O flow meter (input),18/5/2026 23:00,6.31,L/h
-4,D.O flow meter (output),18/5/2026 23:00,5.93,L/h
-1,T/C Outlet Temp,17/5/2026 0:00,291,oC
-1,Cyl 1 Exhaust Temp,17/5/2026 0:00,445,oC
-1,Cyl 2 Exhaust Temp,17/5/2026 0:00,135,oC
-1,Cyl 3 Exhaust Temp,17/5/2026 0:00,199,oC
-1,Cyl 4 Exhaust Temp,17/5/2026 0:00,499,oC
-1,Cyl 5 Exhaust Temp,17/5/2026 0:00,475,oC
-1,Cyl 6 Exhaust Temp,17/5/2026 0:00,57,oC
-1,T/C Inlet Temp,17/5/2026 0:00,179,oC
-2,T/C Outlet Temp,17/5/2026 0:00,70,oC
-2,Cyl 1 Exhaust Temp,17/5/2026 0:00,315,oC
-2,Cyl 2 Exhaust Temp,17/5/2026 0:00,313,oC
-2,Cyl 3 Exhaust Temp,17/5/2026 0:00,216,oC
-2,Cyl 4 Exhaust Temp,17/5/2026 0:00,303,oC
-2,Cyl 5 Exhaust Temp,17/5/2026 0:00,293,oC
-2,Cyl 6 Exhaust Temp,17/5/2026 0:00,493,oC
-2,T/C Inlet Temp,17/5/2026 0:00,107,oC
-3,T/C Outlet Temp,17/5/2026 0:00,335,oC
-3,Cyl 1 Exhaust Temp,17/5/2026 0:00,399,oC
-3,Cyl 2 Exhaust Temp,17/5/2026 0:00,222,oC
-3,Cyl 3 Exhaust Temp,17/5/2026 0:00,498,oC
-3,Cyl 4 Exhaust Temp,17/5/2026 0:00,43,oC
-3,Cyl 5 Exhaust Temp,17/5/2026 0:00,225,oC
-3,Cyl 6 Exhaust Temp,17/5/2026 0:00,383,oC
-3,T/C Inlet Temp,17/5/2026 0:00,137,oC
-4,T/C Outlet Temp,17/5/2026 0:00,69,oC
-4,Cyl 1 Exhaust Temp,17/5/2026 0:00,491,oC
-4,Cyl 2 Exhaust Temp,17/5/2026 0:00,319,oC
-4,Cyl 3 Exhaust Temp,17/5/2026 0:00,404,oC
-4,Cyl 4 Exhaust Temp,17/5/2026 0:00,148,oC
-4,Cyl 5 Exhaust Temp,17/5/2026 0:00,194,oC
-4,Cyl 6 Exhaust Temp,17/5/2026 0:00,192,oC
-4,T/C Inlet Temp,17/5/2026 0:00,427,oC
-1,T/C Outlet Temp,17/5/2026 1:00,127,oC
-1,Cyl 1 Exhaust Temp,17/5/2026 1:00,290,oC
-1,Cyl 2 Exhaust Temp,17/5/2026 1:00,201,oC
-1,Cyl 3 Exhaust Temp,17/5/2026 1:00,440,oC
-1,Cyl 4 Exhaust Temp,17/5/2026 1:00,477,oC
-1,Cyl 5 Exhaust Temp,17/5/2026 1:00,84,oC
-1,Cyl 6 Exhaust Temp,17/5/2026 1:00,344,oC
-1,T/C Inlet Temp,17/5/2026 1:00,91,oC
-2,T/C Outlet Temp,17/5/2026 1:00,235,oC
-2,Cyl 1 Exhaust Temp,17/5/2026 1:00,375,oC
-2,Cyl 2 Exhaust Temp,17/5/2026 1:00,56,oC
-2,Cyl 3 Exhaust Temp,17/5/2026 1:00,161,oC
-2,Cyl 4 Exhaust Temp,17/5/2026 1:00,173,oC
-2,Cyl 5 Exhaust Temp,17/5/2026 1:00,52,oC
-2,Cyl 6 Exhaust Temp,17/5/2026 1:00,369,oC
-2,T/C Inlet Temp,17/5/2026 1:00,378,oC
-3,T/C Outlet Temp,17/5/2026 1:00,150,oC
-3,Cyl 1 Exhaust Temp,17/5/2026 1:00,145,oC
-3,Cyl 2 Exhaust Temp,17/5/2026 1:00,464,oC
-3,Cyl 3 Exhaust Temp,17/5/2026 1:00,93,oC
-3,Cyl 4 Exhaust Temp,17/5/2026 1:00,467,oC
-3,Cyl 5 Exhaust Temp,17/5/2026 1:00,59,oC
-3,Cyl 6 Exhaust Temp,17/5/2026 1:00,387,oC
-3,T/C Inlet Temp,17/5/2026 1:00,178,oC
-4,T/C Outlet Temp,17/5/2026 1:00,331,oC
-4,Cyl 1 Exhaust Temp,17/5/2026 1:00,281,oC
-4,Cyl 2 Exhaust Temp,17/5/2026 1:00,98,oC
-4,Cyl 3 Exhaust Temp,17/5/2026 1:00,346,oC
-4,Cyl 4 Exhaust Temp,17/5/2026 1:00,84,oC
-4,Cyl 5 Exhaust Temp,17/5/2026 1:00,455,oC
-4,Cyl 6 Exhaust Temp,17/5/2026 1:00,194,oC
-4,T/C Inlet Temp,17/5/2026 1:00,94,oC
-1,T/C Outlet Temp,17/5/2026 2:00,205,oC
-1,Cyl 1 Exhaust Temp,17/5/2026 2:00,443,oC
-1,Cyl 2 Exhaust Temp,17/5/2026 2:00,392,oC
-1,Cyl 3 Exhaust Temp,17/5/2026 2:00,297,oC
-1,Cyl 4 Exhaust Temp,17/5/2026 2:00,198,oC
-1,Cyl 5 Exhaust Temp,17/5/2026 2:00,111,oC
-1,Cyl 6 Exhaust Temp,17/5/2026 2:00,99,oC
-1,T/C Inlet Temp,17/5/2026 2:00,333,oC
-2,T/C Outlet Temp,17/5/2026 2:00,373,oC
-2,Cyl 1 Exhaust Temp,17/5/2026 2:00,168,oC
-2,Cyl 2 Exhaust Temp,17/5/2026 2:00,397,oC
-2,Cyl 3 Exhaust Temp,17/5/2026 2:00,36,oC
-2,Cyl 4 Exhaust Temp,17/5/2026 2:00,385,oC
-2,Cyl 5 Exhaust Temp,17/5/2026 2:00,101,oC
-2,Cyl 6 Exhaust Temp,17/5/2026 2:00,334,oC
-2,T/C Inlet Temp,17/5/2026 2:00,267,oC
-3,T/C Outlet Temp,17/5/2026 2:00,207,oC
-3,Cyl 1 Exhaust Temp,17/5/2026 2:00,440,oC
-3,Cyl 2 Exhaust Temp,17/5/2026 2:00,332,oC
-3,Cyl 3 Exhaust Temp,17/5/2026 2:00,318,oC
-3,Cyl 4 Exhaust Temp,17/5/2026 2:00,178,oC
-3,Cyl 5 Exhaust Temp,17/5/2026 2:00,326,oC
-3,Cyl 6 Exhaust Temp,17/5/2026 2:00,227,oC
-3,T/C Inlet Temp,17/5/2026 2:00,495,oC
-4,T/C Outlet Temp,17/5/2026 2:00,456,oC
-4,Cyl 1 Exhaust Temp,17/5/2026 2:00,69,oC
-4,Cyl 2 Exhaust Temp,17/5/2026 2:00,136,oC
-4,Cyl 3 Exhaust Temp,17/5/2026 2:00,164,oC
-4,Cyl 4 Exhaust Temp,17/5/2026 2:00,118,oC
-4,Cyl 5 Exhaust Temp,17/5/2026 2:00,480,oC
-4,Cyl 6 Exhaust Temp,17/5/2026 2:00,41,oC
-4,T/C Inlet Temp,17/5/2026 2:00,307,oC
-1,T/C Outlet Temp,17/5/2026 3:00,245,oC
-1,Cyl 1 Exhaust Temp,17/5/2026 3:00,344,oC
-1,Cyl 2 Exhaust Temp,17/5/2026 3:00,332,oC
-1,Cyl 3 Exhaust Temp,17/5/2026 3:00,257,oC
-1,Cyl 4 Exhaust Temp,17/5/2026 3:00,91,oC
-1,Cyl 5 Exhaust Temp,17/5/2026 3:00,333,oC
-1,Cyl 6 Exhaust Temp,17/5/2026 3:00,129,oC
-1,T/C Inlet Temp,17/5/2026 3:00,192,oC
-2,T/C Outlet Temp,17/5/2026 3:00,328,oC
-2,Cyl 1 Exhaust Temp,17/5/2026 3:00,456,oC
-2,Cyl 2 Exhaust Temp,17/5/2026 3:00,266,oC
-2,Cyl 3 Exhaust Temp,17/5/2026 3:00,223,oC
-2,Cyl 4 Exhaust Temp,17/5/2026 3:00,280,oC
-2,Cyl 5 Exhaust Temp,17/5/2026 3:00,239,oC
-2,Cyl 6 Exhaust Temp,17/5/2026 3:00,85,oC
-2,T/C Inlet Temp,17/5/2026 3:00,314,oC
-3,T/C Outlet Temp,17/5/2026 3:00,105,oC
-3,Cyl 1 Exhaust Temp,17/5/2026 3:00,441,oC
-3,Cyl 2 Exhaust Temp,17/5/2026 3:00,261,oC
-3,Cyl 3 Exhaust Temp,17/5/2026 3:00,436,oC
-3,Cyl 4 Exhaust Temp,17/5/2026 3:00,214,oC
-3,Cyl 5 Exhaust Temp,17/5/2026 3:00,199,oC
-3,Cyl 6 Exhaust Temp,17/5/2026 3:00,274,oC
-3,T/C Inlet Temp,17/5/2026 3:00,85,oC
-4,T/C Outlet Temp,17/5/2026 3:00,450,oC
-4,Cyl 1 Exhaust Temp,17/5/2026 3:00,405,oC
-4,Cyl 2 Exhaust Temp,17/5/2026 3:00,114,oC
-4,Cyl 3 Exhaust Temp,17/5/2026 3:00,175,oC
-4,Cyl 4 Exhaust Temp,17/5/2026 3:00,298,oC
-4,Cyl 5 Exhaust Temp,17/5/2026 3:00,372,oC
-4,Cyl 6 Exhaust Temp,17/5/2026 3:00,225,oC
-4,T/C Inlet Temp,17/5/2026 3:00,128,oC
-1,T/C Outlet Temp,17/5/2026 4:00,124,oC
-1,Cyl 1 Exhaust Temp,17/5/2026 4:00,173,oC
-1,Cyl 2 Exhaust Temp,17/5/2026 4:00,198,oC
-1,Cyl 3 Exhaust Temp,17/5/2026 4:00,112,oC
-1,Cyl 4 Exhaust Temp,17/5/2026 4:00,271,oC
-1,Cyl 5 Exhaust Temp,17/5/2026 4:00,217,oC
-1,Cyl 6 Exhaust Temp,17/5/2026 4:00,71,oC
-1,T/C Inlet Temp,17/5/2026 4:00,280,oC
-2,T/C Outlet Temp,17/5/2026 4:00,175,oC
-2,Cyl 1 Exhaust Temp,17/5/2026 4:00,453,oC
-2,Cyl 2 Exhaust Temp,17/5/2026 4:00,117,oC
-2,Cyl 3 Exhaust Temp,17/5/2026 4:00,396,oC
-2,Cyl 4 Exhaust Temp,17/5/2026 4:00,72,oC
-2,Cyl 5 Exhaust Temp,17/5/2026 4:00,120,oC
-2,Cyl 6 Exhaust Temp,17/5/2026 4:00,36,oC
-2,T/C Inlet Temp,17/5/2026 4:00,181,oC
-3,T/C Outlet Temp,17/5/2026 4:00,98,oC
-3,Cyl 1 Exhaust Temp,17/5/2026 4:00,415,oC
-3,Cyl 2 Exhaust Temp,17/5/2026 4:00,390,oC
-3,Cyl 3 Exhaust Temp,17/5/2026 4:00,332,oC
-3,Cyl 4 Exhaust Temp,17/5/2026 4:00,226,oC
-3,Cyl 5 Exhaust Temp,17/5/2026 4:00,51,oC
-3,Cyl 6 Exhaust Temp,17/5/2026 4:00,130,oC
-3,T/C Inlet Temp,17/5/2026 4:00,275,oC
-4,T/C Outlet Temp,17/5/2026 4:00,399,oC
-4,Cyl 1 Exhaust Temp,17/5/2026 4:00,283,oC
-4,Cyl 2 Exhaust Temp,17/5/2026 4:00,69,oC
-4,Cyl 3 Exhaust Temp,17/5/2026 4:00,157,oC
-4,Cyl 4 Exhaust Temp,17/5/2026 4:00,109,oC
-4,Cyl 5 Exhaust Temp,17/5/2026 4:00,465,oC
-4,Cyl 6 Exhaust Temp,17/5/2026 4:00,48,oC
-4,T/C Inlet Temp,17/5/2026 4:00,123,oC
-1,T/C Outlet Temp,17/5/2026 5:00,285,oC
-1,Cyl 1 Exhaust Temp,17/5/2026 5:00,186,oC
-1,Cyl 2 Exhaust Temp,17/5/2026 5:00,418,oC
-1,Cyl 3 Exhaust Temp,17/5/2026 5:00,215,oC
-1,Cyl 4 Exhaust Temp,17/5/2026 5:00,101,oC
-1,Cyl 5 Exhaust Temp,17/5/2026 5:00,446,oC
-1,Cyl 6 Exhaust Temp,17/5/2026 5:00,97,oC
-1,T/C Inlet Temp,17/5/2026 5:00,396,oC
-2,T/C Outlet Temp,17/5/2026 5:00,66,oC
-2,Cyl 1 Exhaust Temp,17/5/2026 5:00,418,oC
-2,Cyl 2 Exhaust Temp,17/5/2026 5:00,492,oC
-2,Cyl 3 Exhaust Temp,17/5/2026 5:00,357,oC
-2,Cyl 4 Exhaust Temp,17/5/2026 5:00,128,oC
-2,Cyl 5 Exhaust Temp,17/5/2026 5:00,190,oC
-2,Cyl 6 Exhaust Temp,17/5/2026 5:00,107,oC
-2,T/C Inlet Temp,17/5/2026 5:00,329,oC
-3,T/C Outlet Temp,17/5/2026 5:00,99,oC
-3,Cyl 1 Exhaust Temp,17/5/2026 5:00,340,oC
-3,Cyl 2 Exhaust Temp,17/5/2026 5:00,490,oC
-3,Cyl 3 Exhaust Temp,17/5/2026 5:00,94,oC
-3,Cyl 4 Exhaust Temp,17/5/2026 5:00,447,oC
-3,Cyl 5 Exhaust Temp,17/5/2026 5:00,386,oC
-3,Cyl 6 Exhaust Temp,17/5/2026 5:00,450,oC
-3,T/C Inlet Temp,17/5/2026 5:00,187,oC
-4,T/C Outlet Temp,17/5/2026 5:00,163,oC
-4,Cyl 1 Exhaust Temp,17/5/2026 5:00,420,oC
-4,Cyl 2 Exhaust Temp,17/5/2026 5:00,381,oC
-4,Cyl 3 Exhaust Temp,17/5/2026 5:00,140,oC
-4,Cyl 4 Exhaust Temp,17/5/2026 5:00,332,oC
-4,Cyl 5 Exhaust Temp,17/5/2026 5:00,394,oC
-4,Cyl 6 Exhaust Temp,17/5/2026 5:00,234,oC
-4,T/C Inlet Temp,17/5/2026 5:00,139,oC
-1,T/C Outlet Temp,17/5/2026 6:00,37,oC
-1,Cyl 1 Exhaust Temp,17/5/2026 6:00,85,oC
-1,Cyl 2 Exhaust Temp,17/5/2026 6:00,420,oC
-1,Cyl 3 Exhaust Temp,17/5/2026 6:00,336,oC
-1,Cyl 4 Exhaust Temp,17/5/2026 6:00,256,oC
-1,Cyl 5 Exhaust Temp,17/5/2026 6:00,165,oC
-1,Cyl 6 Exhaust Temp,17/5/2026 6:00,70,oC
-1,T/C Inlet Temp,17/5/2026 6:00,41,oC
-2,T/C Outlet Temp,17/5/2026 6:00,147,oC
-2,Cyl 1 Exhaust Temp,17/5/2026 6:00,388,oC
-2,Cyl 2 Exhaust Temp,17/5/2026 6:00,53,oC
-2,Cyl 3 Exhaust Temp,17/5/2026 6:00,61,oC
-2,Cyl 4 Exhaust Temp,17/5/2026 6:00,230,oC
-2,Cyl 5 Exhaust Temp,17/5/2026 6:00,456,oC
-2,Cyl 6 Exhaust Temp,17/5/2026 6:00,381,oC
-2,T/C Inlet Temp,17/5/2026 6:00,153,oC
-3,T/C Outlet Temp,17/5/2026 6:00,277,oC
-3,Cyl 1 Exhaust Temp,17/5/2026 6:00,386,oC
-3,Cyl 2 Exhaust Temp,17/5/2026 6:00,492,oC
-3,Cyl 3 Exhaust Temp,17/5/2026 6:00,133,oC
-3,Cyl 4 Exhaust Temp,17/5/2026 6:00,200,oC
-3,Cyl 5 Exhaust Temp,17/5/2026 6:00,171,oC
-3,Cyl 6 Exhaust Temp,17/5/2026 6:00,328,oC
-3,T/C Inlet Temp,17/5/2026 6:00,253,oC
-4,T/C Outlet Temp,17/5/2026 6:00,181,oC
-4,Cyl 1 Exhaust Temp,17/5/2026 6:00,379,oC
-4,Cyl 2 Exhaust Temp,17/5/2026 6:00,191,oC
-4,Cyl 3 Exhaust Temp,17/5/2026 6:00,321,oC
-4,Cyl 4 Exhaust Temp,17/5/2026 6:00,432,oC
-4,Cyl 5 Exhaust Temp,17/5/2026 6:00,416,oC
-4,Cyl 6 Exhaust Temp,17/5/2026 6:00,174,oC
-4,T/C Inlet Temp,17/5/2026 6:00,315,oC
-1,T/C Outlet Temp,17/5/2026 7:00,276,oC
-1,Cyl 1 Exhaust Temp,17/5/2026 7:00,436,oC
-1,Cyl 2 Exhaust Temp,17/5/2026 7:00,354,oC
-1,Cyl 3 Exhaust Temp,17/5/2026 7:00,47,oC
-1,Cyl 4 Exhaust Temp,17/5/2026 7:00,194,oC
-1,Cyl 5 Exhaust Temp,17/5/2026 7:00,196,oC
-1,Cyl 6 Exhaust Temp,17/5/2026 7:00,361,oC
-1,T/C Inlet Temp,17/5/2026 7:00,101,oC
-2,T/C Outlet Temp,17/5/2026 7:00,490,oC
-2,Cyl 1 Exhaust Temp,17/5/2026 7:00,140,oC
-2,Cyl 2 Exhaust Temp,17/5/2026 7:00,44,oC
-2,Cyl 3 Exhaust Temp,17/5/2026 7:00,381,oC
-2,Cyl 4 Exhaust Temp,17/5/2026 7:00,136,oC
-2,Cyl 5 Exhaust Temp,17/5/2026 7:00,460,oC
-2,Cyl 6 Exhaust Temp,17/5/2026 7:00,214,oC
-2,T/C Inlet Temp,17/5/2026 7:00,239,oC
-3,T/C Outlet Temp,17/5/2026 7:00,181,oC
-3,Cyl 1 Exhaust Temp,17/5/2026 7:00,356,oC
-3,Cyl 2 Exhaust Temp,17/5/2026 7:00,111,oC
-3,Cyl 3 Exhaust Temp,17/5/2026 7:00,262,oC
-3,Cyl 4 Exhaust Temp,17/5/2026 7:00,95,oC
-3,Cyl 5 Exhaust Temp,17/5/2026 7:00,240,oC
-3,Cyl 6 Exhaust Temp,17/5/2026 7:00,53,oC
-3,T/C Inlet Temp,17/5/2026 7:00,140,oC
-4,T/C Outlet Temp,17/5/2026 7:00,289,oC
-4,Cyl 1 Exhaust Temp,17/5/2026 7:00,325,oC
-4,Cyl 2 Exhaust Temp,17/5/2026 7:00,84,oC
-4,Cyl 3 Exhaust Temp,17/5/2026 7:00,145,oC
-4,Cyl 4 Exhaust Temp,17/5/2026 7:00,141,oC
-4,Cyl 5 Exhaust Temp,17/5/2026 7:00,332,oC
-4,Cyl 6 Exhaust Temp,17/5/2026 7:00,211,oC
-4,T/C Inlet Temp,17/5/2026 7:00,230,oC
-1,T/C Outlet Temp,17/5/2026 8:00,208,oC
-1,Cyl 1 Exhaust Temp,17/5/2026 8:00,429,oC
-1,Cyl 2 Exhaust Temp,17/5/2026 8:00,434,oC
-1,Cyl 3 Exhaust Temp,17/5/2026 8:00,414,oC
-1,Cyl 4 Exhaust Temp,17/5/2026 8:00,233,oC
-1,Cyl 5 Exhaust Temp,17/5/2026 8:00,38,oC
-1,Cyl 6 Exhaust Temp,17/5/2026 8:00,255,oC
-1,T/C Inlet Temp,17/5/2026 8:00,56,oC
-2,T/C Outlet Temp,17/5/2026 8:00,332,oC
-2,Cyl 1 Exhaust Temp,17/5/2026 8:00,212,oC
-2,Cyl 2 Exhaust Temp,17/5/2026 8:00,225,oC
-2,Cyl 3 Exhaust Temp,17/5/2026 8:00,294,oC
-2,Cyl 4 Exhaust Temp,17/5/2026 8:00,39,oC
-2,Cyl 5 Exhaust Temp,17/5/2026 8:00,185,oC
-2,Cyl 6 Exhaust Temp,17/5/2026 8:00,438,oC
-2,T/C Inlet Temp,17/5/2026 8:00,394,oC
-3,T/C Outlet Temp,17/5/2026 8:00,459,oC
-3,Cyl 1 Exhaust Temp,17/5/2026 8:00,264,oC
-3,Cyl 2 Exhaust Temp,17/5/2026 8:00,142,oC
-3,Cyl 3 Exhaust Temp,17/5/2026 8:00,368,oC
-3,Cyl 4 Exhaust Temp,17/5/2026 8:00,453,oC
-3,Cyl 5 Exhaust Temp,17/5/2026 8:00,397,oC
-3,Cyl 6 Exhaust Temp,17/5/2026 8:00,106,oC
-3,T/C Inlet Temp,17/5/2026 8:00,306,oC
-4,T/C Outlet Temp,17/5/2026 8:00,59,oC
-4,Cyl 1 Exhaust Temp,17/5/2026 8:00,266,oC
-4,Cyl 2 Exhaust Temp,17/5/2026 8:00,242,oC
-4,Cyl 3 Exhaust Temp,17/5/2026 8:00,172,oC
-4,Cyl 4 Exhaust Temp,17/5/2026 8:00,457,oC
-4,Cyl 5 Exhaust Temp,17/5/2026 8:00,302,oC
-4,Cyl 6 Exhaust Temp,17/5/2026 8:00,161,oC
-4,T/C Inlet Temp,17/5/2026 8:00,41,oC
-1,T/C Outlet Temp,17/5/2026 9:00,387,oC
-1,Cyl 1 Exhaust Temp,17/5/2026 9:00,342,oC
-1,Cyl 2 Exhaust Temp,17/5/2026 9:00,472,oC
-1,Cyl 3 Exhaust Temp,17/5/2026 9:00,166,oC
-1,Cyl 4 Exhaust Temp,17/5/2026 9:00,130,oC
-1,Cyl 5 Exhaust Temp,17/5/2026 9:00,178,oC
-1,Cyl 6 Exhaust Temp,17/5/2026 9:00,414,oC
-1,T/C Inlet Temp,17/5/2026 9:00,186,oC
-2,T/C Outlet Temp,17/5/2026 9:00,280,oC
-2,Cyl 1 Exhaust Temp,17/5/2026 9:00,203,oC
-2,Cyl 2 Exhaust Temp,17/5/2026 9:00,213,oC
-2,Cyl 3 Exhaust Temp,17/5/2026 9:00,324,oC
-2,Cyl 4 Exhaust Temp,17/5/2026 9:00,252,oC
-2,Cyl 5 Exhaust Temp,17/5/2026 9:00,205,oC
-2,Cyl 6 Exhaust Temp,17/5/2026 9:00,344,oC
-2,T/C Inlet Temp,17/5/2026 9:00,75,oC
-3,T/C Outlet Temp,17/5/2026 9:00,39,oC
-3,Cyl 1 Exhaust Temp,17/5/2026 9:00,433,oC
-3,Cyl 2 Exhaust Temp,17/5/2026 9:00,286,oC
-3,Cyl 3 Exhaust Temp,17/5/2026 9:00,290,oC
-3,Cyl 4 Exhaust Temp,17/5/2026 9:00,113,oC
-3,Cyl 5 Exhaust Temp,17/5/2026 9:00,322,oC
-3,Cyl 6 Exhaust Temp,17/5/2026 9:00,292,oC
-3,T/C Inlet Temp,17/5/2026 9:00,301,oC
-4,T/C Outlet Temp,17/5/2026 9:00,263,oC
-4,Cyl 1 Exhaust Temp,17/5/2026 9:00,365,oC
-4,Cyl 2 Exhaust Temp,17/5/2026 9:00,52,oC
-4,Cyl 3 Exhaust Temp,17/5/2026 9:00,222,oC
-4,Cyl 4 Exhaust Temp,17/5/2026 9:00,118,oC
-4,Cyl 5 Exhaust Temp,17/5/2026 9:00,75,oC
-4,Cyl 6 Exhaust Temp,17/5/2026 9:00,371,oC
-4,T/C Inlet Temp,17/5/2026 9:00,372,oC
-1,T/C Outlet Temp,17/5/2026 10:00,62,oC
-1,Cyl 1 Exhaust Temp,17/5/2026 10:00,243,oC
-1,Cyl 2 Exhaust Temp,17/5/2026 10:00,149,oC
-1,Cyl 3 Exhaust Temp,17/5/2026 10:00,56,oC
-1,Cyl 4 Exhaust Temp,17/5/2026 10:00,319,oC
-1,Cyl 5 Exhaust Temp,17/5/2026 10:00,250,oC
-1,Cyl 6 Exhaust Temp,17/5/2026 10:00,221,oC
-1,T/C Inlet Temp,17/5/2026 10:00,278,oC
-2,T/C Outlet Temp,17/5/2026 10:00,139,oC
-2,Cyl 1 Exhaust Temp,17/5/2026 10:00,307,oC
-2,Cyl 2 Exhaust Temp,17/5/2026 10:00,344,oC
-2,Cyl 3 Exhaust Temp,17/5/2026 10:00,338,oC
-2,Cyl 4 Exhaust Temp,17/5/2026 10:00,261,oC
-2,Cyl 5 Exhaust Temp,17/5/2026 10:00,482,oC
-2,Cyl 6 Exhaust Temp,17/5/2026 10:00,215,oC
-2,T/C Inlet Temp,17/5/2026 10:00,498,oC
-3,T/C Outlet Temp,17/5/2026 10:00,68,oC
-3,Cyl 1 Exhaust Temp,17/5/2026 10:00,113,oC
-3,Cyl 2 Exhaust Temp,17/5/2026 10:00,187,oC
-3,Cyl 3 Exhaust Temp,17/5/2026 10:00,60,oC
-3,Cyl 4 Exhaust Temp,17/5/2026 10:00,324,oC
-3,Cyl 5 Exhaust Temp,17/5/2026 10:00,236,oC
-3,Cyl 6 Exhaust Temp,17/5/2026 10:00,452,oC
-3,T/C Inlet Temp,17/5/2026 10:00,157,oC
-4,T/C Outlet Temp,17/5/2026 10:00,256,oC
-4,Cyl 1 Exhaust Temp,17/5/2026 10:00,419,oC
-4,Cyl 2 Exhaust Temp,17/5/2026 10:00,473,oC
-4,Cyl 3 Exhaust Temp,17/5/2026 10:00,417,oC
-4,Cyl 4 Exhaust Temp,17/5/2026 10:00,484,oC
-4,Cyl 5 Exhaust Temp,17/5/2026 10:00,278,oC
-4,Cyl 6 Exhaust Temp,17/5/2026 10:00,73,oC
-4,T/C Inlet Temp,17/5/2026 10:00,37,oC
-1,T/C Outlet Temp,17/5/2026 11:00,325,oC
-1,Cyl 1 Exhaust Temp,17/5/2026 11:00,338,oC
-1,Cyl 2 Exhaust Temp,17/5/2026 11:00,477,oC
-1,Cyl 3 Exhaust Temp,17/5/2026 11:00,125,oC
-1,Cyl 4 Exhaust Temp,17/5/2026 11:00,137,oC
-1,Cyl 5 Exhaust Temp,17/5/2026 11:00,481,oC
-1,Cyl 6 Exhaust Temp,17/5/2026 11:00,423,oC
-1,T/C Inlet Temp,17/5/2026 11:00,489,oC
-2,T/C Outlet Temp,17/5/2026 11:00,303,oC
-2,Cyl 1 Exhaust Temp,17/5/2026 11:00,83,oC
-2,Cyl 2 Exhaust Temp,17/5/2026 11:00,441,oC
-2,Cyl 3 Exhaust Temp,17/5/2026 11:00,219,oC
-2,Cyl 4 Exhaust Temp,17/5/2026 11:00,395,oC
-2,Cyl 5 Exhaust Temp,17/5/2026 11:00,277,oC
-2,Cyl 6 Exhaust Temp,17/5/2026 11:00,379,oC
-2,T/C Inlet Temp,17/5/2026 11:00,441,oC
-3,T/C Outlet Temp,17/5/2026 11:00,240,oC
-3,Cyl 1 Exhaust Temp,17/5/2026 11:00,80,oC
-3,Cyl 2 Exhaust Temp,17/5/2026 11:00,99,oC
-3,Cyl 3 Exhaust Temp,17/5/2026 11:00,294,oC
-3,Cyl 4 Exhaust Temp,17/5/2026 11:00,425,oC
-3,Cyl 5 Exhaust Temp,17/5/2026 11:00,295,oC
-3,Cyl 6 Exhaust Temp,17/5/2026 11:00,404,oC
-3,T/C Inlet Temp,17/5/2026 11:00,86,oC
-4,T/C Outlet Temp,17/5/2026 11:00,257,oC
-4,Cyl 1 Exhaust Temp,17/5/2026 11:00,48,oC
-4,Cyl 2 Exhaust Temp,17/5/2026 11:00,395,oC
-4,Cyl 3 Exhaust Temp,17/5/2026 11:00,397,oC
-4,Cyl 4 Exhaust Temp,17/5/2026 11:00,495,oC
-4,Cyl 5 Exhaust Temp,17/5/2026 11:00,353,oC
-4,Cyl 6 Exhaust Temp,17/5/2026 11:00,97,oC
-4,T/C Inlet Temp,17/5/2026 11:00,49,oC
-1,T/C Outlet Temp,17/5/2026 12:00,235,oC
-1,Cyl 1 Exhaust Temp,17/5/2026 12:00,198,oC
-1,Cyl 2 Exhaust Temp,17/5/2026 12:00,492,oC
-1,Cyl 3 Exhaust Temp,17/5/2026 12:00,178,oC
-1,Cyl 4 Exhaust Temp,17/5/2026 12:00,462,oC
-1,Cyl 5 Exhaust Temp,17/5/2026 12:00,347,oC
-1,Cyl 6 Exhaust Temp,17/5/2026 12:00,317,oC
-1,T/C Inlet Temp,17/5/2026 12:00,422,oC
-2,T/C Outlet Temp,17/5/2026 12:00,183,oC
-2,Cyl 1 Exhaust Temp,17/5/2026 12:00,333,oC
-2,Cyl 2 Exhaust Temp,17/5/2026 12:00,371,oC
-2,Cyl 3 Exhaust Temp,17/5/2026 12:00,299,oC
-2,Cyl 4 Exhaust Temp,17/5/2026 12:00,486,oC
-2,Cyl 5 Exhaust Temp,17/5/2026 12:00,137,oC
-2,Cyl 6 Exhaust Temp,17/5/2026 12:00,367,oC
-2,T/C Inlet Temp,17/5/2026 12:00,406,oC
-3,T/C Outlet Temp,17/5/2026 12:00,262,oC
-3,Cyl 1 Exhaust Temp,17/5/2026 12:00,131,oC
-3,Cyl 2 Exhaust Temp,17/5/2026 12:00,237,oC
-3,Cyl 3 Exhaust Temp,17/5/2026 12:00,174,oC
-3,Cyl 4 Exhaust Temp,17/5/2026 12:00,494,oC
-3,Cyl 5 Exhaust Temp,17/5/2026 12:00,110,oC
-3,Cyl 6 Exhaust Temp,17/5/2026 12:00,407,oC
-3,T/C Inlet Temp,17/5/2026 12:00,209,oC
-4,T/C Outlet Temp,17/5/2026 12:00,185,oC
-4,Cyl 1 Exhaust Temp,17/5/2026 12:00,136,oC
-4,Cyl 2 Exhaust Temp,17/5/2026 12:00,267,oC
-4,Cyl 3 Exhaust Temp,17/5/2026 12:00,302,oC
-4,Cyl 4 Exhaust Temp,17/5/2026 12:00,475,oC
-4,Cyl 5 Exhaust Temp,17/5/2026 12:00,193,oC
-4,Cyl 6 Exhaust Temp,17/5/2026 12:00,287,oC
-4,T/C Inlet Temp,17/5/2026 12:00,42,oC
-1,T/C Outlet Temp,17/5/2026 13:00,271,oC
-1,Cyl 1 Exhaust Temp,17/5/2026 13:00,447,oC
-1,Cyl 2 Exhaust Temp,17/5/2026 13:00,488,oC
-1,Cyl 3 Exhaust Temp,17/5/2026 13:00,400,oC
-1,Cyl 4 Exhaust Temp,17/5/2026 13:00,359,oC
-1,Cyl 5 Exhaust Temp,17/5/2026 13:00,497,oC
-1,Cyl 6 Exhaust Temp,17/5/2026 13:00,161,oC
-1,T/C Inlet Temp,17/5/2026 13:00,479,oC
-2,T/C Outlet Temp,17/5/2026 13:00,267,oC
-2,Cyl 1 Exhaust Temp,17/5/2026 13:00,164,oC
-2,Cyl 2 Exhaust Temp,17/5/2026 13:00,55,oC
-2,Cyl 3 Exhaust Temp,17/5/2026 13:00,198,oC
-2,Cyl 4 Exhaust Temp,17/5/2026 13:00,61,oC
-2,Cyl 5 Exhaust Temp,17/5/2026 13:00,446,oC
-2,Cyl 6 Exhaust Temp,17/5/2026 13:00,62,oC
-2,T/C Inlet Temp,17/5/2026 13:00,483,oC
-3,T/C Outlet Temp,17/5/2026 13:00,433,oC
-3,Cyl 1 Exhaust Temp,17/5/2026 13:00,244,oC
-3,Cyl 2 Exhaust Temp,17/5/2026 13:00,335,oC
-3,Cyl 3 Exhaust Temp,17/5/2026 13:00,123,oC
-3,Cyl 4 Exhaust Temp,17/5/2026 13:00,280,oC
-3,Cyl 5 Exhaust Temp,17/5/2026 13:00,125,oC
-3,Cyl 6 Exhaust Temp,17/5/2026 13:00,113,oC
-3,T/C Inlet Temp,17/5/2026 13:00,448,oC
-4,T/C Outlet Temp,17/5/2026 13:00,78,oC
-4,Cyl 1 Exhaust Temp,17/5/2026 13:00,405,oC
-4,Cyl 2 Exhaust Temp,17/5/2026 13:00,49,oC
-4,Cyl 3 Exhaust Temp,17/5/2026 13:00,306,oC
-4,Cyl 4 Exhaust Temp,17/5/2026 13:00,331,oC
-4,Cyl 5 Exhaust Temp,17/5/2026 13:00,107,oC
-4,Cyl 6 Exhaust Temp,17/5/2026 13:00,173,oC
-4,T/C Inlet Temp,17/5/2026 13:00,358,oC
-1,T/C Outlet Temp,17/5/2026 14:00,293,oC
-1,Cyl 1 Exhaust Temp,17/5/2026 14:00,371,oC
-1,Cyl 2 Exhaust Temp,17/5/2026 14:00,457,oC
-1,Cyl 3 Exhaust Temp,17/5/2026 14:00,389,oC
-1,Cyl 4 Exhaust Temp,17/5/2026 14:00,250,oC
-1,Cyl 5 Exhaust Temp,17/5/2026 14:00,230,oC
-1,Cyl 6 Exhaust Temp,17/5/2026 14:00,203,oC
-1,T/C Inlet Temp,17/5/2026 14:00,343,oC
-2,T/C Outlet Temp,17/5/2026 14:00,81,oC
-2,Cyl 1 Exhaust Temp,17/5/2026 14:00,185,oC
-2,Cyl 2 Exhaust Temp,17/5/2026 14:00,175,oC
-2,Cyl 3 Exhaust Temp,17/5/2026 14:00,338,oC
-2,Cyl 4 Exhaust Temp,17/5/2026 14:00,361,oC
-2,Cyl 5 Exhaust Temp,17/5/2026 14:00,475,oC
-2,Cyl 6 Exhaust Temp,17/5/2026 14:00,290,oC
-2,T/C Inlet Temp,17/5/2026 14:00,416,oC
-3,T/C Outlet Temp,17/5/2026 14:00,331,oC
-3,Cyl 1 Exhaust Temp,17/5/2026 14:00,114,oC
-3,Cyl 2 Exhaust Temp,17/5/2026 14:00,243,oC
-3,Cyl 3 Exhaust Temp,17/5/2026 14:00,175,oC
-3,Cyl 4 Exhaust Temp,17/5/2026 14:00,192,oC
-3,Cyl 5 Exhaust Temp,17/5/2026 14:00,402,oC
-3,Cyl 6 Exhaust Temp,17/5/2026 14:00,330,oC
-3,T/C Inlet Temp,17/5/2026 14:00,223,oC
-4,T/C Outlet Temp,17/5/2026 14:00,95,oC
-4,Cyl 1 Exhaust Temp,17/5/2026 14:00,416,oC
-4,Cyl 2 Exhaust Temp,17/5/2026 14:00,191,oC
-4,Cyl 3 Exhaust Temp,17/5/2026 14:00,46,oC
-4,Cyl 4 Exhaust Temp,17/5/2026 14:00,271,oC
-4,Cyl 5 Exhaust Temp,17/5/2026 14:00,168,oC
-4,Cyl 6 Exhaust Temp,17/5/2026 14:00,349,oC
-4,T/C Inlet Temp,17/5/2026 14:00,490,oC
-1,T/C Outlet Temp,17/5/2026 15:00,478,oC
-1,Cyl 1 Exhaust Temp,17/5/2026 15:00,340,oC
-1,Cyl 2 Exhaust Temp,17/5/2026 15:00,94,oC
-1,Cyl 3 Exhaust Temp,17/5/2026 15:00,321,oC
-1,Cyl 4 Exhaust Temp,17/5/2026 15:00,351,oC
-1,Cyl 5 Exhaust Temp,17/5/2026 15:00,344,oC
-1,Cyl 6 Exhaust Temp,17/5/2026 15:00,497,oC
-1,T/C Inlet Temp,17/5/2026 15:00,60,oC
-2,T/C Outlet Temp,17/5/2026 15:00,242,oC
-2,Cyl 1 Exhaust Temp,17/5/2026 15:00,409,oC
-2,Cyl 2 Exhaust Temp,17/5/2026 15:00,275,oC
-2,Cyl 3 Exhaust Temp,17/5/2026 15:00,95,oC
-2,Cyl 4 Exhaust Temp,17/5/2026 15:00,310,oC
-2,Cyl 5 Exhaust Temp,17/5/2026 15:00,260,oC
-2,Cyl 6 Exhaust Temp,17/5/2026 15:00,307,oC
-2,T/C Inlet Temp,17/5/2026 15:00,93,oC
-3,T/C Outlet Temp,17/5/2026 15:00,383,oC
-3,Cyl 1 Exhaust Temp,17/5/2026 15:00,155,oC
-3,Cyl 2 Exhaust Temp,17/5/2026 15:00,459,oC
-3,Cyl 3 Exhaust Temp,17/5/2026 15:00,194,oC
-3,Cyl 4 Exhaust Temp,17/5/2026 15:00,70,oC
-3,Cyl 5 Exhaust Temp,17/5/2026 15:00,366,oC
-3,Cyl 6 Exhaust Temp,17/5/2026 15:00,143,oC
-3,T/C Inlet Temp,17/5/2026 15:00,275,oC
-4,T/C Outlet Temp,17/5/2026 15:00,52,oC
-4,Cyl 1 Exhaust Temp,17/5/2026 15:00,475,oC
-4,Cyl 2 Exhaust Temp,17/5/2026 15:00,219,oC
-4,Cyl 3 Exhaust Temp,17/5/2026 15:00,485,oC
-4,Cyl 4 Exhaust Temp,17/5/2026 15:00,319,oC
-4,Cyl 5 Exhaust Temp,17/5/2026 15:00,228,oC
-4,Cyl 6 Exhaust Temp,17/5/2026 15:00,357,oC
-4,T/C Inlet Temp,17/5/2026 15:00,336,oC
-1,T/C Outlet Temp,17/5/2026 16:00,340,oC
-1,Cyl 1 Exhaust Temp,17/5/2026 16:00,453,oC
-1,Cyl 2 Exhaust Temp,17/5/2026 16:00,444,oC
-1,Cyl 3 Exhaust Temp,17/5/2026 16:00,43,oC
-1,Cyl 4 Exhaust Temp,17/5/2026 16:00,282,oC
-1,Cyl 5 Exhaust Temp,17/5/2026 16:00,279,oC
-1,Cyl 6 Exhaust Temp,17/5/2026 16:00,78,oC
-1,T/C Inlet Temp,17/5/2026 16:00,400,oC
-2,T/C Outlet Temp,17/5/2026 16:00,384,oC
-2,Cyl 1 Exhaust Temp,17/5/2026 16:00,181,oC
-2,Cyl 2 Exhaust Temp,17/5/2026 16:00,333,oC
-2,Cyl 3 Exhaust Temp,17/5/2026 16:00,136,oC
-2,Cyl 4 Exhaust Temp,17/5/2026 16:00,355,oC
-2,Cyl 5 Exhaust Temp,17/5/2026 16:00,329,oC
-2,Cyl 6 Exhaust Temp,17/5/2026 16:00,145,oC
-2,T/C Inlet Temp,17/5/2026 16:00,194,oC
-3,T/C Outlet Temp,17/5/2026 16:00,479,oC
-3,Cyl 1 Exhaust Temp,17/5/2026 16:00,90,oC
-3,Cyl 2 Exhaust Temp,17/5/2026 16:00,55,oC
-3,Cyl 3 Exhaust Temp,17/5/2026 16:00,198,oC
-3,Cyl 4 Exhaust Temp,17/5/2026 16:00,339,oC
-3,Cyl 5 Exhaust Temp,17/5/2026 16:00,279,oC
-3,Cyl 6 Exhaust Temp,17/5/2026 16:00,167,oC
-3,T/C Inlet Temp,17/5/2026 16:00,313,oC
-4,T/C Outlet Temp,17/5/2026 16:00,94,oC
-4,Cyl 1 Exhaust Temp,17/5/2026 16:00,469,oC
-4,Cyl 2 Exhaust Temp,17/5/2026 16:00,389,oC
-4,Cyl 3 Exhaust Temp,17/5/2026 16:00,440,oC
-4,Cyl 4 Exhaust Temp,17/5/2026 16:00,278,oC
-4,Cyl 5 Exhaust Temp,17/5/2026 16:00,350,oC
-4,Cyl 6 Exhaust Temp,17/5/2026 16:00,495,oC
-4,T/C Inlet Temp,17/5/2026 16:00,417,oC
-1,T/C Outlet Temp,17/5/2026 17:00,142,oC
-1,Cyl 1 Exhaust Temp,17/5/2026 17:00,367,oC
-1,Cyl 2 Exhaust Temp,17/5/2026 17:00,120,oC
-1,Cyl 3 Exhaust Temp,17/5/2026 17:00,432,oC
-1,Cyl 4 Exhaust Temp,17/5/2026 17:00,122,oC
-1,Cyl 5 Exhaust Temp,17/5/2026 17:00,401,oC
-1,Cyl 6 Exhaust Temp,17/5/2026 17:00,359,oC
-1,T/C Inlet Temp,17/5/2026 17:00,205,oC
-2,T/C Outlet Temp,17/5/2026 17:00,375,oC
-2,Cyl 1 Exhaust Temp,17/5/2026 17:00,384,oC
-2,Cyl 2 Exhaust Temp,17/5/2026 17:00,397,oC
-2,Cyl 3 Exhaust Temp,17/5/2026 17:00,309,oC
-2,Cyl 4 Exhaust Temp,17/5/2026 17:00,420,oC
-2,Cyl 5 Exhaust Temp,17/5/2026 17:00,124,oC
-2,Cyl 6 Exhaust Temp,17/5/2026 17:00,270,oC
-2,T/C Inlet Temp,17/5/2026 17:00,107,oC
-3,T/C Outlet Temp,17/5/2026 17:00,329,oC
-3,Cyl 1 Exhaust Temp,17/5/2026 17:00,90,oC
-3,Cyl 2 Exhaust Temp,17/5/2026 17:00,282,oC
-3,Cyl 3 Exhaust Temp,17/5/2026 17:00,451,oC
-3,Cyl 4 Exhaust Temp,17/5/2026 17:00,66,oC
-3,Cyl 5 Exhaust Temp,17/5/2026 17:00,438,oC
-3,Cyl 6 Exhaust Temp,17/5/2026 17:00,283,oC
-3,T/C Inlet Temp,17/5/2026 17:00,417,oC
-4,T/C Outlet Temp,17/5/2026 17:00,77,oC
-4,Cyl 1 Exhaust Temp,17/5/2026 17:00,171,oC
-4,Cyl 2 Exhaust Temp,17/5/2026 17:00,289,oC
-4,Cyl 3 Exhaust Temp,17/5/2026 17:00,401,oC
-4,Cyl 4 Exhaust Temp,17/5/2026 17:00,481,oC
-4,Cyl 5 Exhaust Temp,17/5/2026 17:00,353,oC
-4,Cyl 6 Exhaust Temp,17/5/2026 17:00,133,oC
-4,T/C Inlet Temp,17/5/2026 17:00,470,oC
-1,T/C Outlet Temp,17/5/2026 18:00,344,oC
-1,Cyl 1 Exhaust Temp,17/5/2026 18:00,152,oC
-1,Cyl 2 Exhaust Temp,17/5/2026 18:00,393,oC
-1,Cyl 3 Exhaust Temp,17/5/2026 18:00,198,oC
-1,Cyl 4 Exhaust Temp,17/5/2026 18:00,439,oC
-1,Cyl 5 Exhaust Temp,17/5/2026 18:00,400,oC
-1,Cyl 6 Exhaust Temp,17/5/2026 18:00,404,oC
-1,T/C Inlet Temp,17/5/2026 18:00,84,oC
-2,T/C Outlet Temp,17/5/2026 18:00,106,oC
-2,Cyl 1 Exhaust Temp,17/5/2026 18:00,39,oC
-2,Cyl 2 Exhaust Temp,17/5/2026 18:00,227,oC
-2,Cyl 3 Exhaust Temp,17/5/2026 18:00,201,oC
-2,Cyl 4 Exhaust Temp,17/5/2026 18:00,169,oC
-2,Cyl 5 Exhaust Temp,17/5/2026 18:00,349,oC
-2,Cyl 6 Exhaust Temp,17/5/2026 18:00,435,oC
-2,T/C Inlet Temp,17/5/2026 18:00,468,oC
-3,T/C Outlet Temp,17/5/2026 18:00,319,oC
-3,Cyl 1 Exhaust Temp,17/5/2026 18:00,269,oC
-3,Cyl 2 Exhaust Temp,17/5/2026 18:00,262,oC
-3,Cyl 3 Exhaust Temp,17/5/2026 18:00,127,oC
-3,Cyl 4 Exhaust Temp,17/5/2026 18:00,308,oC
-3,Cyl 5 Exhaust Temp,17/5/2026 18:00,321,oC
-3,Cyl 6 Exhaust Temp,17/5/2026 18:00,36,oC
-3,T/C Inlet Temp,17/5/2026 18:00,260,oC
-4,T/C Outlet Temp,17/5/2026 18:00,182,oC
-4,Cyl 1 Exhaust Temp,17/5/2026 18:00,196,oC
-4,Cyl 2 Exhaust Temp,17/5/2026 18:00,256,oC
-4,Cyl 3 Exhaust Temp,17/5/2026 18:00,424,oC
-4,Cyl 4 Exhaust Temp,17/5/2026 18:00,237,oC
-4,Cyl 5 Exhaust Temp,17/5/2026 18:00,39,oC
-4,Cyl 6 Exhaust Temp,17/5/2026 18:00,467,oC
-4,T/C Inlet Temp,17/5/2026 18:00,78,oC
-1,T/C Outlet Temp,17/5/2026 19:00,385,oC
-1,Cyl 1 Exhaust Temp,17/5/2026 19:00,64,oC
-1,Cyl 2 Exhaust Temp,17/5/2026 19:00,81,oC
-1,Cyl 3 Exhaust Temp,17/5/2026 19:00,478,oC
-1,Cyl 4 Exhaust Temp,17/5/2026 19:00,194,oC
-1,Cyl 5 Exhaust Temp,17/5/2026 19:00,319,oC
-1,Cyl 6 Exhaust Temp,17/5/2026 19:00,294,oC
-1,T/C Inlet Temp,17/5/2026 19:00,154,oC
-2,T/C Outlet Temp,17/5/2026 19:00,131,oC
-2,Cyl 1 Exhaust Temp,17/5/2026 19:00,45,oC
-2,Cyl 2 Exhaust Temp,17/5/2026 19:00,276,oC
-2,Cyl 3 Exhaust Temp,17/5/2026 19:00,492,oC
-2,Cyl 4 Exhaust Temp,17/5/2026 19:00,463,oC
-2,Cyl 5 Exhaust Temp,17/5/2026 19:00,347,oC
-2,Cyl 6 Exhaust Temp,17/5/2026 19:00,172,oC
-2,T/C Inlet Temp,17/5/2026 19:00,356,oC
-3,T/C Outlet Temp,17/5/2026 19:00,137,oC
-3,Cyl 1 Exhaust Temp,17/5/2026 19:00,82,oC
-3,Cyl 2 Exhaust Temp,17/5/2026 19:00,103,oC
-3,Cyl 3 Exhaust Temp,17/5/2026 19:00,217,oC
-3,Cyl 4 Exhaust Temp,17/5/2026 19:00,44,oC
-3,Cyl 5 Exhaust Temp,17/5/2026 19:00,46,oC
-3,Cyl 6 Exhaust Temp,17/5/2026 19:00,295,oC
-3,T/C Inlet Temp,17/5/2026 19:00,390,oC
-4,T/C Outlet Temp,17/5/2026 19:00,189,oC
-4,Cyl 1 Exhaust Temp,17/5/2026 19:00,438,oC
-4,Cyl 2 Exhaust Temp,17/5/2026 19:00,486,oC
-4,Cyl 3 Exhaust Temp,17/5/2026 19:00,56,oC
-4,Cyl 4 Exhaust Temp,17/5/2026 19:00,473,oC
-4,Cyl 5 Exhaust Temp,17/5/2026 19:00,422,oC
-4,Cyl 6 Exhaust Temp,17/5/2026 19:00,338,oC
-4,T/C Inlet Temp,17/5/2026 19:00,70,oC
-1,T/C Outlet Temp,17/5/2026 20:00,155,oC
-1,Cyl 1 Exhaust Temp,17/5/2026 20:00,434,oC
-1,Cyl 2 Exhaust Temp,17/5/2026 20:00,449,oC
-1,Cyl 3 Exhaust Temp,17/5/2026 20:00,498,oC
-1,Cyl 4 Exhaust Temp,17/5/2026 20:00,304,oC
-1,Cyl 5 Exhaust Temp,17/5/2026 20:00,431,oC
-1,Cyl 6 Exhaust Temp,17/5/2026 20:00,81,oC
-1,T/C Inlet Temp,17/5/2026 20:00,440,oC
-2,T/C Outlet Temp,17/5/2026 20:00,65,oC
-2,Cyl 1 Exhaust Temp,17/5/2026 20:00,47,oC
-2,Cyl 2 Exhaust Temp,17/5/2026 20:00,193,oC
-2,Cyl 3 Exhaust Temp,17/5/2026 20:00,98,oC
-2,Cyl 4 Exhaust Temp,17/5/2026 20:00,319,oC
-2,Cyl 5 Exhaust Temp,17/5/2026 20:00,463,oC
-2,Cyl 6 Exhaust Temp,17/5/2026 20:00,238,oC
-2,T/C Inlet Temp,17/5/2026 20:00,486,oC
-3,T/C Outlet Temp,17/5/2026 20:00,235,oC
-3,Cyl 1 Exhaust Temp,17/5/2026 20:00,278,oC
-3,Cyl 2 Exhaust Temp,17/5/2026 20:00,49,oC
-3,Cyl 3 Exhaust Temp,17/5/2026 20:00,48,oC
-3,Cyl 4 Exhaust Temp,17/5/2026 20:00,227,oC
-3,Cyl 5 Exhaust Temp,17/5/2026 20:00,390,oC
-3,Cyl 6 Exhaust Temp,17/5/2026 20:00,449,oC
-3,T/C Inlet Temp,17/5/2026 20:00,137,oC
-4,T/C Outlet Temp,17/5/2026 20:00,338,oC
-4,Cyl 1 Exhaust Temp,17/5/2026 20:00,427,oC
-4,Cyl 2 Exhaust Temp,17/5/2026 20:00,417,oC
-4,Cyl 3 Exhaust Temp,17/5/2026 20:00,245,oC
-4,Cyl 4 Exhaust Temp,17/5/2026 20:00,428,oC
-4,Cyl 5 Exhaust Temp,17/5/2026 20:00,141,oC
-4,Cyl 6 Exhaust Temp,17/5/2026 20:00,383,oC
-4,T/C Inlet Temp,17/5/2026 20:00,179,oC
-1,T/C Outlet Temp,17/5/2026 21:00,336,oC
-1,Cyl 1 Exhaust Temp,17/5/2026 21:00,258,oC
-1,Cyl 2 Exhaust Temp,17/5/2026 21:00,213,oC
-1,Cyl 3 Exhaust Temp,17/5/2026 21:00,466,oC
-1,Cyl 4 Exhaust Temp,17/5/2026 21:00,384,oC
-1,Cyl 5 Exhaust Temp,17/5/2026 21:00,48,oC
-1,Cyl 6 Exhaust Temp,17/5/2026 21:00,480,oC
-1,T/C Inlet Temp,17/5/2026 21:00,225,oC
-2,T/C Outlet Temp,17/5/2026 21:00,207,oC
-2,Cyl 1 Exhaust Temp,17/5/2026 21:00,459,oC
-2,Cyl 2 Exhaust Temp,17/5/2026 21:00,439,oC
-2,Cyl 3 Exhaust Temp,17/5/2026 21:00,81,oC
-2,Cyl 4 Exhaust Temp,17/5/2026 21:00,49,oC
-2,Cyl 5 Exhaust Temp,17/5/2026 21:00,122,oC
-2,Cyl 6 Exhaust Temp,17/5/2026 21:00,128,oC
-2,T/C Inlet Temp,17/5/2026 21:00,393,oC
-3,T/C Outlet Temp,17/5/2026 21:00,97,oC
-3,Cyl 1 Exhaust Temp,17/5/2026 21:00,180,oC
-3,Cyl 2 Exhaust Temp,17/5/2026 21:00,35,oC
-3,Cyl 3 Exhaust Temp,17/5/2026 21:00,445,oC
-3,Cyl 4 Exhaust Temp,17/5/2026 21:00,411,oC
-3,Cyl 5 Exhaust Temp,17/5/2026 21:00,203,oC
-3,Cyl 6 Exhaust Temp,17/5/2026 21:00,320,oC
-3,T/C Inlet Temp,17/5/2026 21:00,241,oC
-4,T/C Outlet Temp,17/5/2026 21:00,68,oC
-4,Cyl 1 Exhaust Temp,17/5/2026 21:00,196,oC
-4,Cyl 2 Exhaust Temp,17/5/2026 21:00,322,oC
-4,Cyl 3 Exhaust Temp,17/5/2026 21:00,79,oC
-4,Cyl 4 Exhaust Temp,17/5/2026 21:00,440,oC
-4,Cyl 5 Exhaust Temp,17/5/2026 21:00,79,oC
-4,Cyl 6 Exhaust Temp,17/5/2026 21:00,483,oC
-4,T/C Inlet Temp,17/5/2026 21:00,445,oC
-1,T/C Outlet Temp,17/5/2026 22:00,130,oC
-1,Cyl 1 Exhaust Temp,17/5/2026 22:00,498,oC
-1,Cyl 2 Exhaust Temp,17/5/2026 22:00,75,oC
-1,Cyl 3 Exhaust Temp,17/5/2026 22:00,404,oC
-1,Cyl 4 Exhaust Temp,17/5/2026 22:00,328,oC
-1,Cyl 5 Exhaust Temp,17/5/2026 22:00,133,oC
-1,Cyl 6 Exhaust Temp,17/5/2026 22:00,335,oC
-1,T/C Inlet Temp,17/5/2026 22:00,152,oC
-2,T/C Outlet Temp,17/5/2026 22:00,148,oC
-2,Cyl 1 Exhaust Temp,17/5/2026 22:00,377,oC
-2,Cyl 2 Exhaust Temp,17/5/2026 22:00,171,oC
-2,Cyl 3 Exhaust Temp,17/5/2026 22:00,383,oC
-2,Cyl 4 Exhaust Temp,17/5/2026 22:00,192,oC
-2,Cyl 5 Exhaust Temp,17/5/2026 22:00,170,oC
-2,Cyl 6 Exhaust Temp,17/5/2026 22:00,310,oC
-2,T/C Inlet Temp,17/5/2026 22:00,167,oC
-3,T/C Outlet Temp,17/5/2026 22:00,414,oC
-3,Cyl 1 Exhaust Temp,17/5/2026 22:00,108,oC
-3,Cyl 2 Exhaust Temp,17/5/2026 22:00,453,oC
-3,Cyl 3 Exhaust Temp,17/5/2026 22:00,345,oC
-3,Cyl 4 Exhaust Temp,17/5/2026 22:00,210,oC
-3,Cyl 5 Exhaust Temp,17/5/2026 22:00,101,oC
-3,Cyl 6 Exhaust Temp,17/5/2026 22:00,39,oC
-3,T/C Inlet Temp,17/5/2026 22:00,363,oC
-4,T/C Outlet Temp,17/5/2026 22:00,486,oC
-4,Cyl 1 Exhaust Temp,17/5/2026 22:00,206,oC
-4,Cyl 2 Exhaust Temp,17/5/2026 22:00,316,oC
-4,Cyl 3 Exhaust Temp,17/5/2026 22:00,416,oC
-4,Cyl 4 Exhaust Temp,17/5/2026 22:00,366,oC
-4,Cyl 5 Exhaust Temp,17/5/2026 22:00,166,oC
-4,Cyl 6 Exhaust Temp,17/5/2026 22:00,103,oC
-4,T/C Inlet Temp,17/5/2026 22:00,248,oC
-1,T/C Outlet Temp,17/5/2026 23:00,405,oC
-1,Cyl 1 Exhaust Temp,17/5/2026 23:00,259,oC
-1,Cyl 2 Exhaust Temp,17/5/2026 23:00,440,oC
-1,Cyl 3 Exhaust Temp,17/5/2026 23:00,141,oC
-1,Cyl 4 Exhaust Temp,17/5/2026 23:00,333,oC
-1,Cyl 5 Exhaust Temp,17/5/2026 23:00,148,oC
-1,Cyl 6 Exhaust Temp,17/5/2026 23:00,421,oC
-1,T/C Inlet Temp,17/5/2026 23:00,338,oC
-2,T/C Outlet Temp,17/5/2026 23:00,296,oC
-2,Cyl 1 Exhaust Temp,17/5/2026 23:00,359,oC
-2,Cyl 2 Exhaust Temp,17/5/2026 23:00,417,oC
-2,Cyl 3 Exhaust Temp,17/5/2026 23:00,492,oC
-2,Cyl 4 Exhaust Temp,17/5/2026 23:00,169,oC
-2,Cyl 5 Exhaust Temp,17/5/2026 23:00,330,oC
-2,Cyl 6 Exhaust Temp,17/5/2026 23:00,236,oC
-2,T/C Inlet Temp,17/5/2026 23:00,159,oC
-3,T/C Outlet Temp,17/5/2026 23:00,129,oC
-3,Cyl 1 Exhaust Temp,17/5/2026 23:00,246,oC
-3,Cyl 2 Exhaust Temp,17/5/2026 23:00,80,oC
-3,Cyl 3 Exhaust Temp,17/5/2026 23:00,101,oC
-3,Cyl 4 Exhaust Temp,17/5/2026 23:00,137,oC
-3,Cyl 5 Exhaust Temp,17/5/2026 23:00,444,oC
-3,Cyl 6 Exhaust Temp,17/5/2026 23:00,357,oC
-3,T/C Inlet Temp,17/5/2026 23:00,259,oC
-4,T/C Outlet Temp,17/5/2026 23:00,69,oC
-4,Cyl 1 Exhaust Temp,17/5/2026 23:00,158,oC
-4,Cyl 2 Exhaust Temp,17/5/2026 23:00,300,oC
-4,Cyl 3 Exhaust Temp,17/5/2026 23:00,303,oC
-4,Cyl 4 Exhaust Temp,17/5/2026 23:00,469,oC
-4,Cyl 5 Exhaust Temp,17/5/2026 23:00,293,oC
-4,Cyl 6 Exhaust Temp,17/5/2026 23:00,43,oC
-4,T/C Inlet Temp,17/5/2026 23:00,390,oC
-1,Cooler Water Pressure,17/5/2026 0:00,232,Mpa
-2,Cooler Water Pressure,17/5/2026 0:00,291,Mpa
-3,Cooler Water Pressure,17/5/2026 0:00,499,Mpa
-4,Cooler Water Pressure,17/5/2026 0:00,392,Mpa
-1,Engine LO Pressure,17/5/2026 0:00,122,Mpa
-2,Engine LO Pressure,17/5/2026 0:00,454,Mpa
-3,Engine LO Pressure,17/5/2026 0:00,361,Mpa
-4,Engine LO Pressure,17/5/2026 0:00,226,Mpa
-1,Fuel Oil Pressure,17/5/2026 0:00,461,Mpa
-2,Fuel Oil Pressure,17/5/2026 0:00,48,Mpa
-3,Fuel Oil Pressure,17/5/2026 0:00,108,Mpa
-4,Fuel Oil Pressure,17/5/2026 0:00,269,Mpa
-1,Turbo LO Pressure,17/5/2026 0:00,40,Mpa
-2,Turbo LO Pressure,17/5/2026 0:00,287,Mpa
-3,Turbo LO Pressure,17/5/2026 0:00,341,Mpa
-4,Turbo LO Pressure,17/5/2026 0:00,238,Mpa
-1,Cooler Water Pressure,17/5/2026 1:00,394,Mpa
-2,Cooler Water Pressure,17/5/2026 1:00,84,Mpa
-3,Cooler Water Pressure,17/5/2026 1:00,128,Mpa
-4,Cooler Water Pressure,17/5/2026 1:00,186,Mpa
-2,Engine LO Pressure,17/5/2026 1:00,242,Mpa
-3,Engine LO Pressure,17/5/2026 1:00,319,Mpa
-4,Engine LO Pressure,17/5/2026 1:00,134,Mpa
-1,Fuel Oil Pressure,17/5/2026 1:00,154,Mpa
-2,Fuel Oil Pressure,17/5/2026 1:00,243,Mpa
-3,Fuel Oil Pressure,17/5/2026 1:00,56,Mpa
-4,Fuel Oil Pressure,17/5/2026 1:00,252,Mpa
-2,Turbo LO Pressure,17/5/2026 1:00,480,Mpa
-3,Turbo LO Pressure,17/5/2026 1:00,454,Mpa
-4,Turbo LO Pressure,17/5/2026 1:00,324,Mpa
-1,Engine LO Pressure,17/5/2026 1:00,108,Mpa
-1,Turbo LO Pressure,17/5/2026 1:00,128,Mpa
-1,Cooler Water Pressure,17/5/2026 2:00,158,Mpa
-2,Cooler Water Pressure,17/5/2026 2:00,500,Mpa
-3,Cooler Water Pressure,17/5/2026 2:00,290,Mpa
-4,Cooler Water Pressure,17/5/2026 2:00,104,Mpa
-1,Engine LO Pressure,17/5/2026 2:00,262,Mpa
-2,Engine LO Pressure,17/5/2026 2:00,339,Mpa
-3,Engine LO Pressure,17/5/2026 2:00,180,Mpa
-4,Engine LO Pressure,17/5/2026 2:00,349,Mpa
-1,Fuel Oil Pressure,17/5/2026 2:00,278,Mpa
-2,Fuel Oil Pressure,17/5/2026 2:00,138,Mpa
-3,Fuel Oil Pressure,17/5/2026 2:00,188,Mpa
-4,Fuel Oil Pressure,17/5/2026 2:00,151,Mpa
-1,Turbo LO Pressure,17/5/2026 2:00,318,Mpa
-2,Turbo LO Pressure,17/5/2026 2:00,280,Mpa
-3,Turbo LO Pressure,17/5/2026 2:00,257,Mpa
-4,Turbo LO Pressure,17/5/2026 2:00,105,Mpa
-1,Cooler Water Pressure,17/5/2026 3:00,57,Mpa
-2,Cooler Water Pressure,17/5/2026 3:00,44,Mpa
-3,Cooler Water Pressure,17/5/2026 3:00,351,Mpa
-4,Cooler Water Pressure,17/5/2026 3:00,279,Mpa
-1,Engine LO Pressure,17/5/2026 3:00,203,Mpa
-2,Engine LO Pressure,17/5/2026 3:00,65,Mpa
-3,Engine LO Pressure,17/5/2026 3:00,62,Mpa
-4,Engine LO Pressure,17/5/2026 3:00,463,Mpa
-1,Fuel Oil Pressure,17/5/2026 3:00,348,Mpa
-2,Fuel Oil Pressure,17/5/2026 3:00,187,Mpa
-3,Fuel Oil Pressure,17/5/2026 3:00,499,Mpa
-4,Fuel Oil Pressure,17/5/2026 3:00,40,Mpa
-1,Turbo LO Pressure,17/5/2026 3:00,243,Mpa
-2,Turbo LO Pressure,17/5/2026 3:00,180,Mpa
-3,Turbo LO Pressure,17/5/2026 3:00,431,Mpa
-4,Turbo LO Pressure,17/5/2026 3:00,123,Mpa
-1,Cooler Water Pressure,17/5/2026 4:00,387,Mpa
-2,Cooler Water Pressure,17/5/2026 4:00,392,Mpa
-3,Cooler Water Pressure,17/5/2026 4:00,217,Mpa
-4,Cooler Water Pressure,17/5/2026 4:00,45,Mpa
-2,Engine LO Pressure,17/5/2026 4:00,160,Mpa
-3,Engine LO Pressure,17/5/2026 4:00,250,Mpa
-4,Engine LO Pressure,17/5/2026 4:00,124,Mpa
-1,Fuel Oil Pressure,17/5/2026 4:00,491,Mpa
-2,Fuel Oil Pressure,17/5/2026 4:00,57,Mpa
-3,Fuel Oil Pressure,17/5/2026 4:00,458,Mpa
-4,Fuel Oil Pressure,17/5/2026 4:00,443,Mpa
-2,Turbo LO Pressure,17/5/2026 4:00,94,Mpa
-3,Turbo LO Pressure,17/5/2026 4:00,394,Mpa
-4,Turbo LO Pressure,17/5/2026 4:00,307,Mpa
-1,Engine LO Pressure,17/5/2026 4:00,315,Mpa
-1,Turbo LO Pressure,17/5/2026 4:00,144,Mpa
-1,Cooler Water Pressure,17/5/2026 5:00,79,Mpa
-2,Cooler Water Pressure,17/5/2026 5:00,302,Mpa
-3,Cooler Water Pressure,17/5/2026 5:00,288,Mpa
-4,Cooler Water Pressure,17/5/2026 5:00,111,Mpa
-1,Engine LO Pressure,17/5/2026 5:00,208,Mpa
-2,Engine LO Pressure,17/5/2026 5:00,118,Mpa
-3,Engine LO Pressure,17/5/2026 5:00,40,Mpa
-4,Engine LO Pressure,17/5/2026 5:00,117,Mpa
-1,Fuel Oil Pressure,17/5/2026 5:00,187,Mpa
-2,Fuel Oil Pressure,17/5/2026 5:00,120,Mpa
-3,Fuel Oil Pressure,17/5/2026 5:00,97,Mpa
-4,Fuel Oil Pressure,17/5/2026 5:00,440,Mpa
-1,Turbo LO Pressure,17/5/2026 5:00,487,Mpa
-2,Turbo LO Pressure,17/5/2026 5:00,107,Mpa
-3,Turbo LO Pressure,17/5/2026 5:00,477,Mpa
-4,Turbo LO Pressure,17/5/2026 5:00,442,Mpa
-1,Cooler Water Pressure,17/5/2026 6:00,71,Mpa
-2,Cooler Water Pressure,17/5/2026 6:00,120,Mpa
-3,Cooler Water Pressure,17/5/2026 6:00,422,Mpa
-4,Cooler Water Pressure,17/5/2026 6:00,136,Mpa
-1,Engine LO Pressure,17/5/2026 6:00,320,Mpa
-2,Engine LO Pressure,17/5/2026 6:00,54,Mpa
-3,Engine LO Pressure,17/5/2026 6:00,218,Mpa
-4,Engine LO Pressure,17/5/2026 6:00,421,Mpa
-1,Fuel Oil Pressure,17/5/2026 6:00,363,Mpa
-2,Fuel Oil Pressure,17/5/2026 6:00,210,Mpa
-3,Fuel Oil Pressure,17/5/2026 6:00,310,Mpa
-4,Fuel Oil Pressure,17/5/2026 6:00,380,Mpa
-1,Turbo LO Pressure,17/5/2026 6:00,445,Mpa
-2,Turbo LO Pressure,17/5/2026 6:00,430,Mpa
-3,Turbo LO Pressure,17/5/2026 6:00,344,Mpa
-4,Turbo LO Pressure,17/5/2026 6:00,192,Mpa
-1,Cooler Water Pressure,17/5/2026 7:00,359,Mpa
-2,Cooler Water Pressure,17/5/2026 7:00,157,Mpa
-3,Cooler Water Pressure,17/5/2026 7:00,317,Mpa
-4,Cooler Water Pressure,17/5/2026 7:00,252,Mpa
-2,Engine LO Pressure,17/5/2026 7:00,148,Mpa
-3,Engine LO Pressure,17/5/2026 7:00,426,Mpa
-4,Engine LO Pressure,17/5/2026 7:00,356,Mpa
-1,Fuel Oil Pressure,17/5/2026 7:00,302,Mpa
-2,Fuel Oil Pressure,17/5/2026 7:00,496,Mpa
-3,Fuel Oil Pressure,17/5/2026 7:00,491,Mpa
-4,Fuel Oil Pressure,17/5/2026 7:00,255,Mpa
-2,Turbo LO Pressure,17/5/2026 7:00,432,Mpa
-3,Turbo LO Pressure,17/5/2026 7:00,294,Mpa
-4,Turbo LO Pressure,17/5/2026 7:00,116,Mpa
-1,Engine LO Pressure,17/5/2026 7:00,136,Mpa
-1,Turbo LO Pressure,17/5/2026 7:00,267,Mpa
-1,Cooler Water Pressure,17/5/2026 8:00,292,Mpa
-2,Cooler Water Pressure,17/5/2026 8:00,232,Mpa
-3,Cooler Water Pressure,17/5/2026 8:00,179,Mpa
-4,Cooler Water Pressure,17/5/2026 8:00,374,Mpa
-1,Engine LO Pressure,17/5/2026 8:00,467,Mpa
-2,Engine LO Pressure,17/5/2026 8:00,411,Mpa
-3,Engine LO Pressure,17/5/2026 8:00,281,Mpa
-4,Engine LO Pressure,17/5/2026 8:00,304,Mpa
-1,Fuel Oil Pressure,17/5/2026 8:00,68,Mpa
-2,Fuel Oil Pressure,17/5/2026 8:00,204,Mpa
-3,Fuel Oil Pressure,17/5/2026 8:00,181,Mpa
-4,Fuel Oil Pressure,17/5/2026 8:00,153,Mpa
-1,Turbo LO Pressure,17/5/2026 8:00,484,Mpa
-2,Turbo LO Pressure,17/5/2026 8:00,317,Mpa
-3,Turbo LO Pressure,17/5/2026 8:00,432,Mpa
-4,Turbo LO Pressure,17/5/2026 8:00,375,Mpa
-1,Cooler Water Pressure,17/5/2026 9:00,250,Mpa
-2,Cooler Water Pressure,17/5/2026 9:00,394,Mpa
-3,Cooler Water Pressure,17/5/2026 9:00,425,Mpa
-4,Cooler Water Pressure,17/5/2026 9:00,84,Mpa
-1,Engine LO Pressure,17/5/2026 9:00,144,Mpa
-2,Engine LO Pressure,17/5/2026 9:00,77,Mpa
-3,Engine LO Pressure,17/5/2026 9:00,223,Mpa
-4,Engine LO Pressure,17/5/2026 9:00,483,Mpa
-1,Fuel Oil Pressure,17/5/2026 9:00,188,Mpa
-2,Fuel Oil Pressure,17/5/2026 9:00,346,Mpa
-3,Fuel Oil Pressure,17/5/2026 9:00,388,Mpa
-4,Fuel Oil Pressure,17/5/2026 9:00,150,Mpa
-1,Turbo LO Pressure,17/5/2026 9:00,399,Mpa
-2,Turbo LO Pressure,17/5/2026 9:00,212,Mpa
-3,Turbo LO Pressure,17/5/2026 9:00,391,Mpa
-4,Turbo LO Pressure,17/5/2026 9:00,266,Mpa
-1,Cooler Water Pressure,17/5/2026 10:00,384,Mpa
-2,Cooler Water Pressure,17/5/2026 10:00,221,Mpa
-3,Cooler Water Pressure,17/5/2026 10:00,315,Mpa
-4,Cooler Water Pressure,17/5/2026 10:00,299,Mpa
-2,Engine LO Pressure,17/5/2026 10:00,81,Mpa
-3,Engine LO Pressure,17/5/2026 10:00,269,Mpa
-4,Engine LO Pressure,17/5/2026 10:00,429,Mpa
-1,Fuel Oil Pressure,17/5/2026 10:00,321,Mpa
-2,Fuel Oil Pressure,17/5/2026 10:00,52,Mpa
-3,Fuel Oil Pressure,17/5/2026 10:00,272,Mpa
-4,Fuel Oil Pressure,17/5/2026 10:00,383,Mpa
-2,Turbo LO Pressure,17/5/2026 10:00,307,Mpa
-3,Turbo LO Pressure,17/5/2026 10:00,319,Mpa
-4,Turbo LO Pressure,17/5/2026 10:00,107,Mpa
-1,Engine LO Pressure,17/5/2026 10:00,236,Mpa
-1,Turbo LO Pressure,17/5/2026 10:00,231,Mpa
-1,Cooler Water Pressure,17/5/2026 11:00,128,Mpa
-2,Cooler Water Pressure,17/5/2026 11:00,264,Mpa
-3,Cooler Water Pressure,17/5/2026 11:00,125,Mpa
-4,Cooler Water Pressure,17/5/2026 11:00,161,Mpa
-1,Engine LO Pressure,17/5/2026 11:00,246,Mpa
-2,Engine LO Pressure,17/5/2026 11:00,72,Mpa
-3,Engine LO Pressure,17/5/2026 11:00,171,Mpa
-4,Engine LO Pressure,17/5/2026 11:00,181,Mpa
-1,Fuel Oil Pressure,17/5/2026 11:00,386,Mpa
-2,Fuel Oil Pressure,17/5/2026 11:00,418,Mpa
-3,Fuel Oil Pressure,17/5/2026 11:00,69,Mpa
-4,Fuel Oil Pressure,17/5/2026 11:00,460,Mpa
-1,Turbo LO Pressure,17/5/2026 11:00,233,Mpa
-2,Turbo LO Pressure,17/5/2026 11:00,493,Mpa
-3,Turbo LO Pressure,17/5/2026 11:00,243,Mpa
-4,Turbo LO Pressure,17/5/2026 11:00,409,Mpa
-1,Cooler Water Pressure,17/5/2026 12:00,57,Mpa
-2,Cooler Water Pressure,17/5/2026 12:00,324,Mpa
-3,Cooler Water Pressure,17/5/2026 12:00,130,Mpa
-4,Cooler Water Pressure,17/5/2026 12:00,370,Mpa
-1,Engine LO Pressure,17/5/2026 12:00,113,Mpa
-2,Engine LO Pressure,17/5/2026 12:00,102,Mpa
-3,Engine LO Pressure,17/5/2026 12:00,484,Mpa
-4,Engine LO Pressure,17/5/2026 12:00,412,Mpa
-1,Fuel Oil Pressure,17/5/2026 12:00,177,Mpa
-2,Fuel Oil Pressure,17/5/2026 12:00,300,Mpa
-3,Fuel Oil Pressure,17/5/2026 12:00,486,Mpa
-4,Fuel Oil Pressure,17/5/2026 12:00,476,Mpa
-1,Turbo LO Pressure,17/5/2026 12:00,464,Mpa
-2,Turbo LO Pressure,17/5/2026 12:00,304,Mpa
-3,Turbo LO Pressure,17/5/2026 12:00,51,Mpa
-4,Turbo LO Pressure,17/5/2026 12:00,41,Mpa
-1,Cooler Water Pressure,17/5/2026 13:00,85,Mpa
-2,Cooler Water Pressure,17/5/2026 13:00,217,Mpa
-3,Cooler Water Pressure,17/5/2026 13:00,38,Mpa
-4,Cooler Water Pressure,17/5/2026 13:00,307,Mpa
-2,Engine LO Pressure,17/5/2026 13:00,386,Mpa
-3,Engine LO Pressure,17/5/2026 13:00,418,Mpa
-4,Engine LO Pressure,17/5/2026 13:00,165,Mpa
-1,Fuel Oil Pressure,17/5/2026 13:00,239,Mpa
-2,Fuel Oil Pressure,17/5/2026 13:00,446,Mpa
-3,Fuel Oil Pressure,17/5/2026 13:00,336,Mpa
-4,Fuel Oil Pressure,17/5/2026 13:00,464,Mpa
-2,Turbo LO Pressure,17/5/2026 13:00,183,Mpa
-3,Turbo LO Pressure,17/5/2026 13:00,129,Mpa
-4,Turbo LO Pressure,17/5/2026 13:00,440,Mpa
-1,Engine LO Pressure,17/5/2026 13:00,71,Mpa
-1,Turbo LO Pressure,17/5/2026 13:00,99,Mpa
-1,Cooler Water Pressure,17/5/2026 14:00,63,Mpa
-2,Cooler Water Pressure,17/5/2026 14:00,330,Mpa
-3,Cooler Water Pressure,17/5/2026 14:00,110,Mpa
-4,Cooler Water Pressure,17/5/2026 14:00,56,Mpa
-1,Engine LO Pressure,17/5/2026 14:00,425,Mpa
-2,Engine LO Pressure,17/5/2026 14:00,473,Mpa
-3,Engine LO Pressure,17/5/2026 14:00,478,Mpa
-4,Engine LO Pressure,17/5/2026 14:00,110,Mpa
-1,Fuel Oil Pressure,17/5/2026 14:00,232,Mpa
-2,Fuel Oil Pressure,17/5/2026 14:00,414,Mpa
-3,Fuel Oil Pressure,17/5/2026 14:00,437,Mpa
-4,Fuel Oil Pressure,17/5/2026 14:00,358,Mpa
-1,Turbo LO Pressure,17/5/2026 14:00,498,Mpa
-2,Turbo LO Pressure,17/5/2026 14:00,374,Mpa
-3,Turbo LO Pressure,17/5/2026 14:00,259,Mpa
-4,Turbo LO Pressure,17/5/2026 14:00,107,Mpa
-1,Cooler Water Pressure,17/5/2026 15:00,278,Mpa
-2,Cooler Water Pressure,17/5/2026 15:00,312,Mpa
-3,Cooler Water Pressure,17/5/2026 15:00,441,Mpa
-4,Cooler Water Pressure,17/5/2026 15:00,333,Mpa
-1,Engine LO Pressure,17/5/2026 15:00,269,Mpa
-2,Engine LO Pressure,17/5/2026 15:00,308,Mpa
-3,Engine LO Pressure,17/5/2026 15:00,343,Mpa
-4,Engine LO Pressure,17/5/2026 15:00,146,Mpa
-1,Fuel Oil Pressure,17/5/2026 15:00,414,Mpa
-2,Fuel Oil Pressure,17/5/2026 15:00,261,Mpa
-3,Fuel Oil Pressure,17/5/2026 15:00,97,Mpa
-4,Fuel Oil Pressure,17/5/2026 15:00,81,Mpa
-1,Turbo LO Pressure,17/5/2026 15:00,85,Mpa
-2,Turbo LO Pressure,17/5/2026 15:00,432,Mpa
-3,Turbo LO Pressure,17/5/2026 15:00,472,Mpa
-4,Turbo LO Pressure,17/5/2026 15:00,276,Mpa
-1,Cooler Water Pressure,17/5/2026 16:00,463,Mpa
-2,Cooler Water Pressure,17/5/2026 16:00,201,Mpa
-3,Cooler Water Pressure,17/5/2026 16:00,198,Mpa
-4,Cooler Water Pressure,17/5/2026 16:00,125,Mpa
-2,Engine LO Pressure,17/5/2026 16:00,499,Mpa
-3,Engine LO Pressure,17/5/2026 16:00,111,Mpa
-4,Engine LO Pressure,17/5/2026 16:00,455,Mpa
-1,Fuel Oil Pressure,17/5/2026 16:00,441,Mpa
-2,Fuel Oil Pressure,17/5/2026 16:00,386,Mpa
-3,Fuel Oil Pressure,17/5/2026 16:00,178,Mpa
-4,Fuel Oil Pressure,17/5/2026 16:00,498,Mpa
-2,Turbo LO Pressure,17/5/2026 16:00,201,Mpa
-3,Turbo LO Pressure,17/5/2026 16:00,112,Mpa
-4,Turbo LO Pressure,17/5/2026 16:00,454,Mpa
-1,Engine LO Pressure,17/5/2026 16:00,143,Mpa
-1,Turbo LO Pressure,17/5/2026 16:00,376,Mpa
-1,Cooler Water Pressure,17/5/2026 17:00,423,Mpa
-2,Cooler Water Pressure,17/5/2026 17:00,433,Mpa
-3,Cooler Water Pressure,17/5/2026 17:00,471,Mpa
-4,Cooler Water Pressure,17/5/2026 17:00,449,Mpa
-1,Engine LO Pressure,17/5/2026 17:00,126,Mpa
-2,Engine LO Pressure,17/5/2026 17:00,240,Mpa
-3,Engine LO Pressure,17/5/2026 17:00,156,Mpa
-4,Engine LO Pressure,17/5/2026 17:00,397,Mpa
-1,Fuel Oil Pressure,17/5/2026 17:00,401,Mpa
-2,Fuel Oil Pressure,17/5/2026 17:00,189,Mpa
-3,Fuel Oil Pressure,17/5/2026 17:00,327,Mpa
-4,Fuel Oil Pressure,17/5/2026 17:00,463,Mpa
-1,Turbo LO Pressure,17/5/2026 17:00,468,Mpa
-2,Turbo LO Pressure,17/5/2026 17:00,403,Mpa
-3,Turbo LO Pressure,17/5/2026 17:00,462,Mpa
-4,Turbo LO Pressure,17/5/2026 17:00,124,Mpa
-1,Cooler Water Pressure,17/5/2026 18:00,261,Mpa
-2,Cooler Water Pressure,17/5/2026 18:00,106,Mpa
-3,Cooler Water Pressure,17/5/2026 18:00,125,Mpa
-4,Cooler Water Pressure,17/5/2026 18:00,107,Mpa
-1,Engine LO Pressure,17/5/2026 18:00,395,Mpa
-2,Engine LO Pressure,17/5/2026 18:00,260,Mpa
-3,Engine LO Pressure,17/5/2026 18:00,118,Mpa
-4,Engine LO Pressure,17/5/2026 18:00,147,Mpa
-1,Fuel Oil Pressure,17/5/2026 18:00,234,Mpa
-2,Fuel Oil Pressure,17/5/2026 18:00,75,Mpa
-3,Fuel Oil Pressure,17/5/2026 18:00,323,Mpa
-4,Fuel Oil Pressure,17/5/2026 18:00,240,Mpa
-1,Turbo LO Pressure,17/5/2026 18:00,404,Mpa
-2,Turbo LO Pressure,17/5/2026 18:00,419,Mpa
-3,Turbo LO Pressure,17/5/2026 18:00,53,Mpa
-4,Turbo LO Pressure,17/5/2026 18:00,63,Mpa
-1,Cooler Water Pressure,17/5/2026 19:00,242,Mpa
-2,Cooler Water Pressure,17/5/2026 19:00,61,Mpa
-3,Cooler Water Pressure,17/5/2026 19:00,427,Mpa
-4,Cooler Water Pressure,17/5/2026 19:00,60,Mpa
-2,Engine LO Pressure,17/5/2026 19:00,328,Mpa
-3,Engine LO Pressure,17/5/2026 19:00,266,Mpa
-4,Engine LO Pressure,17/5/2026 19:00,295,Mpa
-1,Fuel Oil Pressure,17/5/2026 19:00,98,Mpa
-2,Fuel Oil Pressure,17/5/2026 19:00,55,Mpa
-3,Fuel Oil Pressure,17/5/2026 19:00,477,Mpa
-4,Fuel Oil Pressure,17/5/2026 19:00,489,Mpa
-2,Turbo LO Pressure,17/5/2026 19:00,106,Mpa
-3,Turbo LO Pressure,17/5/2026 19:00,84,Mpa
-4,Turbo LO Pressure,17/5/2026 19:00,448,Mpa
-1,Engine LO Pressure,17/5/2026 19:00,491,Mpa
-1,Turbo LO Pressure,17/5/2026 19:00,64,Mpa
-1,Cooler Water Pressure,17/5/2026 20:00,78,Mpa
-2,Cooler Water Pressure,17/5/2026 20:00,131,Mpa
-3,Cooler Water Pressure,17/5/2026 20:00,229,Mpa
-4,Cooler Water Pressure,17/5/2026 20:00,159,Mpa
-1,Engine LO Pressure,17/5/2026 20:00,341,Mpa
-2,Engine LO Pressure,17/5/2026 20:00,437,Mpa
-3,Engine LO Pressure,17/5/2026 20:00,191,Mpa
-4,Engine LO Pressure,17/5/2026 20:00,127,Mpa
-1,Fuel Oil Pressure,17/5/2026 20:00,332,Mpa
-2,Fuel Oil Pressure,17/5/2026 20:00,182,Mpa
-3,Fuel Oil Pressure,17/5/2026 20:00,191,Mpa
-4,Fuel Oil Pressure,17/5/2026 20:00,356,Mpa
-1,Turbo LO Pressure,17/5/2026 20:00,319,Mpa
-2,Turbo LO Pressure,17/5/2026 20:00,349,Mpa
-3,Turbo LO Pressure,17/5/2026 20:00,320,Mpa
-4,Turbo LO Pressure,17/5/2026 20:00,237,Mpa
-1,Cooler Water Pressure,17/5/2026 21:00,358,Mpa
-2,Cooler Water Pressure,17/5/2026 21:00,154,Mpa
-3,Cooler Water Pressure,17/5/2026 21:00,261,Mpa
-4,Cooler Water Pressure,17/5/2026 21:00,123,Mpa
-1,Engine LO Pressure,17/5/2026 21:00,320,Mpa
-2,Engine LO Pressure,17/5/2026 21:00,338,Mpa
-3,Engine LO Pressure,17/5/2026 21:00,292,Mpa
-4,Engine LO Pressure,17/5/2026 21:00,82,Mpa
-1,Fuel Oil Pressure,17/5/2026 21:00,83,Mpa
-2,Fuel Oil Pressure,17/5/2026 21:00,351,Mpa
-3,Fuel Oil Pressure,17/5/2026 21:00,123,Mpa
-4,Fuel Oil Pressure,17/5/2026 21:00,344,Mpa
-1,Turbo LO Pressure,17/5/2026 21:00,39,Mpa
-2,Turbo LO Pressure,17/5/2026 21:00,268,Mpa
-3,Turbo LO Pressure,17/5/2026 21:00,105,Mpa
-4,Turbo LO Pressure,17/5/2026 21:00,169,Mpa
-1,Cooler Water Pressure,17/5/2026 22:00,238,Mpa
-2,Cooler Water Pressure,17/5/2026 22:00,407,Mpa
-3,Cooler Water Pressure,17/5/2026 22:00,57,Mpa
-4,Cooler Water Pressure,17/5/2026 22:00,100,Mpa
-2,Engine LO Pressure,17/5/2026 22:00,39,Mpa
-3,Engine LO Pressure,17/5/2026 22:00,115,Mpa
-4,Engine LO Pressure,17/5/2026 22:00,324,Mpa
-1,Fuel Oil Pressure,17/5/2026 22:00,358,Mpa
-2,Fuel Oil Pressure,17/5/2026 22:00,414,Mpa
-3,Fuel Oil Pressure,17/5/2026 22:00,400,Mpa
-4,Fuel Oil Pressure,17/5/2026 22:00,79,Mpa
-2,Turbo LO Pressure,17/5/2026 22:00,371,Mpa
-3,Turbo LO Pressure,17/5/2026 22:00,141,Mpa
-4,Turbo LO Pressure,17/5/2026 22:00,390,Mpa
-1,Engine LO Pressure,17/5/2026 22:00,498,Mpa
-1,Turbo LO Pressure,17/5/2026 22:00,159,Mpa
-1,Cooler Water Pressure,17/5/2026 23:00,392,Mpa
-2,Cooler Water Pressure,17/5/2026 23:00,340,Mpa
-3,Cooler Water Pressure,17/5/2026 23:00,40,Mpa
-4,Cooler Water Pressure,17/5/2026 23:00,35,Mpa
-1,Engine LO Pressure,17/5/2026 23:00,216,Mpa
-2,Engine LO Pressure,17/5/2026 23:00,145,Mpa
-3,Engine LO Pressure,17/5/2026 23:00,229,Mpa
-4,Engine LO Pressure,17/5/2026 23:00,86,Mpa
-1,Fuel Oil Pressure,17/5/2026 23:00,241,Mpa
-2,Fuel Oil Pressure,17/5/2026 23:00,240,Mpa
-3,Fuel Oil Pressure,17/5/2026 23:00,490,Mpa
-4,Fuel Oil Pressure,17/5/2026 23:00,296,Mpa
-1,Turbo LO Pressure,17/5/2026 23:00,461,Mpa
-2,Turbo LO Pressure,17/5/2026 23:00,61,Mpa
-3,Turbo LO Pressure,17/5/2026 23:00,174,Mpa
-4,Turbo LO Pressure,17/5/2026 23:00,386,Mpa
-1,Engine Power,17/5/2026 0:00,429,kW
-2,Engine Power,17/5/2026 0:00,656,kW
-3,Engine Power,17/5/2026 0:00,655,kW
-4,Engine Power,17/5/2026 0:00,328,kW
-1,Engine Power,17/5/2026 1:00,565,kW
-2,Engine Power,17/5/2026 1:00,453,kW
-3,Engine Power,17/5/2026 1:00,757,kW
-4,Engine Power,17/5/2026 1:00,761,kW
-1,Engine Power,17/5/2026 2:00,721,kW
-2,Engine Power,17/5/2026 2:00,622,kW
-3,Engine Power,17/5/2026 2:00,709,kW
-4,Engine Power,17/5/2026 2:00,767,kW
-1,Engine Power,17/5/2026 3:00,333,kW
-2,Engine Power,17/5/2026 3:00,727,kW
-3,Engine Power,17/5/2026 3:00,694,kW
-4,Engine Power,17/5/2026 3:00,365,kW
-1,Engine Power,17/5/2026 4:00,519,kW
-2,Engine Power,17/5/2026 4:00,614,kW
-3,Engine Power,17/5/2026 4:00,378,kW
-4,Engine Power,17/5/2026 4:00,427,kW
-1,Engine Power,17/5/2026 5:00,307,kW
-2,Engine Power,17/5/2026 5:00,792,kW
-3,Engine Power,17/5/2026 5:00,337,kW
-4,Engine Power,17/5/2026 5:00,718,kW
-1,Engine Power,17/5/2026 6:00,701,kW
-2,Engine Power,17/5/2026 6:00,635,kW
-3,Engine Power,17/5/2026 6:00,680,kW
-4,Engine Power,17/5/2026 6:00,744,kW
-1,Engine Power,17/5/2026 7:00,550,kW
-2,Engine Power,17/5/2026 7:00,735,kW
-3,Engine Power,17/5/2026 7:00,791,kW
-4,Engine Power,17/5/2026 7:00,602,kW
-1,Engine Power,17/5/2026 8:00,471,kW
-2,Engine Power,17/5/2026 8:00,514,kW
-3,Engine Power,17/5/2026 8:00,673,kW
-4,Engine Power,17/5/2026 8:00,510,kW
-1,Engine Power,17/5/2026 9:00,682,kW
-2,Engine Power,17/5/2026 9:00,765,kW
-3,Engine Power,17/5/2026 9:00,721,kW
-4,Engine Power,17/5/2026 9:00,789,kW
-1,Engine Power,17/5/2026 10:00,730,kW
-2,Engine Power,17/5/2026 10:00,306,kW
-3,Engine Power,17/5/2026 10:00,549,kW
-4,Engine Power,17/5/2026 10:00,637,kW
-1,Engine Power,17/5/2026 11:00,773,kW
-2,Engine Power,17/5/2026 11:00,761,kW
-3,Engine Power,17/5/2026 11:00,510,kW
-4,Engine Power,17/5/2026 11:00,459,kW
-1,Engine Power,17/5/2026 12:00,406,kW
-2,Engine Power,17/5/2026 12:00,598,kW
-3,Engine Power,17/5/2026 12:00,623,kW
-4,Engine Power,17/5/2026 12:00,468,kW
-1,Engine Power,17/5/2026 13:00,745,kW
-2,Engine Power,17/5/2026 13:00,377,kW
-3,Engine Power,17/5/2026 13:00,669,kW
-4,Engine Power,17/5/2026 13:00,658,kW
-1,Engine Power,17/5/2026 14:00,359,kW
-2,Engine Power,17/5/2026 14:00,528,kW
-3,Engine Power,17/5/2026 14:00,324,kW
-4,Engine Power,17/5/2026 14:00,378,kW
-1,Engine Power,17/5/2026 15:00,390,kW
-2,Engine Power,17/5/2026 15:00,685,kW
-3,Engine Power,17/5/2026 15:00,641,kW
-4,Engine Power,17/5/2026 15:00,644,kW
-1,Engine Power,17/5/2026 16:00,677,kW
-2,Engine Power,17/5/2026 16:00,432,kW
-3,Engine Power,17/5/2026 16:00,652,kW
-4,Engine Power,17/5/2026 16:00,705,kW
-1,Engine Power,17/5/2026 17:00,797,kW
-2,Engine Power,17/5/2026 17:00,626,kW
-3,Engine Power,17/5/2026 17:00,349,kW
-4,Engine Power,17/5/2026 17:00,617,kW
-1,Engine Power,17/5/2026 18:00,394,kW
-2,Engine Power,17/5/2026 18:00,333,kW
-3,Engine Power,17/5/2026 18:00,625,kW
-4,Engine Power,17/5/2026 18:00,587,kW
-1,Engine Power,17/5/2026 19:00,310,kW
-2,Engine Power,17/5/2026 19:00,592,kW
-3,Engine Power,17/5/2026 19:00,401,kW
-4,Engine Power,17/5/2026 19:00,766,kW
-1,Engine Power,17/5/2026 20:00,536,kW
-2,Engine Power,17/5/2026 20:00,754,kW
-3,Engine Power,17/5/2026 20:00,361,kW
-4,Engine Power,17/5/2026 20:00,565,kW
-1,Engine Power,17/5/2026 21:00,336,kW
-2,Engine Power,17/5/2026 21:00,486,kW
-3,Engine Power,17/5/2026 21:00,726,kW
-4,Engine Power,17/5/2026 21:00,458,kW
-1,Engine Power,17/5/2026 22:00,725,kW
-2,Engine Power,17/5/2026 22:00,492,kW
-3,Engine Power,17/5/2026 22:00,552,kW
-4,Engine Power,17/5/2026 22:00,372,kW
-1,Engine Power,17/5/2026 23:00,397,kW
-2,Engine Power,17/5/2026 23:00,765,kW
-3,Engine Power,17/5/2026 23:00,434,kW
-4,Engine Power,17/5/2026 23:00,404,kW
-1,Engine Power,18/5/2026 0:00,687,kW
-2,Engine Power,18/5/2026 0:00,757,kW
-3,Engine Power,18/5/2026 0:00,659,kW
-4,Engine Power,18/5/2026 0:00,382,kW
-1,Engine Power,18/5/2026 1:00,592,kW
-2,Engine Power,18/5/2026 1:00,686,kW
-3,Engine Power,18/5/2026 1:00,604,kW
-4,Engine Power,18/5/2026 1:00,549,kW
-1,Engine Power,18/5/2026 2:00,343,kW
-2,Engine Power,18/5/2026 2:00,530,kW
-3,Engine Power,18/5/2026 2:00,636,kW
-4,Engine Power,18/5/2026 2:00,417,kW
-1,Engine Power,18/5/2026 3:00,540,kW
-2,Engine Power,18/5/2026 3:00,476,kW
-3,Engine Power,18/5/2026 3:00,593,kW
-4,Engine Power,18/5/2026 3:00,564,kW
-1,Engine Power,18/5/2026 4:00,514,kW
-2,Engine Power,18/5/2026 4:00,531,kW
-3,Engine Power,18/5/2026 4:00,306,kW
-4,Engine Power,18/5/2026 4:00,582,kW
-1,Engine Power,18/5/2026 5:00,497,kW
-2,Engine Power,18/5/2026 5:00,607,kW
-3,Engine Power,18/5/2026 5:00,774,kW
-4,Engine Power,18/5/2026 5:00,648,kW
-1,Engine Power,18/5/2026 6:00,689,kW
-2,Engine Power,18/5/2026 6:00,596,kW
-3,Engine Power,18/5/2026 6:00,341,kW
-4,Engine Power,18/5/2026 6:00,351,kW
-1,Engine Power,18/5/2026 7:00,506,kW
-2,Engine Power,18/5/2026 7:00,590,kW
-3,Engine Power,18/5/2026 7:00,615,kW
-4,Engine Power,18/5/2026 7:00,777,kW
-1,Engine Power,18/5/2026 8:00,317,kW
-2,Engine Power,18/5/2026 8:00,309,kW
-3,Engine Power,18/5/2026 8:00,356,kW
-4,Engine Power,18/5/2026 8:00,645,kW
-1,Engine Power,18/5/2026 9:00,548,kW
-2,Engine Power,18/5/2026 9:00,376,kW
-3,Engine Power,18/5/2026 9:00,330,kW
-4,Engine Power,18/5/2026 9:00,339,kW
-1,Engine Power,18/5/2026 10:00,744,kW
-2,Engine Power,18/5/2026 10:00,462,kW
-3,Engine Power,18/5/2026 10:00,479,kW
-4,Engine Power,18/5/2026 10:00,412,kW
-1,Engine Power,18/5/2026 11:00,750,kW
-2,Engine Power,18/5/2026 11:00,587,kW
-3,Engine Power,18/5/2026 11:00,392,kW
-4,Engine Power,18/5/2026 11:00,718,kW
-1,Engine Power,18/5/2026 12:00,672,kW
-2,Engine Power,18/5/2026 12:00,587,kW
-3,Engine Power,18/5/2026 12:00,592,kW
-4,Engine Power,18/5/2026 12:00,487,kW
-1,Engine Power,18/5/2026 13:00,732,kW
-2,Engine Power,18/5/2026 13:00,729,kW
-3,Engine Power,18/5/2026 13:00,388,kW
-4,Engine Power,18/5/2026 13:00,468,kW
-1,Engine Power,18/5/2026 14:00,663,kW
-2,Engine Power,18/5/2026 14:00,403,kW
-3,Engine Power,18/5/2026 14:00,316,kW
-4,Engine Power,18/5/2026 14:00,447,kW
-1,Engine Power,18/5/2026 15:00,322,kW
-2,Engine Power,18/5/2026 15:00,500,kW
-3,Engine Power,18/5/2026 15:00,564,kW
-4,Engine Power,18/5/2026 15:00,672,kW
-1,Engine Power,18/5/2026 16:00,561,kW
-2,Engine Power,18/5/2026 16:00,533,kW
-3,Engine Power,18/5/2026 16:00,397,kW
-4,Engine Power,18/5/2026 16:00,444,kW
-1,Engine Power,18/5/2026 17:00,498,kW
-2,Engine Power,18/5/2026 17:00,778,kW
-3,Engine Power,18/5/2026 17:00,511,kW
-4,Engine Power,18/5/2026 17:00,704,kW
-1,Engine Power,18/5/2026 18:00,634,kW
-2,Engine Power,18/5/2026 18:00,709,kW
-3,Engine Power,18/5/2026 18:00,447,kW
-4,Engine Power,18/5/2026 18:00,339,kW
-1,Engine Power,18/5/2026 19:00,756,kW
-2,Engine Power,18/5/2026 19:00,493,kW
-3,Engine Power,18/5/2026 19:00,574,kW
-4,Engine Power,18/5/2026 19:00,566,kW
-1,Engine Power,18/5/2026 20:00,720,kW
-2,Engine Power,18/5/2026 20:00,693,kW
-3,Engine Power,18/5/2026 20:00,371,kW
-4,Engine Power,18/5/2026 20:00,765,kW
-1,Engine Power,18/5/2026 21:00,319,kW
-2,Engine Power,18/5/2026 21:00,662,kW
-3,Engine Power,18/5/2026 21:00,501,kW
-4,Engine Power,18/5/2026 21:00,785,kW
-1,Engine Power,18/5/2026 22:00,677,kW
-2,Engine Power,18/5/2026 22:00,517,kW
-3,Engine Power,18/5/2026 22:00,664,kW
-4,Engine Power,18/5/2026 22:00,697,kW
-1,Engine Power,18/5/2026 23:00,522,kW
-2,Engine Power,18/5/2026 23:00,449,kW
-3,Engine Power,18/5/2026 23:00,350,kW
-4,Engine Power,18/5/2026 23:00,466,kW
+Engine;Channel Description;Timestamp;Value;Unit
+0;D.O Inlet Flow DG#1;5/27/2026 1:00;6,53;L/h
+0;D.O Inlet Flow DG#2;5/27/2026 1:00;8,61;L/h
+0;D.O Inlet Flow DG#3;5/27/2026 1:00;8,75;L/h
+0;D.O Inlet Flow DG#4;5/27/2026 1:00;8,22;L/h
+0;D.O Inlet Flow DG#1;5/27/2026 2:00;6,82;L/h
+0;D.O Inlet Flow DG#2;5/27/2026 2:00;8,9;L/h
+0;D.O Inlet Flow DG#3;5/27/2026 2:00;7,44;L/h
+0;D.O Inlet Flow DG#4;5/27/2026 2:00;6,11;L/h
+0;D.O Inlet Flow DG#1;5/27/2026 3:00;9,78;L/h
+0;D.O Inlet Flow DG#2;5/27/2026 3:00;6,34;L/h
+0;D.O Inlet Flow DG#3;5/27/2026 3:00;7,64;L/h
+0;D.O Inlet Flow DG#4;5/27/2026 3:00;6,14;L/h
+0;D.O Inlet Flow DG#1;5/27/2026 4:00;7,71;L/h
+0;D.O Inlet Flow DG#2;5/27/2026 4:00;8,23;L/h
+0;D.O Inlet Flow DG#3;5/27/2026 4:00;6,91;L/h
+0;D.O Inlet Flow DG#4;5/27/2026 4:00;6,56;L/h
+0;D.O Inlet Flow DG#1;5/27/2026 5:00;8,54;L/h
+0;D.O Inlet Flow DG#2;5/27/2026 5:00;9,77;L/h
+0;D.O Inlet Flow DG#3;5/27/2026 5:00;8,19;L/h
+0;D.O Inlet Flow DG#4;5/27/2026 5:00;8,95;L/h
+0;D.O Inlet Flow DG#1;5/27/2026 6:00;8,61;L/h
+0;D.O Inlet Flow DG#2;5/27/2026 6:00;7,97;L/h
+0;D.O Inlet Flow DG#3;5/27/2026 6:00;9,49;L/h
+0;D.O Inlet Flow DG#4;5/27/2026 6:00;9,53;L/h
+0;D.O Inlet Flow DG#1;5/27/2026 7:00;8,14;L/h
+0;D.O Inlet Flow DG#2;5/27/2026 7:00;7,09;L/h
+0;D.O Inlet Flow DG#3;5/27/2026 7:00;9,38;L/h
+0;D.O Inlet Flow DG#4;5/27/2026 7:00;9,14;L/h
+0;D.O Inlet Flow DG#1;5/27/2026 8:00;8,39;L/h
+0;D.O Inlet Flow DG#2;5/27/2026 8:00;8,56;L/h
+0;D.O Inlet Flow DG#3;5/27/2026 8:00;8,93;L/h
+0;D.O Inlet Flow DG#4;5/27/2026 8:00;8,94;L/h
+0;D.O Inlet Flow DG#1;5/27/2026 9:00;9,09;L/h
+0;D.O Inlet Flow DG#2;5/27/2026 9:00;6,55;L/h
+0;D.O Inlet Flow DG#3;5/27/2026 9:00;9,73;L/h
+0;D.O Inlet Flow DG#4;5/27/2026 9:00;8,66;L/h
+0;D.O Inlet Flow DG#1;5/27/2026 10:00;7,63;L/h
+0;D.O Inlet Flow DG#2;5/27/2026 10:00;9,79;L/h
+0;D.O Inlet Flow DG#3;5/27/2026 10:00;9,53;L/h
+0;D.O Inlet Flow DG#4;5/27/2026 10:00;6,96;L/h
+0;D.O Inlet Flow DG#1;5/27/2026 11:00;8,52;L/h
+0;D.O Inlet Flow DG#2;5/27/2026 11:00;9,15;L/h
+0;D.O Inlet Flow DG#3;5/27/2026 11:00;6,22;L/h
+0;D.O Inlet Flow DG#4;5/27/2026 11:00;9,38;L/h
+0;D.O Inlet Flow DG#1;5/27/2026 12:00;7,99;L/h
+0;D.O Inlet Flow DG#2;5/27/2026 12:00;6,72;L/h
+0;D.O Inlet Flow DG#3;5/27/2026 12:00;7,96;L/h
+0;D.O Inlet Flow DG#4;5/27/2026 12:00;9,31;L/h
+0;D.O Inlet Flow DG#1;5/27/2026 13:00;9,35;L/h
+0;D.O Inlet Flow DG#2;5/27/2026 13:00;9,25;L/h
+0;D.O Inlet Flow DG#3;5/27/2026 13:00;8,8;L/h
+0;D.O Inlet Flow DG#4;5/27/2026 13:00;7,15;L/h
+0;D.O Inlet Flow DG#1;5/27/2026 14:00;8,73;L/h
+0;D.O Inlet Flow DG#2;5/27/2026 14:00;7,47;L/h
+0;D.O Inlet Flow DG#3;5/27/2026 14:00;8,07;L/h
+0;D.O Inlet Flow DG#4;5/27/2026 14:00;6,36;L/h
+0;D.O Inlet Flow DG#1;5/27/2026 15:00;7,82;L/h
+0;D.O Inlet Flow DG#2;5/27/2026 15:00;8,83;L/h
+0;D.O Inlet Flow DG#3;5/27/2026 15:00;6,9;L/h
+0;D.O Inlet Flow DG#4;5/27/2026 15:00;6,77;L/h
+0;D.O Inlet Flow DG#1;5/27/2026 16:00;6,87;L/h
+0;D.O Inlet Flow DG#2;5/27/2026 16:00;6,37;L/h
+0;D.O Inlet Flow DG#3;5/27/2026 16:00;9,06;L/h
+0;D.O Inlet Flow DG#4;5/27/2026 16:00;7,86;L/h
+0;D.O Inlet Flow DG#1;5/27/2026 17:00;7,39;L/h
+0;D.O Inlet Flow DG#2;5/27/2026 17:00;9,5;L/h
+0;D.O Inlet Flow DG#3;5/27/2026 17:00;9,08;L/h
+0;D.O Inlet Flow DG#4;5/27/2026 17:00;7,33;L/h
+0;D.O Inlet Flow DG#1;5/27/2026 18:00;8,86;L/h
+0;D.O Inlet Flow DG#2;5/27/2026 18:00;9,73;L/h
+0;D.O Inlet Flow DG#3;5/27/2026 18:00;8,11;L/h
+0;D.O Inlet Flow DG#4;5/27/2026 18:00;8,84;L/h
+0;D.O Inlet Flow DG#1;5/27/2026 19:00;6,92;L/h
+0;D.O Inlet Flow DG#2;5/27/2026 19:00;7,92;L/h
+0;D.O Inlet Flow DG#3;5/27/2026 19:00;6,11;L/h
+0;D.O Inlet Flow DG#4;5/27/2026 19:00;7,64;L/h
+0;D.O Inlet Flow DG#1;5/27/2026 20:00;9,14;L/h
+0;D.O Inlet Flow DG#2;5/27/2026 20:00;7,06;L/h
+0;D.O Inlet Flow DG#3;5/27/2026 20:00;9,06;L/h
+0;D.O Inlet Flow DG#4;5/27/2026 20:00;9,05;L/h
+0;D.O Inlet Flow DG#1;5/27/2026 21:00;9,47;L/h
+0;D.O Inlet Flow DG#2;5/27/2026 21:00;6,4;L/h
+0;D.O Inlet Flow DG#3;5/27/2026 21:00;6,81;L/h
+0;D.O Inlet Flow DG#4;5/27/2026 21:00;8,26;L/h
+0;D.O Inlet Flow DG#1;5/27/2026 22:00;7,76;L/h
+0;D.O Inlet Flow DG#2;5/27/2026 22:00;6,42;L/h
+0;D.O Inlet Flow DG#3;5/27/2026 22:00;6,55;L/h
+0;D.O Inlet Flow DG#4;5/27/2026 22:00;7,87;L/h
+0;D.O Inlet Flow DG#1;5/27/2026 23:00;9,16;L/h
+0;D.O Inlet Flow DG#2;5/27/2026 23:00;8,89;L/h
+0;D.O Inlet Flow DG#3;5/27/2026 23:00;8,54;L/h
+0;D.O Inlet Flow DG#4;5/27/2026 23:00;6,67;L/h
+0;D.O Inlet Flow DG#1;5/28/2026 1:00;6,28;L/h
+0;D.O Inlet Flow DG#2;5/28/2026 1:00;9;L/h 
+0;D.O Inlet Flow DG#3;5/28/2026 1:00;8,59;L/h
+0;D.O Inlet Flow DG#4;5/28/2026 1:00;6,84;L/h
+0;D.O Inlet Flow DG#1;5/28/2026 2:00;8,33;L/h
+0;D.O Inlet Flow DG#2;5/28/2026 2:00;8,52;L/h
+0;D.O Inlet Flow DG#3;5/28/2026 2:00;8,15;L/h
+0;D.O Inlet Flow DG#4;5/28/2026 2:00;7,93;L/h
+0;D.O Inlet Flow DG#1;5/28/2026 3:00;6,3;L/h
+0;D.O Inlet Flow DG#2;5/28/2026 3:00;9,36;L/h
+0;D.O Inlet Flow DG#3;5/28/2026 3:00;9,44;L/h
+0;D.O Inlet Flow DG#4;5/28/2026 3:00;9,01;L/h
+0;D.O Inlet Flow DG#1;5/28/2026 4:00;9,79;L/h
+0;D.O Inlet Flow DG#2;5/28/2026 4:00;6,03;L/h
+0;D.O Inlet Flow DG#3;5/28/2026 4:00;9,05;L/h
+0;D.O Inlet Flow DG#4;5/28/2026 4:00;9,79;L/h
+0;D.O Inlet Flow DG#1;5/28/2026 5:00;6,85;L/h
+0;D.O Inlet Flow DG#2;5/28/2026 5:00;9,07;L/h
+0;D.O Inlet Flow DG#3;5/28/2026 5:00;7,55;L/h
+0;D.O Inlet Flow DG#4;5/28/2026 5:00;7,17;L/h
+0;D.O Inlet Flow DG#1;5/28/2026 6:00;7,13;L/h
+0;D.O Inlet Flow DG#2;5/28/2026 6:00;7,97;L/h
+0;D.O Inlet Flow DG#3;5/28/2026 6:00;9,09;L/h
+0;D.O Inlet Flow DG#4;5/28/2026 6:00;6,07;L/h
+0;D.O Inlet Flow DG#1;5/28/2026 7:00;9,19;L/h
+0;D.O Inlet Flow DG#2;5/28/2026 7:00;9,11;L/h
+0;D.O Inlet Flow DG#3;5/28/2026 7:00;9,71;L/h
+0;D.O Inlet Flow DG#4;5/28/2026 7:00;8,18;L/h
+0;D.O Inlet Flow DG#1;5/28/2026 8:00;7,93;L/h
+0;D.O Inlet Flow DG#2;5/28/2026 8:00;8,07;L/h
+0;D.O Inlet Flow DG#3;5/28/2026 8:00;6,3;L/h
+0;D.O Inlet Flow DG#4;5/28/2026 8:00;6,78;L/h
+0;D.O Inlet Flow DG#1;5/28/2026 9:00;7,66;L/h
+0;D.O Inlet Flow DG#2;5/28/2026 9:00;9,75;L/h
+0;D.O Inlet Flow DG#3;5/28/2026 9:00;8,05;L/h
+0;D.O Inlet Flow DG#4;5/28/2026 9:00;7,79;L/h
+0;D.O Inlet Flow DG#1;5/28/2026 10:00;6,72;L/h
+0;D.O Inlet Flow DG#2;5/28/2026 10:00;6,53;L/h
+0;D.O Inlet Flow DG#3;5/28/2026 10:00;7,76;L/h
+0;D.O Inlet Flow DG#4;5/28/2026 10:00;6,43;L/h
+0;D.O Inlet Flow DG#1;5/28/2026 11:00;9,07;L/h
+0;D.O Inlet Flow DG#2;5/28/2026 11:00;6,42;L/h
+0;D.O Inlet Flow DG#3;5/28/2026 11:00;6,19;L/h
+0;D.O Inlet Flow DG#4;5/28/2026 11:00;8,81;L/h
+0;D.O Inlet Flow DG#1;5/28/2026 12:00;7,81;L/h
+0;D.O Inlet Flow DG#2;5/28/2026 12:00;7,33;L/h
+0;D.O Inlet Flow DG#3;5/28/2026 12:00;6,5;L/h
+0;D.O Inlet Flow DG#4;5/28/2026 12:00;8,92;L/h
+0;D.O Inlet Flow DG#1;5/28/2026 13:00;7,69;L/h
+0;D.O Inlet Flow DG#2;5/28/2026 13:00;7,9;L/h
+0;D.O Inlet Flow DG#3;5/28/2026 13:00;6,07;L/h
+0;D.O Inlet Flow DG#4;5/28/2026 13:00;6,45;L/h
+0;D.O Inlet Flow DG#1;5/28/2026 14:00;9,35;L/h
+0;D.O Inlet Flow DG#2;5/28/2026 14:00;6,83;L/h
+0;D.O Inlet Flow DG#3;5/28/2026 14:00;9,77;L/h
+0;D.O Inlet Flow DG#4;5/28/2026 14:00;9,81;L/h
+0;D.O Inlet Flow DG#1;5/28/2026 15:00;8,29;L/h
+0;D.O Inlet Flow DG#2;5/28/2026 15:00;9,08;L/h
+0;D.O Inlet Flow DG#3;5/28/2026 15:00;7,84;L/h
+0;D.O Inlet Flow DG#4;5/28/2026 15:00;8,51;L/h
+0;D.O Inlet Flow DG#1;5/28/2026 16:00;6,97;L/h
+0;D.O Inlet Flow DG#2;5/28/2026 16:00;8,86;L/h
+0;D.O Inlet Flow DG#3;5/28/2026 16:00;9,62;L/h
+0;D.O Inlet Flow DG#4;5/28/2026 16:00;8,76;L/h
+0;D.O Inlet Flow DG#1;5/28/2026 17:00;8,87;L/h
+0;D.O Inlet Flow DG#2;5/28/2026 17:00;9,19;L/h
+0;D.O Inlet Flow DG#3;5/28/2026 17:00;6,91;L/h
+0;D.O Inlet Flow DG#4;5/28/2026 17:00;6,01;L/h
+0;D.O Inlet Flow DG#1;5/28/2026 18:00;7,57;L/h
+0;D.O Inlet Flow DG#2;5/28/2026 18:00;6,44;L/h
+0;D.O Inlet Flow DG#3;5/28/2026 18:00;9,94;L/h
+0;D.O Inlet Flow DG#4;5/28/2026 18:00;8,48;L/h
+0;D.O Inlet Flow DG#1;5/28/2026 19:00;7,06;L/h
+0;D.O Inlet Flow DG#2;5/28/2026 19:00;9,79;L/h
+0;D.O Inlet Flow DG#3;5/28/2026 19:00;6,26;L/h
+0;D.O Inlet Flow DG#4;5/28/2026 19:00;8,42;L/h
+0;D.O Inlet Flow DG#1;5/28/2026 20:00;7,78;L/h
+0;D.O Inlet Flow DG#2;5/28/2026 20:00;6,81;L/h
+0;D.O Inlet Flow DG#3;5/28/2026 20:00;9,27;L/h
+0;D.O Inlet Flow DG#4;5/28/2026 20:00;6,58;L/h
+0;D.O Inlet Flow DG#1;5/28/2026 21:00;7;L/h 
+0;D.O Inlet Flow DG#2;5/28/2026 21:00;9,95;L/h
+0;D.O Inlet Flow DG#3;5/28/2026 21:00;9,76;L/h
+0;D.O Inlet Flow DG#4;5/28/2026 21:00;9,85;L/h
+0;D.O Inlet Flow DG#1;5/28/2026 22:00;8,85;L/h
+0;D.O Inlet Flow DG#2;5/28/2026 22:00;6,77;L/h
+0;D.O Inlet Flow DG#3;5/28/2026 22:00;6,82;L/h
+0;D.O Inlet Flow DG#4;5/28/2026 22:00;9,65;L/h
+0;D.O Inlet Flow DG#1;5/28/2026 23:00;6,78;L/h
+0;D.O Inlet Flow DG#2;5/28/2026 23:00;6,17;L/h
+0;D.O Inlet Flow DG#3;5/28/2026 23:00;8,16;L/h
+0;D.O Inlet Flow DG#4;5/28/2026 23:00;6,31;L/h
+0;D.O Outlet Flow DG#1;5/27/2026 0:00;4,09;L/h
+0;D.O Outlet Flow DG#2;5/27/2026 0:00;4,68;L/h
+0;D.O Outlet Flow DG#3;5/27/2026 0:00;5,75;L/h
+0;D.O Outlet Flow DG#4;5/27/2026 0:00;5,15;L/h
+0;D.O Outlet Flow DG#1;5/27/2026 1:00;4,58;L/h
+0;D.O Outlet Flow DG#2;5/27/2026 1:00;4,32;L/h
+0;D.O Outlet Flow DG#3;5/27/2026 1:00;4,06;L/h
+0;D.O Outlet Flow DG#4;5/27/2026 1:00;4,67;L/h
+0;D.O Outlet Flow DG#1;5/27/2026 2:00;4,56;L/h
+0;D.O Outlet Flow DG#2;5/27/2026 2:00;5,78;L/h
+0;D.O Outlet Flow DG#3;5/27/2026 2:00;4,36;L/h
+0;D.O Outlet Flow DG#4;5/27/2026 2:00;4,11;L/h
+0;D.O Outlet Flow DG#1;5/27/2026 3:00;4,49;L/h
+0;D.O Outlet Flow DG#2;5/27/2026 3:00;5,16;L/h
+0;D.O Outlet Flow DG#3;5/27/2026 3:00;4,14;L/h
+0;D.O Outlet Flow DG#4;5/27/2026 3:00;4,87;L/h
+0;D.O Outlet Flow DG#1;5/27/2026 4:00;4,98;L/h
+0;D.O Outlet Flow DG#2;5/27/2026 4:00;4,15;L/h
+0;D.O Outlet Flow DG#3;5/27/2026 4:00;4,54;L/h
+0;D.O Outlet Flow DG#4;5/27/2026 4:00;4,68;L/h
+0;D.O Outlet Flow DG#1;5/27/2026 5:00;4,83;L/h
+0;D.O Outlet Flow DG#2;5/27/2026 5:00;5,62;L/h
+0;D.O Outlet Flow DG#3;5/27/2026 5:00;4,95;L/h
+0;D.O Outlet Flow DG#4;5/27/2026 5:00;5,19;L/h
+0;D.O Outlet Flow DG#1;5/27/2026 6:00;5,54;L/h
+0;D.O Outlet Flow DG#2;5/27/2026 6:00;4,05;L/h
+0;D.O Outlet Flow DG#3;5/27/2026 6:00;4,64;L/h
+0;D.O Outlet Flow DG#4;5/27/2026 6:00;4,86;L/h
+0;D.O Outlet Flow DG#1;5/27/2026 7:00;5,64;L/h
+0;D.O Outlet Flow DG#2;5/27/2026 7:00;4,19;L/h
+0;D.O Outlet Flow DG#3;5/27/2026 7:00;4,32;L/h
+0;D.O Outlet Flow DG#4;5/27/2026 7:00;5,45;L/h
+0;D.O Outlet Flow DG#1;5/27/2026 8:00;4,95;L/h
+0;D.O Outlet Flow DG#2;5/27/2026 8:00;5,49;L/h
+0;D.O Outlet Flow DG#3;5/27/2026 8:00;5,97;L/h
+0;D.O Outlet Flow DG#4;5/27/2026 8:00;4,15;L/h
+0;D.O Outlet Flow DG#1;5/27/2026 9:00;5,46;L/h
+0;D.O Outlet Flow DG#2;5/27/2026 9:00;5,35;L/h
+0;D.O Outlet Flow DG#3;5/27/2026 9:00;5,46;L/h
+0;D.O Outlet Flow DG#4;5/27/2026 9:00;4,12;L/h
+0;D.O Outlet Flow DG#1;5/27/2026 10:00;5,96;L/h
+0;D.O Outlet Flow DG#2;5/27/2026 10:00;5,93;L/h
+0;D.O Outlet Flow DG#3;5/27/2026 10:00;4,88;L/h
+0;D.O Outlet Flow DG#4;5/27/2026 10:00;4,68;L/h
+0;D.O Outlet Flow DG#1;5/27/2026 11:00;5,7;L/h
+0;D.O Outlet Flow DG#2;5/27/2026 11:00;4,37;L/h
+0;D.O Outlet Flow DG#3;5/27/2026 11:00;5,41;L/h
+0;D.O Outlet Flow DG#4;5/27/2026 11:00;4,81;L/h
+0;D.O Outlet Flow DG#1;5/27/2026 12:00;5,54;L/h
+0;D.O Outlet Flow DG#2;5/27/2026 12:00;4,25;L/h
+0;D.O Outlet Flow DG#3;5/27/2026 12:00;4,01;L/h
+0;D.O Outlet Flow DG#4;5/27/2026 12:00;5,61;L/h
+0;D.O Outlet Flow DG#1;5/27/2026 13:00;4,13;L/h
+0;D.O Outlet Flow DG#2;5/27/2026 13:00;5,35;L/h
+0;D.O Outlet Flow DG#3;5/27/2026 13:00;5,56;L/h
+0;D.O Outlet Flow DG#4;5/27/2026 13:00;5,6;L/h
+0;D.O Outlet Flow DG#1;5/27/2026 14:00;4,33;L/h
+0;D.O Outlet Flow DG#2;5/27/2026 14:00;5,7;L/h
+0;D.O Outlet Flow DG#3;5/27/2026 14:00;5,96;L/h
+0;D.O Outlet Flow DG#4;5/27/2026 14:00;5,26;L/h
+0;D.O Outlet Flow DG#1;5/27/2026 15:00;4,98;L/h
+0;D.O Outlet Flow DG#2;5/27/2026 15:00;4,48;L/h
+0;D.O Outlet Flow DG#3;5/27/2026 15:00;5,9;L/h
+0;D.O Outlet Flow DG#4;5/27/2026 15:00;5,27;L/h
+0;D.O Outlet Flow DG#1;5/27/2026 16:00;4,97;L/h
+0;D.O Outlet Flow DG#2;5/27/2026 16:00;5,41;L/h
+0;D.O Outlet Flow DG#3;5/27/2026 16:00;5,75;L/h
+0;D.O Outlet Flow DG#4;5/27/2026 16:00;5,01;L/h
+0;D.O Outlet Flow DG#1;5/27/2026 17:00;4,74;L/h
+0;D.O Outlet Flow DG#2;5/27/2026 17:00;4,52;L/h
+0;D.O Outlet Flow DG#3;5/27/2026 17:00;4,4;L/h
+0;D.O Outlet Flow DG#4;5/27/2026 17:00;5,6;L/h
+0;D.O Outlet Flow DG#1;5/27/2026 18:00;4,75;L/h
+0;D.O Outlet Flow DG#2;5/27/2026 18:00;4,76;L/h
+0;D.O Outlet Flow DG#3;5/27/2026 18:00;5,43;L/h
+0;D.O Outlet Flow DG#4;5/27/2026 18:00;4,38;L/h
+0;D.O Outlet Flow DG#1;5/27/2026 19:00;4,43;L/h
+0;D.O Outlet Flow DG#2;5/27/2026 19:00;5,36;L/h
+0;D.O Outlet Flow DG#3;5/27/2026 19:00;5,46;L/h
+0;D.O Outlet Flow DG#4;5/27/2026 19:00;4,88;L/h
+0;D.O Outlet Flow DG#1;5/27/2026 20:00;4,68;L/h
+0;D.O Outlet Flow DG#2;5/27/2026 20:00;5,68;L/h
+0;D.O Outlet Flow DG#3;5/27/2026 20:00;5,6;L/h
+0;D.O Outlet Flow DG#4;5/27/2026 20:00;4,12;L/h
+0;D.O Outlet Flow DG#1;5/27/2026 21:00;5,85;L/h
+0;D.O Outlet Flow DG#2;5/27/2026 21:00;4,83;L/h
+0;D.O Outlet Flow DG#3;5/27/2026 21:00;5,63;L/h
+0;D.O Outlet Flow DG#4;5/27/2026 21:00;5,24;L/h
+0;D.O Outlet Flow DG#1;5/27/2026 22:00;4,26;L/h
+0;D.O Outlet Flow DG#2;5/27/2026 22:00;5,77;L/h
+0;D.O Outlet Flow DG#3;5/27/2026 22:00;4,4;L/h
+0;D.O Outlet Flow DG#4;5/27/2026 22:00;4,04;L/h
+0;D.O Outlet Flow DG#1;5/27/2026 23:00;4,73;L/h
+0;D.O Outlet Flow DG#2;5/27/2026 23:00;5,57;L/h
+0;D.O Outlet Flow DG#3;5/27/2026 23:00;5,39;L/h
+0;D.O Outlet Flow DG#4;5/27/2026 23:00;5,44;L/h
+0;D.O Outlet Flow DG#1;5/28/2026 0:00;5,26;L/h
+0;D.O Outlet Flow DG#2;5/28/2026 0:00;4,67;L/h
+0;D.O Outlet Flow DG#3;5/28/2026 0:00;5,72;L/h
+0;D.O Outlet Flow DG#4;5/28/2026 0:00;4,54;L/h
+0;D.O Outlet Flow DG#1;5/28/2026 1:00;4,83;L/h
+0;D.O Outlet Flow DG#2;5/28/2026 1:00;4,4;L/h
+0;D.O Outlet Flow DG#3;5/28/2026 1:00;5,13;L/h
+0;D.O Outlet Flow DG#4;5/28/2026 1:00;5,31;L/h
+0;D.O Outlet Flow DG#1;5/28/2026 2:00;5,29;L/h
+0;D.O Outlet Flow DG#2;5/28/2026 2:00;5,08;L/h
+0;D.O Outlet Flow DG#3;5/28/2026 2:00;5,03;L/h
+0;D.O Outlet Flow DG#4;5/28/2026 2:00;4,44;L/h
+0;D.O Outlet Flow DG#1;5/28/2026 3:00;4,49;L/h
+0;D.O Outlet Flow DG#2;5/28/2026 3:00;5,8;L/h
+0;D.O Outlet Flow DG#3;5/28/2026 3:00;5,36;L/h
+0;D.O Outlet Flow DG#4;5/28/2026 3:00;4,34;L/h
+0;D.O Outlet Flow DG#1;5/28/2026 4:00;4,84;L/h
+0;D.O Outlet Flow DG#2;5/28/2026 4:00;5,93;L/h
+0;D.O Outlet Flow DG#3;5/28/2026 4:00;4,5;L/h
+0;D.O Outlet Flow DG#4;5/28/2026 4:00;4,11;L/h
+0;D.O Outlet Flow DG#1;5/28/2026 5:00;4,39;L/h
+0;D.O Outlet Flow DG#2;5/28/2026 5:00;5,33;L/h
+0;D.O Outlet Flow DG#3;5/28/2026 5:00;5,87;L/h
+0;D.O Outlet Flow DG#4;5/28/2026 5:00;5,52;L/h
+0;D.O Outlet Flow DG#1;5/28/2026 6:00;4,49;L/h
+0;D.O Outlet Flow DG#2;5/28/2026 6:00;4,26;L/h
+0;D.O Outlet Flow DG#3;5/28/2026 6:00;4,69;L/h
+0;D.O Outlet Flow DG#4;5/28/2026 6:00;5,2;L/h
+0;D.O Outlet Flow DG#1;5/28/2026 7:00;4,17;L/h
+0;D.O Outlet Flow DG#2;5/28/2026 7:00;4,39;L/h
+0;D.O Outlet Flow DG#3;5/28/2026 7:00;4,04;L/h
+0;D.O Outlet Flow DG#4;5/28/2026 7:00;5,37;L/h
+0;D.O Outlet Flow DG#1;5/28/2026 8:00;4,7;L/h
+0;D.O Outlet Flow DG#2;5/28/2026 8:00;4,59;L/h
+0;D.O Outlet Flow DG#3;5/28/2026 8:00;4,9;L/h
+0;D.O Outlet Flow DG#4;5/28/2026 8:00;4,67;L/h
+0;D.O Outlet Flow DG#1;5/28/2026 9:00;5,87;L/h
+0;D.O Outlet Flow DG#2;5/28/2026 9:00;4,04;L/h
+0;D.O Outlet Flow DG#3;5/28/2026 9:00;5,12;L/h
+0;D.O Outlet Flow DG#4;5/28/2026 9:00;4,6;L/h
+0;D.O Outlet Flow DG#1;5/28/2026 10:00;4,32;L/h
+0;D.O Outlet Flow DG#2;5/28/2026 10:00;4,03;L/h
+0;D.O Outlet Flow DG#3;5/28/2026 10:00;4,8;L/h
+0;D.O Outlet Flow DG#4;5/28/2026 10:00;4,56;L/h
+0;D.O Outlet Flow DG#1;5/28/2026 11:00;4,75;L/h
+0;D.O Outlet Flow DG#2;5/28/2026 11:00;5,75;L/h
+0;D.O Outlet Flow DG#3;5/28/2026 11:00;4,38;L/h
+0;D.O Outlet Flow DG#4;5/28/2026 11:00;4,6;L/h
+0;D.O Outlet Flow DG#1;5/28/2026 12:00;4,65;L/h
+0;D.O Outlet Flow DG#2;5/28/2026 12:00;5,28;L/h
+0;D.O Outlet Flow DG#3;5/28/2026 12:00;4,55;L/h
+0;D.O Outlet Flow DG#4;5/28/2026 12:00;4,74;L/h
+0;D.O Outlet Flow DG#1;5/28/2026 13:00;4,7;L/h
+0;D.O Outlet Flow DG#2;5/28/2026 13:00;4,26;L/h
+0;D.O Outlet Flow DG#3;5/28/2026 13:00;5,36;L/h
+0;D.O Outlet Flow DG#4;5/28/2026 13:00;4,82;L/h
+0;D.O Outlet Flow DG#1;5/28/2026 14:00;5,49;L/h
+0;D.O Outlet Flow DG#2;5/28/2026 14:00;4,65;L/h
+0;D.O Outlet Flow DG#3;5/28/2026 14:00;4,97;L/h
+0;D.O Outlet Flow DG#4;5/28/2026 14:00;4,34;L/h
+0;D.O Outlet Flow DG#1;5/28/2026 15:00;5,75;L/h
+0;D.O Outlet Flow DG#2;5/28/2026 15:00;4,21;L/h
+0;D.O Outlet Flow DG#3;5/28/2026 15:00;4,92;L/h
+0;D.O Outlet Flow DG#4;5/28/2026 15:00;4,06;L/h
+0;D.O Outlet Flow DG#1;5/28/2026 16:00;5,76;L/h
+0;D.O Outlet Flow DG#2;5/28/2026 16:00;5,99;L/h
+0;D.O Outlet Flow DG#3;5/28/2026 16:00;4,01;L/h
+0;D.O Outlet Flow DG#4;5/28/2026 16:00;4,69;L/h
+0;D.O Outlet Flow DG#1;5/28/2026 17:00;5,7;L/h
+0;D.O Outlet Flow DG#2;5/28/2026 17:00;4,23;L/h
+0;D.O Outlet Flow DG#3;5/28/2026 17:00;4,56;L/h
+0;D.O Outlet Flow DG#4;5/28/2026 17:00;4,9;L/h
+0;D.O Outlet Flow DG#1;5/28/2026 18:00;5,07;L/h
+0;D.O Outlet Flow DG#2;5/28/2026 18:00;4,63;L/h
+0;D.O Outlet Flow DG#3;5/28/2026 18:00;5,71;L/h
+0;D.O Outlet Flow DG#4;5/28/2026 18:00;4,2;L/h
+0;D.O Outlet Flow DG#1;5/28/2026 19:00;5,48;L/h
+0;D.O Outlet Flow DG#2;5/28/2026 19:00;4,41;L/h
+0;D.O Outlet Flow DG#3;5/28/2026 19:00;4,79;L/h
+0;D.O Outlet Flow DG#4;5/28/2026 19:00;4,05;L/h
+0;D.O Outlet Flow DG#1;5/28/2026 20:00;4,58;L/h
+0;D.O Outlet Flow DG#2;5/28/2026 20:00;5,93;L/h
+0;D.O Outlet Flow DG#3;5/28/2026 20:00;4,11;L/h
+0;D.O Outlet Flow DG#4;5/28/2026 20:00;4,68;L/h
+0;D.O Outlet Flow DG#1;5/28/2026 21:00;5,45;L/h
+0;D.O Outlet Flow DG#2;5/28/2026 21:00;4,82;L/h
+0;D.O Outlet Flow DG#3;5/28/2026 21:00;5,54;L/h
+0;D.O Outlet Flow DG#4;5/28/2026 21:00;4,87;L/h
+0;D.O Outlet Flow DG#1;5/28/2026 22:00;5,42;L/h
+0;D.O Outlet Flow DG#2;5/28/2026 22:00;5,87;L/h
+0;D.O Outlet Flow DG#3;5/28/2026 22:00;5,6;L/h
+0;D.O Outlet Flow DG#4;5/28/2026 22:00;5,4;L/h
+0;D.O Outlet Flow DG#1;5/28/2026 23:00;5,04;L/h
+0;D.O Outlet Flow DG#2;5/28/2026 23:00;4,18;L/h
+0;D.O Outlet Flow DG#3;5/28/2026 23:00;4,28;L/h
+0;D.O Outlet Flow DG#4;5/28/2026 23:00;5,93;L/h
+0;H.O Inlet Flow DG#1;5/27/2026 1:00;6,53;L/h
+0;H.O Inlet Flow DG#2;5/27/2026 1:00;8,61;L/h
+0;H.O Inlet Flow DG#3;5/27/2026 1:00;8,75;L/h
+0;H.O Inlet Flow DG#4;5/27/2026 1:00;8,22;L/h
+0;H.O Inlet Flow DG#1;5/27/2026 2:00;6,82;L/h
+0;H.O Inlet Flow DG#2;5/27/2026 2:00;8,9;L/h
+0;H.O Inlet Flow DG#3;5/27/2026 2:00;7,44;L/h
+0;H.O Inlet Flow DG#4;5/27/2026 2:00;6,11;L/h
+0;H.O Inlet Flow DG#1;5/27/2026 3:00;9,78;L/h
+0;H.O Inlet Flow DG#2;5/27/2026 3:00;6,34;L/h
+0;H.O Inlet Flow DG#3;5/27/2026 3:00;7,64;L/h
+0;H.O Inlet Flow DG#4;5/27/2026 3:00;6,14;L/h
+0;H.O Inlet Flow DG#1;5/27/2026 4:00;7,71;L/h
+0;H.O Inlet Flow DG#2;5/27/2026 4:00;8,23;L/h
+0;H.O Inlet Flow DG#3;5/27/2026 4:00;6,91;L/h
+0;H.O Inlet Flow DG#4;5/27/2026 4:00;6,56;L/h
+0;H.O Inlet Flow DG#1;5/27/2026 5:00;8,54;L/h
+0;H.O Inlet Flow DG#2;5/27/2026 5:00;9,77;L/h
+0;H.O Inlet Flow DG#3;5/27/2026 5:00;8,19;L/h
+0;H.O Inlet Flow DG#4;5/27/2026 5:00;8,95;L/h
+0;H.O Inlet Flow DG#1;5/27/2026 6:00;8,61;L/h
+0;H.O Inlet Flow DG#2;5/27/2026 6:00;7,97;L/h
+0;H.O Inlet Flow DG#3;5/27/2026 6:00;9,49;L/h
+0;H.O Inlet Flow DG#4;5/27/2026 6:00;9,53;L/h
+0;H.O Inlet Flow DG#1;5/27/2026 7:00;8,14;L/h
+0;H.O Inlet Flow DG#2;5/27/2026 7:00;7,09;L/h
+0;H.O Inlet Flow DG#3;5/27/2026 7:00;9,38;L/h
+0;H.O Inlet Flow DG#4;5/27/2026 7:00;9,14;L/h
+0;H.O Inlet Flow DG#1;5/27/2026 8:00;8,39;L/h
+0;H.O Inlet Flow DG#2;5/27/2026 8:00;8,56;L/h
+0;H.O Inlet Flow DG#3;5/27/2026 8:00;8,93;L/h
+0;H.O Inlet Flow DG#4;5/27/2026 8:00;8,94;L/h
+0;H.O Inlet Flow DG#1;5/27/2026 9:00;9,09;L/h
+0;H.O Inlet Flow DG#2;5/27/2026 9:00;6,55;L/h
+0;H.O Inlet Flow DG#3;5/27/2026 9:00;9,73;L/h
+0;H.O Inlet Flow DG#4;5/27/2026 9:00;8,66;L/h
+0;H.O Inlet Flow DG#1;5/27/2026 10:00;7,63;L/h
+0;H.O Inlet Flow DG#2;5/27/2026 10:00;9,79;L/h
+0;H.O Inlet Flow DG#3;5/27/2026 10:00;9,53;L/h
+0;H.O Inlet Flow DG#4;5/27/2026 10:00;6,96;L/h
+0;H.O Inlet Flow DG#1;5/27/2026 11:00;8,52;L/h
+0;H.O Inlet Flow DG#2;5/27/2026 11:00;9,15;L/h
+0;H.O Inlet Flow DG#3;5/27/2026 11:00;6,22;L/h
+0;H.O Inlet Flow DG#4;5/27/2026 11:00;9,38;L/h
+0;H.O Inlet Flow DG#1;5/27/2026 12:00;7,99;L/h
+0;H.O Inlet Flow DG#2;5/27/2026 12:00;6,72;L/h
+0;H.O Inlet Flow DG#3;5/27/2026 12:00;7,96;L/h
+0;H.O Inlet Flow DG#4;5/27/2026 12:00;9,31;L/h
+0;H.O Inlet Flow DG#1;5/27/2026 13:00;9,35;L/h
+0;H.O Inlet Flow DG#2;5/27/2026 13:00;9,25;L/h
+0;H.O Inlet Flow DG#3;5/27/2026 13:00;8,8;L/h
+0;H.O Inlet Flow DG#4;5/27/2026 13:00;7,15;L/h
+0;H.O Inlet Flow DG#1;5/27/2026 14:00;8,73;L/h
+0;H.O Inlet Flow DG#2;5/27/2026 14:00;7,47;L/h
+0;H.O Inlet Flow DG#3;5/27/2026 14:00;8,07;L/h
+0;H.O Inlet Flow DG#4;5/27/2026 14:00;6,36;L/h
+0;H.O Inlet Flow DG#1;5/27/2026 15:00;7,82;L/h
+0;H.O Inlet Flow DG#2;5/27/2026 15:00;8,83;L/h
+0;H.O Inlet Flow DG#3;5/27/2026 15:00;6,9;L/h
+0;H.O Inlet Flow DG#4;5/27/2026 15:00;6,77;L/h
+0;H.O Inlet Flow DG#1;5/27/2026 16:00;6,87;L/h
+0;H.O Inlet Flow DG#2;5/27/2026 16:00;6,37;L/h
+0;H.O Inlet Flow DG#3;5/27/2026 16:00;9,06;L/h
+0;H.O Inlet Flow DG#4;5/27/2026 16:00;7,86;L/h
+0;H.O Inlet Flow DG#1;5/27/2026 17:00;7,39;L/h
+0;H.O Inlet Flow DG#2;5/27/2026 17:00;9,5;L/h
+0;H.O Inlet Flow DG#3;5/27/2026 17:00;9,08;L/h
+0;H.O Inlet Flow DG#4;5/27/2026 17:00;7,33;L/h
+0;H.O Inlet Flow DG#1;5/27/2026 18:00;8,86;L/h
+0;H.O Inlet Flow DG#2;5/27/2026 18:00;9,73;L/h
+0;H.O Inlet Flow DG#3;5/27/2026 18:00;8,11;L/h
+0;H.O Inlet Flow DG#4;5/27/2026 18:00;8,84;L/h
+0;H.O Inlet Flow DG#1;5/27/2026 19:00;6,92;L/h
+0;H.O Inlet Flow DG#2;5/27/2026 19:00;7,92;L/h
+0;H.O Inlet Flow DG#3;5/27/2026 19:00;6,11;L/h
+0;H.O Inlet Flow DG#4;5/27/2026 19:00;7,64;L/h
+0;H.O Inlet Flow DG#1;5/27/2026 20:00;9,14;L/h
+0;H.O Inlet Flow DG#2;5/27/2026 20:00;7,06;L/h
+0;H.O Inlet Flow DG#3;5/27/2026 20:00;9,06;L/h
+0;H.O Inlet Flow DG#4;5/27/2026 20:00;9,05;L/h
+0;H.O Inlet Flow DG#1;5/27/2026 21:00;9,47;L/h
+0;H.O Inlet Flow DG#2;5/27/2026 21:00;6,4;L/h
+0;H.O Inlet Flow DG#3;5/27/2026 21:00;6,81;L/h
+0;H.O Inlet Flow DG#4;5/27/2026 21:00;8,26;L/h
+0;H.O Inlet Flow DG#1;5/27/2026 22:00;7,76;L/h
+0;H.O Inlet Flow DG#2;5/27/2026 22:00;6,42;L/h
+0;H.O Inlet Flow DG#3;5/27/2026 22:00;6,55;L/h
+0;H.O Inlet Flow DG#4;5/27/2026 22:00;7,87;L/h
+0;H.O Inlet Flow DG#1;5/27/2026 23:00;9,16;L/h
+0;H.O Inlet Flow DG#2;5/27/2026 23:00;8,89;L/h
+0;H.O Inlet Flow DG#3;5/27/2026 23:00;8,54;L/h
+0;H.O Inlet Flow DG#4;5/27/2026 23:00;6,67;L/h
+0;H.O Inlet Flow DG#1;5/28/2026 1:00;6,28;L/h
+0;H.O Inlet Flow DG#2;5/28/2026 1:00;9;L/h 
+0;H.O Inlet Flow DG#3;5/28/2026 1:00;8,59;L/h
+0;H.O Inlet Flow DG#4;5/28/2026 1:00;6,84;L/h
+0;H.O Inlet Flow DG#1;5/28/2026 2:00;8,33;L/h
+0;H.O Inlet Flow DG#2;5/28/2026 2:00;8,52;L/h
+0;H.O Inlet Flow DG#3;5/28/2026 2:00;8,15;L/h
+0;H.O Inlet Flow DG#4;5/28/2026 2:00;7,93;L/h
+0;H.O Inlet Flow DG#1;5/28/2026 3:00;6,3;L/h
+0;H.O Inlet Flow DG#2;5/28/2026 3:00;9,36;L/h
+0;H.O Inlet Flow DG#3;5/28/2026 3:00;9,44;L/h
+0;H.O Inlet Flow DG#4;5/28/2026 3:00;9,01;L/h
+0;H.O Inlet Flow DG#1;5/28/2026 4:00;9,79;L/h
+0;H.O Inlet Flow DG#2;5/28/2026 4:00;6,03;L/h
+0;H.O Inlet Flow DG#3;5/28/2026 4:00;9,05;L/h
+0;H.O Inlet Flow DG#4;5/28/2026 4:00;9,79;L/h
+0;H.O Inlet Flow DG#1;5/28/2026 5:00;6,85;L/h
+0;H.O Inlet Flow DG#2;5/28/2026 5:00;9,07;L/h
+0;H.O Inlet Flow DG#3;5/28/2026 5:00;7,55;L/h
+0;H.O Inlet Flow DG#4;5/28/2026 5:00;7,17;L/h
+0;H.O Inlet Flow DG#1;5/28/2026 6:00;7,13;L/h
+0;H.O Inlet Flow DG#2;5/28/2026 6:00;7,97;L/h
+0;H.O Inlet Flow DG#3;5/28/2026 6:00;9,09;L/h
+0;H.O Inlet Flow DG#4;5/28/2026 6:00;6,07;L/h
+0;H.O Inlet Flow DG#1;5/28/2026 7:00;9,19;L/h
+0;H.O Inlet Flow DG#2;5/28/2026 7:00;9,11;L/h
+0;H.O Inlet Flow DG#3;5/28/2026 7:00;9,71;L/h
+0;H.O Inlet Flow DG#4;5/28/2026 7:00;8,18;L/h
+0;H.O Inlet Flow DG#1;5/28/2026 8:00;7,93;L/h
+0;H.O Inlet Flow DG#2;5/28/2026 8:00;8,07;L/h
+0;H.O Inlet Flow DG#3;5/28/2026 8:00;6,3;L/h
+0;H.O Inlet Flow DG#4;5/28/2026 8:00;6,78;L/h
+0;H.O Inlet Flow DG#1;5/28/2026 9:00;7,66;L/h
+0;H.O Inlet Flow DG#2;5/28/2026 9:00;9,75;L/h
+0;H.O Inlet Flow DG#3;5/28/2026 9:00;8,05;L/h
+0;H.O Inlet Flow DG#4;5/28/2026 9:00;7,79;L/h
+0;H.O Inlet Flow DG#1;5/28/2026 10:00;6,72;L/h
+0;H.O Inlet Flow DG#2;5/28/2026 10:00;6,53;L/h
+0;H.O Inlet Flow DG#3;5/28/2026 10:00;7,76;L/h
+0;H.O Inlet Flow DG#4;5/28/2026 10:00;6,43;L/h
+0;H.O Inlet Flow DG#1;5/28/2026 11:00;9,07;L/h
+0;H.O Inlet Flow DG#2;5/28/2026 11:00;6,42;L/h
+0;H.O Inlet Flow DG#3;5/28/2026 11:00;6,19;L/h
+0;H.O Inlet Flow DG#4;5/28/2026 11:00;8,81;L/h
+0;H.O Inlet Flow DG#1;5/28/2026 12:00;7,81;L/h
+0;H.O Inlet Flow DG#2;5/28/2026 12:00;7,33;L/h
+0;H.O Inlet Flow DG#3;5/28/2026 12:00;6,5;L/h
+0;H.O Inlet Flow DG#4;5/28/2026 12:00;8,92;L/h
+0;H.O Inlet Flow DG#1;5/28/2026 13:00;7,69;L/h
+0;H.O Inlet Flow DG#2;5/28/2026 13:00;7,9;L/h
+0;H.O Inlet Flow DG#3;5/28/2026 13:00;6,07;L/h
+0;H.O Inlet Flow DG#4;5/28/2026 13:00;6,45;L/h
+0;H.O Inlet Flow DG#1;5/28/2026 14:00;9,35;L/h
+0;H.O Inlet Flow DG#2;5/28/2026 14:00;6,83;L/h
+0;H.O Inlet Flow DG#3;5/28/2026 14:00;9,77;L/h
+0;H.O Inlet Flow DG#4;5/28/2026 14:00;9,81;L/h
+0;H.O Inlet Flow DG#1;5/28/2026 15:00;8,29;L/h
+0;H.O Inlet Flow DG#2;5/28/2026 15:00;9,08;L/h
+0;H.O Inlet Flow DG#3;5/28/2026 15:00;7,84;L/h
+0;H.O Inlet Flow DG#4;5/28/2026 15:00;8,51;L/h
+0;H.O Inlet Flow DG#1;5/28/2026 16:00;6,97;L/h
+0;H.O Inlet Flow DG#2;5/28/2026 16:00;8,86;L/h
+0;H.O Inlet Flow DG#3;5/28/2026 16:00;9,62;L/h
+0;H.O Inlet Flow DG#4;5/28/2026 16:00;8,76;L/h
+0;H.O Inlet Flow DG#1;5/28/2026 17:00;8,87;L/h
+0;H.O Inlet Flow DG#2;5/28/2026 17:00;9,19;L/h
+0;H.O Inlet Flow DG#3;5/28/2026 17:00;6,91;L/h
+0;H.O Inlet Flow DG#4;5/28/2026 17:00;6,01;L/h
+0;H.O Inlet Flow DG#1;5/28/2026 18:00;7,57;L/h
+0;H.O Inlet Flow DG#2;5/28/2026 18:00;6,44;L/h
+0;H.O Inlet Flow DG#3;5/28/2026 18:00;9,94;L/h
+0;H.O Inlet Flow DG#4;5/28/2026 18:00;8,48;L/h
+0;H.O Inlet Flow DG#1;5/28/2026 19:00;7,06;L/h
+0;H.O Inlet Flow DG#2;5/28/2026 19:00;9,79;L/h
+0;H.O Inlet Flow DG#3;5/28/2026 19:00;6,26;L/h
+0;H.O Inlet Flow DG#4;5/28/2026 19:00;8,42;L/h
+0;H.O Inlet Flow DG#1;5/28/2026 20:00;7,78;L/h
+0;H.O Inlet Flow DG#2;5/28/2026 20:00;6,81;L/h
+0;H.O Inlet Flow DG#3;5/28/2026 20:00;9,27;L/h
+0;H.O Inlet Flow DG#4;5/28/2026 20:00;6,58;L/h
+0;H.O Inlet Flow DG#1;5/28/2026 21:00;7;L/h 
+0;H.O Inlet Flow DG#2;5/28/2026 21:00;9,95;L/h
+0;H.O Inlet Flow DG#3;5/28/2026 21:00;9,76;L/h
+0;H.O Inlet Flow DG#4;5/28/2026 21:00;9,85;L/h
+0;H.O Inlet Flow DG#1;5/28/2026 22:00;8,85;L/h
+0;H.O Inlet Flow DG#2;5/28/2026 22:00;6,77;L/h
+0;H.O Inlet Flow DG#3;5/28/2026 22:00;6,82;L/h
+0;H.O Inlet Flow DG#4;5/28/2026 22:00;9,65;L/h
+0;H.O Inlet Flow DG#1;5/28/2026 23:00;6,78;L/h
+0;H.O Inlet Flow DG#2;5/28/2026 23:00;6,17;L/h
+0;H.O Inlet Flow DG#3;5/28/2026 23:00;8,16;L/h
+0;H.O Inlet Flow DG#4;5/28/2026 23:00;6,31;L/h
+0;H.O Outlet Flow DG#1;5/27/2026 0:00;4,09;L/h
+0;H.O Outlet Flow DG#2;5/27/2026 0:00;4,68;L/h
+0;H.O Outlet Flow DG#3;5/27/2026 0:00;5,75;L/h
+0;H.O Outlet Flow DG#4;5/27/2026 0:00;5,15;L/h
+0;H.O Outlet Flow DG#1;5/27/2026 1:00;4,58;L/h
+0;H.O Outlet Flow DG#2;5/27/2026 1:00;4,32;L/h
+0;H.O Outlet Flow DG#3;5/27/2026 1:00;4,06;L/h
+0;H.O Outlet Flow DG#4;5/27/2026 1:00;4,67;L/h
+0;H.O Outlet Flow DG#1;5/27/2026 2:00;4,56;L/h
+0;H.O Outlet Flow DG#2;5/27/2026 2:00;5,78;L/h
+0;H.O Outlet Flow DG#3;5/27/2026 2:00;4,36;L/h
+0;H.O Outlet Flow DG#4;5/27/2026 2:00;4,11;L/h
+0;H.O Outlet Flow DG#1;5/27/2026 3:00;4,49;L/h
+0;H.O Outlet Flow DG#2;5/27/2026 3:00;5,16;L/h
+0;H.O Outlet Flow DG#3;5/27/2026 3:00;4,14;L/h
+0;H.O Outlet Flow DG#4;5/27/2026 3:00;4,87;L/h
+0;H.O Outlet Flow DG#1;5/27/2026 4:00;4,98;L/h
+0;H.O Outlet Flow DG#2;5/27/2026 4:00;4,15;L/h
+0;H.O Outlet Flow DG#3;5/27/2026 4:00;4,54;L/h
+0;H.O Outlet Flow DG#4;5/27/2026 4:00;4,68;L/h
+0;H.O Outlet Flow DG#1;5/27/2026 5:00;4,83;L/h
+0;H.O Outlet Flow DG#2;5/27/2026 5:00;5,62;L/h
+0;H.O Outlet Flow DG#3;5/27/2026 5:00;4,95;L/h
+0;H.O Outlet Flow DG#4;5/27/2026 5:00;5,19;L/h
+0;H.O Outlet Flow DG#1;5/27/2026 6:00;5,54;L/h
+0;H.O Outlet Flow DG#2;5/27/2026 6:00;4,05;L/h
+0;H.O Outlet Flow DG#3;5/27/2026 6:00;4,64;L/h
+0;H.O Outlet Flow DG#4;5/27/2026 6:00;4,86;L/h
+0;H.O Outlet Flow DG#1;5/27/2026 7:00;5,64;L/h
+0;H.O Outlet Flow DG#2;5/27/2026 7:00;4,19;L/h
+0;H.O Outlet Flow DG#3;5/27/2026 7:00;4,32;L/h
+0;H.O Outlet Flow DG#4;5/27/2026 7:00;5,45;L/h
+0;H.O Outlet Flow DG#1;5/27/2026 8:00;4,95;L/h
+0;H.O Outlet Flow DG#2;5/27/2026 8:00;5,49;L/h
+0;H.O Outlet Flow DG#3;5/27/2026 8:00;5,97;L/h
+0;H.O Outlet Flow DG#4;5/27/2026 8:00;4,15;L/h
+0;H.O Outlet Flow DG#1;5/27/2026 9:00;5,46;L/h
+0;H.O Outlet Flow DG#2;5/27/2026 9:00;5,35;L/h
+0;H.O Outlet Flow DG#3;5/27/2026 9:00;5,46;L/h
+0;H.O Outlet Flow DG#4;5/27/2026 9:00;4,12;L/h
+0;H.O Outlet Flow DG#1;5/27/2026 10:00;5,96;L/h
+0;H.O Outlet Flow DG#2;5/27/2026 10:00;5,93;L/h
+0;H.O Outlet Flow DG#3;5/27/2026 10:00;4,88;L/h
+0;H.O Outlet Flow DG#4;5/27/2026 10:00;4,68;L/h
+0;H.O Outlet Flow DG#1;5/27/2026 11:00;5,7;L/h
+0;H.O Outlet Flow DG#2;5/27/2026 11:00;4,37;L/h
+0;H.O Outlet Flow DG#3;5/27/2026 11:00;5,41;L/h
+0;H.O Outlet Flow DG#4;5/27/2026 11:00;4,81;L/h
+0;H.O Outlet Flow DG#1;5/27/2026 12:00;5,54;L/h
+0;H.O Outlet Flow DG#2;5/27/2026 12:00;4,25;L/h
+0;H.O Outlet Flow DG#3;5/27/2026 12:00;4,01;L/h
+0;H.O Outlet Flow DG#4;5/27/2026 12:00;5,61;L/h
+0;H.O Outlet Flow DG#1;5/27/2026 13:00;4,13;L/h
+0;H.O Outlet Flow DG#2;5/27/2026 13:00;5,35;L/h
+0;H.O Outlet Flow DG#3;5/27/2026 13:00;5,56;L/h
+0;H.O Outlet Flow DG#4;5/27/2026 13:00;5,6;L/h
+0;H.O Outlet Flow DG#1;5/27/2026 14:00;4,33;L/h
+0;H.O Outlet Flow DG#2;5/27/2026 14:00;5,7;L/h
+0;H.O Outlet Flow DG#3;5/27/2026 14:00;5,96;L/h
+0;H.O Outlet Flow DG#4;5/27/2026 14:00;5,26;L/h
+0;H.O Outlet Flow DG#1;5/27/2026 15:00;4,98;L/h
+0;H.O Outlet Flow DG#2;5/27/2026 15:00;4,48;L/h
+0;H.O Outlet Flow DG#3;5/27/2026 15:00;5,9;L/h
+0;H.O Outlet Flow DG#4;5/27/2026 15:00;5,27;L/h
+0;H.O Outlet Flow DG#1;5/27/2026 16:00;4,97;L/h
+0;H.O Outlet Flow DG#2;5/27/2026 16:00;5,41;L/h
+0;H.O Outlet Flow DG#3;5/27/2026 16:00;5,75;L/h
+0;H.O Outlet Flow DG#4;5/27/2026 16:00;5,01;L/h
+0;H.O Outlet Flow DG#1;5/27/2026 17:00;4,74;L/h
+0;H.O Outlet Flow DG#2;5/27/2026 17:00;4,52;L/h
+0;H.O Outlet Flow DG#3;5/27/2026 17:00;4,4;L/h
+0;H.O Outlet Flow DG#4;5/27/2026 17:00;5,6;L/h
+0;H.O Outlet Flow DG#1;5/27/2026 18:00;4,75;L/h
+0;H.O Outlet Flow DG#2;5/27/2026 18:00;4,76;L/h
+0;H.O Outlet Flow DG#3;5/27/2026 18:00;5,43;L/h
+0;H.O Outlet Flow DG#4;5/27/2026 18:00;4,38;L/h
+0;H.O Outlet Flow DG#1;5/27/2026 19:00;4,43;L/h
+0;H.O Outlet Flow DG#2;5/27/2026 19:00;5,36;L/h
+0;H.O Outlet Flow DG#3;5/27/2026 19:00;5,46;L/h
+0;H.O Outlet Flow DG#4;5/27/2026 19:00;4,88;L/h
+0;H.O Outlet Flow DG#1;5/27/2026 20:00;4,68;L/h
+0;H.O Outlet Flow DG#2;5/27/2026 20:00;5,68;L/h
+0;H.O Outlet Flow DG#3;5/27/2026 20:00;5,6;L/h
+0;H.O Outlet Flow DG#4;5/27/2026 20:00;4,12;L/h
+0;H.O Outlet Flow DG#1;5/27/2026 21:00;5,85;L/h
+0;H.O Outlet Flow DG#2;5/27/2026 21:00;4,83;L/h
+0;H.O Outlet Flow DG#3;5/27/2026 21:00;5,63;L/h
+0;H.O Outlet Flow DG#4;5/27/2026 21:00;5,24;L/h
+0;H.O Outlet Flow DG#1;5/27/2026 22:00;4,26;L/h
+0;H.O Outlet Flow DG#2;5/27/2026 22:00;5,77;L/h
+0;H.O Outlet Flow DG#3;5/27/2026 22:00;4,4;L/h
+0;H.O Outlet Flow DG#4;5/27/2026 22:00;4,04;L/h
+0;H.O Outlet Flow DG#1;5/27/2026 23:00;4,73;L/h
+0;H.O Outlet Flow DG#2;5/27/2026 23:00;5,57;L/h
+0;H.O Outlet Flow DG#3;5/27/2026 23:00;5,39;L/h
+0;H.O Outlet Flow DG#4;5/27/2026 23:00;5,44;L/h
+0;H.O Outlet Flow DG#1;5/28/2026 0:00;5,26;L/h
+0;H.O Outlet Flow DG#2;5/28/2026 0:00;4,67;L/h
+0;H.O Outlet Flow DG#3;5/28/2026 0:00;5,72;L/h
+0;H.O Outlet Flow DG#4;5/28/2026 0:00;4,54;L/h
+0;H.O Outlet Flow DG#1;5/28/2026 1:00;4,83;L/h
+0;H.O Outlet Flow DG#2;5/28/2026 1:00;4,4;L/h
+0;H.O Outlet Flow DG#3;5/28/2026 1:00;5,13;L/h
+0;H.O Outlet Flow DG#4;5/28/2026 1:00;5,31;L/h
+0;H.O Outlet Flow DG#1;5/28/2026 2:00;5,29;L/h
+0;H.O Outlet Flow DG#2;5/28/2026 2:00;5,08;L/h
+0;H.O Outlet Flow DG#3;5/28/2026 2:00;5,03;L/h
+0;H.O Outlet Flow DG#4;5/28/2026 2:00;4,44;L/h
+0;H.O Outlet Flow DG#1;5/28/2026 3:00;4,49;L/h
+0;H.O Outlet Flow DG#2;5/28/2026 3:00;5,8;L/h
+0;H.O Outlet Flow DG#3;5/28/2026 3:00;5,36;L/h
+0;H.O Outlet Flow DG#4;5/28/2026 3:00;4,34;L/h
+0;H.O Outlet Flow DG#1;5/28/2026 4:00;4,84;L/h
+0;H.O Outlet Flow DG#2;5/28/2026 4:00;5,93;L/h
+0;H.O Outlet Flow DG#3;5/28/2026 4:00;4,5;L/h
+0;H.O Outlet Flow DG#4;5/28/2026 4:00;4,11;L/h
+0;H.O Outlet Flow DG#1;5/28/2026 5:00;4,39;L/h
+0;H.O Outlet Flow DG#2;5/28/2026 5:00;5,33;L/h
+0;H.O Outlet Flow DG#3;5/28/2026 5:00;5,87;L/h
+0;H.O Outlet Flow DG#4;5/28/2026 5:00;5,52;L/h
+0;H.O Outlet Flow DG#1;5/28/2026 6:00;4,49;L/h
+0;H.O Outlet Flow DG#2;5/28/2026 6:00;4,26;L/h
+0;H.O Outlet Flow DG#3;5/28/2026 6:00;4,69;L/h
+0;H.O Outlet Flow DG#4;5/28/2026 6:00;5,2;L/h
+0;H.O Outlet Flow DG#1;5/28/2026 7:00;4,17;L/h
+0;H.O Outlet Flow DG#2;5/28/2026 7:00;4,39;L/h
+0;H.O Outlet Flow DG#3;5/28/2026 7:00;4,04;L/h
+0;H.O Outlet Flow DG#4;5/28/2026 7:00;5,37;L/h
+0;H.O Outlet Flow DG#1;5/28/2026 8:00;4,7;L/h
+0;H.O Outlet Flow DG#2;5/28/2026 8:00;4,59;L/h
+0;H.O Outlet Flow DG#3;5/28/2026 8:00;4,9;L/h
+0;H.O Outlet Flow DG#4;5/28/2026 8:00;4,67;L/h
+0;H.O Outlet Flow DG#1;5/28/2026 9:00;5,87;L/h
+0;H.O Outlet Flow DG#2;5/28/2026 9:00;4,04;L/h
+0;H.O Outlet Flow DG#3;5/28/2026 9:00;5,12;L/h
+0;H.O Outlet Flow DG#4;5/28/2026 9:00;4,6;L/h
+0;H.O Outlet Flow DG#1;5/28/2026 10:00;4,32;L/h
+0;H.O Outlet Flow DG#2;5/28/2026 10:00;4,03;L/h
+0;H.O Outlet Flow DG#3;5/28/2026 10:00;4,8;L/h
+0;H.O Outlet Flow DG#4;5/28/2026 10:00;4,56;L/h
+0;H.O Outlet Flow DG#1;5/28/2026 11:00;4,75;L/h
+0;H.O Outlet Flow DG#2;5/28/2026 11:00;5,75;L/h
+0;H.O Outlet Flow DG#3;5/28/2026 11:00;4,38;L/h
+0;H.O Outlet Flow DG#4;5/28/2026 11:00;4,6;L/h
+0;H.O Outlet Flow DG#1;5/28/2026 12:00;4,65;L/h
+0;H.O Outlet Flow DG#2;5/28/2026 12:00;5,28;L/h
+0;H.O Outlet Flow DG#3;5/28/2026 12:00;4,55;L/h
+0;H.O Outlet Flow DG#4;5/28/2026 12:00;4,74;L/h
+0;H.O Outlet Flow DG#1;5/28/2026 13:00;4,7;L/h
+0;H.O Outlet Flow DG#2;5/28/2026 13:00;4,26;L/h
+0;H.O Outlet Flow DG#3;5/28/2026 13:00;5,36;L/h
+0;H.O Outlet Flow DG#4;5/28/2026 13:00;4,82;L/h
+0;H.O Outlet Flow DG#1;5/28/2026 14:00;5,49;L/h
+0;H.O Outlet Flow DG#2;5/28/2026 14:00;4,65;L/h
+0;H.O Outlet Flow DG#3;5/28/2026 14:00;4,97;L/h
+0;H.O Outlet Flow DG#4;5/28/2026 14:00;4,34;L/h
+0;H.O Outlet Flow DG#1;5/28/2026 15:00;5,75;L/h
+0;H.O Outlet Flow DG#2;5/28/2026 15:00;4,21;L/h
+0;H.O Outlet Flow DG#3;5/28/2026 15:00;4,92;L/h
+0;H.O Outlet Flow DG#4;5/28/2026 15:00;4,06;L/h
+0;H.O Outlet Flow DG#1;5/28/2026 16:00;5,76;L/h
+0;H.O Outlet Flow DG#2;5/28/2026 16:00;5,99;L/h
+0;H.O Outlet Flow DG#3;5/28/2026 16:00;4,01;L/h
+0;H.O Outlet Flow DG#4;5/28/2026 16:00;4,69;L/h
+0;H.O Outlet Flow DG#1;5/28/2026 17:00;5,7;L/h
+0;H.O Outlet Flow DG#2;5/28/2026 17:00;4,23;L/h
+0;H.O Outlet Flow DG#3;5/28/2026 17:00;4,56;L/h
+0;H.O Outlet Flow DG#4;5/28/2026 17:00;4,9;L/h
+0;H.O Outlet Flow DG#1;5/28/2026 18:00;5,07;L/h
+0;H.O Outlet Flow DG#2;5/28/2026 18:00;4,63;L/h
+0;H.O Outlet Flow DG#3;5/28/2026 18:00;5,71;L/h
+0;H.O Outlet Flow DG#4;5/28/2026 18:00;4,2;L/h
+0;H.O Outlet Flow DG#1;5/28/2026 19:00;5,48;L/h
+0;H.O Outlet Flow DG#2;5/28/2026 19:00;4,41;L/h
+0;H.O Outlet Flow DG#3;5/28/2026 19:00;4,79;L/h
+0;H.O Outlet Flow DG#4;5/28/2026 19:00;4,05;L/h
+0;H.O Outlet Flow DG#1;5/28/2026 20:00;4,58;L/h
+0;H.O Outlet Flow DG#2;5/28/2026 20:00;5,93;L/h
+0;H.O Outlet Flow DG#3;5/28/2026 20:00;4,11;L/h
+0;H.O Outlet Flow DG#4;5/28/2026 20:00;4,68;L/h
+0;H.O Outlet Flow DG#1;5/28/2026 21:00;5,45;L/h
+0;H.O Outlet Flow DG#2;5/28/2026 21:00;4,82;L/h
+0;H.O Outlet Flow DG#3;5/28/2026 21:00;5,54;L/h
+0;H.O Outlet Flow DG#4;5/28/2026 21:00;4,87;L/h
+0;H.O Outlet Flow DG#1;5/28/2026 22:00;5,42;L/h
+0;H.O Outlet Flow DG#2;5/28/2026 22:00;5,87;L/h
+0;H.O Outlet Flow DG#3;5/28/2026 22:00;5,6;L/h
+0;H.O Outlet Flow DG#4;5/28/2026 22:00;5,4;L/h
+0;H.O Outlet Flow DG#1;5/28/2026 23:00;5,04;L/h
+0;H.O Outlet Flow DG#2;5/28/2026 23:00;4,18;L/h
+0;H.O Outlet Flow DG#3;5/28/2026 23:00;4,28;L/h
+0;H.O Outlet Flow DG#4;5/28/2026 23:00;5,93;L/h
+1;Engine Power;5/27/2026 0:00;734;kW
+2;Engine Power;5/27/2026 0:00;664;kW
+3;Engine Power;5/27/2026 0:00;407;kW
+4;Engine Power;5/27/2026 0:00;756;kW
+1;Engine Power;5/27/2026 1:00;562;kW
+2;Engine Power;5/27/2026 1:00;361;kW
+3;Engine Power;5/27/2026 1:00;562;kW
+4;Engine Power;5/27/2026 1:00;374;kW
+1;Engine Power;5/27/2026 2:00;478;kW
+2;Engine Power;5/27/2026 2:00;575;kW
+3;Engine Power;5/27/2026 2:00;574;kW
+4;Engine Power;5/27/2026 2:00;476;kW
+1;Engine Power;5/27/2026 3:00;398;kW
+2;Engine Power;5/27/2026 3:00;754;kW
+3;Engine Power;5/27/2026 3:00;571;kW
+4;Engine Power;5/27/2026 3:00;384;kW
+1;Engine Power;5/27/2026 4:00;637;kW
+2;Engine Power;5/27/2026 4:00;354;kW
+3;Engine Power;5/27/2026 4:00;304;kW
+4;Engine Power;5/27/2026 4:00;783;kW
+1;Engine Power;5/27/2026 5:00;627;kW
+2;Engine Power;5/27/2026 5:00;646;kW
+3;Engine Power;5/27/2026 5:00;743;kW
+4;Engine Power;5/27/2026 5:00;555;kW
+1;Engine Power;5/27/2026 6:00;775;kW
+2;Engine Power;5/27/2026 6:00;352;kW
+3;Engine Power;5/27/2026 6:00;719;kW
+4;Engine Power;5/27/2026 6:00;456;kW
+1;Engine Power;5/27/2026 7:00;434;kW
+2;Engine Power;5/27/2026 7:00;512;kW
+3;Engine Power;5/27/2026 7:00;470;kW
+4;Engine Power;5/27/2026 7:00;730;kW
+1;Engine Power;5/27/2026 8:00;424;kW
+2;Engine Power;5/27/2026 8:00;671;kW
+3;Engine Power;5/27/2026 8:00;340;kW
+4;Engine Power;5/27/2026 8:00;789;kW
+1;Engine Power;5/27/2026 9:00;675;kW
+2;Engine Power;5/27/2026 9:00;348;kW
+3;Engine Power;5/27/2026 9:00;796;kW
+4;Engine Power;5/27/2026 9:00;463;kW
+1;Engine Power;5/27/2026 10:00;433;kW
+2;Engine Power;5/27/2026 10:00;423;kW
+3;Engine Power;5/27/2026 10:00;497;kW
+4;Engine Power;5/27/2026 10:00;488;kW
+1;Engine Power;5/27/2026 11:00;781;kW
+2;Engine Power;5/27/2026 11:00;465;kW
+3;Engine Power;5/27/2026 11:00;554;kW
+4;Engine Power;5/27/2026 11:00;552;kW
+1;Engine Power;5/27/2026 12:00;468;kW
+2;Engine Power;5/27/2026 12:00;645;kW
+3;Engine Power;5/27/2026 12:00;386;kW
+4;Engine Power;5/27/2026 12:00;328;kW
+1;Engine Power;5/27/2026 13:00;505;kW
+2;Engine Power;5/27/2026 13:00;398;kW
+3;Engine Power;5/27/2026 13:00;317;kW
+4;Engine Power;5/27/2026 13:00;360;kW
+1;Engine Power;5/27/2026 14:00;455;kW
+2;Engine Power;5/27/2026 14:00;323;kW
+3;Engine Power;5/27/2026 14:00;772;kW
+4;Engine Power;5/27/2026 14:00;335;kW
+1;Engine Power;5/27/2026 15:00;667;kW
+2;Engine Power;5/27/2026 15:00;783;kW
+3;Engine Power;5/27/2026 15:00;489;kW
+4;Engine Power;5/27/2026 15:00;465;kW
+1;Engine Power;5/27/2026 16:00;314;kW
+2;Engine Power;5/27/2026 16:00;731;kW
+3;Engine Power;5/27/2026 16:00;714;kW
+4;Engine Power;5/27/2026 16:00;458;kW
+1;Engine Power;5/27/2026 17:00;565;kW
+2;Engine Power;5/27/2026 17:00;629;kW
+3;Engine Power;5/27/2026 17:00;332;kW
+4;Engine Power;5/27/2026 17:00;693;kW
+1;Engine Power;5/27/2026 18:00;620;kW
+2;Engine Power;5/27/2026 18:00;310;kW
+3;Engine Power;5/27/2026 18:00;393;kW
+4;Engine Power;5/27/2026 18:00;450;kW
+1;Engine Power;5/27/2026 19:00;430;kW
+2;Engine Power;5/27/2026 19:00;615;kW
+3;Engine Power;5/27/2026 19:00;311;kW
+4;Engine Power;5/27/2026 19:00;725;kW
+1;Engine Power;5/27/2026 20:00;662;kW
+2;Engine Power;5/27/2026 20:00;452;kW
+3;Engine Power;5/27/2026 20:00;720;kW
+4;Engine Power;5/27/2026 20:00;512;kW
+1;Engine Power;5/27/2026 21:00;528;kW
+2;Engine Power;5/27/2026 21:00;515;kW
+3;Engine Power;5/27/2026 21:00;609;kW
+4;Engine Power;5/27/2026 21:00;489;kW
+1;Engine Power;5/27/2026 22:00;767;kW
+2;Engine Power;5/27/2026 22:00;740;kW
+3;Engine Power;5/27/2026 22:00;737;kW
+4;Engine Power;5/27/2026 22:00;485;kW
+1;Engine Power;5/27/2026 23:00;516;kW
+2;Engine Power;5/27/2026 23:00;644;kW
+3;Engine Power;5/27/2026 23:00;594;kW
+4;Engine Power;5/27/2026 23:00;689;kW
+1;Engine Power;5/28/2026 0:00;456;kW
+2;Engine Power;5/28/2026 0:00;616;kW
+3;Engine Power;5/28/2026 0:00;407;kW
+4;Engine Power;5/28/2026 0:00;659;kW
+1;Engine Power;5/28/2026 1:00;462;kW
+2;Engine Power;5/28/2026 1:00;771;kW
+3;Engine Power;5/28/2026 1:00;608;kW
+4;Engine Power;5/28/2026 1:00;479;kW
+1;Engine Power;5/28/2026 2:00;783;kW
+2;Engine Power;5/28/2026 2:00;545;kW
+3;Engine Power;5/28/2026 2:00;741;kW
+4;Engine Power;5/28/2026 2:00;666;kW
+1;Engine Power;5/28/2026 3:00;370;kW
+2;Engine Power;5/28/2026 3:00;426;kW
+3;Engine Power;5/28/2026 3:00;407;kW
+4;Engine Power;5/28/2026 3:00;742;kW
+1;Engine Power;5/28/2026 4:00;589;kW
+2;Engine Power;5/28/2026 4:00;488;kW
+3;Engine Power;5/28/2026 4:00;544;kW
+4;Engine Power;5/28/2026 4:00;326;kW
+1;Engine Power;5/28/2026 5:00;427;kW
+2;Engine Power;5/28/2026 5:00;520;kW
+3;Engine Power;5/28/2026 5:00;602;kW
+4;Engine Power;5/28/2026 5:00;712;kW
+1;Engine Power;5/28/2026 6:00;346;kW
+2;Engine Power;5/28/2026 6:00;536;kW
+3;Engine Power;5/28/2026 6:00;341;kW
+4;Engine Power;5/28/2026 6:00;496;kW
+1;Engine Power;5/28/2026 7:00;375;kW
+2;Engine Power;5/28/2026 7:00;707;kW
+3;Engine Power;5/28/2026 7:00;530;kW
+4;Engine Power;5/28/2026 7:00;500;kW
+1;Engine Power;5/28/2026 8:00;626;kW
+2;Engine Power;5/28/2026 8:00;425;kW
+3;Engine Power;5/28/2026 8:00;557;kW
+4;Engine Power;5/28/2026 8:00;557;kW
+1;Engine Power;5/28/2026 9:00;428;kW
+2;Engine Power;5/28/2026 9:00;737;kW
+3;Engine Power;5/28/2026 9:00;412;kW
+4;Engine Power;5/28/2026 9:00;710;kW
+1;Engine Power;5/28/2026 10:00;353;kW
+2;Engine Power;5/28/2026 10:00;516;kW
+3;Engine Power;5/28/2026 10:00;339;kW
+4;Engine Power;5/28/2026 10:00;571;kW
+1;Engine Power;5/28/2026 11:00;695;kW
+2;Engine Power;5/28/2026 11:00;551;kW
+3;Engine Power;5/28/2026 11:00;559;kW
+4;Engine Power;5/28/2026 11:00;366;kW
+1;Engine Power;5/28/2026 12:00;545;kW
+2;Engine Power;5/28/2026 12:00;707;kW
+3;Engine Power;5/28/2026 12:00;489;kW
+4;Engine Power;5/28/2026 12:00;712;kW
+1;Engine Power;5/28/2026 13:00;606;kW
+2;Engine Power;5/28/2026 13:00;560;kW
+3;Engine Power;5/28/2026 13:00;574;kW
+4;Engine Power;5/28/2026 13:00;764;kW
+1;Engine Power;5/28/2026 14:00;643;kW
+2;Engine Power;5/28/2026 14:00;534;kW
+3;Engine Power;5/28/2026 14:00;676;kW
+4;Engine Power;5/28/2026 14:00;462;kW
+1;Engine Power;5/28/2026 15:00;453;kW
+2;Engine Power;5/28/2026 15:00;639;kW
+3;Engine Power;5/28/2026 15:00;787;kW
+4;Engine Power;5/28/2026 15:00;482;kW
+1;Engine Power;5/28/2026 16:00;553;kW
+2;Engine Power;5/28/2026 16:00;318;kW
+3;Engine Power;5/28/2026 16:00;429;kW
+4;Engine Power;5/28/2026 16:00;383;kW
+1;Engine Power;5/28/2026 17:00;574;kW
+2;Engine Power;5/28/2026 17:00;634;kW
+3;Engine Power;5/28/2026 17:00;781;kW
+4;Engine Power;5/28/2026 17:00;764;kW
+1;Engine Power;5/28/2026 18:00;790;kW
+2;Engine Power;5/28/2026 18:00;787;kW
+3;Engine Power;5/28/2026 18:00;530;kW
+4;Engine Power;5/28/2026 18:00;381;kW
+1;Engine Power;5/28/2026 19:00;622;kW
+2;Engine Power;5/28/2026 19:00;717;kW
+3;Engine Power;5/28/2026 19:00;471;kW
+4;Engine Power;5/28/2026 19:00;528;kW
+1;Engine Power;5/28/2026 20:00;561;kW
+2;Engine Power;5/28/2026 20:00;637;kW
+3;Engine Power;5/28/2026 20:00;686;kW
+4;Engine Power;5/28/2026 20:00;539;kW
+1;Engine Power;5/28/2026 21:00;513;kW
+2;Engine Power;5/28/2026 21:00;542;kW
+3;Engine Power;5/28/2026 21:00;525;kW
+4;Engine Power;5/28/2026 21:00;333;kW
+1;Engine Power;5/28/2026 22:00;719;kW
+2;Engine Power;5/28/2026 22:00;502;kW
+3;Engine Power;5/28/2026 22:00;618;kW
+4;Engine Power;5/28/2026 22:00;674;kW
+1;Engine Power;5/28/2026 23:00;553;kW
+2;Engine Power;5/28/2026 23:00;742;kW
+3;Engine Power;5/28/2026 23:00;683;kW
+4;Engine Power;5/28/2026 23:00;722;kW
+1;Cooler Water Pressure;5/27/2026 0:00;385;Mpa
+2;Cooler Water Pressure;5/27/2026 0:00;303;Mpa
+3;Cooler Water Pressure;5/27/2026 0:00;357;Mpa
+4;Cooler Water Pressure;5/27/2026 0:00;374;Mpa
+1;Cooler Water Pressure;5/27/2026 1:00;350;Mpa
+2;Cooler Water Pressure;5/27/2026 1:00;313;Mpa
+3;Cooler Water Pressure;5/27/2026 1:00;417;Mpa
+4;Cooler Water Pressure;5/27/2026 1:00;436;Mpa
+1;Cooler Water Pressure;5/27/2026 2:00;328;Mpa
+2;Cooler Water Pressure;5/27/2026 2:00;357;Mpa
+3;Cooler Water Pressure;5/27/2026 2:00;472;Mpa
+4;Cooler Water Pressure;5/27/2026 2:00;406;Mpa
+1;Cooler Water Pressure;5/27/2026 3:00;453;Mpa
+2;Cooler Water Pressure;5/27/2026 3:00;350;Mpa
+3;Cooler Water Pressure;5/27/2026 3:00;324;Mpa
+4;Cooler Water Pressure;5/27/2026 3:00;357;Mpa
+1;Cooler Water Pressure;5/27/2026 4:00;468;Mpa
+2;Cooler Water Pressure;5/27/2026 4:00;453;Mpa
+3;Cooler Water Pressure;5/27/2026 4:00;409;Mpa
+4;Cooler Water Pressure;5/27/2026 4:00;414;Mpa
+1;Cooler Water Pressure;5/27/2026 5:00;377;Mpa
+2;Cooler Water Pressure;5/27/2026 5:00;403;Mpa
+3;Cooler Water Pressure;5/27/2026 5:00;311;Mpa
+4;Cooler Water Pressure;5/27/2026 5:00;411;Mpa
+1;Cooler Water Pressure;5/27/2026 6:00;410;Mpa
+2;Cooler Water Pressure;5/27/2026 6:00;469;Mpa
+3;Cooler Water Pressure;5/27/2026 6:00;425;Mpa
+4;Cooler Water Pressure;5/27/2026 6:00;479;Mpa
+1;Cooler Water Pressure;5/27/2026 7:00;338;Mpa
+2;Cooler Water Pressure;5/27/2026 7:00;373;Mpa
+3;Cooler Water Pressure;5/27/2026 7:00;356;Mpa
+4;Cooler Water Pressure;5/27/2026 7:00;370;Mpa
+1;Cooler Water Pressure;5/27/2026 8:00;443;Mpa
+2;Cooler Water Pressure;5/27/2026 8:00;345;Mpa
+3;Cooler Water Pressure;5/27/2026 8:00;311;Mpa
+4;Cooler Water Pressure;5/27/2026 8:00;443;Mpa
+1;Cooler Water Pressure;5/27/2026 9:00;419;Mpa
+2;Cooler Water Pressure;5/27/2026 9:00;441;Mpa
+3;Cooler Water Pressure;5/27/2026 9:00;401;Mpa
+4;Cooler Water Pressure;5/27/2026 9:00;492;Mpa
+1;Cooler Water Pressure;5/27/2026 10:00;413;Mpa
+2;Cooler Water Pressure;5/27/2026 10:00;421;Mpa
+3;Cooler Water Pressure;5/27/2026 10:00;327;Mpa
+4;Cooler Water Pressure;5/27/2026 10:00;387;Mpa
+1;Cooler Water Pressure;5/27/2026 11:00;410;Mpa
+2;Cooler Water Pressure;5/27/2026 11:00;346;Mpa
+3;Cooler Water Pressure;5/27/2026 11:00;326;Mpa
+4;Cooler Water Pressure;5/27/2026 11:00;413;Mpa
+1;Cooler Water Pressure;5/27/2026 12:00;351;Mpa
+2;Cooler Water Pressure;5/27/2026 12:00;407;Mpa
+3;Cooler Water Pressure;5/27/2026 12:00;496;Mpa
+4;Cooler Water Pressure;5/27/2026 12:00;319;Mpa
+1;Cooler Water Pressure;5/27/2026 13:00;439;Mpa
+2;Cooler Water Pressure;5/27/2026 13:00;446;Mpa
+3;Cooler Water Pressure;5/27/2026 13:00;429;Mpa
+4;Cooler Water Pressure;5/27/2026 13:00;484;Mpa
+1;Cooler Water Pressure;5/27/2026 14:00;465;Mpa
+2;Cooler Water Pressure;5/27/2026 14:00;353;Mpa
+3;Cooler Water Pressure;5/27/2026 14:00;304;Mpa
+4;Cooler Water Pressure;5/27/2026 14:00;447;Mpa
+1;Cooler Water Pressure;5/27/2026 15:00;348;Mpa
+2;Cooler Water Pressure;5/27/2026 15:00;384;Mpa
+3;Cooler Water Pressure;5/27/2026 15:00;378;Mpa
+4;Cooler Water Pressure;5/27/2026 15:00;476;Mpa
+1;Cooler Water Pressure;5/27/2026 16:00;477;Mpa
+2;Cooler Water Pressure;5/27/2026 16:00;393;Mpa
+3;Cooler Water Pressure;5/27/2026 16:00;406;Mpa
+4;Cooler Water Pressure;5/27/2026 16:00;369;Mpa
+1;Cooler Water Pressure;5/27/2026 17:00;419;Mpa
+2;Cooler Water Pressure;5/27/2026 17:00;379;Mpa
+3;Cooler Water Pressure;5/27/2026 17:00;324;Mpa
+4;Cooler Water Pressure;5/27/2026 17:00;426;Mpa
+1;Cooler Water Pressure;5/27/2026 18:00;452;Mpa
+2;Cooler Water Pressure;5/27/2026 18:00;498;Mpa
+3;Cooler Water Pressure;5/27/2026 18:00;391;Mpa
+4;Cooler Water Pressure;5/27/2026 18:00;317;Mpa
+1;Cooler Water Pressure;5/27/2026 19:00;471;Mpa
+2;Cooler Water Pressure;5/27/2026 19:00;345;Mpa
+3;Cooler Water Pressure;5/27/2026 19:00;467;Mpa
+4;Cooler Water Pressure;5/27/2026 19:00;314;Mpa
+1;Cooler Water Pressure;5/27/2026 20:00;436;Mpa
+2;Cooler Water Pressure;5/27/2026 20:00;421;Mpa
+3;Cooler Water Pressure;5/27/2026 20:00;345;Mpa
+4;Cooler Water Pressure;5/27/2026 20:00;469;Mpa
+1;Cooler Water Pressure;5/27/2026 21:00;482;Mpa
+2;Cooler Water Pressure;5/27/2026 21:00;401;Mpa
+3;Cooler Water Pressure;5/27/2026 21:00;364;Mpa
+4;Cooler Water Pressure;5/27/2026 21:00;315;Mpa
+1;Cooler Water Pressure;5/27/2026 22:00;494;Mpa
+2;Cooler Water Pressure;5/27/2026 22:00;460;Mpa
+3;Cooler Water Pressure;5/27/2026 22:00;393;Mpa
+4;Cooler Water Pressure;5/27/2026 22:00;316;Mpa
+1;Cooler Water Pressure;5/27/2026 23:00;392;Mpa
+2;Cooler Water Pressure;5/27/2026 23:00;308;Mpa
+3;Cooler Water Pressure;5/27/2026 23:00;430;Mpa
+4;Cooler Water Pressure;5/27/2026 23:00;493;Mpa
+1;Engine LO Pressure;5/27/2026 0:00;308;Mpa
+2;Engine LO Pressure;5/27/2026 0:00;327;Mpa
+3;Engine LO Pressure;5/27/2026 0:00;404;Mpa
+4;Engine LO Pressure;5/27/2026 0:00;422;Mpa
+1;Engine LO Pressure;5/27/2026 1:00;410;Mpa
+2;Engine LO Pressure;5/27/2026 1:00;398;Mpa
+3;Engine LO Pressure;5/27/2026 1:00;342;Mpa
+4;Engine LO Pressure;5/27/2026 1:00;496;Mpa
+1;Engine LO Pressure;5/27/2026 2:00;355;Mpa
+2;Engine LO Pressure;5/27/2026 2:00;380;Mpa
+3;Engine LO Pressure;5/27/2026 2:00;305;Mpa
+4;Engine LO Pressure;5/27/2026 2:00;352;Mpa
+1;Engine LO Pressure;5/27/2026 3:00;427;Mpa
+2;Engine LO Pressure;5/27/2026 3:00;333;Mpa
+3;Engine LO Pressure;5/27/2026 3:00;490;Mpa
+4;Engine LO Pressure;5/27/2026 3:00;313;Mpa
+1;Engine LO Pressure;5/27/2026 4:00;386;Mpa
+2;Engine LO Pressure;5/27/2026 4:00;407;Mpa
+3;Engine LO Pressure;5/27/2026 4:00;398;Mpa
+4;Engine LO Pressure;5/27/2026 4:00;360;Mpa
+1;Engine LO Pressure;5/27/2026 5:00;389;Mpa
+2;Engine LO Pressure;5/27/2026 5:00;384;Mpa
+3;Engine LO Pressure;5/27/2026 5:00;496;Mpa
+4;Engine LO Pressure;5/27/2026 5:00;365;Mpa
+1;Engine LO Pressure;5/27/2026 6:00;341;Mpa
+2;Engine LO Pressure;5/27/2026 6:00;334;Mpa
+3;Engine LO Pressure;5/27/2026 6:00;471;Mpa
+4;Engine LO Pressure;5/27/2026 6:00;373;Mpa
+1;Engine LO Pressure;5/27/2026 7:00;327;Mpa
+2;Engine LO Pressure;5/27/2026 7:00;363;Mpa
+3;Engine LO Pressure;5/27/2026 7:00;457;Mpa
+4;Engine LO Pressure;5/27/2026 7:00;346;Mpa
+1;Engine LO Pressure;5/27/2026 8:00;306;Mpa
+2;Engine LO Pressure;5/27/2026 8:00;399;Mpa
+3;Engine LO Pressure;5/27/2026 8:00;396;Mpa
+4;Engine LO Pressure;5/27/2026 8:00;461;Mpa
+1;Engine LO Pressure;5/27/2026 9:00;425;Mpa
+2;Engine LO Pressure;5/27/2026 9:00;315;Mpa
+3;Engine LO Pressure;5/27/2026 9:00;337;Mpa
+4;Engine LO Pressure;5/27/2026 9:00;356;Mpa
+1;Engine LO Pressure;5/27/2026 10:00;378;Mpa
+2;Engine LO Pressure;5/27/2026 10:00;304;Mpa
+3;Engine LO Pressure;5/27/2026 10:00;326;Mpa
+4;Engine LO Pressure;5/27/2026 10:00;408;Mpa
+1;Engine LO Pressure;5/27/2026 11:00;407;Mpa
+2;Engine LO Pressure;5/27/2026 11:00;473;Mpa
+3;Engine LO Pressure;5/27/2026 11:00;311;Mpa
+4;Engine LO Pressure;5/27/2026 11:00;302;Mpa
+1;Engine LO Pressure;5/27/2026 12:00;492;Mpa
+2;Engine LO Pressure;5/27/2026 12:00;401;Mpa
+3;Engine LO Pressure;5/27/2026 12:00;394;Mpa
+4;Engine LO Pressure;5/27/2026 12:00;440;Mpa
+1;Engine LO Pressure;5/27/2026 13:00;469;Mpa
+2;Engine LO Pressure;5/27/2026 13:00;310;Mpa
+3;Engine LO Pressure;5/27/2026 13:00;383;Mpa
+4;Engine LO Pressure;5/27/2026 13:00;377;Mpa
+1;Engine LO Pressure;5/27/2026 14:00;406;Mpa
+2;Engine LO Pressure;5/27/2026 14:00;327;Mpa
+3;Engine LO Pressure;5/27/2026 14:00;402;Mpa
+4;Engine LO Pressure;5/27/2026 14:00;498;Mpa
+1;Engine LO Pressure;5/27/2026 15:00;407;Mpa
+2;Engine LO Pressure;5/27/2026 15:00;415;Mpa
+3;Engine LO Pressure;5/27/2026 15:00;453;Mpa
+4;Engine LO Pressure;5/27/2026 15:00;328;Mpa
+1;Engine LO Pressure;5/27/2026 16:00;420;Mpa
+2;Engine LO Pressure;5/27/2026 16:00;365;Mpa
+3;Engine LO Pressure;5/27/2026 16:00;385;Mpa
+4;Engine LO Pressure;5/27/2026 16:00;488;Mpa
+1;Engine LO Pressure;5/27/2026 17:00;421;Mpa
+2;Engine LO Pressure;5/27/2026 17:00;443;Mpa
+3;Engine LO Pressure;5/27/2026 17:00;398;Mpa
+4;Engine LO Pressure;5/27/2026 17:00;396;Mpa
+1;Engine LO Pressure;5/27/2026 18:00;458;Mpa
+2;Engine LO Pressure;5/27/2026 18:00;331;Mpa
+3;Engine LO Pressure;5/27/2026 18:00;461;Mpa
+4;Engine LO Pressure;5/27/2026 18:00;417;Mpa
+1;Engine LO Pressure;5/27/2026 19:00;446;Mpa
+2;Engine LO Pressure;5/27/2026 19:00;484;Mpa
+3;Engine LO Pressure;5/27/2026 19:00;461;Mpa
+4;Engine LO Pressure;5/27/2026 19:00;448;Mpa
+1;Engine LO Pressure;5/27/2026 20:00;414;Mpa
+2;Engine LO Pressure;5/27/2026 20:00;381;Mpa
+3;Engine LO Pressure;5/27/2026 20:00;492;Mpa
+4;Engine LO Pressure;5/27/2026 20:00;304;Mpa
+1;Engine LO Pressure;5/27/2026 21:00;420;Mpa
+2;Engine LO Pressure;5/27/2026 21:00;371;Mpa
+3;Engine LO Pressure;5/27/2026 21:00;461;Mpa
+4;Engine LO Pressure;5/27/2026 21:00;405;Mpa
+1;Engine LO Pressure;5/27/2026 22:00;487;Mpa
+2;Engine LO Pressure;5/27/2026 22:00;324;Mpa
+3;Engine LO Pressure;5/27/2026 22:00;448;Mpa
+4;Engine LO Pressure;5/27/2026 22:00;485;Mpa
+1;Engine LO Pressure;5/27/2026 23:00;479;Mpa
+2;Engine LO Pressure;5/27/2026 23:00;401;Mpa
+3;Engine LO Pressure;5/27/2026 23:00;382;Mpa
+4;Engine LO Pressure;5/27/2026 23:00;425;Mpa
+1;Fuel Oil Pressure;5/27/2026 0:00;363;Mpa
+2;Fuel Oil Pressure;5/27/2026 0:00;337;Mpa
+3;Fuel Oil Pressure;5/27/2026 0:00;426;Mpa
+4;Fuel Oil Pressure;5/27/2026 0:00;387;Mpa
+1;Fuel Oil Pressure;5/27/2026 1:00;428;Mpa
+2;Fuel Oil Pressure;5/27/2026 1:00;352;Mpa
+3;Fuel Oil Pressure;5/27/2026 1:00;333;Mpa
+4;Fuel Oil Pressure;5/27/2026 1:00;403;Mpa
+1;Fuel Oil Pressure;5/27/2026 2:00;372;Mpa
+2;Fuel Oil Pressure;5/27/2026 2:00;305;Mpa
+3;Fuel Oil Pressure;5/27/2026 2:00;454;Mpa
+4;Fuel Oil Pressure;5/27/2026 2:00;484;Mpa
+1;Fuel Oil Pressure;5/27/2026 3:00;352;Mpa
+2;Fuel Oil Pressure;5/27/2026 3:00;334;Mpa
+3;Fuel Oil Pressure;5/27/2026 3:00;428;Mpa
+4;Fuel Oil Pressure;5/27/2026 3:00;449;Mpa
+1;Fuel Oil Pressure;5/27/2026 4:00;399;Mpa
+2;Fuel Oil Pressure;5/27/2026 4:00;453;Mpa
+3;Fuel Oil Pressure;5/27/2026 4:00;383;Mpa
+4;Fuel Oil Pressure;5/27/2026 4:00;460;Mpa
+1;Fuel Oil Pressure;5/27/2026 5:00;322;Mpa
+2;Fuel Oil Pressure;5/27/2026 5:00;368;Mpa
+3;Fuel Oil Pressure;5/27/2026 5:00;350;Mpa
+4;Fuel Oil Pressure;5/27/2026 5:00;319;Mpa
+1;Fuel Oil Pressure;5/27/2026 6:00;392;Mpa
+2;Fuel Oil Pressure;5/27/2026 6:00;496;Mpa
+3;Fuel Oil Pressure;5/27/2026 6:00;304;Mpa
+4;Fuel Oil Pressure;5/27/2026 6:00;453;Mpa
+1;Fuel Oil Pressure;5/27/2026 7:00;481;Mpa
+2;Fuel Oil Pressure;5/27/2026 7:00;377;Mpa
+3;Fuel Oil Pressure;5/27/2026 7:00;301;Mpa
+4;Fuel Oil Pressure;5/27/2026 7:00;355;Mpa
+1;Fuel Oil Pressure;5/27/2026 8:00;448;Mpa
+2;Fuel Oil Pressure;5/27/2026 8:00;485;Mpa
+3;Fuel Oil Pressure;5/27/2026 8:00;497;Mpa
+4;Fuel Oil Pressure;5/27/2026 8:00;329;Mpa
+1;Fuel Oil Pressure;5/27/2026 9:00;388;Mpa
+2;Fuel Oil Pressure;5/27/2026 9:00;423;Mpa
+3;Fuel Oil Pressure;5/27/2026 9:00;371;Mpa
+4;Fuel Oil Pressure;5/27/2026 9:00;484;Mpa
+1;Fuel Oil Pressure;5/27/2026 10:00;495;Mpa
+2;Fuel Oil Pressure;5/27/2026 10:00;300;Mpa
+3;Fuel Oil Pressure;5/27/2026 10:00;401;Mpa
+4;Fuel Oil Pressure;5/27/2026 10:00;466;Mpa
+1;Fuel Oil Pressure;5/27/2026 11:00;342;Mpa
+2;Fuel Oil Pressure;5/27/2026 11:00;396;Mpa
+3;Fuel Oil Pressure;5/27/2026 11:00;385;Mpa
+4;Fuel Oil Pressure;5/27/2026 11:00;469;Mpa
+1;Fuel Oil Pressure;5/27/2026 12:00;456;Mpa
+2;Fuel Oil Pressure;5/27/2026 12:00;464;Mpa
+3;Fuel Oil Pressure;5/27/2026 12:00;318;Mpa
+4;Fuel Oil Pressure;5/27/2026 12:00;385;Mpa
+1;Fuel Oil Pressure;5/27/2026 13:00;450;Mpa
+2;Fuel Oil Pressure;5/27/2026 13:00;410;Mpa
+3;Fuel Oil Pressure;5/27/2026 13:00;436;Mpa
+4;Fuel Oil Pressure;5/27/2026 13:00;313;Mpa
+1;Fuel Oil Pressure;5/27/2026 14:00;411;Mpa
+2;Fuel Oil Pressure;5/27/2026 14:00;494;Mpa
+3;Fuel Oil Pressure;5/27/2026 14:00;360;Mpa
+4;Fuel Oil Pressure;5/27/2026 14:00;383;Mpa
+1;Fuel Oil Pressure;5/27/2026 15:00;490;Mpa
+2;Fuel Oil Pressure;5/27/2026 15:00;349;Mpa
+3;Fuel Oil Pressure;5/27/2026 15:00;324;Mpa
+4;Fuel Oil Pressure;5/27/2026 15:00;484;Mpa
+1;Fuel Oil Pressure;5/27/2026 16:00;395;Mpa
+2;Fuel Oil Pressure;5/27/2026 16:00;376;Mpa
+3;Fuel Oil Pressure;5/27/2026 16:00;401;Mpa
+4;Fuel Oil Pressure;5/27/2026 16:00;474;Mpa
+1;Fuel Oil Pressure;5/27/2026 17:00;353;Mpa
+2;Fuel Oil Pressure;5/27/2026 17:00;461;Mpa
+3;Fuel Oil Pressure;5/27/2026 17:00;359;Mpa
+4;Fuel Oil Pressure;5/27/2026 17:00;490;Mpa
+1;Fuel Oil Pressure;5/27/2026 18:00;432;Mpa
+2;Fuel Oil Pressure;5/27/2026 18:00;393;Mpa
+3;Fuel Oil Pressure;5/27/2026 18:00;418;Mpa
+4;Fuel Oil Pressure;5/27/2026 18:00;444;Mpa
+1;Fuel Oil Pressure;5/27/2026 19:00;385;Mpa
+2;Fuel Oil Pressure;5/27/2026 19:00;472;Mpa
+3;Fuel Oil Pressure;5/27/2026 19:00;327;Mpa
+4;Fuel Oil Pressure;5/27/2026 19:00;334;Mpa
+1;Fuel Oil Pressure;5/27/2026 20:00;309;Mpa
+2;Fuel Oil Pressure;5/27/2026 20:00;414;Mpa
+3;Fuel Oil Pressure;5/27/2026 20:00;453;Mpa
+4;Fuel Oil Pressure;5/27/2026 20:00;407;Mpa
+1;Fuel Oil Pressure;5/27/2026 21:00;398;Mpa
+2;Fuel Oil Pressure;5/27/2026 21:00;389;Mpa
+3;Fuel Oil Pressure;5/27/2026 21:00;431;Mpa
+4;Fuel Oil Pressure;5/27/2026 21:00;367;Mpa
+1;Fuel Oil Pressure;5/27/2026 22:00;368;Mpa
+2;Fuel Oil Pressure;5/27/2026 22:00;356;Mpa
+3;Fuel Oil Pressure;5/27/2026 22:00;315;Mpa
+4;Fuel Oil Pressure;5/27/2026 22:00;346;Mpa
+1;Fuel Oil Pressure;5/27/2026 23:00;437;Mpa
+2;Fuel Oil Pressure;5/27/2026 23:00;430;Mpa
+3;Fuel Oil Pressure;5/27/2026 23:00;332;Mpa
+4;Fuel Oil Pressure;5/27/2026 23:00;437;Mpa
+1;Turbo LO Pressure;5/27/2026 0:00;325;Mpa
+2;Turbo LO Pressure;5/27/2026 0:00;483;Mpa
+3;Turbo LO Pressure;5/27/2026 0:00;404;Mpa
+4;Turbo LO Pressure;5/27/2026 0:00;305;Mpa
+1;Turbo LO Pressure;5/27/2026 1:00;345;Mpa
+2;Turbo LO Pressure;5/27/2026 1:00;423;Mpa
+3;Turbo LO Pressure;5/27/2026 1:00;392;Mpa
+4;Turbo LO Pressure;5/27/2026 1:00;400;Mpa
+1;Turbo LO Pressure;5/27/2026 2:00;350;Mpa
+2;Turbo LO Pressure;5/27/2026 2:00;493;Mpa
+3;Turbo LO Pressure;5/27/2026 2:00;411;Mpa
+4;Turbo LO Pressure;5/27/2026 2:00;385;Mpa
+1;Turbo LO Pressure;5/27/2026 3:00;470;Mpa
+2;Turbo LO Pressure;5/27/2026 3:00;418;Mpa
+3;Turbo LO Pressure;5/27/2026 3:00;305;Mpa
+4;Turbo LO Pressure;5/27/2026 3:00;463;Mpa
+1;Turbo LO Pressure;5/27/2026 4:00;395;Mpa
+2;Turbo LO Pressure;5/27/2026 4:00;449;Mpa
+3;Turbo LO Pressure;5/27/2026 4:00;317;Mpa
+4;Turbo LO Pressure;5/27/2026 4:00;317;Mpa
+1;Turbo LO Pressure;5/27/2026 5:00;386;Mpa
+2;Turbo LO Pressure;5/27/2026 5:00;473;Mpa
+3;Turbo LO Pressure;5/27/2026 5:00;362;Mpa
+4;Turbo LO Pressure;5/27/2026 5:00;310;Mpa
+1;Turbo LO Pressure;5/27/2026 6:00;317;Mpa
+2;Turbo LO Pressure;5/27/2026 6:00;411;Mpa
+3;Turbo LO Pressure;5/27/2026 6:00;471;Mpa
+4;Turbo LO Pressure;5/27/2026 6:00;449;Mpa
+1;Turbo LO Pressure;5/27/2026 7:00;410;Mpa
+2;Turbo LO Pressure;5/27/2026 7:00;317;Mpa
+3;Turbo LO Pressure;5/27/2026 7:00;335;Mpa
+4;Turbo LO Pressure;5/27/2026 7:00;372;Mpa
+1;Turbo LO Pressure;5/27/2026 8:00;435;Mpa
+2;Turbo LO Pressure;5/27/2026 8:00;324;Mpa
+3;Turbo LO Pressure;5/27/2026 8:00;304;Mpa
+4;Turbo LO Pressure;5/27/2026 8:00;477;Mpa
+1;Turbo LO Pressure;5/27/2026 9:00;321;Mpa
+2;Turbo LO Pressure;5/27/2026 9:00;433;Mpa
+3;Turbo LO Pressure;5/27/2026 9:00;338;Mpa
+4;Turbo LO Pressure;5/27/2026 9:00;414;Mpa
+1;Turbo LO Pressure;5/27/2026 10:00;481;Mpa
+2;Turbo LO Pressure;5/27/2026 10:00;308;Mpa
+3;Turbo LO Pressure;5/27/2026 10:00;316;Mpa
+4;Turbo LO Pressure;5/27/2026 10:00;410;Mpa
+1;Turbo LO Pressure;5/27/2026 11:00;424;Mpa
+2;Turbo LO Pressure;5/27/2026 11:00;481;Mpa
+3;Turbo LO Pressure;5/27/2026 11:00;302;Mpa
+4;Turbo LO Pressure;5/27/2026 11:00;377;Mpa
+1;Turbo LO Pressure;5/27/2026 12:00;495;Mpa
+2;Turbo LO Pressure;5/27/2026 12:00;411;Mpa
+3;Turbo LO Pressure;5/27/2026 12:00;479;Mpa
+4;Turbo LO Pressure;5/27/2026 12:00;459;Mpa
+1;Turbo LO Pressure;5/27/2026 13:00;391;Mpa
+2;Turbo LO Pressure;5/27/2026 13:00;483;Mpa
+3;Turbo LO Pressure;5/27/2026 13:00;372;Mpa
+4;Turbo LO Pressure;5/27/2026 13:00;366;Mpa
+1;Turbo LO Pressure;5/27/2026 14:00;456;Mpa
+2;Turbo LO Pressure;5/27/2026 14:00;364;Mpa
+3;Turbo LO Pressure;5/27/2026 14:00;457;Mpa
+4;Turbo LO Pressure;5/27/2026 14:00;315;Mpa
+1;Turbo LO Pressure;5/27/2026 15:00;380;Mpa
+2;Turbo LO Pressure;5/27/2026 15:00;352;Mpa
+3;Turbo LO Pressure;5/27/2026 15:00;346;Mpa
+4;Turbo LO Pressure;5/27/2026 15:00;424;Mpa
+1;Turbo LO Pressure;5/27/2026 16:00;332;Mpa
+2;Turbo LO Pressure;5/27/2026 16:00;406;Mpa
+3;Turbo LO Pressure;5/27/2026 16:00;344;Mpa
+4;Turbo LO Pressure;5/27/2026 16:00;431;Mpa
+1;Turbo LO Pressure;5/27/2026 17:00;307;Mpa
+2;Turbo LO Pressure;5/27/2026 17:00;386;Mpa
+3;Turbo LO Pressure;5/27/2026 17:00;365;Mpa
+4;Turbo LO Pressure;5/27/2026 17:00;327;Mpa
+1;Turbo LO Pressure;5/27/2026 18:00;493;Mpa
+2;Turbo LO Pressure;5/27/2026 18:00;421;Mpa
+3;Turbo LO Pressure;5/27/2026 18:00;416;Mpa
+4;Turbo LO Pressure;5/27/2026 18:00;491;Mpa
+1;Turbo LO Pressure;5/27/2026 19:00;374;Mpa
+2;Turbo LO Pressure;5/27/2026 19:00;476;Mpa
+3;Turbo LO Pressure;5/27/2026 19:00;357;Mpa
+4;Turbo LO Pressure;5/27/2026 19:00;446;Mpa
+1;Turbo LO Pressure;5/27/2026 20:00;446;Mpa
+2;Turbo LO Pressure;5/27/2026 20:00;470;Mpa
+3;Turbo LO Pressure;5/27/2026 20:00;407;Mpa
+4;Turbo LO Pressure;5/27/2026 20:00;333;Mpa
+1;Turbo LO Pressure;5/27/2026 21:00;400;Mpa
+2;Turbo LO Pressure;5/27/2026 21:00;315;Mpa
+3;Turbo LO Pressure;5/27/2026 21:00;486;Mpa
+4;Turbo LO Pressure;5/27/2026 21:00;495;Mpa
+1;Turbo LO Pressure;5/27/2026 22:00;474;Mpa
+2;Turbo LO Pressure;5/27/2026 22:00;381;Mpa
+3;Turbo LO Pressure;5/27/2026 22:00;445;Mpa
+4;Turbo LO Pressure;5/27/2026 22:00;309;Mpa
+1;Turbo LO Pressure;5/27/2026 23:00;431;Mpa
+2;Turbo LO Pressure;5/27/2026 23:00;433;Mpa
+3;Turbo LO Pressure;5/27/2026 23:00;444;Mpa
+4;Turbo LO Pressure;5/27/2026 23:00;318;Mpa
+1;T/C Outlet Temp;5/27/2026 0:00;388;oC
+1;Cyl 1 Exhaust Temp;5/27/2026 0:00;411;oC
+1;Cyl 2 Exhaust Temp;5/27/2026 0:00;382;oC
+1;Cyl 3 Exhaust Temp;5/27/2026 0:00;414;oC
+1;Cyl 4 Exhaust Temp;5/27/2026 0:00;480;oC
+1;Cyl 5 Exhaust Temp;5/27/2026 0:00;491;oC
+1;Cyl 6 Exhaust Temp;5/27/2026 0:00;443;oC
+1;T/C Inlet Temp;5/27/2026 0:00;474;oC
+2;T/C Outlet Temp;5/27/2026 0:00;496;oC
+2;Cyl 1 Exhaust Temp;5/27/2026 0:00;370;oC
+2;Cyl 2 Exhaust Temp;5/27/2026 0:00;398;oC
+2;Cyl 3 Exhaust Temp;5/27/2026 0:00;446;oC
+2;Cyl 4 Exhaust Temp;5/27/2026 0:00;461;oC
+2;Cyl 5 Exhaust Temp;5/27/2026 0:00;355;oC
+2;Cyl 6 Exhaust Temp;5/27/2026 0:00;453;oC
+2;T/C Inlet Temp;5/27/2026 0:00;445;oC
+3;T/C Outlet Temp;5/27/2026 0:00;495;oC
+3;Cyl 1 Exhaust Temp;5/27/2026 0:00;460;oC
+3;Cyl 2 Exhaust Temp;5/27/2026 0:00;453;oC
+3;Cyl 3 Exhaust Temp;5/27/2026 0:00;451;oC
+3;Cyl 4 Exhaust Temp;5/27/2026 0:00;364;oC
+3;Cyl 5 Exhaust Temp;5/27/2026 0:00;477;oC
+3;Cyl 6 Exhaust Temp;5/27/2026 0:00;428;oC
+3;T/C Inlet Temp;5/27/2026 0:00;404;oC
+4;T/C Outlet Temp;5/27/2026 0:00;388;oC
+4;Cyl 1 Exhaust Temp;5/27/2026 0:00;359;oC
+4;Cyl 2 Exhaust Temp;5/27/2026 0:00;419;oC
+4;Cyl 3 Exhaust Temp;5/27/2026 0:00;443;oC
+4;Cyl 4 Exhaust Temp;5/27/2026 0:00;399;oC
+4;Cyl 5 Exhaust Temp;5/27/2026 0:00;435;oC
+4;Cyl 6 Exhaust Temp;5/27/2026 0:00;362;oC
+4;T/C Inlet Temp;5/27/2026 0:00;397;oC
+1;T/C Outlet Temp;5/27/2026 1:00;462;oC
+1;Cyl 1 Exhaust Temp;5/27/2026 1:00;384;oC
+1;Cyl 2 Exhaust Temp;5/27/2026 1:00;413;oC
+1;Cyl 3 Exhaust Temp;5/27/2026 1:00;374;oC
+1;Cyl 4 Exhaust Temp;5/27/2026 1:00;444;oC
+1;Cyl 5 Exhaust Temp;5/27/2026 1:00;453;oC
+1;Cyl 6 Exhaust Temp;5/27/2026 1:00;475;oC
+1;T/C Inlet Temp;5/27/2026 1:00;442;oC
+2;T/C Outlet Temp;5/27/2026 1:00;457;oC
+2;Cyl 1 Exhaust Temp;5/27/2026 1:00;479;oC
+2;Cyl 2 Exhaust Temp;5/27/2026 1:00;452;oC
+2;Cyl 3 Exhaust Temp;5/27/2026 1:00;434;oC
+2;Cyl 4 Exhaust Temp;5/27/2026 1:00;412;oC
+2;Cyl 5 Exhaust Temp;5/27/2026 1:00;399;oC
+2;Cyl 6 Exhaust Temp;5/27/2026 1:00;363;oC
+2;T/C Inlet Temp;5/27/2026 1:00;406;oC
+3;T/C Outlet Temp;5/27/2026 1:00;488;oC
+3;Cyl 1 Exhaust Temp;5/27/2026 1:00;394;oC
+3;Cyl 2 Exhaust Temp;5/27/2026 1:00;393;oC
+3;Cyl 3 Exhaust Temp;5/27/2026 1:00;467;oC
+3;Cyl 4 Exhaust Temp;5/27/2026 1:00;492;oC
+3;Cyl 5 Exhaust Temp;5/27/2026 1:00;368;oC
+3;Cyl 6 Exhaust Temp;5/27/2026 1:00;368;oC
+3;T/C Inlet Temp;5/27/2026 1:00;436;oC
+4;T/C Outlet Temp;5/27/2026 1:00;384;oC
+4;Cyl 1 Exhaust Temp;5/27/2026 1:00;440;oC
+4;Cyl 2 Exhaust Temp;5/27/2026 1:00;386;oC
+4;Cyl 3 Exhaust Temp;5/27/2026 1:00;498;oC
+4;Cyl 4 Exhaust Temp;5/27/2026 1:00;385;oC
+4;Cyl 5 Exhaust Temp;5/27/2026 1:00;499;oC
+4;Cyl 6 Exhaust Temp;5/27/2026 1:00;375;oC
+4;T/C Inlet Temp;5/27/2026 1:00;499;oC
+1;T/C Outlet Temp;5/27/2026 2:00;460;oC
+1;Cyl 1 Exhaust Temp;5/27/2026 2:00;370;oC
+1;Cyl 2 Exhaust Temp;5/27/2026 2:00;434;oC
+1;Cyl 3 Exhaust Temp;5/27/2026 2:00;416;oC
+1;Cyl 4 Exhaust Temp;5/27/2026 2:00;482;oC
+1;Cyl 5 Exhaust Temp;5/27/2026 2:00;399;oC
+1;Cyl 6 Exhaust Temp;5/27/2026 2:00;481;oC
+1;T/C Inlet Temp;5/27/2026 2:00;385;oC
+2;T/C Outlet Temp;5/27/2026 2:00;475;oC
+2;Cyl 1 Exhaust Temp;5/27/2026 2:00;454;oC
+2;Cyl 2 Exhaust Temp;5/27/2026 2:00;390;oC
+2;Cyl 3 Exhaust Temp;5/27/2026 2:00;386;oC
+2;Cyl 4 Exhaust Temp;5/27/2026 2:00;375;oC
+2;Cyl 5 Exhaust Temp;5/27/2026 2:00;365;oC
+2;Cyl 6 Exhaust Temp;5/27/2026 2:00;438;oC
+2;T/C Inlet Temp;5/27/2026 2:00;398;oC
+3;T/C Outlet Temp;5/27/2026 2:00;404;oC
+3;Cyl 1 Exhaust Temp;5/27/2026 2:00;366;oC
+3;Cyl 2 Exhaust Temp;5/27/2026 2:00;442;oC
+3;Cyl 3 Exhaust Temp;5/27/2026 2:00;427;oC
+3;Cyl 4 Exhaust Temp;5/27/2026 2:00;351;oC
+3;Cyl 5 Exhaust Temp;5/27/2026 2:00;473;oC
+3;Cyl 6 Exhaust Temp;5/27/2026 2:00;436;oC
+3;T/C Inlet Temp;5/27/2026 2:00;449;oC
+4;T/C Outlet Temp;5/27/2026 2:00;387;oC
+4;Cyl 1 Exhaust Temp;5/27/2026 2:00;469;oC
+4;Cyl 2 Exhaust Temp;5/27/2026 2:00;451;oC
+4;Cyl 3 Exhaust Temp;5/27/2026 2:00;368;oC
+4;Cyl 4 Exhaust Temp;5/27/2026 2:00;401;oC
+4;Cyl 5 Exhaust Temp;5/27/2026 2:00;359;oC
+4;Cyl 6 Exhaust Temp;5/27/2026 2:00;353;oC
+4;T/C Inlet Temp;5/27/2026 2:00;371;oC
+1;T/C Outlet Temp;5/27/2026 3:00;470;oC
+1;Cyl 1 Exhaust Temp;5/27/2026 3:00;377;oC
+1;Cyl 2 Exhaust Temp;5/27/2026 3:00;379;oC
+1;Cyl 3 Exhaust Temp;5/27/2026 3:00;480;oC
+1;Cyl 4 Exhaust Temp;5/27/2026 3:00;457;oC
+1;Cyl 5 Exhaust Temp;5/27/2026 3:00;427;oC
+1;Cyl 6 Exhaust Temp;5/27/2026 3:00;478;oC
+1;T/C Inlet Temp;5/27/2026 3:00;397;oC
+2;T/C Outlet Temp;5/27/2026 3:00;427;oC
+2;Cyl 1 Exhaust Temp;5/27/2026 3:00;453;oC
+2;Cyl 2 Exhaust Temp;5/27/2026 3:00;428;oC
+2;Cyl 3 Exhaust Temp;5/27/2026 3:00;416;oC
+2;Cyl 4 Exhaust Temp;5/27/2026 3:00;494;oC
+2;Cyl 5 Exhaust Temp;5/27/2026 3:00;476;oC
+2;Cyl 6 Exhaust Temp;5/27/2026 3:00;417;oC
+2;T/C Inlet Temp;5/27/2026 3:00;415;oC
+3;T/C Outlet Temp;5/27/2026 3:00;372;oC
+3;Cyl 1 Exhaust Temp;5/27/2026 3:00;417;oC
+3;Cyl 2 Exhaust Temp;5/27/2026 3:00;417;oC
+3;Cyl 3 Exhaust Temp;5/27/2026 3:00;361;oC
+3;Cyl 4 Exhaust Temp;5/27/2026 3:00;416;oC
+3;Cyl 5 Exhaust Temp;5/27/2026 3:00;379;oC
+3;Cyl 6 Exhaust Temp;5/27/2026 3:00;407;oC
+3;T/C Inlet Temp;5/27/2026 3:00;458;oC
+4;T/C Outlet Temp;5/27/2026 3:00;378;oC
+4;Cyl 1 Exhaust Temp;5/27/2026 3:00;475;oC
+4;Cyl 2 Exhaust Temp;5/27/2026 3:00;496;oC
+4;Cyl 3 Exhaust Temp;5/27/2026 3:00;379;oC
+4;Cyl 4 Exhaust Temp;5/27/2026 3:00;465;oC
+4;Cyl 5 Exhaust Temp;5/27/2026 3:00;423;oC
+4;Cyl 6 Exhaust Temp;5/27/2026 3:00;423;oC
+4;T/C Inlet Temp;5/27/2026 3:00;474;oC
+1;T/C Outlet Temp;5/27/2026 4:00;392;oC
+1;Cyl 1 Exhaust Temp;5/27/2026 4:00;447;oC
+1;Cyl 2 Exhaust Temp;5/27/2026 4:00;364;oC
+1;Cyl 3 Exhaust Temp;5/27/2026 4:00;386;oC
+1;Cyl 4 Exhaust Temp;5/27/2026 4:00;431;oC
+1;Cyl 5 Exhaust Temp;5/27/2026 4:00;453;oC
+1;Cyl 6 Exhaust Temp;5/27/2026 4:00;382;oC
+1;T/C Inlet Temp;5/27/2026 4:00;479;oC
+2;T/C Outlet Temp;5/27/2026 4:00;500;oC
+2;Cyl 1 Exhaust Temp;5/27/2026 4:00;407;oC
+2;Cyl 2 Exhaust Temp;5/27/2026 4:00;403;oC
+2;Cyl 3 Exhaust Temp;5/27/2026 4:00;449;oC
+2;Cyl 4 Exhaust Temp;5/27/2026 4:00;424;oC
+2;Cyl 5 Exhaust Temp;5/27/2026 4:00;464;oC
+2;Cyl 6 Exhaust Temp;5/27/2026 4:00;476;oC
+2;T/C Inlet Temp;5/27/2026 4:00;484;oC
+3;T/C Outlet Temp;5/27/2026 4:00;405;oC
+3;Cyl 1 Exhaust Temp;5/27/2026 4:00;360;oC
+3;Cyl 2 Exhaust Temp;5/27/2026 4:00;424;oC
+3;Cyl 3 Exhaust Temp;5/27/2026 4:00;444;oC
+3;Cyl 4 Exhaust Temp;5/27/2026 4:00;370;oC
+3;Cyl 5 Exhaust Temp;5/27/2026 4:00;396;oC
+3;Cyl 6 Exhaust Temp;5/27/2026 4:00;477;oC
+3;T/C Inlet Temp;5/27/2026 4:00;417;oC
+4;T/C Outlet Temp;5/27/2026 4:00;388;oC
+4;Cyl 1 Exhaust Temp;5/27/2026 4:00;424;oC
+4;Cyl 2 Exhaust Temp;5/27/2026 4:00;472;oC
+4;Cyl 3 Exhaust Temp;5/27/2026 4:00;358;oC
+4;Cyl 4 Exhaust Temp;5/27/2026 4:00;380;oC
+4;Cyl 5 Exhaust Temp;5/27/2026 4:00;450;oC
+4;Cyl 6 Exhaust Temp;5/27/2026 4:00;369;oC
+4;T/C Inlet Temp;5/27/2026 4:00;403;oC
+1;T/C Outlet Temp;5/27/2026 5:00;462;oC
+1;Cyl 1 Exhaust Temp;5/27/2026 5:00;377;oC
+1;Cyl 2 Exhaust Temp;5/27/2026 5:00;391;oC
+1;Cyl 3 Exhaust Temp;5/27/2026 5:00;372;oC
+1;Cyl 4 Exhaust Temp;5/27/2026 5:00;432;oC
+1;Cyl 5 Exhaust Temp;5/27/2026 5:00;407;oC
+1;Cyl 6 Exhaust Temp;5/27/2026 5:00;401;oC
+1;T/C Inlet Temp;5/27/2026 5:00;391;oC
+2;T/C Outlet Temp;5/27/2026 5:00;478;oC
+2;Cyl 1 Exhaust Temp;5/27/2026 5:00;436;oC
+2;Cyl 2 Exhaust Temp;5/27/2026 5:00;407;oC
+2;Cyl 3 Exhaust Temp;5/27/2026 5:00;407;oC
+2;Cyl 4 Exhaust Temp;5/27/2026 5:00;414;oC
+2;Cyl 5 Exhaust Temp;5/27/2026 5:00;439;oC
+2;Cyl 6 Exhaust Temp;5/27/2026 5:00;476;oC
+2;T/C Inlet Temp;5/27/2026 5:00;431;oC
+3;T/C Outlet Temp;5/27/2026 5:00;423;oC
+3;Cyl 1 Exhaust Temp;5/27/2026 5:00;467;oC
+3;Cyl 2 Exhaust Temp;5/27/2026 5:00;460;oC
+3;Cyl 3 Exhaust Temp;5/27/2026 5:00;474;oC
+3;Cyl 4 Exhaust Temp;5/27/2026 5:00;486;oC
+3;Cyl 5 Exhaust Temp;5/27/2026 5:00;408;oC
+3;Cyl 6 Exhaust Temp;5/27/2026 5:00;377;oC
+3;T/C Inlet Temp;5/27/2026 5:00;429;oC
+4;T/C Outlet Temp;5/27/2026 5:00;372;oC
+4;Cyl 1 Exhaust Temp;5/27/2026 5:00;477;oC
+4;Cyl 2 Exhaust Temp;5/27/2026 5:00;419;oC
+4;Cyl 3 Exhaust Temp;5/27/2026 5:00;363;oC
+4;Cyl 4 Exhaust Temp;5/27/2026 5:00;442;oC
+4;Cyl 5 Exhaust Temp;5/27/2026 5:00;368;oC
+4;Cyl 6 Exhaust Temp;5/27/2026 5:00;351;oC
+4;T/C Inlet Temp;5/27/2026 5:00;371;oC
+1;T/C Outlet Temp;5/27/2026 6:00;450;oC
+1;Cyl 1 Exhaust Temp;5/27/2026 6:00;497;oC
+1;Cyl 2 Exhaust Temp;5/27/2026 6:00;429;oC
+1;Cyl 3 Exhaust Temp;5/27/2026 6:00;404;oC
+1;Cyl 4 Exhaust Temp;5/27/2026 6:00;454;oC
+1;Cyl 5 Exhaust Temp;5/27/2026 6:00;485;oC
+1;Cyl 6 Exhaust Temp;5/27/2026 6:00;465;oC
+1;T/C Inlet Temp;5/27/2026 6:00;471;oC
+2;T/C Outlet Temp;5/27/2026 6:00;434;oC
+2;Cyl 1 Exhaust Temp;5/27/2026 6:00;453;oC
+2;Cyl 2 Exhaust Temp;5/27/2026 6:00;378;oC
+2;Cyl 3 Exhaust Temp;5/27/2026 6:00;499;oC
+2;Cyl 4 Exhaust Temp;5/27/2026 6:00;447;oC
+2;Cyl 5 Exhaust Temp;5/27/2026 6:00;387;oC
+2;Cyl 6 Exhaust Temp;5/27/2026 6:00;489;oC
+2;T/C Inlet Temp;5/27/2026 6:00;438;oC
+3;T/C Outlet Temp;5/27/2026 6:00;465;oC
+3;Cyl 1 Exhaust Temp;5/27/2026 6:00;369;oC
+3;Cyl 2 Exhaust Temp;5/27/2026 6:00;442;oC
+3;Cyl 3 Exhaust Temp;5/27/2026 6:00;357;oC
+3;Cyl 4 Exhaust Temp;5/27/2026 6:00;362;oC
+3;Cyl 5 Exhaust Temp;5/27/2026 6:00;383;oC
+3;Cyl 6 Exhaust Temp;5/27/2026 6:00;480;oC
+3;T/C Inlet Temp;5/27/2026 6:00;448;oC
+4;T/C Outlet Temp;5/27/2026 6:00;432;oC
+4;Cyl 1 Exhaust Temp;5/27/2026 6:00;422;oC
+4;Cyl 2 Exhaust Temp;5/27/2026 6:00;453;oC
+4;Cyl 3 Exhaust Temp;5/27/2026 6:00;432;oC
+4;Cyl 4 Exhaust Temp;5/27/2026 6:00;408;oC
+4;Cyl 5 Exhaust Temp;5/27/2026 6:00;412;oC
+4;Cyl 6 Exhaust Temp;5/27/2026 6:00;405;oC
+4;T/C Inlet Temp;5/27/2026 6:00;385;oC
+1;T/C Outlet Temp;5/27/2026 7:00;423;oC
+1;Cyl 1 Exhaust Temp;5/27/2026 7:00;496;oC
+1;Cyl 2 Exhaust Temp;5/27/2026 7:00;454;oC
+1;Cyl 3 Exhaust Temp;5/27/2026 7:00;438;oC
+1;Cyl 4 Exhaust Temp;5/27/2026 7:00;466;oC
+1;Cyl 5 Exhaust Temp;5/27/2026 7:00;495;oC
+1;Cyl 6 Exhaust Temp;5/27/2026 7:00;456;oC
+1;T/C Inlet Temp;5/27/2026 7:00;376;oC
+2;T/C Outlet Temp;5/27/2026 7:00;354;oC
+2;Cyl 1 Exhaust Temp;5/27/2026 7:00;482;oC
+2;Cyl 2 Exhaust Temp;5/27/2026 7:00;418;oC
+2;Cyl 3 Exhaust Temp;5/27/2026 7:00;396;oC
+2;Cyl 4 Exhaust Temp;5/27/2026 7:00;451;oC
+2;Cyl 5 Exhaust Temp;5/27/2026 7:00;431;oC
+2;Cyl 6 Exhaust Temp;5/27/2026 7:00;371;oC
+2;T/C Inlet Temp;5/27/2026 7:00;471;oC
+3;T/C Outlet Temp;5/27/2026 7:00;411;oC
+3;Cyl 1 Exhaust Temp;5/27/2026 7:00;399;oC
+3;Cyl 2 Exhaust Temp;5/27/2026 7:00;471;oC
+3;Cyl 3 Exhaust Temp;5/27/2026 7:00;433;oC
+3;Cyl 4 Exhaust Temp;5/27/2026 7:00;479;oC
+3;Cyl 5 Exhaust Temp;5/27/2026 7:00;371;oC
+3;Cyl 6 Exhaust Temp;5/27/2026 7:00;476;oC
+3;T/C Inlet Temp;5/27/2026 7:00;382;oC
+4;T/C Outlet Temp;5/27/2026 7:00;489;oC
+4;Cyl 1 Exhaust Temp;5/27/2026 7:00;374;oC
+4;Cyl 2 Exhaust Temp;5/27/2026 7:00;445;oC
+4;Cyl 3 Exhaust Temp;5/27/2026 7:00;400;oC
+4;Cyl 4 Exhaust Temp;5/27/2026 7:00;464;oC
+4;Cyl 5 Exhaust Temp;5/27/2026 7:00;482;oC
+4;Cyl 6 Exhaust Temp;5/27/2026 7:00;439;oC
+4;T/C Inlet Temp;5/27/2026 7:00;436;oC
+1;T/C Outlet Temp;5/27/2026 8:00;493;oC
+1;Cyl 1 Exhaust Temp;5/27/2026 8:00;445;oC
+1;Cyl 2 Exhaust Temp;5/27/2026 8:00;498;oC
+1;Cyl 3 Exhaust Temp;5/27/2026 8:00;376;oC
+1;Cyl 4 Exhaust Temp;5/27/2026 8:00;361;oC
+1;Cyl 5 Exhaust Temp;5/27/2026 8:00;360;oC
+1;Cyl 6 Exhaust Temp;5/27/2026 8:00;427;oC
+1;T/C Inlet Temp;5/27/2026 8:00;386;oC
+2;T/C Outlet Temp;5/27/2026 8:00;490;oC
+2;Cyl 1 Exhaust Temp;5/27/2026 8:00;422;oC
+2;Cyl 2 Exhaust Temp;5/27/2026 8:00;396;oC
+2;Cyl 3 Exhaust Temp;5/27/2026 8:00;489;oC
+2;Cyl 4 Exhaust Temp;5/27/2026 8:00;440;oC
+2;Cyl 5 Exhaust Temp;5/27/2026 8:00;469;oC
+2;Cyl 6 Exhaust Temp;5/27/2026 8:00;456;oC
+2;T/C Inlet Temp;5/27/2026 8:00;372;oC
+3;T/C Outlet Temp;5/27/2026 8:00;469;oC
+3;Cyl 1 Exhaust Temp;5/27/2026 8:00;422;oC
+3;Cyl 2 Exhaust Temp;5/27/2026 8:00;434;oC
+3;Cyl 3 Exhaust Temp;5/27/2026 8:00;441;oC
+3;Cyl 4 Exhaust Temp;5/27/2026 8:00;461;oC
+3;Cyl 5 Exhaust Temp;5/27/2026 8:00;383;oC
+3;Cyl 6 Exhaust Temp;5/27/2026 8:00;438;oC
+3;T/C Inlet Temp;5/27/2026 8:00;394;oC
+4;T/C Outlet Temp;5/27/2026 8:00;486;oC
+4;Cyl 1 Exhaust Temp;5/27/2026 8:00;465;oC
+4;Cyl 2 Exhaust Temp;5/27/2026 8:00;500;oC
+4;Cyl 3 Exhaust Temp;5/27/2026 8:00;371;oC
+4;Cyl 4 Exhaust Temp;5/27/2026 8:00;454;oC
+4;Cyl 5 Exhaust Temp;5/27/2026 8:00;438;oC
+4;Cyl 6 Exhaust Temp;5/27/2026 8:00;460;oC
+4;T/C Inlet Temp;5/27/2026 8:00;412;oC
+1;T/C Outlet Temp;5/27/2026 9:00;401;oC
+1;Cyl 1 Exhaust Temp;5/27/2026 9:00;365;oC
+1;Cyl 2 Exhaust Temp;5/27/2026 9:00;447;oC
+1;Cyl 3 Exhaust Temp;5/27/2026 9:00;376;oC
+1;Cyl 4 Exhaust Temp;5/27/2026 9:00;414;oC
+1;Cyl 5 Exhaust Temp;5/27/2026 9:00;465;oC
+1;Cyl 6 Exhaust Temp;5/27/2026 9:00;414;oC
+1;T/C Inlet Temp;5/27/2026 9:00;358;oC
+2;T/C Outlet Temp;5/27/2026 9:00;370;oC
+2;Cyl 1 Exhaust Temp;5/27/2026 9:00;402;oC
+2;Cyl 2 Exhaust Temp;5/27/2026 9:00;422;oC
+2;Cyl 3 Exhaust Temp;5/27/2026 9:00;379;oC
+2;Cyl 4 Exhaust Temp;5/27/2026 9:00;450;oC
+2;Cyl 5 Exhaust Temp;5/27/2026 9:00;449;oC
+2;Cyl 6 Exhaust Temp;5/27/2026 9:00;401;oC
+2;T/C Inlet Temp;5/27/2026 9:00;405;oC
+3;T/C Outlet Temp;5/27/2026 9:00;372;oC
+3;Cyl 1 Exhaust Temp;5/27/2026 9:00;377;oC
+3;Cyl 2 Exhaust Temp;5/27/2026 9:00;385;oC
+3;Cyl 3 Exhaust Temp;5/27/2026 9:00;352;oC
+3;Cyl 4 Exhaust Temp;5/27/2026 9:00;397;oC
+3;Cyl 5 Exhaust Temp;5/27/2026 9:00;382;oC
+3;Cyl 6 Exhaust Temp;5/27/2026 9:00;497;oC
+3;T/C Inlet Temp;5/27/2026 9:00;398;oC
+4;T/C Outlet Temp;5/27/2026 9:00;477;oC
+4;Cyl 1 Exhaust Temp;5/27/2026 9:00;476;oC
+4;Cyl 2 Exhaust Temp;5/27/2026 9:00;424;oC
+4;Cyl 3 Exhaust Temp;5/27/2026 9:00;388;oC
+4;Cyl 4 Exhaust Temp;5/27/2026 9:00;367;oC
+4;Cyl 5 Exhaust Temp;5/27/2026 9:00;414;oC
+4;Cyl 6 Exhaust Temp;5/27/2026 9:00;473;oC
+4;T/C Inlet Temp;5/27/2026 9:00;469;oC
+1;T/C Outlet Temp;5/27/2026 10:00;397;oC
+1;Cyl 1 Exhaust Temp;5/27/2026 10:00;405;oC
+1;Cyl 2 Exhaust Temp;5/27/2026 10:00;354;oC
+1;Cyl 3 Exhaust Temp;5/27/2026 10:00;370;oC
+1;Cyl 4 Exhaust Temp;5/27/2026 10:00;497;oC
+1;Cyl 5 Exhaust Temp;5/27/2026 10:00;418;oC
+1;Cyl 6 Exhaust Temp;5/27/2026 10:00;391;oC
+1;T/C Inlet Temp;5/27/2026 10:00;410;oC
+2;T/C Outlet Temp;5/27/2026 10:00;368;oC
+2;Cyl 1 Exhaust Temp;5/27/2026 10:00;394;oC
+2;Cyl 2 Exhaust Temp;5/27/2026 10:00;374;oC
+2;Cyl 3 Exhaust Temp;5/27/2026 10:00;443;oC
+2;Cyl 4 Exhaust Temp;5/27/2026 10:00;459;oC
+2;Cyl 5 Exhaust Temp;5/27/2026 10:00;450;oC
+2;Cyl 6 Exhaust Temp;5/27/2026 10:00;412;oC
+2;T/C Inlet Temp;5/27/2026 10:00;396;oC
+3;T/C Outlet Temp;5/27/2026 10:00;382;oC
+3;Cyl 1 Exhaust Temp;5/27/2026 10:00;380;oC
+3;Cyl 2 Exhaust Temp;5/27/2026 10:00;377;oC
+3;Cyl 3 Exhaust Temp;5/27/2026 10:00;490;oC
+3;Cyl 4 Exhaust Temp;5/27/2026 10:00;459;oC
+3;Cyl 5 Exhaust Temp;5/27/2026 10:00;407;oC
+3;Cyl 6 Exhaust Temp;5/27/2026 10:00;379;oC
+3;T/C Inlet Temp;5/27/2026 10:00;453;oC
+4;T/C Outlet Temp;5/27/2026 10:00;416;oC
+4;Cyl 1 Exhaust Temp;5/27/2026 10:00;459;oC
+4;Cyl 2 Exhaust Temp;5/27/2026 10:00;469;oC
+4;Cyl 3 Exhaust Temp;5/27/2026 10:00;473;oC
+4;Cyl 4 Exhaust Temp;5/27/2026 10:00;469;oC
+4;Cyl 5 Exhaust Temp;5/27/2026 10:00;390;oC
+4;Cyl 6 Exhaust Temp;5/27/2026 10:00;479;oC
+4;T/C Inlet Temp;5/27/2026 10:00;393;oC
+1;T/C Outlet Temp;5/27/2026 11:00;438;oC
+1;Cyl 1 Exhaust Temp;5/27/2026 11:00;449;oC
+1;Cyl 2 Exhaust Temp;5/27/2026 11:00;355;oC
+1;Cyl 3 Exhaust Temp;5/27/2026 11:00;484;oC
+1;Cyl 4 Exhaust Temp;5/27/2026 11:00;418;oC
+1;Cyl 5 Exhaust Temp;5/27/2026 11:00;379;oC
+1;Cyl 6 Exhaust Temp;5/27/2026 11:00;431;oC
+1;T/C Inlet Temp;5/27/2026 11:00;379;oC
+2;T/C Outlet Temp;5/27/2026 11:00;409;oC
+2;Cyl 1 Exhaust Temp;5/27/2026 11:00;383;oC
+2;Cyl 2 Exhaust Temp;5/27/2026 11:00;494;oC
+2;Cyl 3 Exhaust Temp;5/27/2026 11:00;444;oC
+2;Cyl 4 Exhaust Temp;5/27/2026 11:00;371;oC
+2;Cyl 5 Exhaust Temp;5/27/2026 11:00;365;oC
+2;Cyl 6 Exhaust Temp;5/27/2026 11:00;454;oC
+2;T/C Inlet Temp;5/27/2026 11:00;361;oC
+3;T/C Outlet Temp;5/27/2026 11:00;381;oC
+3;Cyl 1 Exhaust Temp;5/27/2026 11:00;487;oC
+3;Cyl 2 Exhaust Temp;5/27/2026 11:00;482;oC
+3;Cyl 3 Exhaust Temp;5/27/2026 11:00;392;oC
+3;Cyl 4 Exhaust Temp;5/27/2026 11:00;411;oC
+3;Cyl 5 Exhaust Temp;5/27/2026 11:00;406;oC
+3;Cyl 6 Exhaust Temp;5/27/2026 11:00;481;oC
+3;T/C Inlet Temp;5/27/2026 11:00;448;oC
+4;T/C Outlet Temp;5/27/2026 11:00;405;oC
+4;Cyl 1 Exhaust Temp;5/27/2026 11:00;499;oC
+4;Cyl 2 Exhaust Temp;5/27/2026 11:00;412;oC
+4;Cyl 3 Exhaust Temp;5/27/2026 11:00;454;oC
+4;Cyl 4 Exhaust Temp;5/27/2026 11:00;351;oC
+4;Cyl 5 Exhaust Temp;5/27/2026 11:00;428;oC
+4;Cyl 6 Exhaust Temp;5/27/2026 11:00;377;oC
+4;T/C Inlet Temp;5/27/2026 11:00;474;oC
+1;T/C Outlet Temp;5/27/2026 12:00;479;oC
+1;Cyl 1 Exhaust Temp;5/27/2026 12:00;478;oC
+1;Cyl 2 Exhaust Temp;5/27/2026 12:00;363;oC
+1;Cyl 3 Exhaust Temp;5/27/2026 12:00;412;oC
+1;Cyl 4 Exhaust Temp;5/27/2026 12:00;418;oC
+1;Cyl 5 Exhaust Temp;5/27/2026 12:00;453;oC
+1;Cyl 6 Exhaust Temp;5/27/2026 12:00;371;oC
+1;T/C Inlet Temp;5/27/2026 12:00;403;oC
+2;T/C Outlet Temp;5/27/2026 12:00;362;oC
+2;Cyl 1 Exhaust Temp;5/27/2026 12:00;358;oC
+2;Cyl 2 Exhaust Temp;5/27/2026 12:00;373;oC
+2;Cyl 3 Exhaust Temp;5/27/2026 12:00;446;oC
+2;Cyl 4 Exhaust Temp;5/27/2026 12:00;464;oC
+2;Cyl 5 Exhaust Temp;5/27/2026 12:00;366;oC
+2;Cyl 6 Exhaust Temp;5/27/2026 12:00;410;oC
+2;T/C Inlet Temp;5/27/2026 12:00;411;oC
+3;T/C Outlet Temp;5/27/2026 12:00;432;oC
+3;Cyl 1 Exhaust Temp;5/27/2026 12:00;388;oC
+3;Cyl 2 Exhaust Temp;5/27/2026 12:00;477;oC
+3;Cyl 3 Exhaust Temp;5/27/2026 12:00;440;oC
+3;Cyl 4 Exhaust Temp;5/27/2026 12:00;460;oC
+3;Cyl 5 Exhaust Temp;5/27/2026 12:00;485;oC
+3;Cyl 6 Exhaust Temp;5/27/2026 12:00;383;oC
+3;T/C Inlet Temp;5/27/2026 12:00;429;oC
+4;T/C Outlet Temp;5/27/2026 12:00;484;oC
+4;Cyl 1 Exhaust Temp;5/27/2026 12:00;500;oC
+4;Cyl 2 Exhaust Temp;5/27/2026 12:00;405;oC
+4;Cyl 3 Exhaust Temp;5/27/2026 12:00;374;oC
+4;Cyl 4 Exhaust Temp;5/27/2026 12:00;456;oC
+4;Cyl 5 Exhaust Temp;5/27/2026 12:00;471;oC
+4;Cyl 6 Exhaust Temp;5/27/2026 12:00;384;oC
+4;T/C Inlet Temp;5/27/2026 12:00;398;oC
+1;T/C Outlet Temp;5/27/2026 13:00;363;oC
+1;Cyl 1 Exhaust Temp;5/27/2026 13:00;364;oC
+1;Cyl 2 Exhaust Temp;5/27/2026 13:00;467;oC
+1;Cyl 3 Exhaust Temp;5/27/2026 13:00;419;oC
+1;Cyl 4 Exhaust Temp;5/27/2026 13:00;421;oC
+1;Cyl 5 Exhaust Temp;5/27/2026 13:00;373;oC
+1;Cyl 6 Exhaust Temp;5/27/2026 13:00;498;oC
+1;T/C Inlet Temp;5/27/2026 13:00;473;oC
+2;T/C Outlet Temp;5/27/2026 13:00;484;oC
+2;Cyl 1 Exhaust Temp;5/27/2026 13:00;419;oC
+2;Cyl 2 Exhaust Temp;5/27/2026 13:00;455;oC
+2;Cyl 3 Exhaust Temp;5/27/2026 13:00;441;oC
+2;Cyl 4 Exhaust Temp;5/27/2026 13:00;489;oC
+2;Cyl 5 Exhaust Temp;5/27/2026 13:00;443;oC
+2;Cyl 6 Exhaust Temp;5/27/2026 13:00;405;oC
+2;T/C Inlet Temp;5/27/2026 13:00;396;oC
+3;T/C Outlet Temp;5/27/2026 13:00;466;oC
+3;Cyl 1 Exhaust Temp;5/27/2026 13:00;460;oC
+3;Cyl 2 Exhaust Temp;5/27/2026 13:00;397;oC
+3;Cyl 3 Exhaust Temp;5/27/2026 13:00;492;oC
+3;Cyl 4 Exhaust Temp;5/27/2026 13:00;464;oC
+3;Cyl 5 Exhaust Temp;5/27/2026 13:00;495;oC
+3;Cyl 6 Exhaust Temp;5/27/2026 13:00;484;oC
+3;T/C Inlet Temp;5/27/2026 13:00;388;oC
+4;T/C Outlet Temp;5/27/2026 13:00;436;oC
+4;Cyl 1 Exhaust Temp;5/27/2026 13:00;417;oC
+4;Cyl 2 Exhaust Temp;5/27/2026 13:00;386;oC
+4;Cyl 3 Exhaust Temp;5/27/2026 13:00;478;oC
+4;Cyl 4 Exhaust Temp;5/27/2026 13:00;448;oC
+4;Cyl 5 Exhaust Temp;5/27/2026 13:00;418;oC
+4;Cyl 6 Exhaust Temp;5/27/2026 13:00;477;oC
+4;T/C Inlet Temp;5/27/2026 13:00;357;oC
+1;T/C Outlet Temp;5/27/2026 14:00;460;oC
+1;Cyl 1 Exhaust Temp;5/27/2026 14:00;482;oC
+1;Cyl 2 Exhaust Temp;5/27/2026 14:00;472;oC
+1;Cyl 3 Exhaust Temp;5/27/2026 14:00;405;oC
+1;Cyl 4 Exhaust Temp;5/27/2026 14:00;444;oC
+1;Cyl 5 Exhaust Temp;5/27/2026 14:00;381;oC
+1;Cyl 6 Exhaust Temp;5/27/2026 14:00;364;oC
+1;T/C Inlet Temp;5/27/2026 14:00;352;oC
+2;T/C Outlet Temp;5/27/2026 14:00;452;oC
+2;Cyl 1 Exhaust Temp;5/27/2026 14:00;498;oC
+2;Cyl 2 Exhaust Temp;5/27/2026 14:00;458;oC
+2;Cyl 3 Exhaust Temp;5/27/2026 14:00;473;oC
+2;Cyl 4 Exhaust Temp;5/27/2026 14:00;356;oC
+2;Cyl 5 Exhaust Temp;5/27/2026 14:00;458;oC
+2;Cyl 6 Exhaust Temp;5/27/2026 14:00;486;oC
+2;T/C Inlet Temp;5/27/2026 14:00;424;oC
+3;T/C Outlet Temp;5/27/2026 14:00;374;oC
+3;Cyl 1 Exhaust Temp;5/27/2026 14:00;360;oC
+3;Cyl 2 Exhaust Temp;5/27/2026 14:00;437;oC
+3;Cyl 3 Exhaust Temp;5/27/2026 14:00;357;oC
+3;Cyl 4 Exhaust Temp;5/27/2026 14:00;362;oC
+3;Cyl 5 Exhaust Temp;5/27/2026 14:00;354;oC
+3;Cyl 6 Exhaust Temp;5/27/2026 14:00;483;oC
+3;T/C Inlet Temp;5/27/2026 14:00;352;oC
+4;T/C Outlet Temp;5/27/2026 14:00;402;oC
+4;Cyl 1 Exhaust Temp;5/27/2026 14:00;479;oC
+4;Cyl 2 Exhaust Temp;5/27/2026 14:00;370;oC
+4;Cyl 3 Exhaust Temp;5/27/2026 14:00;414;oC
+4;Cyl 4 Exhaust Temp;5/27/2026 14:00;446;oC
+4;Cyl 5 Exhaust Temp;5/27/2026 14:00;399;oC
+4;Cyl 6 Exhaust Temp;5/27/2026 14:00;383;oC
+4;T/C Inlet Temp;5/27/2026 14:00;361;oC
+1;T/C Outlet Temp;5/27/2026 15:00;477;oC
+1;Cyl 1 Exhaust Temp;5/27/2026 15:00;384;oC
+1;Cyl 2 Exhaust Temp;5/27/2026 15:00;417;oC
+1;Cyl 3 Exhaust Temp;5/27/2026 15:00;491;oC
+1;Cyl 4 Exhaust Temp;5/27/2026 15:00;499;oC
+1;Cyl 5 Exhaust Temp;5/27/2026 15:00;389;oC
+1;Cyl 6 Exhaust Temp;5/27/2026 15:00;405;oC
+1;T/C Inlet Temp;5/27/2026 15:00;411;oC
+2;T/C Outlet Temp;5/27/2026 15:00;390;oC
+2;Cyl 1 Exhaust Temp;5/27/2026 15:00;459;oC
+2;Cyl 2 Exhaust Temp;5/27/2026 15:00;387;oC
+2;Cyl 3 Exhaust Temp;5/27/2026 15:00;456;oC
+2;Cyl 4 Exhaust Temp;5/27/2026 15:00;406;oC
+2;Cyl 5 Exhaust Temp;5/27/2026 15:00;404;oC
+2;Cyl 6 Exhaust Temp;5/27/2026 15:00;470;oC
+2;T/C Inlet Temp;5/27/2026 15:00;468;oC
+3;T/C Outlet Temp;5/27/2026 15:00;462;oC
+3;Cyl 1 Exhaust Temp;5/27/2026 15:00;442;oC
+3;Cyl 2 Exhaust Temp;5/27/2026 15:00;358;oC
+3;Cyl 3 Exhaust Temp;5/27/2026 15:00;486;oC
+3;Cyl 4 Exhaust Temp;5/27/2026 15:00;458;oC
+3;Cyl 5 Exhaust Temp;5/27/2026 15:00;351;oC
+3;Cyl 6 Exhaust Temp;5/27/2026 15:00;413;oC
+3;T/C Inlet Temp;5/27/2026 15:00;389;oC
+4;T/C Outlet Temp;5/27/2026 15:00;431;oC
+4;Cyl 1 Exhaust Temp;5/27/2026 15:00;475;oC
+4;Cyl 2 Exhaust Temp;5/27/2026 15:00;427;oC
+4;Cyl 3 Exhaust Temp;5/27/2026 15:00;377;oC
+4;Cyl 4 Exhaust Temp;5/27/2026 15:00;484;oC
+4;Cyl 5 Exhaust Temp;5/27/2026 15:00;403;oC
+4;Cyl 6 Exhaust Temp;5/27/2026 15:00;439;oC
+4;T/C Inlet Temp;5/27/2026 15:00;465;oC
+1;T/C Outlet Temp;5/27/2026 16:00;430;oC
+1;Cyl 1 Exhaust Temp;5/27/2026 16:00;363;oC
+1;Cyl 2 Exhaust Temp;5/27/2026 16:00;496;oC
+1;Cyl 3 Exhaust Temp;5/27/2026 16:00;433;oC
+1;Cyl 4 Exhaust Temp;5/27/2026 16:00;377;oC
+1;Cyl 5 Exhaust Temp;5/27/2026 16:00;354;oC
+1;Cyl 6 Exhaust Temp;5/27/2026 16:00;441;oC
+1;T/C Inlet Temp;5/27/2026 16:00;450;oC
+2;T/C Outlet Temp;5/27/2026 16:00;415;oC
+2;Cyl 1 Exhaust Temp;5/27/2026 16:00;363;oC
+2;Cyl 2 Exhaust Temp;5/27/2026 16:00;366;oC
+2;Cyl 3 Exhaust Temp;5/27/2026 16:00;399;oC
+2;Cyl 4 Exhaust Temp;5/27/2026 16:00;358;oC
+2;Cyl 5 Exhaust Temp;5/27/2026 16:00;491;oC
+2;Cyl 6 Exhaust Temp;5/27/2026 16:00;438;oC
+2;T/C Inlet Temp;5/27/2026 16:00;390;oC
+3;T/C Outlet Temp;5/27/2026 16:00;394;oC
+3;Cyl 1 Exhaust Temp;5/27/2026 16:00;365;oC
+3;Cyl 2 Exhaust Temp;5/27/2026 16:00;389;oC
+3;Cyl 3 Exhaust Temp;5/27/2026 16:00;474;oC
+3;Cyl 4 Exhaust Temp;5/27/2026 16:00;396;oC
+3;Cyl 5 Exhaust Temp;5/27/2026 16:00;363;oC
+3;Cyl 6 Exhaust Temp;5/27/2026 16:00;386;oC
+3;T/C Inlet Temp;5/27/2026 16:00;478;oC
+4;T/C Outlet Temp;5/27/2026 16:00;427;oC
+4;Cyl 1 Exhaust Temp;5/27/2026 16:00;395;oC
+4;Cyl 2 Exhaust Temp;5/27/2026 16:00;391;oC
+4;Cyl 3 Exhaust Temp;5/27/2026 16:00;490;oC
+4;Cyl 4 Exhaust Temp;5/27/2026 16:00;410;oC
+4;Cyl 5 Exhaust Temp;5/27/2026 16:00;445;oC
+4;Cyl 6 Exhaust Temp;5/27/2026 16:00;369;oC
+4;T/C Inlet Temp;5/27/2026 16:00;447;oC
+1;T/C Outlet Temp;5/27/2026 17:00;432;oC
+1;Cyl 1 Exhaust Temp;5/27/2026 17:00;373;oC
+1;Cyl 2 Exhaust Temp;5/27/2026 17:00;352;oC
+1;Cyl 3 Exhaust Temp;5/27/2026 17:00;401;oC
+1;Cyl 4 Exhaust Temp;5/27/2026 17:00;429;oC
+1;Cyl 5 Exhaust Temp;5/27/2026 17:00;496;oC
+1;Cyl 6 Exhaust Temp;5/27/2026 17:00;414;oC
+1;T/C Inlet Temp;5/27/2026 17:00;474;oC
+2;T/C Outlet Temp;5/27/2026 17:00;404;oC
+2;Cyl 1 Exhaust Temp;5/27/2026 17:00;449;oC
+2;Cyl 2 Exhaust Temp;5/27/2026 17:00;397;oC
+2;Cyl 3 Exhaust Temp;5/27/2026 17:00;389;oC
+2;Cyl 4 Exhaust Temp;5/27/2026 17:00;425;oC
+2;Cyl 5 Exhaust Temp;5/27/2026 17:00;415;oC
+2;Cyl 6 Exhaust Temp;5/27/2026 17:00;442;oC
+2;T/C Inlet Temp;5/27/2026 17:00;439;oC
+3;T/C Outlet Temp;5/27/2026 17:00;474;oC
+3;Cyl 1 Exhaust Temp;5/27/2026 17:00;405;oC
+3;Cyl 2 Exhaust Temp;5/27/2026 17:00;373;oC
+3;Cyl 3 Exhaust Temp;5/27/2026 17:00;473;oC
+3;Cyl 4 Exhaust Temp;5/27/2026 17:00;431;oC
+3;Cyl 5 Exhaust Temp;5/27/2026 17:00;411;oC
+3;Cyl 6 Exhaust Temp;5/27/2026 17:00;404;oC
+3;T/C Inlet Temp;5/27/2026 17:00;380;oC
+4;T/C Outlet Temp;5/27/2026 17:00;481;oC
+4;Cyl 1 Exhaust Temp;5/27/2026 17:00;451;oC
+4;Cyl 2 Exhaust Temp;5/27/2026 17:00;414;oC
+4;Cyl 3 Exhaust Temp;5/27/2026 17:00;479;oC
+4;Cyl 4 Exhaust Temp;5/27/2026 17:00;496;oC
+4;Cyl 5 Exhaust Temp;5/27/2026 17:00;350;oC
+4;Cyl 6 Exhaust Temp;5/27/2026 17:00;436;oC
+4;T/C Inlet Temp;5/27/2026 17:00;469;oC
+1;T/C Outlet Temp;5/27/2026 18:00;414;oC
+1;Cyl 1 Exhaust Temp;5/27/2026 18:00;423;oC
+1;Cyl 2 Exhaust Temp;5/27/2026 18:00;404;oC
+1;Cyl 3 Exhaust Temp;5/27/2026 18:00;378;oC
+1;Cyl 4 Exhaust Temp;5/27/2026 18:00;355;oC
+1;Cyl 5 Exhaust Temp;5/27/2026 18:00;425;oC
+1;Cyl 6 Exhaust Temp;5/27/2026 18:00;482;oC
+1;T/C Inlet Temp;5/27/2026 18:00;421;oC
+2;T/C Outlet Temp;5/27/2026 18:00;454;oC
+2;Cyl 1 Exhaust Temp;5/27/2026 18:00;441;oC
+2;Cyl 2 Exhaust Temp;5/27/2026 18:00;488;oC
+2;Cyl 3 Exhaust Temp;5/27/2026 18:00;471;oC
+2;Cyl 4 Exhaust Temp;5/27/2026 18:00;384;oC
+2;Cyl 5 Exhaust Temp;5/27/2026 18:00;409;oC
+2;Cyl 6 Exhaust Temp;5/27/2026 18:00;424;oC
+2;T/C Inlet Temp;5/27/2026 18:00;483;oC
+3;T/C Outlet Temp;5/27/2026 18:00;472;oC
+3;Cyl 1 Exhaust Temp;5/27/2026 18:00;385;oC
+3;Cyl 2 Exhaust Temp;5/27/2026 18:00;478;oC
+3;Cyl 3 Exhaust Temp;5/27/2026 18:00;403;oC
+3;Cyl 4 Exhaust Temp;5/27/2026 18:00;497;oC
+3;Cyl 5 Exhaust Temp;5/27/2026 18:00;432;oC
+3;Cyl 6 Exhaust Temp;5/27/2026 18:00;489;oC
+3;T/C Inlet Temp;5/27/2026 18:00;500;oC
+4;T/C Outlet Temp;5/27/2026 18:00;389;oC
+4;Cyl 1 Exhaust Temp;5/27/2026 18:00;428;oC
+4;Cyl 2 Exhaust Temp;5/27/2026 18:00;390;oC
+4;Cyl 3 Exhaust Temp;5/27/2026 18:00;401;oC
+4;Cyl 4 Exhaust Temp;5/27/2026 18:00;421;oC
+4;Cyl 5 Exhaust Temp;5/27/2026 18:00;432;oC
+4;Cyl 6 Exhaust Temp;5/27/2026 18:00;468;oC
+4;T/C Inlet Temp;5/27/2026 18:00;492;oC
+1;T/C Outlet Temp;5/27/2026 19:00;358;oC
+1;Cyl 1 Exhaust Temp;5/27/2026 19:00;394;oC
+1;Cyl 2 Exhaust Temp;5/27/2026 19:00;441;oC
+1;Cyl 3 Exhaust Temp;5/27/2026 19:00;393;oC
+1;Cyl 4 Exhaust Temp;5/27/2026 19:00;485;oC
+1;Cyl 5 Exhaust Temp;5/27/2026 19:00;392;oC
+1;Cyl 6 Exhaust Temp;5/27/2026 19:00;499;oC
+1;T/C Inlet Temp;5/27/2026 19:00;467;oC
+2;T/C Outlet Temp;5/27/2026 19:00;375;oC
+2;Cyl 1 Exhaust Temp;5/27/2026 19:00;472;oC
+2;Cyl 2 Exhaust Temp;5/27/2026 19:00;368;oC
+2;Cyl 3 Exhaust Temp;5/27/2026 19:00;436;oC
+2;Cyl 4 Exhaust Temp;5/27/2026 19:00;477;oC
+2;Cyl 5 Exhaust Temp;5/27/2026 19:00;415;oC
+2;Cyl 6 Exhaust Temp;5/27/2026 19:00;475;oC
+2;T/C Inlet Temp;5/27/2026 19:00;468;oC
+3;T/C Outlet Temp;5/27/2026 19:00;357;oC
+3;Cyl 1 Exhaust Temp;5/27/2026 19:00;412;oC
+3;Cyl 2 Exhaust Temp;5/27/2026 19:00;358;oC
+3;Cyl 3 Exhaust Temp;5/27/2026 19:00;423;oC
+3;Cyl 4 Exhaust Temp;5/27/2026 19:00;384;oC
+3;Cyl 5 Exhaust Temp;5/27/2026 19:00;462;oC
+3;Cyl 6 Exhaust Temp;5/27/2026 19:00;413;oC
+3;T/C Inlet Temp;5/27/2026 19:00;418;oC
+4;T/C Outlet Temp;5/27/2026 19:00;368;oC
+4;Cyl 1 Exhaust Temp;5/27/2026 19:00;494;oC
+4;Cyl 2 Exhaust Temp;5/27/2026 19:00;396;oC
+4;Cyl 3 Exhaust Temp;5/27/2026 19:00;415;oC
+4;Cyl 4 Exhaust Temp;5/27/2026 19:00;434;oC
+4;Cyl 5 Exhaust Temp;5/27/2026 19:00;462;oC
+4;Cyl 6 Exhaust Temp;5/27/2026 19:00;479;oC
+4;T/C Inlet Temp;5/27/2026 19:00;442;oC
+1;T/C Outlet Temp;5/27/2026 20:00;373;oC
+1;Cyl 1 Exhaust Temp;5/27/2026 20:00;420;oC
+1;Cyl 2 Exhaust Temp;5/27/2026 20:00;455;oC
+1;Cyl 3 Exhaust Temp;5/27/2026 20:00;380;oC
+1;Cyl 4 Exhaust Temp;5/27/2026 20:00;471;oC
+1;Cyl 5 Exhaust Temp;5/27/2026 20:00;499;oC
+1;Cyl 6 Exhaust Temp;5/27/2026 20:00;380;oC
+1;T/C Inlet Temp;5/27/2026 20:00;472;oC
+2;T/C Outlet Temp;5/27/2026 20:00;500;oC
+2;Cyl 1 Exhaust Temp;5/27/2026 20:00;467;oC
+2;Cyl 2 Exhaust Temp;5/27/2026 20:00;442;oC
+2;Cyl 3 Exhaust Temp;5/27/2026 20:00;433;oC
+2;Cyl 4 Exhaust Temp;5/27/2026 20:00;487;oC
+2;Cyl 5 Exhaust Temp;5/27/2026 20:00;365;oC
+2;Cyl 6 Exhaust Temp;5/27/2026 20:00;404;oC
+2;T/C Inlet Temp;5/27/2026 20:00;486;oC
+3;T/C Outlet Temp;5/27/2026 20:00;487;oC
+3;Cyl 1 Exhaust Temp;5/27/2026 20:00;367;oC
+3;Cyl 2 Exhaust Temp;5/27/2026 20:00;424;oC
+3;Cyl 3 Exhaust Temp;5/27/2026 20:00;492;oC
+3;Cyl 4 Exhaust Temp;5/27/2026 20:00;468;oC
+3;Cyl 5 Exhaust Temp;5/27/2026 20:00;483;oC
+3;Cyl 6 Exhaust Temp;5/27/2026 20:00;393;oC
+3;T/C Inlet Temp;5/27/2026 20:00;409;oC
+4;T/C Outlet Temp;5/27/2026 20:00;430;oC
+4;Cyl 1 Exhaust Temp;5/27/2026 20:00;354;oC
+4;Cyl 2 Exhaust Temp;5/27/2026 20:00;443;oC
+4;Cyl 3 Exhaust Temp;5/27/2026 20:00;423;oC
+4;Cyl 4 Exhaust Temp;5/27/2026 20:00;486;oC
+4;Cyl 5 Exhaust Temp;5/27/2026 20:00;459;oC
+4;Cyl 6 Exhaust Temp;5/27/2026 20:00;377;oC
+4;T/C Inlet Temp;5/27/2026 20:00;360;oC
+1;T/C Outlet Temp;5/27/2026 21:00;431;oC
+1;Cyl 1 Exhaust Temp;5/27/2026 21:00;439;oC
+1;Cyl 2 Exhaust Temp;5/27/2026 21:00;395;oC
+1;Cyl 3 Exhaust Temp;5/27/2026 21:00;362;oC
+1;Cyl 4 Exhaust Temp;5/27/2026 21:00;412;oC
+1;Cyl 5 Exhaust Temp;5/27/2026 21:00;376;oC
+1;Cyl 6 Exhaust Temp;5/27/2026 21:00;497;oC
+1;T/C Inlet Temp;5/27/2026 21:00;375;oC
+2;T/C Outlet Temp;5/27/2026 21:00;382;oC
+2;Cyl 1 Exhaust Temp;5/27/2026 21:00;462;oC
+2;Cyl 2 Exhaust Temp;5/27/2026 21:00;360;oC
+2;Cyl 3 Exhaust Temp;5/27/2026 21:00;419;oC
+2;Cyl 4 Exhaust Temp;5/27/2026 21:00;403;oC
+2;Cyl 5 Exhaust Temp;5/27/2026 21:00;480;oC
+2;Cyl 6 Exhaust Temp;5/27/2026 21:00;426;oC
+2;T/C Inlet Temp;5/27/2026 21:00;419;oC
+3;T/C Outlet Temp;5/27/2026 21:00;429;oC
+3;Cyl 1 Exhaust Temp;5/27/2026 21:00;408;oC
+3;Cyl 2 Exhaust Temp;5/27/2026 21:00;405;oC
+3;Cyl 3 Exhaust Temp;5/27/2026 21:00;479;oC
+3;Cyl 4 Exhaust Temp;5/27/2026 21:00;378;oC
+3;Cyl 5 Exhaust Temp;5/27/2026 21:00;380;oC
+3;Cyl 6 Exhaust Temp;5/27/2026 21:00;434;oC
+3;T/C Inlet Temp;5/27/2026 21:00;405;oC
+4;T/C Outlet Temp;5/27/2026 21:00;399;oC
+4;Cyl 1 Exhaust Temp;5/27/2026 21:00;367;oC
+4;Cyl 2 Exhaust Temp;5/27/2026 21:00;380;oC
+4;Cyl 3 Exhaust Temp;5/27/2026 21:00;406;oC
+4;Cyl 4 Exhaust Temp;5/27/2026 21:00;370;oC
+4;Cyl 5 Exhaust Temp;5/27/2026 21:00;466;oC
+4;Cyl 6 Exhaust Temp;5/27/2026 21:00;499;oC
+4;T/C Inlet Temp;5/27/2026 21:00;478;oC
+1;T/C Outlet Temp;5/27/2026 22:00;417;oC
+1;Cyl 1 Exhaust Temp;5/27/2026 22:00;394;oC
+1;Cyl 2 Exhaust Temp;5/27/2026 22:00;446;oC
+1;Cyl 3 Exhaust Temp;5/27/2026 22:00;444;oC
+1;Cyl 4 Exhaust Temp;5/27/2026 22:00;415;oC
+1;Cyl 5 Exhaust Temp;5/27/2026 22:00;495;oC
+1;Cyl 6 Exhaust Temp;5/27/2026 22:00;446;oC
+1;T/C Inlet Temp;5/27/2026 22:00;484;oC
+2;T/C Outlet Temp;5/27/2026 22:00;422;oC
+2;Cyl 1 Exhaust Temp;5/27/2026 22:00;490;oC
+2;Cyl 2 Exhaust Temp;5/27/2026 22:00;493;oC
+2;Cyl 3 Exhaust Temp;5/27/2026 22:00;447;oC
+2;Cyl 4 Exhaust Temp;5/27/2026 22:00;463;oC
+2;Cyl 5 Exhaust Temp;5/27/2026 22:00;354;oC
+2;Cyl 6 Exhaust Temp;5/27/2026 22:00;496;oC
+2;T/C Inlet Temp;5/27/2026 22:00;433;oC
+3;T/C Outlet Temp;5/27/2026 22:00;371;oC
+3;Cyl 1 Exhaust Temp;5/27/2026 22:00;468;oC
+3;Cyl 2 Exhaust Temp;5/27/2026 22:00;357;oC
+3;Cyl 3 Exhaust Temp;5/27/2026 22:00;472;oC
+3;Cyl 4 Exhaust Temp;5/27/2026 22:00;401;oC
+3;Cyl 5 Exhaust Temp;5/27/2026 22:00;427;oC
+3;Cyl 6 Exhaust Temp;5/27/2026 22:00;481;oC
+3;T/C Inlet Temp;5/27/2026 22:00;492;oC
+4;T/C Outlet Temp;5/27/2026 22:00;489;oC
+4;Cyl 1 Exhaust Temp;5/27/2026 22:00;482;oC
+4;Cyl 2 Exhaust Temp;5/27/2026 22:00;459;oC
+4;Cyl 3 Exhaust Temp;5/27/2026 22:00;499;oC
+4;Cyl 4 Exhaust Temp;5/27/2026 22:00;443;oC
+4;Cyl 5 Exhaust Temp;5/27/2026 22:00;410;oC
+4;Cyl 6 Exhaust Temp;5/27/2026 22:00;367;oC
+4;T/C Inlet Temp;5/27/2026 22:00;453;oC
+1;T/C Outlet Temp;5/27/2026 23:00;425;oC
+1;Cyl 1 Exhaust Temp;5/27/2026 23:00;389;oC
+1;Cyl 2 Exhaust Temp;5/27/2026 23:00;397;oC
+1;Cyl 3 Exhaust Temp;5/27/2026 23:00;380;oC
+1;Cyl 4 Exhaust Temp;5/27/2026 23:00;498;oC
+1;Cyl 5 Exhaust Temp;5/27/2026 23:00;421;oC
+1;Cyl 6 Exhaust Temp;5/27/2026 23:00;485;oC
+1;T/C Inlet Temp;5/27/2026 23:00;403;oC
+2;T/C Outlet Temp;5/27/2026 23:00;413;oC
+2;Cyl 1 Exhaust Temp;5/27/2026 23:00;479;oC
+2;Cyl 2 Exhaust Temp;5/27/2026 23:00;410;oC
+2;Cyl 3 Exhaust Temp;5/27/2026 23:00;356;oC
+2;Cyl 4 Exhaust Temp;5/27/2026 23:00;422;oC
+2;Cyl 5 Exhaust Temp;5/27/2026 23:00;470;oC
+2;Cyl 6 Exhaust Temp;5/27/2026 23:00;407;oC
+2;T/C Inlet Temp;5/27/2026 23:00;409;oC
+3;T/C Outlet Temp;5/27/2026 23:00;430;oC
+3;Cyl 1 Exhaust Temp;5/27/2026 23:00;440;oC
+3;Cyl 2 Exhaust Temp;5/27/2026 23:00;467;oC
+3;Cyl 3 Exhaust Temp;5/27/2026 23:00;481;oC
+3;Cyl 4 Exhaust Temp;5/27/2026 23:00;416;oC
+3;Cyl 5 Exhaust Temp;5/27/2026 23:00;414;oC
+3;Cyl 6 Exhaust Temp;5/27/2026 23:00;472;oC
+3;T/C Inlet Temp;5/27/2026 23:00;474;oC
+4;T/C Outlet Temp;5/27/2026 23:00;425;oC
+4;Cyl 1 Exhaust Temp;5/27/2026 23:00;415;oC
+4;Cyl 2 Exhaust Temp;5/27/2026 23:00;454;oC
+4;Cyl 3 Exhaust Temp;5/27/2026 23:00;440;oC
+4;Cyl 4 Exhaust Temp;5/27/2026 23:00;440;oC
+4;Cyl 5 Exhaust Temp;5/27/2026 23:00;373;oC
+4;Cyl 6 Exhaust Temp;5/27/2026 23:00;412;oC
+4;T/C Inlet Temp;5/27/2026 23:00;467;oC

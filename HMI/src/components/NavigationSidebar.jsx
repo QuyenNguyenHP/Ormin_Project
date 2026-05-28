@@ -244,34 +244,6 @@ const NavigationSidebar = ({ className = "" }) => {
         </NavLink>
       </Box>
 
-      <Box className="w-[222px] h-[69px] border-[#364153] border-solid border-t-[1px] box-border flex flex-col items-start !pt-[17px] !pb-0 !pl-4 !pr-4 text-[#6a7282]">
-        <Box className="self-stretch h-9 flex flex-col items-start gap-1">
-          <Box className="self-stretch h-4 flex items-start justify-between gap-5">
-            <Box className="h-4 w-[82.7px] flex items-start">
-              <div className="relative leading-4 whitespace-nowrap shrink-0">
-                Stations Online:
-              </div>
-            </Box>
-            <Box className="h-4 w-[18.3px] flex items-start text-[#05df72]">
-              <div className="relative leading-4 font-semibold shrink-0">
-                8/8
-              </div>
-            </Box>
-          </Box>
-          <Box className="self-stretch h-4 flex items-start justify-between gap-5">
-            <Box className="h-4 w-[83.2px] flex items-start">
-              <div className="relative leading-4 whitespace-nowrap shrink-0">
-                Network Status:
-              </div>
-            </Box>
-            <Box className="h-4 w-[29.9px] flex items-start text-[#05df72]">
-              <div className="relative leading-4 font-semibold shrink-0">
-                Good
-              </div>
-            </Box>
-          </Box>
-        </Box>
-      </Box>
     </section>
   );
 };

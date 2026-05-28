@@ -1,7 +1,7 @@
 {
   "database_path": "database/database",
   "modbus": {
-    "host": "192.168.18.26",
+    "host": "10.0.0.204",
     "port": 502,
     "unit_id": 16,
     "timeout_seconds": 3,
@@ -26,26 +26,38 @@
       {
         "display_engine": 1,
         "source_engine": 0,
+        "power_source_engine": 1,
         "inlet_channel_description": "D.O Inlet Flow DG#1",
-        "outlet_channel_description": "D.O Out Flow DG#1"
+        "outlet_channel_description": "D.O Outlet Flow DG#1",
+        "power_channel_description": "Engine Power",
+        "power_display_label": "Engine 1 Load"
       },
       {
         "display_engine": 2,
         "source_engine": 0,
+        "power_source_engine": 2,
         "inlet_channel_description": "D.O Inlet Flow DG#2",
-        "outlet_channel_description": "D.O Out Flow DG#2"
+        "outlet_channel_description": "D.O Outlet Flow DG#2",
+        "power_channel_description": "Engine Power",
+        "power_display_label": "Engine 2 Load"
       },
       {
         "display_engine": 3,
         "source_engine": 0,
+        "power_source_engine": 3,
         "inlet_channel_description": "D.O Inlet Flow DG#3",
-        "outlet_channel_description": "D.O Out Flow DG#3"
+        "outlet_channel_description": "D.O Outlet Flow DG#3",
+        "power_channel_description": "Engine Power",
+        "power_display_label": "Engine 3 Load"
       },
       {
         "display_engine": 4,
         "source_engine": 0,
+        "power_source_engine": 4,
         "inlet_channel_description": "D.O Inlet Flow DG#4",
-        "outlet_channel_description": "D.O Out Flow DG#4"
+        "outlet_channel_description": "D.O Outlet Flow DG#4",
+        "power_channel_description": "Engine Power",
+        "power_display_label": "Engine 4 Load"
       }
     ],
     "input_channel_keywords": ["input", "inlet", "flow in"],
@@ -70,26 +82,38 @@
       {
         "display_engine": 1,
         "source_engine": 0,
+        "power_source_engine": 1,
         "inlet_channel_description": "H.O Inlet Flow DG#1",
-        "outlet_channel_description": "H.O Out Flow DG#1"
+        "outlet_channel_description": "H.O Outlet Flow DG#1",
+        "power_channel_description": "Engine Power",
+        "power_display_label": "Engine 1 Load"
       },
       {
         "display_engine": 2,
         "source_engine": 0,
+        "power_source_engine": 2,
         "inlet_channel_description": "H.O Inlet Flow DG#2",
-        "outlet_channel_description": "H.O Out Flow DG#2"
+        "outlet_channel_description": "H.O Outlet Flow DG#2",
+        "power_channel_description": "Engine Power",
+        "power_display_label": "Engine 2 Load"
       },
       {
         "display_engine": 3,
         "source_engine": 0,
+        "power_source_engine": 3,
         "inlet_channel_description": "H.O Inlet Flow DG#3",
-        "outlet_channel_description": "H.O Out Flow DG#3"
+        "outlet_channel_description": "H.O Outlet Flow DG#3",
+        "power_channel_description": "Engine Power",
+        "power_display_label": "Engine 3 Load"
       },
       {
         "display_engine": 4,
         "source_engine": 0,
+        "power_source_engine": 4,
         "inlet_channel_description": "H.O Inlet Flow DG#4",
-        "outlet_channel_description": "H.O Out Flow DG#4"
+        "outlet_channel_description": "H.O Outlet Flow DG#4",
+        "power_channel_description": "Engine Power",
+        "power_display_label": "Engine 4 Load"
       }
     ]
   },
