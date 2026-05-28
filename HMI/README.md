@@ -1,96 +1,106 @@
-# 🚢 DRUMS HMI Dashboard
+# DRUMS HMI Dashboard
 
-Frontend HMI dashboard cho hệ thống DRUMS, dùng để hiển thị dữ liệu máy chính, exhaust, P&ID và lịch sử tiêu thụ F.O. từ 2 nguồn dữ liệu:
+React + Vite HMI frontend with a Flask backend for live Modbus monitoring and SQLite-backed historical trends.
 
-- ⚡ Modbus TCP cho dữ liệu live
-- 🗄️ SQLite cho lịch sử `F.O. Consumption`
+## Overview
 
-Project hiện chạy theo mô hình:
+This project is an operator-facing dashboard for DRUMS engine and fuel system monitoring. It combines:
+
+- Live operational data from Modbus TCP
+- Historical trend and consumption data from SQLite
+- A multi-page HMI interface for overview, diagnostics, process visualization, and fuel analysis
+
+The application is structured as:
 
 ```text
 React + Vite frontend
-  -> gọi /api/*
+  -> calls /api/*
 Flask backend
-  -> modbus_api.py đọc live data từ PLC/Modbus
-  -> database_api.py đọc lịch sử từ SQLite
+  -> modbus_api.py for live data
+  -> database_api.py for historical and trend data
 ```
 
-## ✨ Tech Stack
+## Tech Stack
 
-- `React 19`
-- `Vite 6`
-- `React Router 7`
-- `MUI 7`
-- `Tailwind CSS 4`
-- `ECharts 5`
-- `Flask 3`
-- `pymodbus 3`
-- `sqlite3`
+- React 19
+- Vite 6
+- React Router 7
+- MUI 7
+- Tailwind CSS 4
+- ECharts 5
+- Flask 3
+- pymodbus 3
+- SQLite
 
-## 🧭 Các màn hình hiện có
+## Current Pages
 
-- `Overview` tại `/`
-- `Engine` tại `/engine`
-- `F.O. Consumption` tại `/fo-consumption`
-- `Exhaust` tại `/exhaust`
-- `P&ID` tại `/pid`
-- `Power` tại `/power` hiện là placeholder
-- `Alarms` tại `/alarms` hiện là placeholder
+- `/` - Overview
+- `/engine` - Engine details
+- `/pid` - P&ID process view
+- `/pressure_trend` - Pressure Trend
+- `/exh_temp_trend` - Exhaust Temperature Trend
+- `/do-consumption` - D.O Consumption
+- `/ho-consumption` - H.O Consumption
+- `/fo-consumption` - Redirects to `/do-consumption`
+- `/alarms` - Placeholder page
 
-## 🧠 Kiến trúc dữ liệu hiện tại
+## Data Architecture
 
-### 1. Live Modbus pages
+The frontend uses two data models.
 
-Các trang dưới đây dùng chung hook polling `src/hooks/usePolledPagePayload.js`:
+### 1. Live Modbus Pages
 
-- `Overview`
-- `Engine`
-- `Exhaust`
-- `P&ID`
+These pages poll structured backend payloads:
 
-Luồng hoạt động:
+- Overview
+- Engine
+- P&ID
+
+Frontend flow:
 
 ```text
 Page
   -> usePolledPagePayload("page-name")
-  -> fetch /api/<page-name>
+  -> GET /api/<page-name>
   -> backend/modbus_api.py
   -> backend/backend_config.json
   -> Modbus TCP device
 ```
 
-Backend sẽ:
+The backend is responsible for:
 
-1. Đọc cấu hình page từ `backend/backend_config.json`
-2. Flatten tất cả mapping nodes
-3. Gom địa chỉ Modbus liền kề để đọc theo batch
-4. Đọc holding registers và discrete inputs
-5. Scale / round / gán threshold state
-6. Trả payload dạng `sections + meta`
+1. Reading page mappings from `backend/backend_config.json`
+2. Grouping Modbus addresses for efficient reads
+3. Reading holding registers and discrete inputs
+4. Applying scale, precision, and threshold logic
+5. Returning UI-ready payloads in `sections + meta` format
 
-### 2. Historical database page
+### 2. Historical / Trend Pages
 
-Trang `F.O. Consumption` không dùng polling Modbus. Trang này gọi:
+These pages query history APIs backed by SQLite:
 
-- `GET /api/fo-consumption`
+- Pressure Trend
+- Exhaust Temperature Trend
+- D.O Consumption
+- H.O Consumption
 
-Luồng hoạt động:
+Frontend flow:
 
 ```text
-FOConsumption.jsx
-  -> fetchFOConsumptionHistory(...)
+Page
+  -> fetch history API
   -> backend/database_api.py
-  -> SQLite database/flow_meter_history.db
+  -> SQLite database
 ```
 
-Trang này hỗ trợ:
+These pages support:
 
-- chọn khoảng thời gian UTC bằng `datetime-local`
-- dịch khung thời gian `Prev 24h` / `Next 24h`
-- so sánh `flow in` và `flow out` theo từng engine
-- tính tiêu thụ từ phần chênh lệch lưu lượng
+- UTC date/time range filtering
+- Engine selection where applicable
+- Historical chart rendering
+- Live update mode on trend screens
 
-## 📁 Cấu trúc thư mục chính
+## Directory Structure
 
 ```text
 HMI/
@@ -101,7 +111,13 @@ HMI/
     backend_config.json
     requirements.txt
     database/
+      database
       flow_meter_history.db
+      mock_do_flow_meter_data.csv
+      import_database.py
+    data_collecting/
+      modbus_csv_db_collector.py
+      modbus_csv_db_collector_config.json
 
   public/
     Monitoritem_v2.svg
@@ -111,297 +127,252 @@ HMI/
 
   src/
     components/
-      EngineGauge.jsx
-      EngineMetricGroupCard.jsx
-      FOConsumptionChart.jsx
-      Cylinder_exh_temp.jsx
-      Header.jsx
-      Footer.jsx
-      NavigationSidebar.jsx
     hooks/
-      usePolledPagePayload.js
     pages/
-      Overview.jsx
-      Engine.jsx
-      FOConsumption.jsx
-      Exhaust.jsx
-      PAndID.jsx
-      PlaceholderPage.jsx
     services/
-      pidMonitorApi.js
-    utils/
-      PIDMonitor.js
 ```
 
-## 🔌 API endpoints
+## Main Frontend Services
 
-### Modbus endpoints
+Core frontend API calls are defined in:
+
+- `src/services/pidMonitorApi.js`
+
+Main helpers include:
+
+- `fetchPagePayload(pageName)`
+- `fetchModbusStatus()`
+- `fetchPressureTrendHistory(...)`
+- `fetchExhTempTrendHistory(...)`
+- `fetchDOConsumptionHistory(...)`
+- `fetchHOConsumptionHistory(...)`
+
+The common live polling hook is:
+
+- `src/hooks/usePolledPagePayload.js`
+
+It:
+
+- polls automatically using `meta.pollIntervalMs` when provided
+- falls back to `2000ms` on backend error
+- returns `payload`, `isLoading`, `error`, `lastUpdated`, and `pollIntervalMs`
+
+## Backend API Summary
+
+### Live Status
+
+- `GET /api/modbus-status`
+
+### Live Page Endpoints
 
 - `GET /api/overview`
 - `GET /api/engine`
-- `GET /api/exhaust`
 - `GET /api/pid`
-- `GET /api/debug/modbus-snapshot`
 
-### Database endpoint
+### Historical Endpoints
 
+- `GET /api/pressure_trend`
+- `GET /api/exh_temp_trend`
+- `GET /api/do-consumption`
+- `GET /api/ho-consumption`
 - `GET /api/fo-consumption`
 
-Query params hỗ trợ:
+### Common History Query Parameters
 
 - `windowMinutes`
 - `startTime`
 - `endTime`
+- `engine`
+- `channelDescription` (repeated query parameter where applicable)
 
-Lưu ý:
+Notes:
 
-- `startTime` và `endTime` phải đi cùng nhau
-- nếu không truyền range tuyệt đối, backend sẽ lấy cửa sổ mặc định từ config
+- `startTime` and `endTime` must be supplied together when using an absolute range
+- if no absolute range is provided, the backend uses the configured default time window
 
-## ⚙️ Cấu hình backend
+## Page Summary
 
-File chính:
+### Overview
+
+- Shows up to four engine summary cards
+- Displays a main gauge and key operating metrics for each engine
+- Intended for fast system-wide monitoring
+
+### Engine
+
+- Shows detailed grouped metrics for one selected engine
+- Groups include engine parameters, temperatures, fuel, lubrication, PMS, and cooling water
+- Some groups link to related trend pages
+
+### P&ID
+
+- Displays a background process diagram with a dynamic SVG overlay
+- Updates flow values and digital states in real time
+- Useful for process-oriented monitoring and demonstrations
+
+### Pressure Trend
+
+- Compares engine load with pressure-related values over time
+- Supports engine selection, UTC range selection, and live mode
+- Uses dual-axis charting for pressure and load
+
+### Exhaust Temperature Trend
+
+- Compares engine load with turbocharger and cylinder exhaust temperatures
+- Supports engine selection, UTC range selection, and live mode
+
+### D.O Consumption
+
+- Shows one chart card per engine
+- Compares D.O inlet flow, D.O outlet flow, and engine load
+- Calculates consumption from the flow difference over time
+
+### H.O Consumption
+
+- Same interaction model as D.O Consumption
+- Uses H.O-specific inlet and outlet flow history with engine load overlay
+
+### Alarms
+
+- Placeholder page reserved for future alarm features
+
+## Backend Configuration
+
+Main backend settings are stored in:
 
 - [backend/backend_config.json](./backend/backend_config.json)
 
-Cấu trúc lớn hiện tại:
+This file defines:
 
-```json
-{
-  "modbus": {
-    "host": "192.168.18.26",
-    "port": 502,
-    "unit_id": 16,
-    "timeout_seconds": 3,
-    "poll_interval_ms": 2000
-  },
-  "fo_consumption": {
-    "database_path": "database/flow_meter_history.db",
-    "table_name": "flow_meter_history",
-    "default_window_minutes": 1440,
-    "default_end_engine_count": 4
-  },
-  "pages": {
-    "overview": {},
-    "engine": {},
-    "exhaust": {},
-    "pid": {}
-  }
-}
-```
+- Modbus connection settings
+- Per-page live mappings
+- Historical database settings
+- Consumption channel mappings
+- Display engine to source engine mapping
 
-### Ý nghĩa nhanh
+Examples of configuration areas:
 
-- `modbus.host`, `port`, `unit_id`: kết nối PLC / gateway Modbus
-- `poll_interval_ms`: chu kỳ polling frontend tham chiếu từ `meta.pollIntervalMs`
-- `fo_consumption.database_path`: file SQLite cho lịch sử F.O.
-- `pages.*`: mapping dữ liệu cho từng trang
+- `modbus`
+- `fo_consumption`
+- `ho_consumption`
+- `pressure_trend_history`
+- `exh_temp_trend_history`
+- `pages`
 
-## 🧪 Mapping và rule trong Modbus backend
+## Local Development
 
-Trong `modbus_api.py`, mỗi metric mapping thường có:
-
-- `source_type`
-- `address`
-- `scale`
-- `precision`
-- `unit`
-- `warning`
-- `alarm`
-- `direction`
-
-Backend hiện hỗ trợ:
-
-- `holding_register`
-- `discrete_input`
-
-Threshold state được gán thành:
-
-- `normal`
-- `warning`
-- `alarm`
-
-Và dùng ở frontend để tô trạng thái cho metric cards.
-
-## 🖥️ Mô tả từng page
-
-### `Overview`
-
-- Hiển thị 4 engine cards
-- Mỗi card có 1 gauge và 6 metrics chính
-- Dùng `Container1.jsx` + `EngineGauge.jsx`
-
-### `Engine`
-
-- Cho chọn engine đang xem
-- Chia metric thành nhiều nhóm như:
-  - alternator temperature
-  - engine parameters
-  - exhaust gas temp
-  - fuel oil system
-  - fuel oil flow system
-  - lub oil system
-  - oil mist detection
-  - PMS
-  - cooling water system
-- Có liên kết từ group `exhaust_gas_temp` sang trang `/exhaust`
-
-### `Exhaust`
-
-- Cho bật/tắt nhiều engine cùng lúc
-- Có 2 biểu đồ:
-  - nhiệt độ xả từng cylinder
-  - nhiệt độ turbocharger
-- Có summary card tính điểm nóng nhất và trung bình
-
-### `F.O. Consumption`
-
-- Hiển thị 4 chart theo engine
-- Tự nhóm bản ghi thành `flowIn`, `flowOut`, `bandGap`
-- Chart dùng `ECharts`
-- Có zoom, double-click reset zoom và hiệu ứng pop-in
-
-### `P&ID`
-
-- Render nền bằng `P&IDbackground.png`
-- Overlay `Monitoritem_v2.svg`
-- Dùng `src/utils/PIDMonitor.js` để cập nhật text flow và digital state theo `id` trong SVG
-
-## 🧰 Frontend services và hooks
-
-File chính:
-
-- [src/services/pidMonitorApi.js](./src/services/pidMonitorApi.js)
-- [src/hooks/usePolledPagePayload.js](./src/hooks/usePolledPagePayload.js)
-
-Các hàm đang dùng:
-
-- `fetchPagePayload(pageName)`
-- `fetchDebugModbusSnapshot()`
-- `fetchFOConsumptionHistory({ windowMinutes, startTime, endTime })`
-
-Hook `usePolledPagePayload(pageName)` hiện:
-
-- tự poll lại theo `meta.pollIntervalMs`
-- fallback về `2000ms` nếu backend lỗi
-- trả về `payload`, `isLoading`, `error`, `lastUpdated`, `pollIntervalMs`
-
-## 🚀 Chạy local
-
-### 1. Cài frontend dependencies
+### 1. Install frontend dependencies
 
 ```bash
 npm install
 ```
 
-### 2. Cài backend dependencies
+### 2. Install backend dependencies
 
 ```bash
 pip install -r backend/requirements.txt
 ```
 
-### 3. Chạy backend Flask
+### 3. Start the backend
 
 ```bash
 python backend/app.py
 ```
 
-Backend mặc định:
+Default backend address:
 
 ```text
 http://127.0.0.1:8001
 ```
 
-### 4. Chạy frontend Vite
+### 4. Start the frontend
 
 ```bash
 npm run start
 ```
 
-Frontend mặc định:
+Default frontend address:
 
 ```text
 http://localhost:5173
 ```
 
-## 🌐 Vite proxy
+## Vite Proxy
 
-File:
+The frontend proxies API requests through Vite during development.
 
-- [vite.config.mjs](./vite.config.mjs)
+See:
 
-Proxy hiện tại:
+- `vite.config.mjs`
 
-```js
-server: {
-  proxy: {
-    "/api": "http://127.0.0.1:8001",
-  },
-}
-```
-
-Nghĩa là frontend chỉ cần gọi:
+Typical behavior:
 
 ```text
-/api/overview
-/api/engine
-/api/exhaust
-/api/pid
-/api/fo-consumption
+/api/* -> http://127.0.0.1:8001
 ```
 
-## 🛠️ Build
+## Build
 
 ```bash
 npm run build
 ```
 
-Output sẽ nằm ở thư mục:
+The production bundle is generated in:
 
 ```text
 build/
 ```
 
-## 🧯 Troubleshooting
+## Historical Data Import
 
-### Frontend không có dữ liệu
+The repository includes a CSV import utility:
 
-- kiểm tra Flask backend có đang chạy không
-- kiểm tra Vite proxy còn đúng không
-- mở DevTools để xem request `/api/*`
-- kiểm tra backend có trả `error` JSON không
+- `backend/database/import_database.py`
 
-### Không kết nối được Modbus
+This script can import:
 
-- kiểm tra `modbus.host`
-- kiểm tra `modbus.port`
-- kiểm tra `modbus.unit_id`
-- kiểm tra firewall / routing tới PLC
+- `backend/database/mock_do_flow_meter_data.csv`
 
-### `F.O. Consumption` không có dữ liệu
+into the SQLite database used by the backend.
 
-- kiểm tra file SQLite tại `backend/database/flow_meter_history.db`
-- kiểm tra `fo_consumption.table_name` trong config
-- kiểm tra range UTC đang chọn có dữ liệu thật hay không
+## Troubleshooting
 
-### `P&ID` không update đúng
+### Frontend shows no data
 
-- kiểm tra response `/api/pid`
-- kiểm tra `id` trong `Monitoritem_v2.svg`
-- kiểm tra mapping trong `src/utils/PIDMonitor.js`
+- confirm the Flask backend is running
+- confirm the Vite proxy is correct
+- inspect `/api/*` requests in the browser dev tools
+- check whether the backend is returning an error payload
 
-## 📝 Ghi chú hiện trạng source
+### Modbus connection is unavailable
 
-- ✅ README này đã cập nhật theo source hiện tại trong `HMI`
-- ✅ Có cả mô tả Modbus API và SQLite API
-- ✅ Đã phản ánh đúng các route `Overview`, `Engine`, `Exhaust`, `F.O. Consumption`, `P&ID`
-- ✅ `Power` và `Alarms` hiện vẫn là placeholder
-- ℹ️ Hiện chưa thấy test automation riêng cho frontend/backend trong thư mục `HMI`
+- verify `modbus.host`
+- verify `modbus.port`
+- verify `modbus.unit_id`
+- verify network routing and firewall access to the PLC or Modbus gateway
 
-## 💡 Gợi ý cải tiến tiếp theo
+### Trend or consumption pages show no history
 
-- thêm `health` endpoint cho backend
-- thêm logging rõ hơn cho lỗi Modbus / SQLite
-- thêm test cho `PIDMonitor.js`, chart data transforms, và payload builders
-- tách riêng config thresholds thành file độc lập nếu tiếp tục mở rộng
-- thêm tài liệu deploy cho thư mục `deloy_Raspberry_pi/`
+- verify the SQLite database file exists
+- verify the configured table name
+- verify the selected UTC time range actually contains data
+- verify channel description names match the backend configuration
+
+### P&ID values do not update correctly
+
+- verify `/api/pid` response content
+- verify SVG element IDs in `public/Monitoritem_v2.svg`
+- verify backend labels match the expected frontend IDs
+
+## Additional Documentation
+
+For customer-facing page descriptions, see:
+
+- [FRONTEND_PAGES_CLIENT_PRESENTATION_GUIDE.md](./FRONTEND_PAGES_CLIENT_PRESENTATION_GUIDE.md)
+
+## Notes
+
+- The current frontend uses real route names for `Pressure Trend`, `Exh TempTrend`, `D.O Consumption`, and `H.O Consumption`
+- `Alarms` is still a placeholder
+- `fo-consumption` currently redirects to `do-consumption`
+
