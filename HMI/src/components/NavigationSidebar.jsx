@@ -84,6 +84,30 @@ const NavigationSidebar = ({ className = "" }) => {
         </NavLink>
 
         <NavLink
+          to="/pid"
+          className={navItemClass}
+          style={({ isActive }) => ({
+            borderLeft: isActive ? "4px solid #51A2FF" : undefined,
+            background: isActive ? "#155DFC" : undefined,
+            borderRadius: isActive ? "10px" : undefined,
+          })}
+        >
+          {({ isActive }) => (
+            <>
+              <img
+                className={navIconClass(isActive)}
+                alt=""
+                src="/P&ID.svg"
+                style={navIconStyle(isActive)}
+              />
+              <Box className="h-5 flex-1 flex items-start">
+                <div className="flex-1 relative leading-5 font-medium">{`P&ID`}</div>
+              </Box>
+            </>
+          )}
+        </NavLink>
+
+        <NavLink
           to="/pressure_trend"
           className={navItemClass}
           style={({ isActive }) => ({
@@ -111,7 +135,7 @@ const NavigationSidebar = ({ className = "" }) => {
           to="/exh_temp_trend"
           className={navItemClass}
           style={({ isActive }) => ({
-            borderLeft: isActive ? "4px solid #51A2FF" : undefined,
+            borderLeft: isActive ? "4px solid #ff5151" : undefined,
             background: isActive ? "#155DFC" : undefined,
             borderRadius: isActive ? "10px" : undefined,
           })}
@@ -127,32 +151,6 @@ const NavigationSidebar = ({ className = "" }) => {
               <Box className="min-h-5 flex-1 flex items-start">
                 <div className="flex-1 relative leading-5 font-medium">
                   Exh TempTrend
-                </div>
-              </Box>
-            </>
-          )}
-        </NavLink>
-
-        <NavLink
-          to="/do-consumption"
-          className={navItemClass}
-          style={({ isActive }) => ({
-            borderLeft: isActive ? "4px solid #51A2FF" : undefined,
-            background: isActive ? "#155DFC" : undefined,
-            borderRadius: isActive ? "10px" : undefined,
-          })}
-        >
-          {({ isActive }) => (
-            <>
-              <img
-                className={navIconClass(isActive)}
-                alt=""
-                src="/pressure_trend.svg"
-                style={navIconStyle(isActive)}
-              />
-              <Box className="min-h-5 flex-1 flex items-start">
-                <div className="flex-1 relative leading-5 font-medium">
-                  D.O Consumption
                 </div>
               </Box>
             </>
@@ -186,7 +184,7 @@ const NavigationSidebar = ({ className = "" }) => {
         </NavLink>
 
         <NavLink
-          to="/pid"
+          to="/do-consumption"
           className={navItemClass}
           style={({ isActive }) => ({
             borderLeft: isActive ? "4px solid #51A2FF" : undefined,
@@ -199,11 +197,13 @@ const NavigationSidebar = ({ className = "" }) => {
               <img
                 className={navIconClass(isActive)}
                 alt=""
-                src="/P&ID.svg"
+                src="/pressure_trend.svg"
                 style={navIconStyle(isActive)}
               />
-              <Box className="h-5 flex-1 flex items-start">
-                <div className="flex-1 relative leading-5 font-medium">{`P&ID`}</div>
+              <Box className="min-h-5 flex-1 flex items-start">
+                <div className="flex-1 relative leading-5 font-medium">
+                  D.O Consumption
+                </div>
               </Box>
             </>
           )}
