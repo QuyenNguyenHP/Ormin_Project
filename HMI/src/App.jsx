@@ -15,6 +15,7 @@ import HOConsumption from "./pages/HOConsumption";
 import PressureTrend from "./pages/PressureTrend";
 import PlaceholderPage from "./pages/PlaceholderPage";
 
+
 function App() {
   const action = useNavigationType();
   const location = useLocation();
