@@ -148,7 +148,7 @@
           "key": "engine_1",
           "title": "Engine 1",
           "serialNo": 1,
-          "gauge": { "key": "engine_power", "label": "Engine Power", "title": "Engine 1", "subtitle": "Main propulsion load", "source_type": "holding_register", "address": 40101, "scale": 1, "min": 0, "max": 800, "unit": "kW", "color": "#22c55e" },
+          "gauge": { "key": "engine_power", "label": "Engine Power", "title": "Engine 1", "subtitle": "", "source_type": "holding_register", "address": 40101, "scale": 1, "min": 0, "max": 800, "unit": "kW", "color": "#22c55e" },
           "metrics": {
             "runningHours": { "key": "engine_running_hours", "label": "Engine Running Hours", "source_type": "holding_register", "address": 40100, "scale": 1, "unit": "h" },
             "engineSpeed": { "key": "engine_speed", "label": "Engine Speed", "source_type": "holding_register", "address": 40102, "scale": 1, "unit": "rpm" },
@@ -162,7 +162,7 @@
           "key": "engine_2",
           "title": "Engine 2",
           "serialNo": 2,
-          "gauge": { "key": "engine_power", "label": "Engine Power", "title": "Engine 2", "subtitle": "Auxiliary engine load", "source_type": "holding_register", "address": 40147, "scale": 1, "min": 0, "max": 800, "unit": "kW", "color": "#f59e0b" },
+          "gauge": { "key": "engine_power", "label": "Engine Power", "title": "Engine 2", "subtitle": "", "source_type": "holding_register", "address": 40147, "scale": 1, "min": 0, "max": 800, "unit": "kW", "color": "#f59e0b" },
           "metrics": {
             "runningHours": { "key": "engine_running_hours", "label": "Engine Running Hours", "source_type": "holding_register", "address": 40146, "scale": 1, "unit": "h" },
             "engineSpeed": { "key": "engine_speed", "label": "Engine Speed", "source_type": "holding_register", "address": 40148, "scale": 1, "unit": "rpm" },
@@ -176,7 +176,7 @@
           "key": "engine_3",
           "title": "Engine 3",
           "serialNo": 3,
-          "gauge": { "key": "engine_power", "label": "Engine Power", "title": "Engine 3", "subtitle": "Generator engine load", "source_type": "holding_register", "address": 40193, "scale": 1, "min": 0, "max": 800, "unit": "kW", "color": "#38bdf8" },
+          "gauge": { "key": "engine_power", "label": "Engine Power", "title": "Engine 3", "subtitle": "", "source_type": "holding_register", "address": 40193, "scale": 1, "min": 0, "max": 800, "unit": "kW", "color": "#38bdf8" },
           "metrics": {
             "runningHours": { "key": "engine_running_hours", "label": "Engine Running Hours", "source_type": "holding_register", "address": 40192, "scale": 1, "unit": "h" },
             "engineSpeed": { "key": "engine_speed", "label": "Engine Speed", "source_type": "holding_register", "address": 40194, "scale": 1, "unit": "rpm" },
@@ -190,7 +190,7 @@
           "key": "engine_4",
           "title": "Engine 4",
           "serialNo": 4,
-          "gauge": { "key": "engine_power", "label": "Engine Power", "title": "Engine 4", "subtitle": "Backup engine load", "source_type": "holding_register", "address": 40239, "scale": 1, "min": 0, "max": 800, "unit": "kW", "color": "#ef4444" },
+          "gauge": { "key": "engine_power", "label": "Engine Power", "title": "Engine 4", "subtitle": "", "source_type": "holding_register", "address": 40239, "scale": 1, "min": 0, "max": 800, "unit": "kW", "color": "#ef4444" },
           "metrics": {
             "runningHours": { "key": "engine_running_hours", "label": "Engine Running Hours", "source_type": "holding_register", "address": 40238, "scale": 1, "unit": "h" },
             "engineSpeed": { "key": "engine_speed", "label": "Engine Speed", "source_type": "holding_register", "address": 40240, "scale": 1, "unit": "rpm" },
@@ -716,6 +716,8 @@
         { "key": "pump_10", "label": "pump 10", "source_type": "discrete_input", "address": 10010 },
         { "key": "pump_11", "label": "pump 11", "source_type": "discrete_input", "address": 10011 },
         { "key": "pump_12", "label": "pump 12", "source_type": "discrete_input", "address": 10012 },
+        { "key": "pump_13", "label": "pump 13", "source_type": "discrete_input", "address": 10038 },
+        { "key": "pump_14", "label": "pump 14", "source_type": "discrete_input", "address": 10039 },
         { "key": "lc_do_service_tank", "label": "LC_D.O.service.tank", "source_type": "discrete_input", "address": 10013 },
         { "key": "lc_ho_settling_tank", "label": "LC_H.O.settling.tank", "source_type": "discrete_input", "address": 10014 },
         { "key": "lh_do_service_tank", "label": "LH_D.O.service.tank", "source_type": "discrete_input", "address": 10015 },
@@ -737,7 +739,10 @@
         { "key": "tsh_do_service_tank", "label": "TSH_D.O.service.tank", "source_type": "discrete_input", "address": 10031 },
         { "key": "tsh_fo_drain_tank", "label": "TSH_F.O. drain tank", "source_type": "discrete_input", "address": 10032 },
         { "key": "tsh_ho_service_tank", "label": "TSH_H.O.service.tank", "source_type": "discrete_input", "address": 10033 },
-        { "key": "tsh_ho_settling_tank", "label": "TSH_H.O.settling.tank", "source_type": "discrete_input", "address": 10034 }
+        { "key": "tsh_ho_settling_tank", "label": "TSH_H.O.settling.tank", "source_type": "discrete_input", "address": 10034 },
+        { "key": "viscosity_controller", "label": "Viscosity-Controller", "source_type": "discrete_input", "address": 10035 },
+        { "key": "do_line", "label": "DO-line", "source_type": "discrete_input", "address": 10036 },
+        { "key": "ho_line", "label": "HO-line", "source_type": "discrete_input", "address": 10037 }
       ]
     }
   }

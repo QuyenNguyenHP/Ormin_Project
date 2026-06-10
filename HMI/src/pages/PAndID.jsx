@@ -39,6 +39,8 @@ const DIGITAL_IDS = [
   "pump 10",
   "pump 11",
   "pump 12",
+  "pump 13",
+  "pump 14",
   "LC_D.O.service.tank",
   "LC_H.O.settling.tank",
   "LH_D.O.service.tank",
@@ -61,12 +63,26 @@ const DIGITAL_IDS = [
   "TSH_F.O. drain tank",
   "TSH_H.O.service.tank",
   "TSH_H.O.settling.tank",
+  "Viscosity-Controller",
+  "DO-line",
+  "HO-line",
+  "General-line",
 ];
 
 const DIGITAL_ON_COLOR = "#05DF72";
 const DIGITAL_OFF_COLOR = "#99A1AF";
 const DIGITAL_ON_FILL = "rgba(5, 223, 114, 0.32)";
 const DIGITAL_OFF_FILL = "rgba(255, 77, 80, 0)";
+const DIGITAL_STYLE_OVERRIDES = {
+  "DO-line": {
+    onColor: "#F59E0B",
+    offColor: "#99A1AF",
+  },
+  "HO-line": {
+    onColor: "#38BDF8",
+    offColor: "#99A1AF",
+  },
+};
 
 const formatFlowValue = (value, unit = "L/H") => `${Math.round(value)} ${unit}`;
 
@@ -98,6 +114,10 @@ const buildPIDMonitorDataFromPagePayload = (payload = {}) => {
   const digitalData = digitals.reduce((accumulator, digitalItem) => {
     const digitalId = digitalItem.label;
     const isOn = Boolean(digitalItem.value);
+    const styleOverride = DIGITAL_STYLE_OVERRIDES[digitalId] ?? {};
+    const activeColor = isOn
+      ? styleOverride.onColor ?? DIGITAL_ON_COLOR
+      : styleOverride.offColor ?? DIGITAL_OFF_COLOR;
 
     if (!digitalId) {
       return accumulator;
@@ -106,11 +126,23 @@ const buildPIDMonitorDataFromPagePayload = (payload = {}) => {
     accumulator[digitalId] = {
       value: isOn,
       label: isOn ? "ON" : "OFF",
-      color: isOn ? DIGITAL_ON_COLOR : DIGITAL_OFF_COLOR,
+      color: activeColor,
       fill: isOn ? DIGITAL_ON_FILL : DIGITAL_OFF_FILL,
     };
     return accumulator;
   }, {});
+
+  const doLineDigital = digitalData["DO-line"];
+  const hoLineDigital = digitalData["HO-line"];
+  const generalLineSource = doLineDigital?.value
+    ? doLineDigital
+    : hoLineDigital?.value
+      ? hoLineDigital
+      : doLineDigital ?? hoLineDigital;
+
+  if (generalLineSource) {
+    digitalData["General-line"] = { ...generalLineSource };
+  }
 
   return { flowData, digitalData };
 };
@@ -151,12 +183,23 @@ const updateDigitalElementStyles = (element, digitalValue) => {
   }
 
   if (tagName === "g") {
-    const childShapes = element.querySelectorAll("path, rect");
+    element.setAttribute("color", digitalValue.color);
+
+    const childShapes = element.querySelectorAll("path, rect, line");
 
     childShapes.forEach((childElement) => {
       const childTagName = childElement.tagName.toLowerCase();
 
       if (childTagName === "path") {
+        if (childElement.hasAttribute("stroke")) {
+          childElement.setAttribute("stroke", digitalValue.color);
+        }
+        if (childElement.hasAttribute("fill")) {
+          childElement.setAttribute("fill", digitalValue.color);
+        }
+      }
+
+      if (childTagName === "line") {
         childElement.setAttribute("stroke", digitalValue.color);
       }
 
@@ -237,21 +280,21 @@ const PAndID = () => {
                 <img
                   className="absolute inset-0 h-full w-full object-contain"
                   alt="P&ID background"
-                  src="/P&IDbackground.png"
+                  src="/P&IDbackgroundv3.png"
                 />
                 <object
                   key={svgResetKey}
                   ref={svgObjectRef}
                   aria-label="Monitor items overlay"
                   className="absolute inset-0 h-full w-full"
-                  data="/Monitoritem_v2.svg"
+                  data="/Monitor_item_v3.svg"
                   onLoad={handleSvgLoad}
                   type="image/svg+xml"
                 >
                   <img
                     className="h-full w-full object-contain"
                     alt="Monitor items overlay"
-                    src="/Monitoritem_v2.svg"
+                    src="/Monitor_item_v3.svg"
                   />
                 </object>
               </Box>
