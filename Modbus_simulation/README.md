@@ -93,3 +93,45 @@ python Modbus_simulation\modbus_simulator.py --port 1502 --control-port 18052
 python Modbus_simulation\modbus_simulator.py --auto-randomize-seconds 2
 python Modbus_simulation\modbus_simulator.py --no-console
 ```
+
+## Create A systemd Service
+
+For a Linux host, run the simulator as a background service with `systemd`.
+
+1. Find the full paths for your project and Python executable.
+2. Create `/etc/systemd/system/modbus-simulator.service`:
+
+```ini
+[Unit]
+Description=Modbus Simulator
+After=network.target
+
+[Service]
+Type=simple
+User=your-user
+WorkingDirectory=/opt/Ormin_Project_V5
+ExecStart=/usr/bin/python3 /opt/Ormin_Project_V5/Modbus_simulation/modbus_simulator.py --no-console
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
+```
+
+Replace `your-user`, `/opt/Ormin_Project_V5`, and `/usr/bin/python3` with the correct values for your machine.
+
+3. Reload `systemd` and enable the service:
+
+```bash
+sudo systemctl daemon-reload
+sudo systemctl enable --now modbus-simulator.service
+```
+
+4. Check status and logs:
+
+```bash
+sudo systemctl status modbus-simulator.service
+journalctl -u modbus-simulator.service -f
+```
+
+If you need to bind to privileged port `502`, run the service with a user that has permission for that port, or start the simulator on a non-privileged port such as `1502` and point the backend to that port instead.

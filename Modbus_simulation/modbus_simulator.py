@@ -22,7 +22,8 @@ DISCRETE_INPUT_START = 10000
 # Notes from the workbook:
 # - The initial_value column below follows the Excel "Value" column for the Digital rows.
 # - Analog values updated later in the workbook are applied through ANALOG_INITIAL_VALUE_OVERRIDES below.
-# - The digital section includes duplicate address 10000 rows in the original workbook.
+# - Workbook addresses are one-based and normalized to the simulator's visible addresses.
+# - The digital section includes duplicate address 10000 rows after normalization.
 REGISTER_TABLE_CSV = """source_type,address,description,initial_value,function_code
 Digital,10001,DO transfer pump 1,1,1
 Digital,10002,DO transfer pump 2,0,1
@@ -81,80 +82,7 @@ Analog,40015,Flow 15,0,3
 Analog,40016,Flow 16,0,3
 Analog,40017,Flow 17,0,3
 Analog,40018,Flow 18,0,3
-Analog,40019,,0,3
-Analog,40020,,0,3
-Analog,40021,,0,3
-Analog,40022,,0,3
-Analog,40023,,0,3
-Analog,40024,,0,3
-Analog,40025,,0,3
-Analog,40026,,0,3
-Analog,40027,,0,3
-Analog,40028,,0,3
-Analog,40029,,0,3
-Analog,40030,,0,3
-Analog,40031,,0,3
-Analog,40032,,0,3
-Analog,40033,,0,3
-Analog,40034,,0,3
-Analog,40035,,0,3
-Analog,40036,,0,3
-Analog,40037,,0,3
-Analog,40038,,0,3
-Analog,40039,,0,3
-Analog,40040,,0,3
-Analog,40041,,0,3
-Analog,40042,,0,3
-Analog,40043,,0,3
-Analog,40044,,0,3
-Analog,40045,,0,3
-Analog,40046,,0,3
-Analog,40047,,0,3
-Analog,40048,,0,3
-Analog,40049,,0,3
-Analog,40050,,0,3
-Analog,40051,,0,3
-Analog,40052,,0,3
-Analog,40053,,0,3
-Analog,40054,,0,3
-Analog,40055,,0,3
-Analog,40056,,0,3
-Analog,40057,,0,3
-Analog,40058,,0,3
-Analog,40059,,0,3
-Analog,40060,,0,3
-Analog,40061,,0,3
-Analog,40062,,0,3
-Analog,40063,,0,3
-Analog,40064,,0,3
-Analog,40065,,0,3
-Analog,40066,,0,3
-Analog,40067,,0,3
-Analog,40068,,0,3
-Analog,40069,,0,3
-Analog,40070,,0,3
-Analog,40071,,0,3
-Analog,40072,,0,3
-Analog,40073,,0,3
-Analog,40074,,0,3
-Analog,40075,,0,3
-Analog,40076,,0,3
-Analog,40077,,0,3
-Analog,40078,,0,3
-Analog,40079,,0,3
-Analog,40080,,0,3
-Analog,40081,,0,3
-Analog,40082,,0,3
-Analog,40083,,0,3
-Analog,40084,,0,3
-Analog,40085,,0,3
-Analog,40086,,0,3
-Analog,40087,,0,3
-Analog,40088,,0,3
-Analog,40089,,0,3
-Analog,40090,,0,3
-Analog,40091,,0,3
-Analog,40092,,0,3
+
 Analog,40093,Intake Air Pressure DG#1,0,3
 Analog,40094,Air Receiver Pressure DG#1,0,3
 Analog,40095,Stator Winding Temp U DG#1,0,3
@@ -341,8 +269,16 @@ Analog,40275,Cooler Water Outlet Temp DG#4,0,3
 Analog,40276,CW Before LO Cooler Temp DG#4,0,3
 """
 
+def normalize_register_table_address(source_type: str, address: int) -> int:
+    if source_type == "discrete_input" and address >= 10001:
+        return address - 1
+    if source_type == "holding_register" and address >= 40001:
+        return address - 1
+    return address
+
+
 # Non-zero Analog values re-read from the updated Excel workbook.
-# Keys use the simulator's current visible addresses.
+# Keys below follow the workbook addresses and are normalized at import time.
 ANALOG_INITIAL_VALUE_OVERRIDES = {
     40001: 15,  # Flow 1
     40002: 33,  # Flow 2
@@ -404,6 +340,11 @@ ANALOG_INITIAL_VALUE_OVERRIDES = {
     40276: 9987,  # CW Before LO Cooler Temp DG#4
 }
 
+ANALOG_INITIAL_VALUE_OVERRIDES = {
+    normalize_register_table_address("holding_register", address): value
+    for address, value in ANALOG_INITIAL_VALUE_OVERRIDES.items()
+}
+
 
 @dataclass
 class RegisterDefinition:
@@ -437,7 +378,7 @@ def load_embedded_registers() -> tuple[list[RegisterDefinition], list[dict[str, 
     reader = csv.DictReader(io.StringIO(REGISTER_TABLE_CSV.strip()))
     for row in reader:
         source_type = parse_source_type(row["source_type"])
-        address = parse_int(row["address"])
+        address = normalize_register_table_address(source_type, parse_int(row["address"]))
         initial_value = parse_int(row["initial_value"], default=0)
         if source_type == "holding_register" and address in ANALOG_INITIAL_VALUE_OVERRIDES:
             initial_value = ANALOG_INITIAL_VALUE_OVERRIDES[address]
