@@ -90,6 +90,22 @@ Vi du:
 - raw `1607` -> backend `11607`
 - raw `40040` -> backend `50040`
 
+Luu y quan trong ve Modbus master:
+
+- So `1` trong sensor list la so thu tu/visible address theo quy uoc mapping cua project.
+- Khi Modbus master doc `discrete input`, start address tren frame thuc te van bat dau tu offset `0x0000`.
+- Tuong ung:
+  - sensor list `1`
+  - backend config `10001`
+  - pymodbus/request offset `0`
+  - Modbus frame start address `0x0000`
+
+Vi du voi `D/G#1 | Over Speed | Digital | 1 | Boolean |`:
+
+- Khong query tu `0x0001`
+- Ma query tu `0x0000` de doc diem dau tien
+- Backend van giu `10001` de de doi chieu voi nhom `1xxxx` cho discrete input
+
 Neu sau nay PLC/Modbus xac nhan quy uoc khac, can doi lai tai:
 
 - `HMI/backend/backend_config.json`

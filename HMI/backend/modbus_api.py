@@ -37,7 +37,7 @@ def build_meta() -> dict[str, Any]:
 
 
 def modbus_address_to_offset(address: int, family_start: int) -> int:
-    """Convert a human-readable Modbus address into the zero-based pymodbus offset."""
+    """Convert a visible Modbus-style address like 10001/40001 into zero-based wire offset."""
     return address - family_start
 
 

@@ -76,6 +76,7 @@ def resolve_path(base_dir: Path, raw_path: str) -> Path:
 
 
 def modbus_address_to_offset(address: int, family_start: int) -> int:
+    """Convert a visible Modbus-style address like 10001/40001 into zero-based wire offset."""
     return address - family_start
 
 
