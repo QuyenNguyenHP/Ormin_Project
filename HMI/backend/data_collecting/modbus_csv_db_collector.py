@@ -29,6 +29,8 @@ class PointConfig:
     unit: str
     scale: float = 1.0
     precision: int | None = None
+    data_type: str = "uint16"
+    register_count: int = 1
     enabled: bool = True
 
 
@@ -113,6 +115,14 @@ def split_address_group(
     return chunks
 
 
+def get_point_register_count(point: PointConfig) -> int:
+    return max(1, int(point.register_count))
+
+
+def expand_point_addresses(point: PointConfig) -> list[int]:
+    return [point.address + offset for offset in range(get_point_register_count(point))]
+
+
 def parse_points(config: dict[str, Any]) -> list[PointConfig]:
     points: list[PointConfig] = []
     for index, item in enumerate(config.get("points", []), start=1):
@@ -129,6 +139,8 @@ def parse_points(config: dict[str, Any]) -> list[PointConfig]:
                     if item.get("precision") is not None
                     else None
                 ),
+                data_type=str(item.get("data_type", "uint16")).strip().lower(),
+                register_count=int(item.get("register_count", 1)),
                 enabled=bool(item.get("enabled", True)),
             )
         except KeyError as exc:
@@ -171,7 +183,12 @@ def read_holding_register_map(
     points: list[PointConfig],
 ) -> dict[int, int]:
     register_map: dict[int, int] = {}
-    addresses = [point.address for point in points if point.source_type == "holding_register"]
+    addresses = [
+        address
+        for point in points
+        if point.source_type == "holding_register"
+        for address in expand_point_addresses(point)
+    ]
 
     for group_start, group_end in group_contiguous_addresses(addresses):
         for chunk_start, chunk_end in split_address_group(group_start, group_end, 125):
@@ -221,6 +238,28 @@ def apply_scale_and_precision(point: PointConfig, raw_value: int | bool) -> int 
     return int(value) if float(value).is_integer() else value
 
 
+def resolve_holding_register_value(
+    point: PointConfig,
+    holding_registers: dict[int, int],
+) -> int:
+    register_count = get_point_register_count(point)
+    raw_words = [holding_registers[point.address + offset] for offset in range(register_count)]
+
+    if register_count == 1:
+        return raw_words[0]
+
+    if register_count == 2 and point.data_type in {"int32", "uint32"}:
+        raw_value = (raw_words[0] << 16) | raw_words[1]
+        if point.data_type == "int32" and raw_value >= 0x80000000:
+            raw_value -= 0x100000000
+        return raw_value
+
+    raise ValueError(
+        f"Unsupported holding register point: address={point.address}, "
+        f"register_count={register_count}, data_type={point.data_type}"
+    )
+
+
 def read_snapshot(
     modbus_config: dict[str, Any],
     points: list[PointConfig],
@@ -239,7 +278,7 @@ def read_snapshot(
     rows: list[tuple[int, str, str, float, str]] = []
     for point in points:
         if point.source_type == "holding_register":
-            raw_value = holding_registers[point.address]
+            raw_value = resolve_holding_register_value(point, holding_registers)
             value = apply_scale_and_precision(point, raw_value)
         else:
             raw_value = discrete_inputs[point.address]

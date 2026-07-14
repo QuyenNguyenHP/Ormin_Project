@@ -89,6 +89,18 @@ def is_mapping_node(node: Any) -> bool:
     return isinstance(node, dict) and "source_type" in node and "address" in node
 
 
+def get_mapping_register_count(mapping: dict[str, Any]) -> int:
+    """Return how many 16-bit registers one mapping spans."""
+    return max(1, int(mapping.get("register_count", 1)))
+
+
+def expand_mapping_addresses(mapping: dict[str, Any]) -> list[int]:
+    """Return every register address needed to resolve one mapping."""
+    address = int(mapping["address"])
+    register_count = get_mapping_register_count(mapping)
+    return [address + offset for offset in range(register_count)]
+
+
 def flatten_mapping_nodes(config_node: Any) -> list[dict[str, Any]]:
     """Recursively collect every Modbus mapping node from a config tree."""
     if is_mapping_node(config_node):
@@ -173,7 +185,11 @@ def read_holding_register_map(
 ) -> dict[int, int]:
     """Read all holding registers needed by the current payload."""
     register_map: dict[int, int] = {}
-    addresses = [int(mapping["address"]) for mapping in mappings]
+    addresses = [
+        address
+        for mapping in mappings
+        for address in expand_mapping_addresses(mapping)
+    ]
 
     for group_start, group_end in group_contiguous_addresses(addresses):
         for chunk_start, chunk_end in split_address_group(group_start, group_end, max_count=125):
@@ -248,7 +264,22 @@ def transform_mapping_value(
     source_type = mapping["source_type"]
 
     if source_type == "holding_register":
-        raw_value = holding_registers[address]
+        register_count = get_mapping_register_count(mapping)
+        raw_words = [holding_registers[address + offset] for offset in range(register_count)]
+        data_type = str(mapping.get("data_type", "uint16")).lower()
+
+        if register_count == 1:
+            raw_value = raw_words[0]
+        elif register_count == 2 and data_type in {"int32", "uint32"}:
+            raw_value = (raw_words[0] << 16) | raw_words[1]
+            if data_type == "int32" and raw_value >= 0x80000000:
+                raw_value -= 0x100000000
+        else:
+            raise ValueError(
+                f"Unsupported holding register mapping: address={address}, "
+                f"register_count={register_count}, data_type={data_type}"
+            )
+
         scale = mapping.get("scale", 1)
         value = raw_value * scale
         if "precision" in mapping:
@@ -273,7 +304,7 @@ def build_config_payload(
         payload_item = {
             key: value
             for key, value in config_node.items()
-            if key not in {"address", "source_type", "scale"}
+            if key not in {"address", "source_type", "scale", "data_type", "register_count"}
         }
         metric_key = payload_item.get("key")
         if not isinstance(metric_key, str) and isinstance(node_key, str):

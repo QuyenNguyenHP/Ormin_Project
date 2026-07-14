@@ -4,40 +4,40 @@ export const FLOW_IDS = [
   "D.O Inlet Flow DG#1",
   "H.O Inlet Flow DG#1",
   "D.O Inlet Flow DG#2",
-  "Flow6",
-  "Flow7",
-  "Flow8",
-  "Flow9",
-  "Flow10",
-  "Flow11",
-  "Flow12",
-  "Flow13",
-  "Flow14",
-  "Flow15",
-  "Flow16",
-  "Flow17",
-  "Flow18",
+  "H.O Inlet Flow DG#2",
+  "D.O Inlet Flow DG#3",
+  "H.O Inlet Flow DG#3",
+  "D.O Inlet Flow DG#4",
+  "H.O Inlet Flow DG#4",
+  "D.O Outlet Flow DG#1",
+  "H.O Outlet Flow DG#1",
+  "D.O Outlet Flow DG#2",
+  "H.O Outlet Flow DG#2",
+  "D.O Outlet Flow DG#3",
+  "H.O Outlet Flow DG#3",
+  "D.O Outlet Flow DG#4",
+  "H.O Outlet Flow DG#4",
 ];
 
 export const FLOW_MAPPINGS = [
-  { id: "D.O Transfer Flow", register: 40001, scale: 1, unit: "L/H" },
-  { id: "H.O Transfer Flow", register: 40002, scale: 1, unit: "L/H" },
-  { id: "D.O Inlet Flow DG#1", register: 40003, scale: 1, unit: "L/H" },
-  { id: "H.O Inlet Flow DG#1", register: 40004, scale: 1, unit: "L/H" },
-  { id: "D.O Inlet Flow DG#2", register: 40005, scale: 1, unit: "L/H" },
-  { id: "Flow6", register: 40006, scale: 1, unit: "L/H" },
-  { id: "Flow7", register: 40007, scale: 1, unit: "L/H" },
-  { id: "Flow8", register: 40008, scale: 1, unit: "L/H" },
-  { id: "Flow9", register: 40009, scale: 1, unit: "L/H" },
-  { id: "Flow10", register: 40010, scale: 1, unit: "L/H" },
-  { id: "Flow11", register: 40011, scale: 1, unit: "L/H" },
-  { id: "Flow12", register: 40012, scale: 1, unit: "L/H" },
-  { id: "Flow13", register: 40013, scale: 1, unit: "L/H" },
-  { id: "Flow14", register: 40014, scale: 1, unit: "L/H" },
-  { id: "Flow15", register: 40015, scale: 1, unit: "L/H" },
-  { id: "Flow16", register: 40016, scale: 1, unit: "L/H" },
-  { id: "Flow17", register: 40017, scale: 1, unit: "L/H" },
-  { id: "Flow18", register: 40018, scale: 1, unit: "L/H" },
+  { id: "D.O Transfer Flow", register: 40051, scale: 1, unit: "L/H", dataType: "int32", registerCount: 2 },
+  { id: "H.O Transfer Flow", register: 40057, scale: 1, unit: "L/H", dataType: "int32", registerCount: 2 },
+  { id: "D.O Inlet Flow DG#1", register: 40053, scale: 1, unit: "L/H", dataType: "int32", registerCount: 2 },
+  { id: "H.O Inlet Flow DG#1", register: 40059, scale: 1, unit: "L/H", dataType: "int32", registerCount: 2 },
+  { id: "D.O Inlet Flow DG#2", register: 40153, scale: 1, unit: "L/H", dataType: "int32", registerCount: 2 },
+  { id: "H.O Inlet Flow DG#2", register: 40159, scale: 1, unit: "L/H", dataType: "int32", registerCount: 2 },
+  { id: "D.O Inlet Flow DG#3", register: 40253, scale: 1, unit: "L/H", dataType: "int32", registerCount: 2 },
+  { id: "H.O Inlet Flow DG#3", register: 40259, scale: 1, unit: "L/H", dataType: "int32", registerCount: 2 },
+  { id: "D.O Inlet Flow DG#4", register: 40353, scale: 1, unit: "L/H", dataType: "int32", registerCount: 2 },
+  { id: "H.O Inlet Flow DG#4", register: 40359, scale: 1, unit: "L/H", dataType: "int32", registerCount: 2 },
+  { id: "D.O Outlet Flow DG#1", register: 40055, scale: 1, unit: "L/H", dataType: "int32", registerCount: 2 },
+  { id: "H.O Outlet Flow DG#1", register: 40061, scale: 1, unit: "L/H", dataType: "int32", registerCount: 2 },
+  { id: "D.O Outlet Flow DG#2", register: 40155, scale: 1, unit: "L/H", dataType: "int32", registerCount: 2 },
+  { id: "H.O Outlet Flow DG#2", register: 40161, scale: 1, unit: "L/H", dataType: "int32", registerCount: 2 },
+  { id: "D.O Outlet Flow DG#3", register: 40255, scale: 1, unit: "L/H", dataType: "int32", registerCount: 2 },
+  { id: "H.O Outlet Flow DG#3", register: 40261, scale: 1, unit: "L/H", dataType: "int32", registerCount: 2 },
+  { id: "D.O Outlet Flow DG#4", register: 40355, scale: 1, unit: "L/H", dataType: "int32", registerCount: 2 },
+  { id: "H.O Outlet Flow DG#4", register: 40361, scale: 1, unit: "L/H", dataType: "int32", registerCount: 2 },
 ];
 
 export const DIGITAL_IDS = [
@@ -78,40 +78,40 @@ export const DIGITAL_IDS = [
 ];
 
 export const DIGITAL_MAPPINGS = [
-  { id: "pump 1", bit: 10001 },
-  { id: "pump 2", bit: 10002 },
-  { id: "pump 3", bit: 10003 },
-  { id: "pump 4", bit: 10004 },
-  { id: "pump 5", bit: 10005 },
-  { id: "pump 6", bit: 10006 },
-  { id: "pump 7", bit: 10007 },
-  { id: "pump 8", bit: 10008 },
-  { id: "pump 9", bit: 10009 },
-  { id: "pump 10", bit: 10010 },
-  { id: "pump 11", bit: 10011 },
-  { id: "pump 12", bit: 10012 },
-  { id: "LC_D.O.service.tank", bit: 10013 },
-  { id: "LC_H.O.settling.tank", bit: 10014 },
-  { id: "LH_D.O.service.tank", bit: 10015 },
-  { id: "LH_F.O. drain tank", bit: 10016 },
-  { id: "LH_H.O.settling.tank", bit: 10017 },
-  { id: "LL_D.O.service.tank", bit: 10018 },
-  { id: "LL_F.O. drain tank", bit: 10019 },
-  { id: "LL_H.O.service.tank", bit: 10020 },
-  { id: "LL_H.O.settling.tank", bit: 10021 },
-  { id: "LS_Sludge.tank", bit: 10022 },
-  { id: "TS_D.O.service.tank", bit: 10023 },
-  { id: "TS_F.O. drain tank", bit: 10024 },
-  { id: "TS_H.O.purifier.No1", bit: 10025 },
-  { id: "TS_H.O.purifier.No2", bit: 10026 },
-  { id: "TS_H.O.purifier.No3", bit: 10027 },
-  { id: "TS_H.O.settling.tank", bit: 10028 },
-  { id: "TS1_H.O.service.tank", bit: 10029 },
-  { id: "TS2_H.O.service.tank", bit: 10030 },
-  { id: "TSH_D.O.service.tank", bit: 10031 },
-  { id: "TSH_F.O. drain tank", bit: 10032 },
-  { id: "TSH_H.O.service.tank", bit: 10033 },
-  { id: "TSH_H.O.settling.tank", bit: 10034 },
+  { id: "pump 1", bit: 11646 },
+  { id: "pump 2", bit: 11651 },
+  { id: "pump 3", bit: 11656 },
+  { id: "pump 4", bit: 11661 },
+  { id: "pump 5", bit: 11666 },
+  { id: "pump 6", bit: 11671 },
+  { id: "pump 7", bit: 11676 },
+  { id: "pump 8", bit: 11681 },
+  { id: "pump 9", bit: 11686 },
+  { id: "pump 10", bit: 11691 },
+  { id: "pump 11", bit: 11696 },
+  { id: "pump 12", bit: 11701 },
+  { id: "LC_D.O.service.tank", bit: 11607 },
+  { id: "LC_H.O.settling.tank", bit: 11610 },
+  { id: "LH_D.O.service.tank", bit: 10037 },
+  { id: "LH_F.O. drain tank", bit: 11613 },
+  { id: "LH_H.O.settling.tank", bit: 11608 },
+  { id: "LL_D.O.service.tank", bit: 10038 },
+  { id: "LL_F.O. drain tank", bit: 11612 },
+  { id: "LL_H.O.service.tank", bit: 11611 },
+  { id: "LL_H.O.settling.tank", bit: 11609 },
+  { id: "LS_Sludge.tank", bit: 11635 },
+  { id: "TS_D.O.service.tank", bit: 11623 },
+  { id: "TS_F.O. drain tank", bit: 11630 },
+  { id: "TS_H.O.purifier.No1", bit: 11776 },
+  { id: "TS_H.O.purifier.No2", bit: 11777 },
+  { id: "TS_H.O.purifier.No3", bit: 11633 },
+  { id: "TS_H.O.settling.tank", bit: 11621 },
+  { id: "TS1_H.O.service.tank", bit: 11782 },
+  { id: "TS2_H.O.service.tank", bit: 11787 },
+  { id: "TSH_D.O.service.tank", bit: 11625 },
+  { id: "TSH_F.O. drain tank", bit: 11631 },
+  { id: "TSH_H.O.service.tank", bit: 11624 },
+  { id: "TSH_H.O.settling.tank", bit: 11622 },
 ];
 
 const DIGITAL_ON_COLOR = "#05DF72";
@@ -126,6 +126,29 @@ export const getFlowColor = (value) => {
   if (value >= 90) return "#05DF72";
   if (value >= 70) return "#F59E0B";
   return "#FF0909";
+};
+
+const resolveFlowRawValue = (registerMap, flowMapping) => {
+  const registerCount = Math.max(1, Number(flowMapping.registerCount ?? 1));
+  const dataType = String(flowMapping.dataType ?? "uint16").toLowerCase();
+
+  if (registerCount === 1) {
+    return Number(registerMap[flowMapping.register] ?? 0);
+  }
+
+  if (registerCount === 2 && (dataType === "int32" || dataType === "uint32")) {
+    const highWord = Number(registerMap[flowMapping.register] ?? 0);
+    const lowWord = Number(registerMap[flowMapping.register + 1] ?? 0);
+    let rawValue = (highWord << 16) | lowWord;
+
+    if (dataType === "int32" && rawValue >= 0x80000000) {
+      rawValue -= 0x100000000;
+    }
+
+    return rawValue;
+  }
+
+  return 0;
 };
 
 export const buildFlowDataFromRegisters = (registers) =>
@@ -143,7 +166,7 @@ export const buildFlowDataFromRegisters = (registers) =>
 
 export const buildFlowDataFromAddressMap = (registerMap) =>
   FLOW_MAPPINGS.reduce((accumulator, flowMapping) => {
-    const rawValue = registerMap[flowMapping.register] ?? 0;
+    const rawValue = resolveFlowRawValue(registerMap, flowMapping);
     const scaledValue = Number(rawValue) * (flowMapping.scale ?? 1);
 
     accumulator[flowMapping.id] = {

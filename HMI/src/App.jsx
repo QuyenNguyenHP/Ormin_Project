@@ -9,11 +9,11 @@ import {
 import Overview from "./pages/Overview";
 import PAndID from "./pages/PAndID";
 import Engine from "./pages/Engine";
+import Alarms from "./pages/Alarms";
 import ExhTempTrend from "./pages/ExhTempTrend";
 import DOConsumption from "./pages/DOConsumption";
 import HOConsumption from "./pages/HOConsumption";
 import PressureTrend from "./pages/PressureTrend";
-import PlaceholderPage from "./pages/PlaceholderPage";
 
 
 function App() {
@@ -94,15 +94,7 @@ function App() {
       <Route path="/ho-consumption" element={<HOConsumption />} />
       <Route path="/pressure_trend" element={<PressureTrend />} />
       <Route path="/exh_temp_trend" element={<ExhTempTrend />} />
-      <Route
-        path="/alarms"
-        element={
-          <PlaceholderPage
-            title="Alarms"
-            subtitle="System alarms and status will be displayed here."
-          />
-        }
-      />
+      <Route path="/alarms" element={<Alarms />} />
     </Routes>
   );
 }

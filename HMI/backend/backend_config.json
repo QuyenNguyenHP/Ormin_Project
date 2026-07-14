@@ -1,11 +1,12 @@
 {
+  "version": 2,
   "database_path": "database/database",
   "modbus": {
-    "host": "10.0.0.204",
+    "host": "192.168.100.20",
     "port": 502,
-    "unit_id": 16,
+    "unit_id": 20,
     "timeout_seconds": 3,
-    "poll_interval_ms": 2000
+    "poll_interval_ms": 1000
   },
   "fo_consumption": {
     "database_path": "database/database",
@@ -148,66 +149,66 @@
           "key": "engine_1",
           "title": "Engine 1",
           "serialNo": 1,
-          "gauge": { "key": "engine_power", "label": "Engine Power", "title": "Engine 1", "subtitle": "", "source_type": "holding_register", "address": 40101, "scale": 1, "min": 0, "max": 800, "unit": "kW", "color": "#22c55e" },
+          "gauge": { "key": "engine_power", "label": "Engine Power", "title": "Engine 1", "subtitle": "", "source_type": "holding_register", "address": 40038, "scale": 1, "min": 0, "max": 800, "unit": "kW", "color": "#22c55e" },
           "metrics": {
-            "runningHours": { "key": "engine_running_hours", "label": "Engine Running Hours", "source_type": "holding_register", "address": 40100, "scale": 1, "unit": "h" },
-            "engineSpeed": { "key": "engine_speed", "label": "Engine Speed", "source_type": "holding_register", "address": 40102, "scale": 1, "unit": "rpm" },
-            "foPress": { "key": "fuel_oil_pressure", "label": "Fuel Oil Pressure", "source_type": "holding_register", "address": 40035, "scale": 0.01, "precision": 2, "unit": "MPa" },
-            "loPress": { "key": "lub_oil_pressure", "label": "Lub Oil Pressure", "source_type": "holding_register", "address": 40036, "scale": 0.01, "precision": 2, "unit": "MPa" },
-            "loTemp": { "key": "lub_oil_temperature", "label": "Lub Oil Temperature", "source_type": "holding_register", "address": 40037, "scale": 1, "unit": "C" },
-            "boostAir": { "key": "boost_air_pressure", "label": "Boost Air Pressure", "source_type": "holding_register", "address": 40038, "scale": 0.01, "precision": 2, "unit": "bar" }
+            "runningHours": { "key": "engine_running_hours", "label": "Engine Running Hours", "source_type": "holding_register", "address": 40063, "scale": 1, "unit": "h", "data_type": "int32", "register_count": 2 },
+            "engineSpeed": { "key": "engine_speed", "label": "Engine Speed", "source_type": "holding_register", "address": 40039, "scale": 1, "unit": "rpm" },
+            "foPress": { "key": "fuel_oil_pressure", "label": "Fuel Oil Pressure", "source_type": "holding_register", "address": 40015, "scale": 0.1, "precision": 1, "unit": "bar" },
+            "loPress": { "key": "lub_oil_pressure", "label": "Lub Oil Pressure", "source_type": "holding_register", "address": 40018, "scale": 0.1, "precision": 1, "unit": "bar" },
+            "loTemp": { "key": "lub_oil_temperature", "label": "Lub Oil Temperature", "source_type": "holding_register", "address": 40026, "scale": 1, "unit": "C" },
+            "boostAir": { "key": "boost_air_pressure", "label": "Boost Air Pressure", "source_type": "holding_register", "address": 40020, "scale": 0.01, "precision": 2, "unit": "MPa" }
           }
         },
         {
           "key": "engine_2",
           "title": "Engine 2",
           "serialNo": 2,
-          "gauge": { "key": "engine_power", "label": "Engine Power", "title": "Engine 2", "subtitle": "", "source_type": "holding_register", "address": 40147, "scale": 1, "min": 0, "max": 800, "unit": "kW", "color": "#f59e0b" },
+          "gauge": { "key": "engine_power", "label": "Engine Power", "title": "Engine 2", "subtitle": "", "source_type": "holding_register", "address": 40138, "scale": 1, "min": 0, "max": 800, "unit": "kW", "color": "#f59e0b" },
           "metrics": {
-            "runningHours": { "key": "engine_running_hours", "label": "Engine Running Hours", "source_type": "holding_register", "address": 40146, "scale": 1, "unit": "h" },
-            "engineSpeed": { "key": "engine_speed", "label": "Engine Speed", "source_type": "holding_register", "address": 40148, "scale": 1, "unit": "rpm" },
-            "foPress": { "key": "fuel_oil_pressure", "label": "Fuel Oil Pressure", "source_type": "holding_register", "address": 40041, "scale": 0.01, "precision": 2, "unit": "MPa" },
-            "loPress": { "key": "lub_oil_pressure", "label": "Lub Oil Pressure", "source_type": "holding_register", "address": 40042, "scale": 0.01, "precision": 2, "unit": "MPa" },
-            "loTemp": { "key": "lub_oil_temperature", "label": "Lub Oil Temperature", "source_type": "holding_register", "address": 40043, "scale": 1, "unit": "C" },
-            "boostAir": { "key": "boost_air_pressure", "label": "Boost Air Pressure", "source_type": "holding_register", "address": 40044, "scale": 0.01, "precision": 2, "unit": "bar" }
+            "runningHours": { "key": "engine_running_hours", "label": "Engine Running Hours", "source_type": "holding_register", "address": 40163, "scale": 1, "unit": "h", "data_type": "int32", "register_count": 2 },
+            "engineSpeed": { "key": "engine_speed", "label": "Engine Speed", "source_type": "holding_register", "address": 40139, "scale": 1, "unit": "rpm" },
+            "foPress": { "key": "fuel_oil_pressure", "label": "Fuel Oil Pressure", "source_type": "holding_register", "address": 40115, "scale": 0.1, "precision": 1, "unit": "bar" },
+            "loPress": { "key": "lub_oil_pressure", "label": "Lub Oil Pressure", "source_type": "holding_register", "address": 40118, "scale": 0.1, "precision": 1, "unit": "bar" },
+            "loTemp": { "key": "lub_oil_temperature", "label": "Lub Oil Temperature", "source_type": "holding_register", "address": 40126, "scale": 1, "unit": "C" },
+            "boostAir": { "key": "boost_air_pressure", "label": "Boost Air Pressure", "source_type": "holding_register", "address": 40120, "scale": 0.01, "precision": 2, "unit": "MPa" }
           }
         },
         {
           "key": "engine_3",
           "title": "Engine 3",
           "serialNo": 3,
-          "gauge": { "key": "engine_power", "label": "Engine Power", "title": "Engine 3", "subtitle": "", "source_type": "holding_register", "address": 40193, "scale": 1, "min": 0, "max": 800, "unit": "kW", "color": "#38bdf8" },
+          "gauge": { "key": "engine_power", "label": "Engine Power", "title": "Engine 3", "subtitle": "", "source_type": "holding_register", "address": 40238, "scale": 1, "min": 0, "max": 800, "unit": "kW", "color": "#38bdf8" },
           "metrics": {
-            "runningHours": { "key": "engine_running_hours", "label": "Engine Running Hours", "source_type": "holding_register", "address": 40192, "scale": 1, "unit": "h" },
-            "engineSpeed": { "key": "engine_speed", "label": "Engine Speed", "source_type": "holding_register", "address": 40194, "scale": 1, "unit": "rpm" },
-            "foPress": { "key": "fuel_oil_pressure", "label": "Fuel Oil Pressure", "source_type": "holding_register", "address": 40047, "scale": 0.01, "precision": 2, "unit": "MPa" },
-            "loPress": { "key": "lub_oil_pressure", "label": "Lub Oil Pressure", "source_type": "holding_register", "address": 40048, "scale": 0.01, "precision": 2, "unit": "MPa" },
-            "loTemp": { "key": "lub_oil_temperature", "label": "Lub Oil Temperature", "source_type": "holding_register", "address": 40049, "scale": 1, "unit": "C" },
-            "boostAir": { "key": "boost_air_pressure", "label": "Boost Air Pressure", "source_type": "holding_register", "address": 40050, "scale": 0.01, "precision": 2, "unit": "bar" }
+            "runningHours": { "key": "engine_running_hours", "label": "Engine Running Hours", "source_type": "holding_register", "address": 40263, "scale": 1, "unit": "h", "data_type": "int32", "register_count": 2 },
+            "engineSpeed": { "key": "engine_speed", "label": "Engine Speed", "source_type": "holding_register", "address": 40239, "scale": 1, "unit": "rpm" },
+            "foPress": { "key": "fuel_oil_pressure", "label": "Fuel Oil Pressure", "source_type": "holding_register", "address": 40215, "scale": 0.1, "precision": 1, "unit": "bar" },
+            "loPress": { "key": "lub_oil_pressure", "label": "Lub Oil Pressure", "source_type": "holding_register", "address": 40218, "scale": 0.1, "precision": 1, "unit": "bar" },
+            "loTemp": { "key": "lub_oil_temperature", "label": "Lub Oil Temperature", "source_type": "holding_register", "address": 40226, "scale": 1, "unit": "C" },
+            "boostAir": { "key": "boost_air_pressure", "label": "Boost Air Pressure", "source_type": "holding_register", "address": 40220, "scale": 0.01, "precision": 2, "unit": "MPa" }
           }
         },
         {
           "key": "engine_4",
           "title": "Engine 4",
           "serialNo": 4,
-          "gauge": { "key": "engine_power", "label": "Engine Power", "title": "Engine 4", "subtitle": "", "source_type": "holding_register", "address": 40239, "scale": 1, "min": 0, "max": 800, "unit": "kW", "color": "#ef4444" },
+          "gauge": { "key": "engine_power", "label": "Engine Power", "title": "Engine 4", "subtitle": "", "source_type": "holding_register", "address": 40338, "scale": 1, "min": 0, "max": 800, "unit": "kW", "color": "#ef4444" },
           "metrics": {
-            "runningHours": { "key": "engine_running_hours", "label": "Engine Running Hours", "source_type": "holding_register", "address": 40238, "scale": 1, "unit": "h" },
-            "engineSpeed": { "key": "engine_speed", "label": "Engine Speed", "source_type": "holding_register", "address": 40240, "scale": 1, "unit": "rpm" },
-            "foPress": { "key": "fuel_oil_pressure", "label": "Fuel Oil Pressure", "source_type": "holding_register", "address": 40053, "scale": 0.01, "precision": 2, "unit": "MPa" },
-            "loPress": { "key": "lub_oil_pressure", "label": "Lub Oil Pressure", "source_type": "holding_register", "address": 40054, "scale": 0.1, "precision": 1, "unit": "MPa" },
-            "loTemp": { "key": "lub_oil_temperature", "label": "Lub Oil Temperature", "source_type": "holding_register", "address": 40055, "scale": 1, "unit": "C" },
-            "boostAir": { "key": "boost_air_pressure", "label": "Boost Air Pressure", "source_type": "holding_register", "address": 40056, "scale": 0.01, "precision": 2, "unit": "bar" }
+            "runningHours": { "key": "engine_running_hours", "label": "Engine Running Hours", "source_type": "holding_register", "address": 40363, "scale": 1, "unit": "h", "data_type": "int32", "register_count": 2 },
+            "engineSpeed": { "key": "engine_speed", "label": "Engine Speed", "source_type": "holding_register", "address": 40339, "scale": 1, "unit": "rpm" },
+            "foPress": { "key": "fuel_oil_pressure", "label": "Fuel Oil Pressure", "source_type": "holding_register", "address": 40315, "scale": 0.1, "precision": 1, "unit": "bar" },
+            "loPress": { "key": "lub_oil_pressure", "label": "Lub Oil Pressure", "source_type": "holding_register", "address": 40318, "scale": 0.1, "precision": 1, "unit": "bar" },
+            "loTemp": { "key": "lub_oil_temperature", "label": "Lub Oil Temperature", "source_type": "holding_register", "address": 40326, "scale": 1, "unit": "C" },
+            "boostAir": { "key": "boost_air_pressure", "label": "Boost Air Pressure", "source_type": "holding_register", "address": 40320, "scale": 0.01, "precision": 2, "unit": "MPa" }
           }
         }
       ],
       "metric_thresholds": {
         "engine_running_hours": { "warning": 50000, "alarm": 70000, "direction": "high" },
         "engine_speed": { "warning": 900, "alarm": 1020, "direction": "high" },
-        "fuel_oil_pressure": { "warning": 0.35, "alarm": 0.30, "direction": "low" },
-        "lub_oil_pressure": { "warning": 0.35, "alarm": 0.30, "direction": "low" },
-        "lub_oil_temperature": { "warning": 300, "alarm": 360, "direction": "high" },
-        "boost_air_pressure": { "warning": 2.0, "alarm": 1.5, "direction": "low" }
+        "fuel_oil_pressure": { "warning": 3.5, "alarm": 3.0, "direction": "low" },
+        "lub_oil_pressure": { "warning": 3.5, "alarm": 3.0, "direction": "low" },
+        "lub_oil_temperature": { "warning": 85, "alarm": 95, "direction": "high" },
+        "boost_air_pressure": { "warning": 0.2, "alarm": 0.15, "direction": "low" }
       }
     },
     "engine": {
@@ -219,100 +220,99 @@
               "key": "alternator_temperature",
               "title": "ALTERNATOR TEMPERATURE",
               "metrics": [
-                { "key": "stator_winding_temp_u", "label": "Stator Winding Temp U", "source_type": "holding_register", "address": 40095, "scale": 1, "unit": "C" },
-                { "key": "stator_winding_temp_v", "label": "Stator Winding Temp V", "source_type": "holding_register", "address": 40096, "scale": 1, "unit": "C" },
-                { "key": "stator_winding_temp_w", "label": "Stator Winding Temp W", "source_type": "holding_register", "address": 40097, "scale": 1, "unit": "C" },
-                { "key": "de_bearing_temp", "label": "DE Bearing Temp", "source_type": "holding_register", "address": 40098, "scale": 1, "unit": "C" },
-                { "key": "nde_bearing_temp", "label": "NDE Bearing Temp", "source_type": "holding_register", "address": 40099, "scale": 1, "unit": "C" }
+                { "key": "stator_winding_temp_u", "label": "Stator Winding Temp U", "source_type": "holding_register", "address": 40003, "scale": 1, "unit": "C" },
+                { "key": "stator_winding_temp_v", "label": "Stator Winding Temp V", "source_type": "holding_register", "address": 40004, "scale": 1, "unit": "C" },
+                { "key": "stator_winding_temp_w", "label": "Stator Winding Temp W", "source_type": "holding_register", "address": 40005, "scale": 1, "unit": "C" },
+                { "key": "de_bearing_temp", "label": "DE Bearing Temp", "source_type": "holding_register", "address": 40006, "scale": 1, "unit": "C" },
+                { "key": "nde_bearing_temp", "label": "NDE Bearing Temp", "source_type": "holding_register", "address": 40007, "scale": 1, "unit": "C" }
               ]
             },
             {
               "key": "engine_parameters",
               "title": "ENGINE PARAMETERS",
               "metrics": [
-                { "key": "intake_air_pressure", "label": "Intake Air Pressure", "source_type": "holding_register", "address": 40093, "scale": 0.01, "precision": 2, "unit": "MPa" },
-                { "key": "air_receiver_pressure", "label": "Air Receiver Pressure", "source_type": "holding_register", "address": 40094, "scale": 0.01, "precision": 2, "unit": "MPa" },
-                { "key": "engine_running_hours", "label": "Engine Running Hours", "source_type": "holding_register", "address": 40100, "scale": 1, "unit": "h" },
-                { "key": "engine_power", "label": "Engine Power", "source_type": "holding_register", "address": 40101, "scale": 1, "unit": "kW" },
-                { "key": "engine_speed", "label": "Engine Speed", "source_type": "holding_register", "address": 40102, "scale": 1, "unit": "rpm" }
+                { "key": "intake_air_pressure", "label": "Intake Air Pressure", "source_type": "holding_register", "address": 40020, "scale": 0.01, "precision": 2, "unit": "MPa" },
+                { "key": "engine_running_hours", "label": "Engine Running Hours", "source_type": "holding_register", "address": 40063, "scale": 1, "unit": "h", "data_type": "int32", "register_count": 2 },
+                { "key": "engine_power", "label": "Engine Power", "source_type": "holding_register", "address": 40038, "scale": 1, "unit": "kW" },
+                { "key": "engine_speed", "label": "Engine Speed", "source_type": "holding_register", "address": 40039, "scale": 1, "unit": "rpm" }
               ]
             },
             {
               "key": "exhaust_gas_temp",
               "title": "EXHAUST GAS TEMP",
               "metrics": [
-                { "key": "tc_outlet_temp", "label": "T/C Outlet Temp", "source_type": "holding_register", "address": 40103, "scale": 1, "unit": "C" },
-                { "key": "cyl_1_exhaust_temp", "label": "Cyl 1 Exhaust Temp", "source_type": "holding_register", "address": 40104, "scale": 1, "unit": "C" },
-                { "key": "cyl_2_exhaust_temp", "label": "Cyl 2 Exhaust Temp", "source_type": "holding_register", "address": 40105, "scale": 1, "unit": "C" },
-                { "key": "cyl_3_exhaust_temp", "label": "Cyl 3 Exhaust Temp", "source_type": "holding_register", "address": 40106, "scale": 1, "unit": "C" },
-                { "key": "cyl_4_exhaust_temp", "label": "Cyl 4 Exhaust Temp", "source_type": "holding_register", "address": 40107, "scale": 1, "unit": "C" },
-                { "key": "cyl_5_exhaust_temp", "label": "Cyl 5 Exhaust Temp", "source_type": "holding_register", "address": 40108, "scale": 1, "unit": "C" },
-                { "key": "cyl_6_exhaust_temp", "label": "Cyl 6 Exhaust Temp", "source_type": "holding_register", "address": 40109, "scale": 1, "unit": "C" },
-                { "key": "tc_inlet_temp", "label": "T/C Inlet Temp", "source_type": "holding_register", "address": 40110, "scale": 1, "unit": "C" }
+                { "key": "tc_outlet_temp", "label": "T/C Outlet Temp", "source_type": "holding_register", "address": 40001, "scale": 1, "unit": "C" },
+                { "key": "cyl_1_exhaust_temp", "label": "Cyl 1 Exhaust Temp", "source_type": "holding_register", "address": 40008, "scale": 1, "unit": "C" },
+                { "key": "cyl_2_exhaust_temp", "label": "Cyl 2 Exhaust Temp", "source_type": "holding_register", "address": 40009, "scale": 1, "unit": "C" },
+                { "key": "cyl_3_exhaust_temp", "label": "Cyl 3 Exhaust Temp", "source_type": "holding_register", "address": 40010, "scale": 1, "unit": "C" },
+                { "key": "cyl_4_exhaust_temp", "label": "Cyl 4 Exhaust Temp", "source_type": "holding_register", "address": 40011, "scale": 1, "unit": "C" },
+                { "key": "cyl_5_exhaust_temp", "label": "Cyl 5 Exhaust Temp", "source_type": "holding_register", "address": 40012, "scale": 1, "unit": "C" },
+                { "key": "cyl_6_exhaust_temp", "label": "Cyl 6 Exhaust Temp", "source_type": "holding_register", "address": 40013, "scale": 1, "unit": "C" },
+                { "key": "tc_inlet_temp", "label": "T/C Inlet Temp", "source_type": "holding_register", "address": 40014, "scale": 1, "unit": "C" }
               ]
             },
             {
               "key": "fuel_oil_system",
               "title": "FUEL OIL SYSTEM",
               "metrics": [
-                { "key": "fuel_oil_pressure", "label": "Fuel Oil Pressure", "source_type": "holding_register", "address": 40111, "scale": 0.1, "precision": 1, "unit": "bar" },
-                { "key": "do_engine_inlet_temp", "label": "DO Engine Inlet Temp", "source_type": "holding_register", "address": 40112, "scale": 1, "unit": "C" },
-                { "key": "do_engine_return_temp", "label": "DO Engine Return Temp", "source_type": "holding_register", "address": 40113, "scale": 1, "unit": "C" },
-                { "key": "ho_engine_inlet_temp", "label": "HO Engine Inlet Temp", "source_type": "holding_register", "address": 40114, "scale": 1, "unit": "C" },
-                { "key": "ho_engine_return_temp", "label": "HO Engine Return Temp", "source_type": "holding_register", "address": 40115, "scale": 1, "unit": "C" }
+                { "key": "fuel_oil_pressure", "label": "Fuel Oil Pressure", "source_type": "holding_register", "address": 40015, "scale": 0.1, "precision": 1, "unit": "bar" },
+                { "key": "do_engine_inlet_temp", "label": "DO Engine Inlet Temp", "source_type": "holding_register", "address": 40028, "scale": 1, "unit": "C" },
+                { "key": "do_engine_return_temp", "label": "DO Engine Return Temp", "source_type": "holding_register", "address": 40029, "scale": 1, "unit": "C" },
+                { "key": "ho_engine_inlet_temp", "label": "HO Engine Inlet Temp", "source_type": "holding_register", "address": 40030, "scale": 1, "unit": "C" },
+                { "key": "ho_engine_return_temp", "label": "HO Engine Return Temp", "source_type": "holding_register", "address": 40031, "scale": 1, "unit": "C" }
               ]
             },
             {
               "key": "fuel_oil_flow_system",
               "title": "FUEL OIL FLOW SYSTEM",
               "metrics": [
-                { "key": "do_transfer_flow", "label": "DO Transfer Flow", "source_type": "holding_register", "address": 40116, "scale": 1, "unit": "L/h" },
-                { "key": "do_engine_inlet_flow", "label": "DO Engine Inlet Flow", "source_type": "holding_register", "address": 40117, "scale": 1, "unit": "L/h" },
-                { "key": "do_engine_return_flow", "label": "DO Engine Return Flow", "source_type": "holding_register", "address": 40118, "scale": 1, "unit": "L/h" },
-                { "key": "ho_transfer_flow", "label": "HO Transfer Flow", "source_type": "holding_register", "address": 40119, "scale": 1, "unit": "L/h" },
-                { "key": "ho_engine_inlet_flow", "label": "HO Engine Inlet Flow", "source_type": "holding_register", "address": 40120, "scale": 1, "unit": "L/h" },
-                { "key": "ho_engine_return_flow", "label": "HO Engine Return Flow", "source_type": "holding_register", "address": 40121, "scale": 1, "unit": "L/h" }
+                { "key": "do_transfer_flow", "label": "DO Transfer Flow", "source_type": "holding_register", "address": 40051, "scale": 1, "unit": "L/h", "data_type": "int32", "register_count": 2 },
+                { "key": "do_engine_inlet_flow", "label": "DO Engine Inlet Flow", "source_type": "holding_register", "address": 40053, "scale": 1, "unit": "L/h", "data_type": "int32", "register_count": 2 },
+                { "key": "do_engine_return_flow", "label": "DO Engine Return Flow", "source_type": "holding_register", "address": 40055, "scale": 1, "unit": "L/h", "data_type": "int32", "register_count": 2 },
+                { "key": "ho_transfer_flow", "label": "HO Transfer Flow", "source_type": "holding_register", "address": 40057, "scale": 1, "unit": "L/h", "data_type": "int32", "register_count": 2 },
+                { "key": "ho_engine_inlet_flow", "label": "HO Engine Inlet Flow", "source_type": "holding_register", "address": 40059, "scale": 1, "unit": "L/h", "data_type": "int32", "register_count": 2 },
+                { "key": "ho_engine_return_flow", "label": "HO Engine Return Flow", "source_type": "holding_register", "address": 40061, "scale": 1, "unit": "L/h", "data_type": "int32", "register_count": 2 }
               ]
             },
             {
               "key": "lub_oil_system",
               "title": "LUB OIL SYSTEM",
               "metrics": [
-                { "key": "engine_lo_pressure", "label": "Engine LO Pressure", "source_type": "holding_register", "address": 40122, "scale": 0.1, "precision": 1, "unit": "bar" },
-                { "key": "turbo_lo_pressure", "label": "Turbo LO Pressure", "source_type": "holding_register", "address": 40123, "scale": 0.1, "precision": 1, "unit": "bar" },
-                { "key": "lo_cooler_inlet_temp", "label": "LO Cooler Inlet Temp", "source_type": "holding_register", "address": 40124, "scale": 1, "unit": "C" },
-                { "key": "lo_cooler_outlet_temp", "label": "LO Cooler Outlet Temp", "source_type": "holding_register", "address": 40125, "scale": 1, "unit": "C" }
+                { "key": "engine_lo_pressure", "label": "Engine LO Pressure", "source_type": "holding_register", "address": 40018, "scale": 0.1, "precision": 1, "unit": "bar" },
+                { "key": "turbo_lo_pressure", "label": "Turbo LO Pressure", "source_type": "holding_register", "address": 40019, "scale": 0.1, "precision": 1, "unit": "bar" },
+                { "key": "lo_cooler_inlet_temp", "label": "LO Cooler Inlet Temp", "source_type": "holding_register", "address": 40025, "scale": 1, "unit": "C" },
+                { "key": "lo_cooler_outlet_temp", "label": "LO Cooler Outlet Temp", "source_type": "holding_register", "address": 40026, "scale": 1, "unit": "C" }
               ]
             },
             {
               "key": "oil_mist_detection",
               "title": "OIL MIST DETECTION",
               "metrics": [
-                { "key": "oil_mist_level", "label": "Oil Mist Level", "source_type": "holding_register", "address": 40126, "scale": 1, "unit": "%" },
-                { "key": "omd_analog_signal", "label": "OMD Analog Signal", "source_type": "holding_register", "address": 40127, "scale": 0.1, "precision": 1, "unit": "mA" }
+                { "key": "oil_mist_level", "label": "Oil Mist Level", "source_type": "holding_register", "address": 40002, "scale": 1, "unit": "%" },
+                { "key": "omd_analog_signal", "label": "OMD Analog Signal", "source_type": "holding_register", "address": 40032, "scale": 0.1, "precision": 1, "unit": "mA" }
               ]
             },
             {
               "key": "pms",
               "title": "PMS",
               "metrics": [
-                { "key": "generator_voltage", "label": "Generator Voltage", "source_type": "holding_register", "address": 40128, "scale": 1, "unit": "V" },
-                { "key": "generator_frequency", "label": "Generator Frequency", "source_type": "holding_register", "address": 40129, "scale": 0.01, "precision": 2, "unit": "Hz" },
-                { "key": "generator_power_factor", "label": "Generator Power Factor", "source_type": "holding_register", "address": 40130, "scale": 0.01, "precision": 2, "unit": "" },
-                { "key": "generator_current", "label": "Generator Current", "source_type": "holding_register", "address": 40131, "scale": 1, "unit": "A" }
+                { "key": "generator_voltage", "label": "Generator Voltage", "source_type": "holding_register", "address": 40033, "scale": 1, "unit": "V" },
+                { "key": "generator_frequency", "label": "Generator Frequency", "source_type": "holding_register", "address": 40034, "scale": 0.01, "precision": 2, "unit": "Hz" },
+                { "key": "generator_power_factor", "label": "Generator Power Factor", "source_type": "holding_register", "address": 40035, "scale": 0.01, "precision": 2, "unit": "" },
+                { "key": "generator_current", "label": "Generator Current", "source_type": "holding_register", "address": 40036, "scale": 1, "unit": "A" }
               ]
             },
             {
               "key": "cooling_water_system",
               "title": "COOLING WATER SYSTEM",
               "metrics": [
-                { "key": "jacket_water_pressure", "label": "Jacket Water Pressure", "source_type": "holding_register", "address": 40132, "scale": 0.1, "precision": 1, "unit": "bar" },
-                { "key": "cooler_water_pressure", "label": "Cooler Water Pressure", "source_type": "holding_register", "address": 40133, "scale": 0.1, "precision": 1, "unit": "bar" },
-                { "key": "jacket_water_inlet_temp", "label": "Jacket Water Inlet Temp", "source_type": "holding_register", "address": 40134, "scale": 1, "unit": "C" },
-                { "key": "jacket_water_outlet_temp", "label": "Jacket Water Outlet Temp", "source_type": "holding_register", "address": 40135, "scale": 1, "unit": "C" },
-                { "key": "cooler_water_inlet_temp", "label": "Cooler Water Inlet Temp", "source_type": "holding_register", "address": 40136, "scale": 1, "unit": "C" },
-                { "key": "cooler_water_outlet_temp", "label": "Cooler Water Outlet Temp", "source_type": "holding_register", "address": 40137, "scale": 1, "unit": "C" },
-                { "key": "cw_before_lo_cooler_temp", "label": "CW Before LO Cooler Temp", "source_type": "holding_register", "address": 40138, "scale": 1, "unit": "C" }
+                { "key": "jacket_water_pressure", "label": "Jacket Water Pressure", "source_type": "holding_register", "address": 40016, "scale": 0.1, "precision": 1, "unit": "bar" },
+                { "key": "cooler_water_pressure", "label": "Cooler Water Pressure", "source_type": "holding_register", "address": 40017, "scale": 0.1, "precision": 1, "unit": "bar" },
+                { "key": "jacket_water_inlet_temp", "label": "Jacket Water Inlet Temp", "source_type": "holding_register", "address": 40021, "scale": 1, "unit": "C" },
+                { "key": "jacket_water_outlet_temp", "label": "Jacket Water Outlet Temp", "source_type": "holding_register", "address": 40022, "scale": 1, "unit": "C" },
+                { "key": "cooler_water_inlet_temp", "label": "Cooler Water Inlet Temp", "source_type": "holding_register", "address": 40023, "scale": 1, "unit": "C" },
+                { "key": "cooler_water_outlet_temp", "label": "Cooler Water Outlet Temp", "source_type": "holding_register", "address": 40024, "scale": 1, "unit": "C" },
+                { "key": "cw_before_lo_cooler_temp", "label": "CW Before LO Cooler Temp", "source_type": "holding_register", "address": 40027, "scale": 1, "unit": "C" }
               ]
             }
           ]
@@ -324,100 +324,99 @@
               "key": "alternator_temperature",
               "title": "ALTERNATOR TEMPERATURE",
               "metrics": [
-                { "key": "stator_winding_temp_u", "label": "Stator Winding Temp U", "source_type": "holding_register", "address": 40141, "scale": 1, "unit": "C" },
-                { "key": "stator_winding_temp_v", "label": "Stator Winding Temp V", "source_type": "holding_register", "address": 40142, "scale": 1, "unit": "C" },
-                { "key": "stator_winding_temp_w", "label": "Stator Winding Temp W", "source_type": "holding_register", "address": 40143, "scale": 1, "unit": "C" },
-                { "key": "de_bearing_temp", "label": "DE Bearing Temp", "source_type": "holding_register", "address": 40144, "scale": 1, "unit": "C" },
-                { "key": "nde_bearing_temp", "label": "NDE Bearing Temp", "source_type": "holding_register", "address": 40145, "scale": 1, "unit": "C" }
+                { "key": "stator_winding_temp_u", "label": "Stator Winding Temp U", "source_type": "holding_register", "address": 40103, "scale": 1, "unit": "C" },
+                { "key": "stator_winding_temp_v", "label": "Stator Winding Temp V", "source_type": "holding_register", "address": 40104, "scale": 1, "unit": "C" },
+                { "key": "stator_winding_temp_w", "label": "Stator Winding Temp W", "source_type": "holding_register", "address": 40105, "scale": 1, "unit": "C" },
+                { "key": "de_bearing_temp", "label": "DE Bearing Temp", "source_type": "holding_register", "address": 40106, "scale": 1, "unit": "C" },
+                { "key": "nde_bearing_temp", "label": "NDE Bearing Temp", "source_type": "holding_register", "address": 40107, "scale": 1, "unit": "C" }
               ]
             },
             {
               "key": "engine_parameters",
               "title": "ENGINE PARAMETERS",
               "metrics": [
-                { "key": "intake_air_pressure", "label": "Intake Air Pressure", "source_type": "holding_register", "address": 40139, "scale": 0.01, "precision": 2, "unit": "MPa" },
-                { "key": "air_receiver_pressure", "label": "Air Receiver Pressure", "source_type": "holding_register", "address": 40140, "scale": 0.01, "precision": 2, "unit": "MPa" },
-                { "key": "engine_running_hours", "label": "Engine Running Hours", "source_type": "holding_register", "address": 40146, "scale": 1, "unit": "h" },
-                { "key": "engine_power", "label": "Engine Power", "source_type": "holding_register", "address": 40147, "scale": 1, "unit": "kW" },
-                { "key": "engine_speed", "label": "Engine Speed", "source_type": "holding_register", "address": 40148, "scale": 1, "unit": "rpm" }
+                { "key": "intake_air_pressure", "label": "Intake Air Pressure", "source_type": "holding_register", "address": 40120, "scale": 0.01, "precision": 2, "unit": "MPa" },
+                { "key": "engine_running_hours", "label": "Engine Running Hours", "source_type": "holding_register", "address": 40163, "scale": 1, "unit": "h", "data_type": "int32", "register_count": 2 },
+                { "key": "engine_power", "label": "Engine Power", "source_type": "holding_register", "address": 40138, "scale": 1, "unit": "kW" },
+                { "key": "engine_speed", "label": "Engine Speed", "source_type": "holding_register", "address": 40139, "scale": 1, "unit": "rpm" }
               ]
             },
             {
               "key": "exhaust_gas_temp",
               "title": "EXHAUST GAS TEMP",
               "metrics": [
-                { "key": "tc_outlet_temp", "label": "T/C Outlet Temp", "source_type": "holding_register", "address": 40149, "scale": 1, "unit": "C" },
-                { "key": "cyl_1_exhaust_temp", "label": "Cyl 1 Exhaust Temp", "source_type": "holding_register", "address": 40150, "scale": 1, "unit": "C" },
-                { "key": "cyl_2_exhaust_temp", "label": "Cyl 2 Exhaust Temp", "source_type": "holding_register", "address": 40151, "scale": 1, "unit": "C" },
-                { "key": "cyl_3_exhaust_temp", "label": "Cyl 3 Exhaust Temp", "source_type": "holding_register", "address": 40152, "scale": 1, "unit": "C" },
-                { "key": "cyl_4_exhaust_temp", "label": "Cyl 4 Exhaust Temp", "source_type": "holding_register", "address": 40153, "scale": 1, "unit": "C" },
-                { "key": "cyl_5_exhaust_temp", "label": "Cyl 5 Exhaust Temp", "source_type": "holding_register", "address": 40154, "scale": 1, "unit": "C" },
-                { "key": "cyl_6_exhaust_temp", "label": "Cyl 6 Exhaust Temp", "source_type": "holding_register", "address": 40155, "scale": 1, "unit": "C" },
-                { "key": "tc_inlet_temp", "label": "T/C Inlet Temp", "source_type": "holding_register", "address": 40156, "scale": 1, "unit": "C" }
+                { "key": "tc_outlet_temp", "label": "T/C Outlet Temp", "source_type": "holding_register", "address": 40101, "scale": 1, "unit": "C" },
+                { "key": "cyl_1_exhaust_temp", "label": "Cyl 1 Exhaust Temp", "source_type": "holding_register", "address": 40108, "scale": 1, "unit": "C" },
+                { "key": "cyl_2_exhaust_temp", "label": "Cyl 2 Exhaust Temp", "source_type": "holding_register", "address": 40109, "scale": 1, "unit": "C" },
+                { "key": "cyl_3_exhaust_temp", "label": "Cyl 3 Exhaust Temp", "source_type": "holding_register", "address": 40110, "scale": 1, "unit": "C" },
+                { "key": "cyl_4_exhaust_temp", "label": "Cyl 4 Exhaust Temp", "source_type": "holding_register", "address": 40111, "scale": 1, "unit": "C" },
+                { "key": "cyl_5_exhaust_temp", "label": "Cyl 5 Exhaust Temp", "source_type": "holding_register", "address": 40112, "scale": 1, "unit": "C" },
+                { "key": "cyl_6_exhaust_temp", "label": "Cyl 6 Exhaust Temp", "source_type": "holding_register", "address": 40113, "scale": 1, "unit": "C" },
+                { "key": "tc_inlet_temp", "label": "T/C Inlet Temp", "source_type": "holding_register", "address": 40114, "scale": 1, "unit": "C" }
               ]
             },
             {
               "key": "fuel_oil_system",
               "title": "FUEL OIL SYSTEM",
               "metrics": [
-                { "key": "fuel_oil_pressure", "label": "Fuel Oil Pressure", "source_type": "holding_register", "address": 40157, "scale": 0.1, "precision": 1, "unit": "bar" },
-                { "key": "do_engine_inlet_temp", "label": "DO Engine Inlet Temp", "source_type": "holding_register", "address": 40158, "scale": 1, "unit": "C" },
-                { "key": "do_engine_return_temp", "label": "DO Engine Return Temp", "source_type": "holding_register", "address": 40159, "scale": 1, "unit": "C" },
-                { "key": "ho_engine_inlet_temp", "label": "HO Engine Inlet Temp", "source_type": "holding_register", "address": 40160, "scale": 1, "unit": "C" },
-                { "key": "ho_engine_return_temp", "label": "HO Engine Return Temp", "source_type": "holding_register", "address": 40161, "scale": 1, "unit": "C" }
+                { "key": "fuel_oil_pressure", "label": "Fuel Oil Pressure", "source_type": "holding_register", "address": 40115, "scale": 0.1, "precision": 1, "unit": "bar" },
+                { "key": "do_engine_inlet_temp", "label": "DO Engine Inlet Temp", "source_type": "holding_register", "address": 40128, "scale": 1, "unit": "C" },
+                { "key": "do_engine_return_temp", "label": "DO Engine Return Temp", "source_type": "holding_register", "address": 40129, "scale": 1, "unit": "C" },
+                { "key": "ho_engine_inlet_temp", "label": "HO Engine Inlet Temp", "source_type": "holding_register", "address": 40130, "scale": 1, "unit": "C" },
+                { "key": "ho_engine_return_temp", "label": "HO Engine Return Temp", "source_type": "holding_register", "address": 40131, "scale": 1, "unit": "C" }
               ]
             },
             {
               "key": "fuel_oil_flow_system",
               "title": "FUEL OIL FLOW SYSTEM",
               "metrics": [
-                { "key": "do_transfer_flow", "label": "DO Transfer Flow", "source_type": "holding_register", "address": 40162, "scale": 1, "unit": "L/h" },
-                { "key": "do_engine_inlet_flow", "label": "DO Engine Inlet Flow", "source_type": "holding_register", "address": 40163, "scale": 1, "unit": "L/h" },
-                { "key": "do_engine_return_flow", "label": "DO Engine Return Flow", "source_type": "holding_register", "address": 40164, "scale": 1, "unit": "L/h" },
-                { "key": "ho_transfer_flow", "label": "HO Transfer Flow", "source_type": "holding_register", "address": 40165, "scale": 1, "unit": "L/h" },
-                { "key": "ho_engine_inlet_flow", "label": "HO Engine Inlet Flow", "source_type": "holding_register", "address": 40166, "scale": 1, "unit": "L/h" },
-                { "key": "ho_engine_return_flow", "label": "HO Engine Return Flow", "source_type": "holding_register", "address": 40167, "scale": 1, "unit": "L/h" }
+                { "key": "do_transfer_flow", "label": "DO Transfer Flow", "source_type": "holding_register", "address": 40151, "scale": 1, "unit": "L/h", "data_type": "int32", "register_count": 2 },
+                { "key": "do_engine_inlet_flow", "label": "DO Engine Inlet Flow", "source_type": "holding_register", "address": 40153, "scale": 1, "unit": "L/h", "data_type": "int32", "register_count": 2 },
+                { "key": "do_engine_return_flow", "label": "DO Engine Return Flow", "source_type": "holding_register", "address": 40155, "scale": 1, "unit": "L/h", "data_type": "int32", "register_count": 2 },
+                { "key": "ho_transfer_flow", "label": "HO Transfer Flow", "source_type": "holding_register", "address": 40157, "scale": 1, "unit": "L/h", "data_type": "int32", "register_count": 2 },
+                { "key": "ho_engine_inlet_flow", "label": "HO Engine Inlet Flow", "source_type": "holding_register", "address": 40159, "scale": 1, "unit": "L/h", "data_type": "int32", "register_count": 2 },
+                { "key": "ho_engine_return_flow", "label": "HO Engine Return Flow", "source_type": "holding_register", "address": 40161, "scale": 1, "unit": "L/h", "data_type": "int32", "register_count": 2 }
               ]
             },
             {
               "key": "lub_oil_system",
               "title": "LUB OIL SYSTEM",
               "metrics": [
-                { "key": "engine_lo_pressure", "label": "Engine LO Pressure", "source_type": "holding_register", "address": 40168, "scale": 0.1, "precision": 1, "unit": "bar" },
-                { "key": "turbo_lo_pressure", "label": "Turbo LO Pressure", "source_type": "holding_register", "address": 40169, "scale": 0.1, "precision": 1, "unit": "bar" },
-                { "key": "lo_cooler_inlet_temp", "label": "LO Cooler Inlet Temp", "source_type": "holding_register", "address": 40170, "scale": 1, "unit": "C" },
-                { "key": "lo_cooler_outlet_temp", "label": "LO Cooler Outlet Temp", "source_type": "holding_register", "address": 40171, "scale": 1, "unit": "C" }
+                { "key": "engine_lo_pressure", "label": "Engine LO Pressure", "source_type": "holding_register", "address": 40118, "scale": 0.1, "precision": 1, "unit": "bar" },
+                { "key": "turbo_lo_pressure", "label": "Turbo LO Pressure", "source_type": "holding_register", "address": 40119, "scale": 0.1, "precision": 1, "unit": "bar" },
+                { "key": "lo_cooler_inlet_temp", "label": "LO Cooler Inlet Temp", "source_type": "holding_register", "address": 40125, "scale": 1, "unit": "C" },
+                { "key": "lo_cooler_outlet_temp", "label": "LO Cooler Outlet Temp", "source_type": "holding_register", "address": 40126, "scale": 1, "unit": "C" }
               ]
             },
             {
               "key": "oil_mist_detection",
               "title": "OIL MIST DETECTION",
               "metrics": [
-                { "key": "oil_mist_level", "label": "Oil Mist Level", "source_type": "holding_register", "address": 40172, "scale": 1, "unit": "%" },
-                { "key": "omd_analog_signal", "label": "OMD Analog Signal", "source_type": "holding_register", "address": 40173, "scale": 0.1, "precision": 1, "unit": "mA" }
+                { "key": "oil_mist_level", "label": "Oil Mist Level", "source_type": "holding_register", "address": 40102, "scale": 1, "unit": "%" },
+                { "key": "omd_analog_signal", "label": "OMD Analog Signal", "source_type": "holding_register", "address": 40132, "scale": 0.1, "precision": 1, "unit": "mA" }
               ]
             },
             {
               "key": "pms",
               "title": "PMS",
               "metrics": [
-                { "key": "generator_voltage", "label": "Generator Voltage", "source_type": "holding_register", "address": 40174, "scale": 1, "unit": "V" },
-                { "key": "generator_frequency", "label": "Generator Frequency", "source_type": "holding_register", "address": 40175, "scale": 0.01, "precision": 2, "unit": "Hz" },
-                { "key": "generator_power_factor", "label": "Generator Power Factor", "source_type": "holding_register", "address": 40176, "scale": 0.01, "precision": 2, "unit": "" },
-                { "key": "generator_current", "label": "Generator Current", "source_type": "holding_register", "address": 40177, "scale": 1, "unit": "A" }
+                { "key": "generator_voltage", "label": "Generator Voltage", "source_type": "holding_register", "address": 40133, "scale": 1, "unit": "V" },
+                { "key": "generator_frequency", "label": "Generator Frequency", "source_type": "holding_register", "address": 40134, "scale": 0.01, "precision": 2, "unit": "Hz" },
+                { "key": "generator_power_factor", "label": "Generator Power Factor", "source_type": "holding_register", "address": 40135, "scale": 0.01, "precision": 2, "unit": "" },
+                { "key": "generator_current", "label": "Generator Current", "source_type": "holding_register", "address": 40136, "scale": 1, "unit": "A" }
               ]
             },
             {
               "key": "cooling_water_system",
               "title": "COOLING WATER SYSTEM",
               "metrics": [
-                { "key": "jacket_water_pressure", "label": "Jacket Water Pressure", "source_type": "holding_register", "address": 40178, "scale": 0.1, "precision": 1, "unit": "bar" },
-                { "key": "cooler_water_pressure", "label": "Cooler Water Pressure", "source_type": "holding_register", "address": 40179, "scale": 0.1, "precision": 1, "unit": "bar" },
-                { "key": "jacket_water_inlet_temp", "label": "Jacket Water Inlet Temp", "source_type": "holding_register", "address": 40180, "scale": 1, "unit": "C" },
-                { "key": "jacket_water_outlet_temp", "label": "Jacket Water Outlet Temp", "source_type": "holding_register", "address": 40181, "scale": 1, "unit": "C" },
-                { "key": "cooler_water_inlet_temp", "label": "Cooler Water Inlet Temp", "source_type": "holding_register", "address": 40182, "scale": 1, "unit": "C" },
-                { "key": "cooler_water_outlet_temp", "label": "Cooler Water Outlet Temp", "source_type": "holding_register", "address": 40183, "scale": 1, "unit": "C" },
-                { "key": "cw_before_lo_cooler_temp", "label": "CW Before LO Cooler Temp", "source_type": "holding_register", "address": 40184, "scale": 1, "unit": "C" }
+                { "key": "jacket_water_pressure", "label": "Jacket Water Pressure", "source_type": "holding_register", "address": 40116, "scale": 0.1, "precision": 1, "unit": "bar" },
+                { "key": "cooler_water_pressure", "label": "Cooler Water Pressure", "source_type": "holding_register", "address": 40117, "scale": 0.1, "precision": 1, "unit": "bar" },
+                { "key": "jacket_water_inlet_temp", "label": "Jacket Water Inlet Temp", "source_type": "holding_register", "address": 40121, "scale": 1, "unit": "C" },
+                { "key": "jacket_water_outlet_temp", "label": "Jacket Water Outlet Temp", "source_type": "holding_register", "address": 40122, "scale": 1, "unit": "C" },
+                { "key": "cooler_water_inlet_temp", "label": "Cooler Water Inlet Temp", "source_type": "holding_register", "address": 40123, "scale": 1, "unit": "C" },
+                { "key": "cooler_water_outlet_temp", "label": "Cooler Water Outlet Temp", "source_type": "holding_register", "address": 40124, "scale": 1, "unit": "C" },
+                { "key": "cw_before_lo_cooler_temp", "label": "CW Before LO Cooler Temp", "source_type": "holding_register", "address": 40127, "scale": 1, "unit": "C" }
               ]
             }
           ]
@@ -429,100 +428,99 @@
               "key": "alternator_temperature",
               "title": "ALTERNATOR TEMPERATURE",
               "metrics": [
-                { "key": "stator_winding_temp_u", "label": "Stator Winding Temp U", "source_type": "holding_register", "address": 40187, "scale": 1, "unit": "C" },
-                { "key": "stator_winding_temp_v", "label": "Stator Winding Temp V", "source_type": "holding_register", "address": 40188, "scale": 1, "unit": "C" },
-                { "key": "stator_winding_temp_w", "label": "Stator Winding Temp W", "source_type": "holding_register", "address": 40189, "scale": 1, "unit": "C" },
-                { "key": "de_bearing_temp", "label": "DE Bearing Temp", "source_type": "holding_register", "address": 40190, "scale": 1, "unit": "C" },
-                { "key": "nde_bearing_temp", "label": "NDE Bearing Temp", "source_type": "holding_register", "address": 40191, "scale": 1, "unit": "C" }
+                { "key": "stator_winding_temp_u", "label": "Stator Winding Temp U", "source_type": "holding_register", "address": 40203, "scale": 1, "unit": "C" },
+                { "key": "stator_winding_temp_v", "label": "Stator Winding Temp V", "source_type": "holding_register", "address": 40204, "scale": 1, "unit": "C" },
+                { "key": "stator_winding_temp_w", "label": "Stator Winding Temp W", "source_type": "holding_register", "address": 40205, "scale": 1, "unit": "C" },
+                { "key": "de_bearing_temp", "label": "DE Bearing Temp", "source_type": "holding_register", "address": 40206, "scale": 1, "unit": "C" },
+                { "key": "nde_bearing_temp", "label": "NDE Bearing Temp", "source_type": "holding_register", "address": 40207, "scale": 1, "unit": "C" }
               ]
             },
             {
               "key": "engine_parameters",
               "title": "ENGINE PARAMETERS",
               "metrics": [
-                { "key": "intake_air_pressure", "label": "Intake Air Pressure", "source_type": "holding_register", "address": 40185, "scale": 0.01, "precision": 2, "unit": "MPa" },
-                { "key": "air_receiver_pressure", "label": "Air Receiver Pressure", "source_type": "holding_register", "address": 40186, "scale": 0.01, "precision": 2, "unit": "MPa" },
-                { "key": "engine_running_hours", "label": "Engine Running Hours", "source_type": "holding_register", "address": 40192, "scale": 1, "unit": "h" },
-                { "key": "engine_power", "label": "Engine Power", "source_type": "holding_register", "address": 40193, "scale": 1, "unit": "kW" },
-                { "key": "engine_speed", "label": "Engine Speed", "source_type": "holding_register", "address": 40194, "scale": 1, "unit": "rpm" }
+                { "key": "intake_air_pressure", "label": "Intake Air Pressure", "source_type": "holding_register", "address": 40220, "scale": 0.01, "precision": 2, "unit": "MPa" },
+                { "key": "engine_running_hours", "label": "Engine Running Hours", "source_type": "holding_register", "address": 40263, "scale": 1, "unit": "h", "data_type": "int32", "register_count": 2 },
+                { "key": "engine_power", "label": "Engine Power", "source_type": "holding_register", "address": 40238, "scale": 1, "unit": "kW" },
+                { "key": "engine_speed", "label": "Engine Speed", "source_type": "holding_register", "address": 40239, "scale": 1, "unit": "rpm" }
               ]
             },
             {
               "key": "exhaust_gas_temp",
               "title": "EXHAUST GAS TEMP",
               "metrics": [
-                { "key": "tc_outlet_temp", "label": "T/C Outlet Temp", "source_type": "holding_register", "address": 40195, "scale": 1, "unit": "C" },
-                { "key": "cyl_1_exhaust_temp", "label": "Cyl 1 Exhaust Temp", "source_type": "holding_register", "address": 40196, "scale": 1, "unit": "C" },
-                { "key": "cyl_2_exhaust_temp", "label": "Cyl 2 Exhaust Temp", "source_type": "holding_register", "address": 40197, "scale": 1, "unit": "C" },
-                { "key": "cyl_3_exhaust_temp", "label": "Cyl 3 Exhaust Temp", "source_type": "holding_register", "address": 40198, "scale": 1, "unit": "C" },
-                { "key": "cyl_4_exhaust_temp", "label": "Cyl 4 Exhaust Temp", "source_type": "holding_register", "address": 40199, "scale": 1, "unit": "C" },
-                { "key": "cyl_5_exhaust_temp", "label": "Cyl 5 Exhaust Temp", "source_type": "holding_register", "address": 40200, "scale": 1, "unit": "C" },
-                { "key": "cyl_6_exhaust_temp", "label": "Cyl 6 Exhaust Temp", "source_type": "holding_register", "address": 40201, "scale": 1, "unit": "C" },
-                { "key": "tc_inlet_temp", "label": "T/C Inlet Temp", "source_type": "holding_register", "address": 40202, "scale": 1, "unit": "C" }
+                { "key": "tc_outlet_temp", "label": "T/C Outlet Temp", "source_type": "holding_register", "address": 40201, "scale": 1, "unit": "C" },
+                { "key": "cyl_1_exhaust_temp", "label": "Cyl 1 Exhaust Temp", "source_type": "holding_register", "address": 40208, "scale": 1, "unit": "C" },
+                { "key": "cyl_2_exhaust_temp", "label": "Cyl 2 Exhaust Temp", "source_type": "holding_register", "address": 40209, "scale": 1, "unit": "C" },
+                { "key": "cyl_3_exhaust_temp", "label": "Cyl 3 Exhaust Temp", "source_type": "holding_register", "address": 40210, "scale": 1, "unit": "C" },
+                { "key": "cyl_4_exhaust_temp", "label": "Cyl 4 Exhaust Temp", "source_type": "holding_register", "address": 40211, "scale": 1, "unit": "C" },
+                { "key": "cyl_5_exhaust_temp", "label": "Cyl 5 Exhaust Temp", "source_type": "holding_register", "address": 40212, "scale": 1, "unit": "C" },
+                { "key": "cyl_6_exhaust_temp", "label": "Cyl 6 Exhaust Temp", "source_type": "holding_register", "address": 40213, "scale": 1, "unit": "C" },
+                { "key": "tc_inlet_temp", "label": "T/C Inlet Temp", "source_type": "holding_register", "address": 40214, "scale": 1, "unit": "C" }
               ]
             },
             {
               "key": "fuel_oil_system",
               "title": "FUEL OIL SYSTEM",
               "metrics": [
-                { "key": "fuel_oil_pressure", "label": "Fuel Oil Pressure", "source_type": "holding_register", "address": 40203, "scale": 0.1, "precision": 1, "unit": "bar" },
-                { "key": "do_engine_inlet_temp", "label": "DO Engine Inlet Temp", "source_type": "holding_register", "address": 40204, "scale": 1, "unit": "C" },
-                { "key": "do_engine_return_temp", "label": "DO Engine Return Temp", "source_type": "holding_register", "address": 40205, "scale": 1, "unit": "C" },
-                { "key": "ho_engine_inlet_temp", "label": "HO Engine Inlet Temp", "source_type": "holding_register", "address": 40206, "scale": 1, "unit": "C" },
-                { "key": "ho_engine_return_temp", "label": "HO Engine Return Temp", "source_type": "holding_register", "address": 40207, "scale": 1, "unit": "C" }
+                { "key": "fuel_oil_pressure", "label": "Fuel Oil Pressure", "source_type": "holding_register", "address": 40215, "scale": 0.1, "precision": 1, "unit": "bar" },
+                { "key": "do_engine_inlet_temp", "label": "DO Engine Inlet Temp", "source_type": "holding_register", "address": 40228, "scale": 1, "unit": "C" },
+                { "key": "do_engine_return_temp", "label": "DO Engine Return Temp", "source_type": "holding_register", "address": 40229, "scale": 1, "unit": "C" },
+                { "key": "ho_engine_inlet_temp", "label": "HO Engine Inlet Temp", "source_type": "holding_register", "address": 40230, "scale": 1, "unit": "C" },
+                { "key": "ho_engine_return_temp", "label": "HO Engine Return Temp", "source_type": "holding_register", "address": 40231, "scale": 1, "unit": "C" }
               ]
             },
             {
               "key": "fuel_oil_flow_system",
               "title": "FUEL OIL FLOW SYSTEM",
               "metrics": [
-                { "key": "do_transfer_flow", "label": "DO Transfer Flow", "source_type": "holding_register", "address": 40208, "scale": 1, "unit": "L/h" },
-                { "key": "do_engine_inlet_flow", "label": "DO Engine Inlet Flow", "source_type": "holding_register", "address": 40209, "scale": 1, "unit": "L/h" },
-                { "key": "do_engine_return_flow", "label": "DO Engine Return Flow", "source_type": "holding_register", "address": 40210, "scale": 1, "unit": "L/h" },
-                { "key": "ho_transfer_flow", "label": "HO Transfer Flow", "source_type": "holding_register", "address": 40211, "scale": 1, "unit": "L/h" },
-                { "key": "ho_engine_inlet_flow", "label": "HO Engine Inlet Flow", "source_type": "holding_register", "address": 40212, "scale": 1, "unit": "L/h" },
-                { "key": "ho_engine_return_flow", "label": "HO Engine Return Flow", "source_type": "holding_register", "address": 40213, "scale": 1, "unit": "L/h" }
+                { "key": "do_transfer_flow", "label": "DO Transfer Flow", "source_type": "holding_register", "address": 40251, "scale": 1, "unit": "L/h", "data_type": "int32", "register_count": 2 },
+                { "key": "do_engine_inlet_flow", "label": "DO Engine Inlet Flow", "source_type": "holding_register", "address": 40253, "scale": 1, "unit": "L/h", "data_type": "int32", "register_count": 2 },
+                { "key": "do_engine_return_flow", "label": "DO Engine Return Flow", "source_type": "holding_register", "address": 40255, "scale": 1, "unit": "L/h", "data_type": "int32", "register_count": 2 },
+                { "key": "ho_transfer_flow", "label": "HO Transfer Flow", "source_type": "holding_register", "address": 40257, "scale": 1, "unit": "L/h", "data_type": "int32", "register_count": 2 },
+                { "key": "ho_engine_inlet_flow", "label": "HO Engine Inlet Flow", "source_type": "holding_register", "address": 40259, "scale": 1, "unit": "L/h", "data_type": "int32", "register_count": 2 },
+                { "key": "ho_engine_return_flow", "label": "HO Engine Return Flow", "source_type": "holding_register", "address": 40261, "scale": 1, "unit": "L/h", "data_type": "int32", "register_count": 2 }
               ]
             },
             {
               "key": "lub_oil_system",
               "title": "LUB OIL SYSTEM",
               "metrics": [
-                { "key": "engine_lo_pressure", "label": "Engine LO Pressure", "source_type": "holding_register", "address": 40214, "scale": 0.1, "precision": 1, "unit": "bar" },
-                { "key": "turbo_lo_pressure", "label": "Turbo LO Pressure", "source_type": "holding_register", "address": 40215, "scale": 0.1, "precision": 1, "unit": "bar" },
-                { "key": "lo_cooler_inlet_temp", "label": "LO Cooler Inlet Temp", "source_type": "holding_register", "address": 40216, "scale": 1, "unit": "C" },
-                { "key": "lo_cooler_outlet_temp", "label": "LO Cooler Outlet Temp", "source_type": "holding_register", "address": 40217, "scale": 1, "unit": "C" }
+                { "key": "engine_lo_pressure", "label": "Engine LO Pressure", "source_type": "holding_register", "address": 40218, "scale": 0.1, "precision": 1, "unit": "bar" },
+                { "key": "turbo_lo_pressure", "label": "Turbo LO Pressure", "source_type": "holding_register", "address": 40219, "scale": 0.1, "precision": 1, "unit": "bar" },
+                { "key": "lo_cooler_inlet_temp", "label": "LO Cooler Inlet Temp", "source_type": "holding_register", "address": 40225, "scale": 1, "unit": "C" },
+                { "key": "lo_cooler_outlet_temp", "label": "LO Cooler Outlet Temp", "source_type": "holding_register", "address": 40226, "scale": 1, "unit": "C" }
               ]
             },
             {
               "key": "oil_mist_detection",
               "title": "OIL MIST DETECTION",
               "metrics": [
-                { "key": "oil_mist_level", "label": "Oil Mist Level", "source_type": "holding_register", "address": 40218, "scale": 1, "unit": "%" },
-                { "key": "omd_analog_signal", "label": "OMD Analog Signal", "source_type": "holding_register", "address": 40219, "scale": 0.1, "precision": 1, "unit": "mA" }
+                { "key": "oil_mist_level", "label": "Oil Mist Level", "source_type": "holding_register", "address": 40202, "scale": 1, "unit": "%" },
+                { "key": "omd_analog_signal", "label": "OMD Analog Signal", "source_type": "holding_register", "address": 40232, "scale": 0.1, "precision": 1, "unit": "mA" }
               ]
             },
             {
               "key": "pms",
               "title": "PMS",
               "metrics": [
-                { "key": "generator_voltage", "label": "Generator Voltage", "source_type": "holding_register", "address": 40220, "scale": 1, "unit": "V" },
-                { "key": "generator_frequency", "label": "Generator Frequency", "source_type": "holding_register", "address": 40221, "scale": 0.01, "precision": 2, "unit": "Hz" },
-                { "key": "generator_power_factor", "label": "Generator Power Factor", "source_type": "holding_register", "address": 40222, "scale": 0.01, "precision": 2, "unit": "" },
-                { "key": "generator_current", "label": "Generator Current", "source_type": "holding_register", "address": 40223, "scale": 1, "unit": "A" }
+                { "key": "generator_voltage", "label": "Generator Voltage", "source_type": "holding_register", "address": 40233, "scale": 1, "unit": "V" },
+                { "key": "generator_frequency", "label": "Generator Frequency", "source_type": "holding_register", "address": 40234, "scale": 0.01, "precision": 2, "unit": "Hz" },
+                { "key": "generator_power_factor", "label": "Generator Power Factor", "source_type": "holding_register", "address": 40235, "scale": 0.01, "precision": 2, "unit": "" },
+                { "key": "generator_current", "label": "Generator Current", "source_type": "holding_register", "address": 40236, "scale": 1, "unit": "A" }
               ]
             },
             {
               "key": "cooling_water_system",
               "title": "COOLING WATER SYSTEM",
               "metrics": [
-                { "key": "jacket_water_pressure", "label": "Jacket Water Pressure", "source_type": "holding_register", "address": 40224, "scale": 0.1, "precision": 1, "unit": "bar" },
-                { "key": "cooler_water_pressure", "label": "Cooler Water Pressure", "source_type": "holding_register", "address": 40225, "scale": 0.1, "precision": 1, "unit": "bar" },
-                { "key": "jacket_water_inlet_temp", "label": "Jacket Water Inlet Temp", "source_type": "holding_register", "address": 40226, "scale": 1, "unit": "C" },
-                { "key": "jacket_water_outlet_temp", "label": "Jacket Water Outlet Temp", "source_type": "holding_register", "address": 40227, "scale": 1, "unit": "C" },
-                { "key": "cooler_water_inlet_temp", "label": "Cooler Water Inlet Temp", "source_type": "holding_register", "address": 40228, "scale": 1, "unit": "C" },
-                { "key": "cooler_water_outlet_temp", "label": "Cooler Water Outlet Temp", "source_type": "holding_register", "address": 40229, "scale": 1, "unit": "C" },
-                { "key": "cw_before_lo_cooler_temp", "label": "CW Before LO Cooler Temp", "source_type": "holding_register", "address": 40230, "scale": 1, "unit": "C" }
+                { "key": "jacket_water_pressure", "label": "Jacket Water Pressure", "source_type": "holding_register", "address": 40216, "scale": 0.1, "precision": 1, "unit": "bar" },
+                { "key": "cooler_water_pressure", "label": "Cooler Water Pressure", "source_type": "holding_register", "address": 40217, "scale": 0.1, "precision": 1, "unit": "bar" },
+                { "key": "jacket_water_inlet_temp", "label": "Jacket Water Inlet Temp", "source_type": "holding_register", "address": 40221, "scale": 1, "unit": "C" },
+                { "key": "jacket_water_outlet_temp", "label": "Jacket Water Outlet Temp", "source_type": "holding_register", "address": 40222, "scale": 1, "unit": "C" },
+                { "key": "cooler_water_inlet_temp", "label": "Cooler Water Inlet Temp", "source_type": "holding_register", "address": 40223, "scale": 1, "unit": "C" },
+                { "key": "cooler_water_outlet_temp", "label": "Cooler Water Outlet Temp", "source_type": "holding_register", "address": 40224, "scale": 1, "unit": "C" },
+                { "key": "cw_before_lo_cooler_temp", "label": "CW Before LO Cooler Temp", "source_type": "holding_register", "address": 40227, "scale": 1, "unit": "C" }
               ]
             }
           ]
@@ -534,100 +532,99 @@
               "key": "alternator_temperature",
               "title": "ALTERNATOR TEMPERATURE",
               "metrics": [
-                { "key": "stator_winding_temp_u", "label": "Stator Winding Temp U", "source_type": "holding_register", "address": 40233, "scale": 1, "unit": "C" },
-                { "key": "stator_winding_temp_v", "label": "Stator Winding Temp V", "source_type": "holding_register", "address": 40234, "scale": 1, "unit": "C" },
-                { "key": "stator_winding_temp_w", "label": "Stator Winding Temp W", "source_type": "holding_register", "address": 40235, "scale": 1, "unit": "C" },
-                { "key": "de_bearing_temp", "label": "DE Bearing Temp", "source_type": "holding_register", "address": 40236, "scale": 1, "unit": "C" },
-                { "key": "nde_bearing_temp", "label": "NDE Bearing Temp", "source_type": "holding_register", "address": 40237, "scale": 1, "unit": "C" }
+                { "key": "stator_winding_temp_u", "label": "Stator Winding Temp U", "source_type": "holding_register", "address": 40303, "scale": 1, "unit": "C" },
+                { "key": "stator_winding_temp_v", "label": "Stator Winding Temp V", "source_type": "holding_register", "address": 40304, "scale": 1, "unit": "C" },
+                { "key": "stator_winding_temp_w", "label": "Stator Winding Temp W", "source_type": "holding_register", "address": 40305, "scale": 1, "unit": "C" },
+                { "key": "de_bearing_temp", "label": "DE Bearing Temp", "source_type": "holding_register", "address": 40306, "scale": 1, "unit": "C" },
+                { "key": "nde_bearing_temp", "label": "NDE Bearing Temp", "source_type": "holding_register", "address": 40307, "scale": 1, "unit": "C" }
               ]
             },
             {
               "key": "engine_parameters",
               "title": "ENGINE PARAMETERS",
               "metrics": [
-                { "key": "intake_air_pressure", "label": "Intake Air Pressure", "source_type": "holding_register", "address": 40231, "scale": 0.01, "precision": 2, "unit": "MPa" },
-                { "key": "air_receiver_pressure", "label": "Air Receiver Pressure", "source_type": "holding_register", "address": 40232, "scale": 0.01, "precision": 2, "unit": "MPa" },
-                { "key": "engine_running_hours", "label": "Engine Running Hours", "source_type": "holding_register", "address": 40238, "scale": 1, "unit": "h" },
-                { "key": "engine_power", "label": "Engine Power", "source_type": "holding_register", "address": 40239, "scale": 1, "unit": "kW" },
-                { "key": "engine_speed", "label": "Engine Speed", "source_type": "holding_register", "address": 40240, "scale": 1, "unit": "rpm" }
+                { "key": "intake_air_pressure", "label": "Intake Air Pressure", "source_type": "holding_register", "address": 40320, "scale": 0.01, "precision": 2, "unit": "MPa" },
+                { "key": "engine_running_hours", "label": "Engine Running Hours", "source_type": "holding_register", "address": 40363, "scale": 1, "unit": "h", "data_type": "int32", "register_count": 2 },
+                { "key": "engine_power", "label": "Engine Power", "source_type": "holding_register", "address": 40338, "scale": 1, "unit": "kW" },
+                { "key": "engine_speed", "label": "Engine Speed", "source_type": "holding_register", "address": 40339, "scale": 1, "unit": "rpm" }
               ]
             },
             {
               "key": "exhaust_gas_temp",
               "title": "EXHAUST GAS TEMP",
               "metrics": [
-                { "key": "tc_outlet_temp", "label": "T/C Outlet Temp", "source_type": "holding_register", "address": 40241, "scale": 1, "unit": "C" },
-                { "key": "cyl_1_exhaust_temp", "label": "Cyl 1 Exhaust Temp", "source_type": "holding_register", "address": 40242, "scale": 1, "unit": "C" },
-                { "key": "cyl_2_exhaust_temp", "label": "Cyl 2 Exhaust Temp", "source_type": "holding_register", "address": 40243, "scale": 1, "unit": "C" },
-                { "key": "cyl_3_exhaust_temp", "label": "Cyl 3 Exhaust Temp", "source_type": "holding_register", "address": 40244, "scale": 1, "unit": "C" },
-                { "key": "cyl_4_exhaust_temp", "label": "Cyl 4 Exhaust Temp", "source_type": "holding_register", "address": 40245, "scale": 1, "unit": "C" },
-                { "key": "cyl_5_exhaust_temp", "label": "Cyl 5 Exhaust Temp", "source_type": "holding_register", "address": 40246, "scale": 1, "unit": "C" },
-                { "key": "cyl_6_exhaust_temp", "label": "Cyl 6 Exhaust Temp", "source_type": "holding_register", "address": 40247, "scale": 1, "unit": "C" },
-                { "key": "tc_inlet_temp", "label": "T/C Inlet Temp", "source_type": "holding_register", "address": 40248, "scale": 1, "unit": "C" }
+                { "key": "tc_outlet_temp", "label": "T/C Outlet Temp", "source_type": "holding_register", "address": 40301, "scale": 1, "unit": "C" },
+                { "key": "cyl_1_exhaust_temp", "label": "Cyl 1 Exhaust Temp", "source_type": "holding_register", "address": 40308, "scale": 1, "unit": "C" },
+                { "key": "cyl_2_exhaust_temp", "label": "Cyl 2 Exhaust Temp", "source_type": "holding_register", "address": 40309, "scale": 1, "unit": "C" },
+                { "key": "cyl_3_exhaust_temp", "label": "Cyl 3 Exhaust Temp", "source_type": "holding_register", "address": 40310, "scale": 1, "unit": "C" },
+                { "key": "cyl_4_exhaust_temp", "label": "Cyl 4 Exhaust Temp", "source_type": "holding_register", "address": 40311, "scale": 1, "unit": "C" },
+                { "key": "cyl_5_exhaust_temp", "label": "Cyl 5 Exhaust Temp", "source_type": "holding_register", "address": 40312, "scale": 1, "unit": "C" },
+                { "key": "cyl_6_exhaust_temp", "label": "Cyl 6 Exhaust Temp", "source_type": "holding_register", "address": 40313, "scale": 1, "unit": "C" },
+                { "key": "tc_inlet_temp", "label": "T/C Inlet Temp", "source_type": "holding_register", "address": 40314, "scale": 1, "unit": "C" }
               ]
             },
             {
               "key": "fuel_oil_system",
               "title": "FUEL OIL SYSTEM",
               "metrics": [
-                { "key": "fuel_oil_pressure", "label": "Fuel Oil Pressure", "source_type": "holding_register", "address": 40249, "scale": 0.1, "precision": 1, "unit": "bar" },
-                { "key": "do_engine_inlet_temp", "label": "DO Engine Inlet Temp", "source_type": "holding_register", "address": 40250, "scale": 1, "unit": "C" },
-                { "key": "do_engine_return_temp", "label": "DO Engine Return Temp", "source_type": "holding_register", "address": 40251, "scale": 1, "unit": "C" },
-                { "key": "ho_engine_inlet_temp", "label": "HO Engine Inlet Temp", "source_type": "holding_register", "address": 40252, "scale": 1, "unit": "C" },
-                { "key": "ho_engine_return_temp", "label": "HO Engine Return Temp", "source_type": "holding_register", "address": 40253, "scale": 1, "unit": "C" }
+                { "key": "fuel_oil_pressure", "label": "Fuel Oil Pressure", "source_type": "holding_register", "address": 40315, "scale": 0.1, "precision": 1, "unit": "bar" },
+                { "key": "do_engine_inlet_temp", "label": "DO Engine Inlet Temp", "source_type": "holding_register", "address": 40328, "scale": 1, "unit": "C" },
+                { "key": "do_engine_return_temp", "label": "DO Engine Return Temp", "source_type": "holding_register", "address": 40329, "scale": 1, "unit": "C" },
+                { "key": "ho_engine_inlet_temp", "label": "HO Engine Inlet Temp", "source_type": "holding_register", "address": 40330, "scale": 1, "unit": "C" },
+                { "key": "ho_engine_return_temp", "label": "HO Engine Return Temp", "source_type": "holding_register", "address": 40331, "scale": 1, "unit": "C" }
               ]
             },
             {
               "key": "fuel_oil_flow_system",
               "title": "FUEL OIL FLOW SYSTEM",
               "metrics": [
-                { "key": "do_transfer_flow", "label": "DO Transfer Flow", "source_type": "holding_register", "address": 40254, "scale": 1, "unit": "L/h" },
-                { "key": "do_engine_inlet_flow", "label": "DO Engine Inlet Flow", "source_type": "holding_register", "address": 40255, "scale": 1, "unit": "L/h" },
-                { "key": "do_engine_return_flow", "label": "DO Engine Return Flow", "source_type": "holding_register", "address": 40256, "scale": 1, "unit": "L/h" },
-                { "key": "ho_transfer_flow", "label": "HO Transfer Flow", "source_type": "holding_register", "address": 40257, "scale": 1, "unit": "L/h" },
-                { "key": "ho_engine_inlet_flow", "label": "HO Engine Inlet Flow", "source_type": "holding_register", "address": 40258, "scale": 1, "unit": "L/h" },
-                { "key": "ho_engine_return_flow", "label": "HO Engine Return Flow", "source_type": "holding_register", "address": 40259, "scale": 1, "unit": "L/h" }
+                { "key": "do_transfer_flow", "label": "DO Transfer Flow", "source_type": "holding_register", "address": 40351, "scale": 1, "unit": "L/h", "data_type": "int32", "register_count": 2 },
+                { "key": "do_engine_inlet_flow", "label": "DO Engine Inlet Flow", "source_type": "holding_register", "address": 40353, "scale": 1, "unit": "L/h", "data_type": "int32", "register_count": 2 },
+                { "key": "do_engine_return_flow", "label": "DO Engine Return Flow", "source_type": "holding_register", "address": 40355, "scale": 1, "unit": "L/h", "data_type": "int32", "register_count": 2 },
+                { "key": "ho_transfer_flow", "label": "HO Transfer Flow", "source_type": "holding_register", "address": 40357, "scale": 1, "unit": "L/h", "data_type": "int32", "register_count": 2 },
+                { "key": "ho_engine_inlet_flow", "label": "HO Engine Inlet Flow", "source_type": "holding_register", "address": 40359, "scale": 1, "unit": "L/h", "data_type": "int32", "register_count": 2 },
+                { "key": "ho_engine_return_flow", "label": "HO Engine Return Flow", "source_type": "holding_register", "address": 40361, "scale": 1, "unit": "L/h", "data_type": "int32", "register_count": 2 }
               ]
             },
             {
               "key": "lub_oil_system",
               "title": "LUB OIL SYSTEM",
               "metrics": [
-                { "key": "engine_lo_pressure", "label": "Engine LO Pressure", "source_type": "holding_register", "address": 40260, "scale": 0.1, "precision": 1, "unit": "bar" },
-                { "key": "turbo_lo_pressure", "label": "Turbo LO Pressure", "source_type": "holding_register", "address": 40261, "scale": 0.1, "precision": 1, "unit": "bar" },
-                { "key": "lo_cooler_inlet_temp", "label": "LO Cooler Inlet Temp", "source_type": "holding_register", "address": 40262, "scale": 1, "unit": "C" },
-                { "key": "lo_cooler_outlet_temp", "label": "LO Cooler Outlet Temp", "source_type": "holding_register", "address": 40263, "scale": 1, "unit": "C" }
+                { "key": "engine_lo_pressure", "label": "Engine LO Pressure", "source_type": "holding_register", "address": 40318, "scale": 0.1, "precision": 1, "unit": "bar" },
+                { "key": "turbo_lo_pressure", "label": "Turbo LO Pressure", "source_type": "holding_register", "address": 40319, "scale": 0.1, "precision": 1, "unit": "bar" },
+                { "key": "lo_cooler_inlet_temp", "label": "LO Cooler Inlet Temp", "source_type": "holding_register", "address": 40325, "scale": 1, "unit": "C" },
+                { "key": "lo_cooler_outlet_temp", "label": "LO Cooler Outlet Temp", "source_type": "holding_register", "address": 40326, "scale": 1, "unit": "C" }
               ]
             },
             {
               "key": "oil_mist_detection",
               "title": "OIL MIST DETECTION",
               "metrics": [
-                { "key": "oil_mist_level", "label": "Oil Mist Level", "source_type": "holding_register", "address": 40264, "scale": 1, "unit": "%" },
-                { "key": "omd_analog_signal", "label": "OMD Analog Signal", "source_type": "holding_register", "address": 40265, "scale": 0.1, "precision": 1, "unit": "mA" }
+                { "key": "oil_mist_level", "label": "Oil Mist Level", "source_type": "holding_register", "address": 40302, "scale": 1, "unit": "%" },
+                { "key": "omd_analog_signal", "label": "OMD Analog Signal", "source_type": "holding_register", "address": 40332, "scale": 0.1, "precision": 1, "unit": "mA" }
               ]
             },
             {
               "key": "pms",
               "title": "PMS",
               "metrics": [
-                { "key": "generator_voltage", "label": "Generator Voltage", "source_type": "holding_register", "address": 40266, "scale": 1, "unit": "V" },
-                { "key": "generator_frequency", "label": "Generator Frequency", "source_type": "holding_register", "address": 40267, "scale": 0.01, "precision": 2, "unit": "Hz" },
-                { "key": "generator_power_factor", "label": "Generator Power Factor", "source_type": "holding_register", "address": 40268, "scale": 0.01, "precision": 2, "unit": "" },
-                { "key": "generator_current", "label": "Generator Current", "source_type": "holding_register", "address": 40269, "scale": 1, "unit": "A" }
+                { "key": "generator_voltage", "label": "Generator Voltage", "source_type": "holding_register", "address": 40333, "scale": 1, "unit": "V" },
+                { "key": "generator_frequency", "label": "Generator Frequency", "source_type": "holding_register", "address": 40334, "scale": 0.01, "precision": 2, "unit": "Hz" },
+                { "key": "generator_power_factor", "label": "Generator Power Factor", "source_type": "holding_register", "address": 40335, "scale": 0.01, "precision": 2, "unit": "" },
+                { "key": "generator_current", "label": "Generator Current", "source_type": "holding_register", "address": 40336, "scale": 1, "unit": "A" }
               ]
             },
             {
               "key": "cooling_water_system",
               "title": "COOLING WATER SYSTEM",
               "metrics": [
-                { "key": "jacket_water_pressure", "label": "Jacket Water Pressure", "source_type": "holding_register", "address": 40270, "scale": 0.1, "precision": 1, "unit": "bar" },
-                { "key": "cooler_water_pressure", "label": "Cooler Water Pressure", "source_type": "holding_register", "address": 40271, "scale": 0.1, "precision": 1, "unit": "bar" },
-                { "key": "jacket_water_inlet_temp", "label": "Jacket Water Inlet Temp", "source_type": "holding_register", "address": 40272, "scale": 1, "unit": "C" },
-                { "key": "jacket_water_outlet_temp", "label": "Jacket Water Outlet Temp", "source_type": "holding_register", "address": 40273, "scale": 1, "unit": "C" },
-                { "key": "cooler_water_inlet_temp", "label": "Cooler Water Inlet Temp", "source_type": "holding_register", "address": 40274, "scale": 1, "unit": "C" },
-                { "key": "cooler_water_outlet_temp", "label": "Cooler Water Outlet Temp", "source_type": "holding_register", "address": 40275, "scale": 1, "unit": "C" },
-                { "key": "cw_before_lo_cooler_temp", "label": "CW Before LO Cooler Temp", "source_type": "holding_register", "address": 40276, "scale": 1, "unit": "C" }
+                { "key": "jacket_water_pressure", "label": "Jacket Water Pressure", "source_type": "holding_register", "address": 40316, "scale": 0.1, "precision": 1, "unit": "bar" },
+                { "key": "cooler_water_pressure", "label": "Cooler Water Pressure", "source_type": "holding_register", "address": 40317, "scale": 0.1, "precision": 1, "unit": "bar" },
+                { "key": "jacket_water_inlet_temp", "label": "Jacket Water Inlet Temp", "source_type": "holding_register", "address": 40321, "scale": 1, "unit": "C" },
+                { "key": "jacket_water_outlet_temp", "label": "Jacket Water Outlet Temp", "source_type": "holding_register", "address": 40322, "scale": 1, "unit": "C" },
+                { "key": "cooler_water_inlet_temp", "label": "Cooler Water Inlet Temp", "source_type": "holding_register", "address": 40323, "scale": 1, "unit": "C" },
+                { "key": "cooler_water_outlet_temp", "label": "Cooler Water Outlet Temp", "source_type": "holding_register", "address": 40324, "scale": 1, "unit": "C" },
+                { "key": "cw_before_lo_cooler_temp", "label": "CW Before LO Cooler Temp", "source_type": "holding_register", "address": 40327, "scale": 1, "unit": "C" }
               ]
             }
           ]
@@ -640,7 +637,6 @@
         "de_bearing_temp": { "warning": 95, "alarm": 105, "direction": "high" },
         "nde_bearing_temp": { "warning": 95, "alarm": 105, "direction": "high" },
         "intake_air_pressure": { "warning": 0.35, "alarm": 0.30, "direction": "low" },
-        "air_receiver_pressure": { "warning": 0.35, "alarm": 0.30, "direction": "low" },
         "engine_running_hours": { "warning": 50000, "alarm": 70000, "direction": "high" },
         "engine_power": { "warning": 700, "alarm": 780, "direction": "high" },
         "engine_speed": { "warning": 850, "alarm": 900, "direction": "high" },
@@ -682,67 +678,352 @@
         "cw_before_lo_cooler_temp": { "warning": 40, "alarm": 48, "direction": "high" }
       }
     },
+    "alarm": {
+      "engines": [
+        {
+          "key": "engine_1",
+          "title": "Engine 1",
+          "bits": [
+            { "key": "over_speed", "label": "Over Speed", "source_type": "discrete_input", "address": 10001 },
+            { "key": "engine_start_failure", "label": "Engine Start Failure", "source_type": "discrete_input", "address": 10002 },
+            { "key": "turbo_charger_gas_outlet_temp_switch_2nd", "label": "Turbo-charger gas outlet temp switch (2nd)", "source_type": "discrete_input", "address": 10003 },
+            { "key": "heavy_fault_oil_mist_detector", "label": "Heavy fault of oil mist detector", "source_type": "discrete_input", "address": 10004 },
+            { "key": "lo_press_switch_engine_2nd", "label": "L.O press.switch for engine (2nd)", "source_type": "discrete_input", "address": 10005 },
+            { "key": "jacket_water_thermal_switch_2nd", "label": "Jacket water thermal switch (2nd)", "source_type": "discrete_input", "address": 10006 },
+            { "key": "lo_press_switch_turbo_charger_2nd", "label": "L.O press.switch for turbo-charger (2nd)", "source_type": "discrete_input", "address": 10007 },
+            { "key": "jacket_water_press_switch_2nd", "label": "Jacket water press.switch (2nd)", "source_type": "discrete_input", "address": 10008 },
+            { "key": "dc_control_power_supply_failure", "label": "DC control power supply failure", "source_type": "discrete_input", "address": 10009 },
+            { "key": "gac_abnormal", "label": "GAC Abnormal", "source_type": "discrete_input", "address": 10010 },
+            { "key": "emergency_stop", "label": "Emergency stop", "source_type": "discrete_input", "address": 10011 },
+            { "key": "jacket_water_flow_relay", "label": "Jacket water flow relay", "source_type": "discrete_input", "address": 10012 },
+            { "key": "over_voltage", "label": "Over voltage", "source_type": "discrete_input", "address": 10013 },
+            { "key": "under_voltage", "label": "Under voltage", "source_type": "discrete_input", "address": 10014 },
+            { "key": "gen_differential", "label": "Gen differential", "source_type": "discrete_input", "address": 10015 },
+            { "key": "reverse_power", "label": "Reverse power", "source_type": "discrete_input", "address": 10016 },
+            { "key": "field_failure", "label": "Field failure", "source_type": "discrete_input", "address": 10017 },
+            { "key": "light_fault_oil_mist_detector", "label": "Light fault of oil mist detector", "source_type": "discrete_input", "address": 10018 },
+            { "key": "light_fault_oil_mist_detector_system_failure", "label": "Light fault of oil mist detector system failure", "source_type": "discrete_input", "address": 10019 },
+            { "key": "lo_press_switch_engine_1st", "label": "LO press.switch for engine (1st)", "source_type": "discrete_input", "address": 10020 },
+            { "key": "lo_press_switch_priming", "label": "LO press.switch for priming", "source_type": "discrete_input", "address": 10021 },
+            { "key": "cooler_water_press_switch", "label": "Cooler water press switch", "source_type": "discrete_input", "address": 10022 },
+            { "key": "lo_press_switch_turbo_charger_1st", "label": "L.O. press switch for turbo-charger (1st)", "source_type": "discrete_input", "address": 10023 },
+            { "key": "jacket_water_thermal_switch_1st", "label": "Jacket water thermal switch (1st)", "source_type": "discrete_input", "address": 10024 },
+            { "key": "cooler_water_thermal_switch", "label": "Cooler water thermal switch", "source_type": "discrete_input", "address": 10025 },
+            { "key": "lo_thermal_switch", "label": "L.O. thermal switch", "source_type": "discrete_input", "address": 10026 },
+            { "key": "lo_sump_tank_level_switch", "label": "L.O. sump tank level switch", "source_type": "discrete_input", "address": 10027 },
+            { "key": "jacket_water_press_switch_1st", "label": "Jacket water press switch (1st)", "source_type": "discrete_input", "address": 10028 },
+            { "key": "lo_filter_differential_press_switch", "label": "L.O. filter differential press switch", "source_type": "discrete_input", "address": 10029 },
+            { "key": "tc_lo_filter_differential_press_switch", "label": "T/C L.O filter differential press switch", "source_type": "discrete_input", "address": 10030 },
+            { "key": "fo_leak_tank_level_switch", "label": "F.O leak tank level switch", "source_type": "discrete_input", "address": 10031 },
+            { "key": "cooler_water_flow_relay", "label": "Cooler water flow relay", "source_type": "discrete_input", "address": 10032 },
+            { "key": "cw_expansion_tank_level_switch_1", "label": "Level switch for C.W. expansion tank #1", "source_type": "discrete_input", "address": 10033 },
+            { "key": "cw_expansion_tank_level_switch_2", "label": "Level switch for C.W. expansion tank #2", "source_type": "discrete_input", "address": 10034 },
+            { "key": "jw_expansion_tank_level_switch_1", "label": "Level switch for J.W. expansion tank #1", "source_type": "discrete_input", "address": 10035 },
+            { "key": "jw_expansion_tank_level_switch_2", "label": "Level switch for J.W. expansion tank #2", "source_type": "discrete_input", "address": 10036 },
+            { "key": "do_service_tank_level_high", "label": "Level switch for DO service tank level high", "source_type": "discrete_input", "address": 10037 },
+            { "key": "do_service_tank_level_low", "label": "Level switch for DO service tank level low", "source_type": "discrete_input", "address": 10038 },
+            { "key": "fo_press_switch", "label": "F.O press.switch", "source_type": "discrete_input", "address": 10039 },
+            { "key": "display_failure", "label": "Display failure", "source_type": "discrete_input", "address": 10040 },
+            { "key": "dc100v_source_abnormal", "label": "DC100V source abnormal", "source_type": "discrete_input", "address": 10041 },
+            { "key": "dc24v_source_abnormal", "label": "DC24V source abnormal", "source_type": "discrete_input", "address": 10042 },
+            { "key": "auto_synchro_failure", "label": "Auto synchro failure", "source_type": "discrete_input", "address": 10043 },
+            { "key": "cb_non_close", "label": "CB non-close", "source_type": "discrete_input", "address": 11615 },
+            { "key": "over_speed_mechanical_side", "label": "Over Speed (mechanical side)", "source_type": "discrete_input", "address": 10045 },
+            { "key": "alternator_bearing_thermal_flywheel_side", "label": "Thermal switch for alternator bearing (Fly-wheel side)", "source_type": "discrete_input", "address": 10046 },
+            { "key": "alternator_bearing_thermal_anti_flywheel_side", "label": "Thermal switch for alternator bearing (Anti-Fly-wheel side)", "source_type": "discrete_input", "address": 10047 },
+            { "key": "rated_speed", "label": "RATED SPEED", "source_type": "discrete_input", "address": 10048 },
+            { "key": "low_speed", "label": "LOW SPEED", "source_type": "discrete_input", "address": 10049 },
+            { "key": "starting_solenoid_valve", "label": "STARTING SOLENOID VALVE", "source_type": "discrete_input", "address": 10050 },
+            { "key": "fuel_shut_down_device", "label": "FUEL SHUT DOWN DEVICE", "source_type": "discrete_input", "address": 10051 },
+            { "key": "fuel_control_piston_magnetic_valve", "label": "FUEL CONTROL PISTON MAGNETIC VALVE", "source_type": "discrete_input", "address": 10052 },
+            { "key": "fuel_oil_cut_piston_magnetic_valve", "label": "FUEL OIL CUT PISTON MAGNETIC VALVE", "source_type": "discrete_input", "address": 10053 },
+            { "key": "governor_handle_switch", "label": "GOVERNOR HANDLE SWITCH", "source_type": "discrete_input", "address": 10054 },
+            { "key": "turning_handle_position_switch", "label": "TURNING HANDLE POSITION SWITCH", "source_type": "discrete_input", "address": 10055 },
+            { "key": "turbo_charger_gas_outlet_temp_switch_1st", "label": "TURBO-CHARGER GAS OUTLET TEMP. SWITCH (1st)", "source_type": "discrete_input", "address": 10056 },
+            { "key": "limit_switch_change_over_valve_1", "label": "Limit switch for change over valve #1", "source_type": "discrete_input", "address": 10057 },
+            { "key": "limit_switch_change_over_valve_2", "label": "Limit switch for change over valve #2", "source_type": "discrete_input", "address": 10058 },
+            { "key": "limit_switch_change_over_valve_3", "label": "Limit switch for change over valve #3", "source_type": "discrete_input", "address": 10059 },
+            { "key": "limit_switch_change_over_valve_4", "label": "Limit switch for change over valve #4", "source_type": "discrete_input", "address": 10060 },
+            { "key": "radiator_temp_sensor_1", "label": "TEMP. SENSOR FOR RADIATOR 1", "source_type": "discrete_input", "address": 50040 },
+            { "key": "radiator_temp_sensor_2", "label": "TEMP. SENSOR FOR RADIATOR 2", "source_type": "discrete_input", "address": 50041 },
+            { "key": "radiator_temp_sensor_3", "label": "TEMP. SENSOR FOR RADIATOR 3", "source_type": "discrete_input", "address": 50042 },
+            { "key": "radiator_temp_sensor_4", "label": "TEMP. SENSOR FOR RADIATOR 4", "source_type": "discrete_input", "address": 50043 },
+            { "key": "ready_to_start", "label": "Ready to start", "source_type": "discrete_input", "address": 10068 }
+          ]
+        },
+        {
+          "key": "engine_2",
+          "title": "Engine 2",
+          "bits": [
+            { "key": "over_speed", "label": "Over Speed", "source_type": "discrete_input", "address": 10401 },
+            { "key": "engine_start_failure", "label": "Engine Start Failure", "source_type": "discrete_input", "address": 10402 },
+            { "key": "turbo_charger_gas_outlet_temp_switch_2nd", "label": "Turbo-charger gas outlet temp switch (2nd)", "source_type": "discrete_input", "address": 10403 },
+            { "key": "heavy_fault_oil_mist_detector", "label": "Heavy fault of oil mist detector", "source_type": "discrete_input", "address": 10404 },
+            { "key": "lo_press_switch_engine_2nd", "label": "L.O press.switch for engine (2nd)", "source_type": "discrete_input", "address": 10405 },
+            { "key": "jacket_water_thermal_switch_2nd", "label": "Jacket water thermal switch (2nd)", "source_type": "discrete_input", "address": 10406 },
+            { "key": "lo_press_switch_turbo_charger_2nd", "label": "L.O press.switch for turbo-charger (2nd)", "source_type": "discrete_input", "address": 10407 },
+            { "key": "jacket_water_press_switch_2nd", "label": "Jacket water press.switch (2nd)", "source_type": "discrete_input", "address": 10408 },
+            { "key": "dc_control_power_supply_failure", "label": "DC control power supply failure", "source_type": "discrete_input", "address": 10409 },
+            { "key": "gac_abnormal", "label": "GAC Abnormal", "source_type": "discrete_input", "address": 10410 },
+            { "key": "emergency_stop", "label": "Emergency stop", "source_type": "discrete_input", "address": 10411 },
+            { "key": "jacket_water_flow_relay", "label": "Jacket water flow relay", "source_type": "discrete_input", "address": 10412 },
+            { "key": "over_voltage", "label": "Over voltage", "source_type": "discrete_input", "address": 10413 },
+            { "key": "under_voltage", "label": "Under voltage", "source_type": "discrete_input", "address": 10414 },
+            { "key": "gen_differential", "label": "Gen differential", "source_type": "discrete_input", "address": 10415 },
+            { "key": "reverse_power", "label": "Reverse power", "source_type": "discrete_input", "address": 10416 },
+            { "key": "field_failure", "label": "Field failure", "source_type": "discrete_input", "address": 10417 },
+            { "key": "light_fault_oil_mist_detector", "label": "Light fault of oil mist detector", "source_type": "discrete_input", "address": 10418 },
+            { "key": "light_fault_oil_mist_detector_system_failure", "label": "Light fault of oil mist detector system failure", "source_type": "discrete_input", "address": 10419 },
+            { "key": "lo_press_switch_engine_1st", "label": "LO press.switch for engine (1st)", "source_type": "discrete_input", "address": 10420 },
+            { "key": "lo_press_switch_priming", "label": "LO press.switch for priming", "source_type": "discrete_input", "address": 10421 },
+            { "key": "cooler_water_press_switch", "label": "Cooler water press switch", "source_type": "discrete_input", "address": 10422 },
+            { "key": "lo_press_switch_turbo_charger_1st", "label": "L.O. press switch for turbo-charger (1st)", "source_type": "discrete_input", "address": 10423 },
+            { "key": "jacket_water_thermal_switch_1st", "label": "Jacket water thermal switch (1st)", "source_type": "discrete_input", "address": 10424 },
+            { "key": "cooler_water_thermal_switch", "label": "Cooler water thermal switch", "source_type": "discrete_input", "address": 10425 },
+            { "key": "lo_thermal_switch", "label": "L.O. thermal switch", "source_type": "discrete_input", "address": 10426 },
+            { "key": "lo_sump_tank_level_switch", "label": "L.O. sump tank level switch", "source_type": "discrete_input", "address": 10427 },
+            { "key": "jacket_water_press_switch_1st", "label": "Jacket water press switch (1st)", "source_type": "discrete_input", "address": 10428 },
+            { "key": "lo_filter_differential_press_switch", "label": "L.O. filter differential press switch", "source_type": "discrete_input", "address": 10429 },
+            { "key": "tc_lo_filter_differential_press_switch", "label": "T/C L.O filter differential press switch", "source_type": "discrete_input", "address": 10430 },
+            { "key": "fo_leak_tank_level_switch", "label": "F.O leak tank level switch", "source_type": "discrete_input", "address": 10431 },
+            { "key": "cooler_water_flow_relay", "label": "Cooler water flow relay", "source_type": "discrete_input", "address": 10432 },
+            { "key": "cw_expansion_tank_level_switch_1", "label": "Level switch for C.W. expansion tank #1", "source_type": "discrete_input", "address": 10433 },
+            { "key": "cw_expansion_tank_level_switch_2", "label": "Level switch for C.W. expansion tank #2", "source_type": "discrete_input", "address": 10434 },
+            { "key": "jw_expansion_tank_level_switch_1", "label": "Level switch for J.W. expansion tank #1", "source_type": "discrete_input", "address": 10435 },
+            { "key": "jw_expansion_tank_level_switch_2", "label": "Level switch for J.W. expansion tank #2", "source_type": "discrete_input", "address": 10436 },
+            { "key": "do_service_tank_level_high", "label": "Level switch for DO service tank level high", "source_type": "discrete_input", "address": 10437 },
+            { "key": "do_service_tank_level_low", "label": "Level switch for DO service tank level low", "source_type": "discrete_input", "address": 10438 },
+            { "key": "fo_press_switch", "label": "F.O press.switch", "source_type": "discrete_input", "address": 10439 },
+            { "key": "display_failure", "label": "Display failure", "source_type": "discrete_input", "address": 10440 },
+            { "key": "dc100v_source_abnormal", "label": "DC100V source abnormal", "source_type": "discrete_input", "address": 10441 },
+            { "key": "dc24v_source_abnormal", "label": "DC24V source abnormal", "source_type": "discrete_input", "address": 10442 },
+            { "key": "auto_synchro_failure", "label": "Auto synchro failure", "source_type": "discrete_input", "address": 10443 },
+            { "key": "cb_non_close", "label": "CB non-close", "source_type": "discrete_input", "address": 11616 },
+            { "key": "over_speed_mechanical_side", "label": "Over Speed (mechanical side)", "source_type": "discrete_input", "address": 10445 },
+            { "key": "alternator_bearing_thermal_flywheel_side", "label": "Thermal switch for alternator bearing (Fly-wheel side)", "source_type": "discrete_input", "address": 10446 },
+            { "key": "alternator_bearing_thermal_anti_flywheel_side", "label": "Thermal switch for alternator bearing (Anti-Fly-wheel side)", "source_type": "discrete_input", "address": 10447 },
+            { "key": "rated_speed", "label": "RATED SPEED", "source_type": "discrete_input", "address": 10448 },
+            { "key": "low_speed", "label": "LOW SPEED", "source_type": "discrete_input", "address": 10449 },
+            { "key": "starting_solenoid_valve", "label": "STARTING SOLENOID VALVE", "source_type": "discrete_input", "address": 10450 },
+            { "key": "fuel_shut_down_device", "label": "FUEL SHUT DOWN DEVICE", "source_type": "discrete_input", "address": 10451 },
+            { "key": "fuel_control_piston_magnetic_valve", "label": "FUEL CONTROL PISTON MAGNETIC VALVE", "source_type": "discrete_input", "address": 10452 },
+            { "key": "fuel_oil_cut_piston_magnetic_valve", "label": "FUEL OIL CUT PISTON MAGNETIC VALVE", "source_type": "discrete_input", "address": 10453 },
+            { "key": "governor_handle_switch", "label": "GOVERNOR HANDLE SWITCH", "source_type": "discrete_input", "address": 10454 },
+            { "key": "turning_handle_position_switch", "label": "TURNING HANDLE POSITION SWITCH", "source_type": "discrete_input", "address": 10455 },
+            { "key": "turbo_charger_gas_outlet_temp_switch_1st", "label": "TURBO-CHARGER GAS OUTLET TEMP. SWITCH (1st)", "source_type": "discrete_input", "address": 10456 },
+            { "key": "limit_switch_change_over_valve_1", "label": "Limit switch for change over valve #1", "source_type": "discrete_input", "address": 10457 },
+            { "key": "limit_switch_change_over_valve_2", "label": "Limit switch for change over valve #2", "source_type": "discrete_input", "address": 10458 },
+            { "key": "limit_switch_change_over_valve_3", "label": "Limit switch for change over valve #3", "source_type": "discrete_input", "address": 10459 },
+            { "key": "limit_switch_change_over_valve_4", "label": "Limit switch for change over valve #4", "source_type": "discrete_input", "address": 10460 },
+            { "key": "radiator_temp_sensor_1", "label": "TEMP. SENSOR FOR RADIATOR 1", "source_type": "discrete_input", "address": 50140 },
+            { "key": "radiator_temp_sensor_2", "label": "TEMP. SENSOR FOR RADIATOR 2", "source_type": "discrete_input", "address": 50141 },
+            { "key": "radiator_temp_sensor_3", "label": "TEMP. SENSOR FOR RADIATOR 3", "source_type": "discrete_input", "address": 50142 },
+            { "key": "radiator_temp_sensor_4", "label": "TEMP. SENSOR FOR RADIATOR 4", "source_type": "discrete_input", "address": 50143 },
+            { "key": "ready_to_start", "label": "Ready to start", "source_type": "discrete_input", "address": 10468 }
+          ]
+        },
+        {
+          "key": "engine_3",
+          "title": "Engine 3",
+          "bits": [
+            { "key": "over_speed", "label": "Over Speed", "source_type": "discrete_input", "address": 10801 },
+            { "key": "engine_start_failure", "label": "Engine Start Failure", "source_type": "discrete_input", "address": 10802 },
+            { "key": "turbo_charger_gas_outlet_temp_switch_2nd", "label": "Turbo-charger gas outlet temp switch (2nd)", "source_type": "discrete_input", "address": 10803 },
+            { "key": "heavy_fault_oil_mist_detector", "label": "Heavy fault of oil mist detector", "source_type": "discrete_input", "address": 10804 },
+            { "key": "lo_press_switch_engine_2nd", "label": "L.O press.switch for engine (2nd)", "source_type": "discrete_input", "address": 10805 },
+            { "key": "jacket_water_thermal_switch_2nd", "label": "Jacket water thermal switch (2nd)", "source_type": "discrete_input", "address": 10806 },
+            { "key": "lo_press_switch_turbo_charger_2nd", "label": "L.O press.switch for turbo-charger (2nd)", "source_type": "discrete_input", "address": 10807 },
+            { "key": "jacket_water_press_switch_2nd", "label": "Jacket water press.switch (2nd)", "source_type": "discrete_input", "address": 10808 },
+            { "key": "dc_control_power_supply_failure", "label": "DC control power supply failure", "source_type": "discrete_input", "address": 10809 },
+            { "key": "gac_abnormal", "label": "GAC Abnormal", "source_type": "discrete_input", "address": 10810 },
+            { "key": "emergency_stop", "label": "Emergency stop", "source_type": "discrete_input", "address": 10811 },
+            { "key": "jacket_water_flow_relay", "label": "Jacket water flow relay", "source_type": "discrete_input", "address": 10812 },
+            { "key": "over_voltage", "label": "Over voltage", "source_type": "discrete_input", "address": 10813 },
+            { "key": "under_voltage", "label": "Under voltage", "source_type": "discrete_input", "address": 10814 },
+            { "key": "gen_differential", "label": "Gen differential", "source_type": "discrete_input", "address": 10815 },
+            { "key": "reverse_power", "label": "Reverse power", "source_type": "discrete_input", "address": 10816 },
+            { "key": "field_failure", "label": "Field failure", "source_type": "discrete_input", "address": 10817 },
+            { "key": "light_fault_oil_mist_detector", "label": "Light fault of oil mist detector", "source_type": "discrete_input", "address": 10818 },
+            { "key": "light_fault_oil_mist_detector_system_failure", "label": "Light fault of oil mist detector system failure", "source_type": "discrete_input", "address": 10819 },
+            { "key": "lo_press_switch_engine_1st", "label": "LO press.switch for engine (1st)", "source_type": "discrete_input", "address": 10820 },
+            { "key": "lo_press_switch_priming", "label": "LO press.switch for priming", "source_type": "discrete_input", "address": 10821 },
+            { "key": "cooler_water_press_switch", "label": "Cooler water press switch", "source_type": "discrete_input", "address": 10822 },
+            { "key": "lo_press_switch_turbo_charger_1st", "label": "L.O. press switch for turbo-charger (1st)", "source_type": "discrete_input", "address": 10823 },
+            { "key": "jacket_water_thermal_switch_1st", "label": "Jacket water thermal switch (1st)", "source_type": "discrete_input", "address": 10824 },
+            { "key": "cooler_water_thermal_switch", "label": "Cooler water thermal switch", "source_type": "discrete_input", "address": 10825 },
+            { "key": "lo_thermal_switch", "label": "L.O. thermal switch", "source_type": "discrete_input", "address": 10826 },
+            { "key": "lo_sump_tank_level_switch", "label": "L.O. sump tank level switch", "source_type": "discrete_input", "address": 10827 },
+            { "key": "jacket_water_press_switch_1st", "label": "Jacket water press switch (1st)", "source_type": "discrete_input", "address": 10828 },
+            { "key": "lo_filter_differential_press_switch", "label": "L.O. filter differential press switch", "source_type": "discrete_input", "address": 10829 },
+            { "key": "tc_lo_filter_differential_press_switch", "label": "T/C L.O filter differential press switch", "source_type": "discrete_input", "address": 10830 },
+            { "key": "fo_leak_tank_level_switch", "label": "F.O leak tank level switch", "source_type": "discrete_input", "address": 10831 },
+            { "key": "cooler_water_flow_relay", "label": "Cooler water flow relay", "source_type": "discrete_input", "address": 10832 },
+            { "key": "cw_expansion_tank_level_switch_1", "label": "Level switch for C.W. expansion tank #1", "source_type": "discrete_input", "address": 10833 },
+            { "key": "cw_expansion_tank_level_switch_2", "label": "Level switch for C.W. expansion tank #2", "source_type": "discrete_input", "address": 10834 },
+            { "key": "jw_expansion_tank_level_switch_1", "label": "Level switch for J.W. expansion tank #1", "source_type": "discrete_input", "address": 10835 },
+            { "key": "jw_expansion_tank_level_switch_2", "label": "Level switch for J.W. expansion tank #2", "source_type": "discrete_input", "address": 10836 },
+            { "key": "do_service_tank_level_high", "label": "Level switch for DO service tank level high", "source_type": "discrete_input", "address": 10837 },
+            { "key": "do_service_tank_level_low", "label": "Level switch for DO service tank level low", "source_type": "discrete_input", "address": 10838 },
+            { "key": "fo_press_switch", "label": "F.O press.switch", "source_type": "discrete_input", "address": 10839 },
+            { "key": "display_failure", "label": "Display failure", "source_type": "discrete_input", "address": 10840 },
+            { "key": "dc100v_source_abnormal", "label": "DC100V source abnormal", "source_type": "discrete_input", "address": 10841 },
+            { "key": "dc24v_source_abnormal", "label": "DC24V source abnormal", "source_type": "discrete_input", "address": 10842 },
+            { "key": "auto_synchro_failure", "label": "Auto synchro failure", "source_type": "discrete_input", "address": 10843 },
+            { "key": "cb_non_close", "label": "CB non-close", "source_type": "discrete_input", "address": 11617 },
+            { "key": "over_speed_mechanical_side", "label": "Over Speed (mechanical side)", "source_type": "discrete_input", "address": 10845 },
+            { "key": "alternator_bearing_thermal_flywheel_side", "label": "Thermal switch for alternator bearing (Fly-wheel side)", "source_type": "discrete_input", "address": 10846 },
+            { "key": "alternator_bearing_thermal_anti_flywheel_side", "label": "Thermal switch for alternator bearing (Anti-Fly-wheel side)", "source_type": "discrete_input", "address": 10847 },
+            { "key": "rated_speed", "label": "RATED SPEED", "source_type": "discrete_input", "address": 10848 },
+            { "key": "low_speed", "label": "LOW SPEED", "source_type": "discrete_input", "address": 10849 },
+            { "key": "starting_solenoid_valve", "label": "STARTING SOLENOID VALVE", "source_type": "discrete_input", "address": 10850 },
+            { "key": "fuel_shut_down_device", "label": "FUEL SHUT DOWN DEVICE", "source_type": "discrete_input", "address": 10851 },
+            { "key": "fuel_control_piston_magnetic_valve", "label": "FUEL CONTROL PISTON MAGNETIC VALVE", "source_type": "discrete_input", "address": 10852 },
+            { "key": "fuel_oil_cut_piston_magnetic_valve", "label": "FUEL OIL CUT PISTON MAGNETIC VALVE", "source_type": "discrete_input", "address": 10853 },
+            { "key": "governor_handle_switch", "label": "GOVERNOR HANDLE SWITCH", "source_type": "discrete_input", "address": 10854 },
+            { "key": "turning_handle_position_switch", "label": "TURNING HANDLE POSITION SWITCH", "source_type": "discrete_input", "address": 10855 },
+            { "key": "turbo_charger_gas_outlet_temp_switch_1st", "label": "TURBO-CHARGER GAS OUTLET TEMP. SWITCH (1st)", "source_type": "discrete_input", "address": 10856 },
+            { "key": "limit_switch_change_over_valve_1", "label": "Limit switch for change over valve #1", "source_type": "discrete_input", "address": 10857 },
+            { "key": "limit_switch_change_over_valve_2", "label": "Limit switch for change over valve #2", "source_type": "discrete_input", "address": 10858 },
+            { "key": "limit_switch_change_over_valve_3", "label": "Limit switch for change over valve #3", "source_type": "discrete_input", "address": 10859 },
+            { "key": "limit_switch_change_over_valve_4", "label": "Limit switch for change over valve #4", "source_type": "discrete_input", "address": 10860 },
+            { "key": "radiator_temp_sensor_1", "label": "TEMP. SENSOR FOR RADIATOR 1", "source_type": "discrete_input", "address": 50240 },
+            { "key": "radiator_temp_sensor_2", "label": "TEMP. SENSOR FOR RADIATOR 2", "source_type": "discrete_input", "address": 50241 },
+            { "key": "radiator_temp_sensor_3", "label": "TEMP. SENSOR FOR RADIATOR 3", "source_type": "discrete_input", "address": 50242 },
+            { "key": "radiator_temp_sensor_4", "label": "TEMP. SENSOR FOR RADIATOR 4", "source_type": "discrete_input", "address": 50243 },
+            { "key": "ready_to_start", "label": "Ready to start", "source_type": "discrete_input", "address": 10868 }
+          ]
+        },
+        {
+          "key": "engine_4",
+          "title": "Engine 4",
+          "bits": [
+            { "key": "over_speed", "label": "Over Speed", "source_type": "discrete_input", "address": 11201 },
+            { "key": "engine_start_failure", "label": "Engine Start Failure", "source_type": "discrete_input", "address": 11202 },
+            { "key": "turbo_charger_gas_outlet_temp_switch_2nd", "label": "Turbo-charger gas outlet temp switch (2nd)", "source_type": "discrete_input", "address": 11203 },
+            { "key": "heavy_fault_oil_mist_detector", "label": "Heavy fault of oil mist detector", "source_type": "discrete_input", "address": 11204 },
+            { "key": "lo_press_switch_engine_2nd", "label": "L.O press.switch for engine (2nd)", "source_type": "discrete_input", "address": 11205 },
+            { "key": "jacket_water_thermal_switch_2nd", "label": "Jacket water thermal switch (2nd)", "source_type": "discrete_input", "address": 11206 },
+            { "key": "lo_press_switch_turbo_charger_2nd", "label": "L.O press.switch for turbo-charger (2nd)", "source_type": "discrete_input", "address": 11207 },
+            { "key": "jacket_water_press_switch_2nd", "label": "Jacket water press.switch (2nd)", "source_type": "discrete_input", "address": 11208 },
+            { "key": "dc_control_power_supply_failure", "label": "DC control power supply failure", "source_type": "discrete_input", "address": 11209 },
+            { "key": "gac_abnormal", "label": "GAC Abnormal", "source_type": "discrete_input", "address": 11210 },
+            { "key": "emergency_stop", "label": "Emergency stop", "source_type": "discrete_input", "address": 11211 },
+            { "key": "jacket_water_flow_relay", "label": "Jacket water flow relay", "source_type": "discrete_input", "address": 11212 },
+            { "key": "over_voltage", "label": "Over voltage", "source_type": "discrete_input", "address": 11213 },
+            { "key": "under_voltage", "label": "Under voltage", "source_type": "discrete_input", "address": 11214 },
+            { "key": "gen_differential", "label": "Gen differential", "source_type": "discrete_input", "address": 11215 },
+            { "key": "reverse_power", "label": "Reverse power", "source_type": "discrete_input", "address": 11216 },
+            { "key": "field_failure", "label": "Field failure", "source_type": "discrete_input", "address": 11217 },
+            { "key": "light_fault_oil_mist_detector", "label": "Light fault of oil mist detector", "source_type": "discrete_input", "address": 11218 },
+            { "key": "light_fault_oil_mist_detector_system_failure", "label": "Light fault of oil mist detector system failure", "source_type": "discrete_input", "address": 11219 },
+            { "key": "lo_press_switch_engine_1st", "label": "LO press.switch for engine (1st)", "source_type": "discrete_input", "address": 11220 },
+            { "key": "lo_press_switch_priming", "label": "LO press.switch for priming", "source_type": "discrete_input", "address": 11221 },
+            { "key": "cooler_water_press_switch", "label": "Cooler water press switch", "source_type": "discrete_input", "address": 11222 },
+            { "key": "lo_press_switch_turbo_charger_1st", "label": "L.O. press switch for turbo-charger (1st)", "source_type": "discrete_input", "address": 11223 },
+            { "key": "jacket_water_thermal_switch_1st", "label": "Jacket water thermal switch (1st)", "source_type": "discrete_input", "address": 11224 },
+            { "key": "cooler_water_thermal_switch", "label": "Cooler water thermal switch", "source_type": "discrete_input", "address": 11225 },
+            { "key": "lo_thermal_switch", "label": "L.O. thermal switch", "source_type": "discrete_input", "address": 11226 },
+            { "key": "lo_sump_tank_level_switch", "label": "L.O. sump tank level switch", "source_type": "discrete_input", "address": 11227 },
+            { "key": "jacket_water_press_switch_1st", "label": "Jacket water press switch (1st)", "source_type": "discrete_input", "address": 11228 },
+            { "key": "lo_filter_differential_press_switch", "label": "L.O. filter differential press switch", "source_type": "discrete_input", "address": 11229 },
+            { "key": "tc_lo_filter_differential_press_switch", "label": "T/C L.O filter differential press switch", "source_type": "discrete_input", "address": 11230 },
+            { "key": "fo_leak_tank_level_switch", "label": "F.O leak tank level switch", "source_type": "discrete_input", "address": 11231 },
+            { "key": "cooler_water_flow_relay", "label": "Cooler water flow relay", "source_type": "discrete_input", "address": 11232 },
+            { "key": "cw_expansion_tank_level_switch_1", "label": "Level switch for C.W. expansion tank #1", "source_type": "discrete_input", "address": 11233 },
+            { "key": "cw_expansion_tank_level_switch_2", "label": "Level switch for C.W. expansion tank #2", "source_type": "discrete_input", "address": 11234 },
+            { "key": "jw_expansion_tank_level_switch_1", "label": "Level switch for J.W. expansion tank #1", "source_type": "discrete_input", "address": 11235 },
+            { "key": "jw_expansion_tank_level_switch_2", "label": "Level switch for J.W. expansion tank #2", "source_type": "discrete_input", "address": 11236 },
+            { "key": "do_service_tank_level_high", "label": "Level switch for DO service tank level high", "source_type": "discrete_input", "address": 11237 },
+            { "key": "do_service_tank_level_low", "label": "Level switch for DO service tank level low", "source_type": "discrete_input", "address": 11238 },
+            { "key": "fo_press_switch", "label": "F.O press.switch", "source_type": "discrete_input", "address": 11239 },
+            { "key": "display_failure", "label": "Display failure", "source_type": "discrete_input", "address": 11240 },
+            { "key": "dc100v_source_abnormal", "label": "DC100V source abnormal", "source_type": "discrete_input", "address": 11241 },
+            { "key": "dc24v_source_abnormal", "label": "DC24V source abnormal", "source_type": "discrete_input", "address": 11242 },
+            { "key": "auto_synchro_failure", "label": "Auto synchro failure", "source_type": "discrete_input", "address": 11243 },
+            { "key": "cb_non_close", "label": "CB non-close", "source_type": "discrete_input", "address": 11618 },
+            { "key": "over_speed_mechanical_side", "label": "Over Speed (mechanical side)", "source_type": "discrete_input", "address": 11245 },
+            { "key": "alternator_bearing_thermal_flywheel_side", "label": "Thermal switch for alternator bearing (Fly-wheel side)", "source_type": "discrete_input", "address": 11246 },
+            { "key": "alternator_bearing_thermal_anti_flywheel_side", "label": "Thermal switch for alternator bearing (Anti-Fly-wheel side)", "source_type": "discrete_input", "address": 11247 },
+            { "key": "rated_speed", "label": "RATED SPEED", "source_type": "discrete_input", "address": 11248 },
+            { "key": "low_speed", "label": "LOW SPEED", "source_type": "discrete_input", "address": 11249 },
+            { "key": "starting_solenoid_valve", "label": "STARTING SOLENOID VALVE", "source_type": "discrete_input", "address": 11250 },
+            { "key": "fuel_shut_down_device", "label": "FUEL SHUT DOWN DEVICE", "source_type": "discrete_input", "address": 11251 },
+            { "key": "fuel_control_piston_magnetic_valve", "label": "FUEL CONTROL PISTON MAGNETIC VALVE", "source_type": "discrete_input", "address": 11252 },
+            { "key": "fuel_oil_cut_piston_magnetic_valve", "label": "FUEL OIL CUT PISTON MAGNETIC VALVE", "source_type": "discrete_input", "address": 11253 },
+            { "key": "governor_handle_switch", "label": "GOVERNOR HANDLE SWITCH", "source_type": "discrete_input", "address": 11254 },
+            { "key": "turning_handle_position_switch", "label": "TURNING HANDLE POSITION SWITCH", "source_type": "discrete_input", "address": 11255 },
+            { "key": "turbo_charger_gas_outlet_temp_switch_1st", "label": "TURBO-CHARGER GAS OUTLET TEMP. SWITCH (1st)", "source_type": "discrete_input", "address": 11256 },
+            { "key": "limit_switch_change_over_valve_1", "label": "Limit switch for change over valve #1", "source_type": "discrete_input", "address": 11257 },
+            { "key": "limit_switch_change_over_valve_2", "label": "Limit switch for change over valve #2", "source_type": "discrete_input", "address": 11258 },
+            { "key": "limit_switch_change_over_valve_3", "label": "Limit switch for change over valve #3", "source_type": "discrete_input", "address": 11259 },
+            { "key": "limit_switch_change_over_valve_4", "label": "Limit switch for change over valve #4", "source_type": "discrete_input", "address": 11260 },
+            { "key": "radiator_temp_sensor_1", "label": "TEMP. SENSOR FOR RADIATOR 1", "source_type": "discrete_input", "address": 50340 },
+            { "key": "radiator_temp_sensor_2", "label": "TEMP. SENSOR FOR RADIATOR 2", "source_type": "discrete_input", "address": 50341 },
+            { "key": "radiator_temp_sensor_3", "label": "TEMP. SENSOR FOR RADIATOR 3", "source_type": "discrete_input", "address": 50342 },
+            { "key": "radiator_temp_sensor_4", "label": "TEMP. SENSOR FOR RADIATOR 4", "source_type": "discrete_input", "address": 50343 },
+            { "key": "ready_to_start", "label": "Ready to start", "source_type": "discrete_input", "address": 11268 }
+          ]
+        }
+      ]
+    },
     "pid": {
       "flows": [
-        { "key": "D.O Transfer Flow", "name": "D.O Transfer Flow", "source_type": "holding_register", "address": 40001, "scale": 1, "unit": "L/H" },
-        { "key": "H.O Transfer Flow", "name": "H.O Transfer Flow", "source_type": "holding_register", "address": 40002, "scale": 1, "unit": "L/H" },
-        { "key": "D.O Inlet Flow DG#1", "name": "D.O Inlet Flow DG#1", "source_type": "holding_register", "address": 40003, "scale": 1, "unit": "L/H" },
-        { "key": "H.O Inlet Flow DG#1", "name": "H.O Inlet Flow DG#1", "source_type": "holding_register", "address": 40004, "scale": 1, "unit": "L/H" },
-        { "key": "D.O Inlet Flow DG#2", "name": "D.O Inlet Flow DG#2", "source_type": "holding_register", "address": 40005, "scale": 1, "unit": "L/H" },
-        { "key": "H.O Inlet Flow DG#2", "name": "H.O Inlet Flow DG#2", "source_type": "holding_register", "address": 40006, "scale": 1, "unit": "L/H" },
-        { "key": "D.O Inlet Flow DG#3", "name": "D.O Inlet Flow DG#3", "source_type": "holding_register", "address": 40007, "scale": 1, "unit": "L/H" },
-        { "key": "H.O Inlet Flow DG#3", "name": "H.O Inlet Flow DG#3", "source_type": "holding_register", "address": 40008, "scale": 1, "unit": "L/H" },
-        { "key": "D.O Inlet Flow DG#4", "name": "D.O Inlet Flow DG#4", "source_type": "holding_register", "address": 40009, "scale": 1, "unit": "L/H" },
-        { "key": "H.O Inlet Flow DG#4", "name": "H.O Inlet Flow DG#4", "source_type": "holding_register", "address": 40010, "scale": 1, "unit": "L/H" },
-        { "key": "D.O Outlet Flow DG#1", "name": "D.O Outlet Flow DG#1", "source_type": "holding_register", "address": 40011, "scale": 1, "unit": "L/H" },
-        { "key": "H.O Outlet Flow DG#1", "name": "H.O Outlet Flow DG#1", "source_type": "holding_register", "address": 40012, "scale": 1, "unit": "L/H" },
-        { "key": "D.O Outlet Flow DG#2", "name": "D.O Outlet Flow DG#2", "source_type": "holding_register", "address": 40013, "scale": 1, "unit": "L/H" },
-        { "key": "H.O Outlet Flow DG#2", "name": "H.O Outlet Flow DG#2", "source_type": "holding_register", "address": 40014, "scale": 1, "unit": "L/H" },
-        { "key": "D.O Outlet Flow DG#3", "name": "D.O Outlet Flow DG#3", "source_type": "holding_register", "address": 40015, "scale": 1, "unit": "L/H" },
-        { "key": "H.O Outlet Flow DG#3", "name": "H.O Outlet Flow DG#3", "source_type": "holding_register", "address": 40016, "scale": 1, "unit": "L/H" },
-        { "key": "D.O Outlet Flow DG#4", "name": "D.O Outlet Flow DG#4", "source_type": "holding_register", "address": 40017, "scale": 1, "unit": "L/H" },
-        { "key": "H.O Outlet Flow DG#4", "name": "H.O Outlet Flow DG#4", "source_type": "holding_register", "address": 40018, "scale": 1, "unit": "L/H" }
+        { "key": "D.O Transfer Flow", "name": "D.O Transfer Flow", "source_type": "holding_register", "address": 40051, "scale": 1, "unit": "L/H", "data_type": "int32", "register_count": 2 },
+        { "key": "H.O Transfer Flow", "name": "H.O Transfer Flow", "source_type": "holding_register", "address": 40057, "scale": 1, "unit": "L/H", "data_type": "int32", "register_count": 2 },
+        { "key": "D.O Inlet Flow DG#1", "name": "D.O Inlet Flow DG#1", "source_type": "holding_register", "address": 40053, "scale": 1, "unit": "L/H", "data_type": "int32", "register_count": 2 },
+        { "key": "H.O Inlet Flow DG#1", "name": "H.O Inlet Flow DG#1", "source_type": "holding_register", "address": 40059, "scale": 1, "unit": "L/H", "data_type": "int32", "register_count": 2 },
+        { "key": "D.O Inlet Flow DG#2", "name": "D.O Inlet Flow DG#2", "source_type": "holding_register", "address": 40153, "scale": 1, "unit": "L/H", "data_type": "int32", "register_count": 2 },
+        { "key": "H.O Inlet Flow DG#2", "name": "H.O Inlet Flow DG#2", "source_type": "holding_register", "address": 40159, "scale": 1, "unit": "L/H", "data_type": "int32", "register_count": 2 },
+        { "key": "D.O Inlet Flow DG#3", "name": "D.O Inlet Flow DG#3", "source_type": "holding_register", "address": 40253, "scale": 1, "unit": "L/H", "data_type": "int32", "register_count": 2 },
+        { "key": "H.O Inlet Flow DG#3", "name": "H.O Inlet Flow DG#3", "source_type": "holding_register", "address": 40259, "scale": 1, "unit": "L/H", "data_type": "int32", "register_count": 2 },
+        { "key": "D.O Inlet Flow DG#4", "name": "D.O Inlet Flow DG#4", "source_type": "holding_register", "address": 40353, "scale": 1, "unit": "L/H", "data_type": "int32", "register_count": 2 },
+        { "key": "H.O Inlet Flow DG#4", "name": "H.O Inlet Flow DG#4", "source_type": "holding_register", "address": 40359, "scale": 1, "unit": "L/H", "data_type": "int32", "register_count": 2 },
+        { "key": "D.O Outlet Flow DG#1", "name": "D.O Outlet Flow DG#1", "source_type": "holding_register", "address": 40055, "scale": 1, "unit": "L/H", "data_type": "int32", "register_count": 2 },
+        { "key": "H.O Outlet Flow DG#1", "name": "H.O Outlet Flow DG#1", "source_type": "holding_register", "address": 40061, "scale": 1, "unit": "L/H", "data_type": "int32", "register_count": 2 },
+        { "key": "D.O Outlet Flow DG#2", "name": "D.O Outlet Flow DG#2", "source_type": "holding_register", "address": 40155, "scale": 1, "unit": "L/H", "data_type": "int32", "register_count": 2 },
+        { "key": "H.O Outlet Flow DG#2", "name": "H.O Outlet Flow DG#2", "source_type": "holding_register", "address": 40161, "scale": 1, "unit": "L/H", "data_type": "int32", "register_count": 2 },
+        { "key": "D.O Outlet Flow DG#3", "name": "D.O Outlet Flow DG#3", "source_type": "holding_register", "address": 40255, "scale": 1, "unit": "L/H", "data_type": "int32", "register_count": 2 },
+        { "key": "H.O Outlet Flow DG#3", "name": "H.O Outlet Flow DG#3", "source_type": "holding_register", "address": 40261, "scale": 1, "unit": "L/H", "data_type": "int32", "register_count": 2 },
+        { "key": "D.O Outlet Flow DG#4", "name": "D.O Outlet Flow DG#4", "source_type": "holding_register", "address": 40355, "scale": 1, "unit": "L/H", "data_type": "int32", "register_count": 2 },
+        { "key": "H.O Outlet Flow DG#4", "name": "H.O Outlet Flow DG#4", "source_type": "holding_register", "address": 40361, "scale": 1, "unit": "L/H", "data_type": "int32", "register_count": 2 }
       ],
       "digitals": [
-        { "key": "pump_1", "label": "pump 1", "source_type": "discrete_input", "address": 10001 },
-        { "key": "pump_2", "label": "pump 2", "source_type": "discrete_input", "address": 10002 },
-        { "key": "pump_3", "label": "pump 3", "source_type": "discrete_input", "address": 10003 },
-        { "key": "pump_4", "label": "pump 4", "source_type": "discrete_input", "address": 10004 },
-        { "key": "pump_5", "label": "pump 5", "source_type": "discrete_input", "address": 10005 },
-        { "key": "pump_6", "label": "pump 6", "source_type": "discrete_input", "address": 10006 },
-        { "key": "pump_7", "label": "pump 7", "source_type": "discrete_input", "address": 10007 },
-        { "key": "pump_8", "label": "pump 8", "source_type": "discrete_input", "address": 10008 },
-        { "key": "pump_9", "label": "pump 9", "source_type": "discrete_input", "address": 10009 },
-        { "key": "pump_10", "label": "pump 10", "source_type": "discrete_input", "address": 10010 },
-        { "key": "pump_11", "label": "pump 11", "source_type": "discrete_input", "address": 10011 },
-        { "key": "pump_12", "label": "pump 12", "source_type": "discrete_input", "address": 10012 },
-        { "key": "pump_13", "label": "pump 13", "source_type": "discrete_input", "address": 10038 },
-        { "key": "pump_14", "label": "pump 14", "source_type": "discrete_input", "address": 10039 },
-        { "key": "lc_do_service_tank", "label": "LC_D.O.service.tank", "source_type": "discrete_input", "address": 10013 },
-        { "key": "lc_ho_settling_tank", "label": "LC_H.O.settling.tank", "source_type": "discrete_input", "address": 10014 },
-        { "key": "lh_do_service_tank", "label": "LH_D.O.service.tank", "source_type": "discrete_input", "address": 10015 },
-        { "key": "lh_fo_drain_tank", "label": "LH_F.O. drain tank", "source_type": "discrete_input", "address": 10016 },
-        { "key": "lh_ho_settling_tank", "label": "LH_H.O.settling.tank", "source_type": "discrete_input", "address": 10017 },
-        { "key": "ll_do_service_tank", "label": "LL_D.O.service.tank", "source_type": "discrete_input", "address": 10018 },
-        { "key": "ll_fo_drain_tank", "label": "LL_F.O. drain tank", "source_type": "discrete_input", "address": 10019 },
-        { "key": "ll_ho_service_tank", "label": "LL_H.O.service.tank", "source_type": "discrete_input", "address": 10020 },
-        { "key": "ll_ho_settling_tank", "label": "LL_H.O.settling.tank", "source_type": "discrete_input", "address": 10021 },
-        { "key": "ls_sludge_tank", "label": "LS_Sludge.tank", "source_type": "discrete_input", "address": 10022 },
-        { "key": "ts_do_service_tank", "label": "TS_D.O.service.tank", "source_type": "discrete_input", "address": 10023 },
-        { "key": "ts_fo_drain_tank", "label": "TS_F.O. drain tank", "source_type": "discrete_input", "address": 10024 },
-        { "key": "ts_ho_purifier_no1", "label": "TS_H.O.purifier.No1", "source_type": "discrete_input", "address": 10025 },
-        { "key": "ts_ho_purifier_no2", "label": "TS_H.O.purifier.No2", "source_type": "discrete_input", "address": 10026 },
-        { "key": "ts_ho_purifier_no3", "label": "TS_H.O.purifier.No3", "source_type": "discrete_input", "address": 10027 },
-        { "key": "ts_ho_settling_tank", "label": "TS_H.O.settling.tank", "source_type": "discrete_input", "address": 10028 },
-        { "key": "ts1_ho_service_tank", "label": "TS1_H.O.service.tank", "source_type": "discrete_input", "address": 10029 },
-        { "key": "ts2_ho_service_tank", "label": "TS2_H.O.service.tank", "source_type": "discrete_input", "address": 10030 },
-        { "key": "tsh_do_service_tank", "label": "TSH_D.O.service.tank", "source_type": "discrete_input", "address": 10031 },
-        { "key": "tsh_fo_drain_tank", "label": "TSH_F.O. drain tank", "source_type": "discrete_input", "address": 10032 },
-        { "key": "tsh_ho_service_tank", "label": "TSH_H.O.service.tank", "source_type": "discrete_input", "address": 10033 },
-        { "key": "tsh_ho_settling_tank", "label": "TSH_H.O.settling.tank", "source_type": "discrete_input", "address": 10034 },
-        { "key": "viscosity_controller", "label": "Viscosity-Controller", "source_type": "discrete_input", "address": 10035 },
-        { "key": "do_line", "label": "DO-line", "source_type": "discrete_input", "address": 10036 },
-        { "key": "ho_line", "label": "HO-line", "source_type": "discrete_input", "address": 10037 }
+        { "key": "no_1_do_transfer_pump", "label": "pump 1", "source_type": "discrete_input", "address": 11646 },
+        { "key": "no_2_do_transfer_pump", "label": "pump 2", "source_type": "discrete_input", "address": 11651 },
+        { "key": "no_1_do_feed_pump", "label": "pump 3", "source_type": "discrete_input", "address": 11656 },
+        { "key": "no_2_do_feed_pump", "label": "pump 4", "source_type": "discrete_input", "address": 11661 },
+        { "key": "no_1_ho_transfer_pump", "label": "pump 5", "source_type": "discrete_input", "address": 11666 },
+        { "key": "no_2_ho_transfer_pump", "label": "pump 6", "source_type": "discrete_input", "address": 11671 },
+        { "key": "no_1_ho_pressure_pump", "label": "pump 7", "source_type": "discrete_input", "address": 11676 },
+        { "key": "no_2_ho_pressure_pump", "label": "pump 8", "source_type": "discrete_input", "address": 11681 },
+        { "key": "no_1_ho_feed_pump", "label": "pump 9", "source_type": "discrete_input", "address": 11686 },
+        { "key": "no_2_ho_feed_pump", "label": "pump 10", "source_type": "discrete_input", "address": 11691 },
+        { "key": "no_1_fo_drain_pump", "label": "pump 11", "source_type": "discrete_input", "address": 11696 },
+        { "key": "no_2_fo_drain_pump", "label": "pump 12", "source_type": "discrete_input", "address": 11701 },
+        { "key": "do_unloading_pump", "label": "pump 13", "source_type": "discrete_input", "address": 11762 },
+        { "key": "ho_unloading_pump", "label": "pump 14", "source_type": "discrete_input", "address": 11764 },
+        { "key": "do_service_tank_level_control", "label": "LC_D.O.service.tank", "source_type": "discrete_input", "address": 11607 },
+        { "key": "ho_settling_tank_level_control", "label": "LC_H.O.settling.tank", "source_type": "discrete_input", "address": 11610 },
+        { "key": "do_service_tank_level_high", "label": "LH_D.O.service.tank", "source_type": "discrete_input", "address": 10037 },
+        { "key": "fo_drain_tank_level_status", "label": "LH_F.O. drain tank", "source_type": "discrete_input", "address": 11613 },
+        { "key": "ho_settling_tank_level_high", "label": "LH_H.O.settling.tank", "source_type": "discrete_input", "address": 11608 },
+        { "key": "do_service_tank_level_low", "label": "LL_D.O.service.tank", "source_type": "discrete_input", "address": 10038 },
+        { "key": "fo_drain_tank_level_control", "label": "LL_F.O. drain tank", "source_type": "discrete_input", "address": 11612 },
+        { "key": "ho_service_tank_level_low", "label": "LL_H.O.service.tank", "source_type": "discrete_input", "address": 11611 },
+        { "key": "ho_settling_tank_level_low", "label": "LL_H.O.settling.tank", "source_type": "discrete_input", "address": 11609 },
+        { "key": "sludge_tank_level_switch", "label": "LS_Sludge.tank", "source_type": "discrete_input", "address": 11635 },
+        { "key": "ho_service_tank_heater_switch", "label": "TS_D.O.service.tank", "source_type": "discrete_input", "address": 11623 },
+        { "key": "drain_tank_thermostat_switch", "label": "TS_F.O. drain tank", "source_type": "discrete_input", "address": 11630 },
+        { "key": "ho_purifier_heater_no_1", "label": "TS_H.O.purifier.No1", "source_type": "discrete_input", "address": 11776 },
+        { "key": "ho_purifier_heater_no_2", "label": "TS_H.O.purifier.No2", "source_type": "discrete_input", "address": 11777 },
+        { "key": "ho_purifier_abnormal", "label": "TS_H.O.purifier.No3", "source_type": "discrete_input", "address": 11633 },
+        { "key": "ho_settling_tank_thermostat_sensor", "label": "TS_H.O.settling.tank", "source_type": "discrete_input", "address": 11621 },
+        { "key": "ho_service_tank_heater_no_1", "label": "TS1_H.O.service.tank", "source_type": "discrete_input", "address": 11782 },
+        { "key": "ho_service_tank_heater_no_2", "label": "TS2_H.O.service.tank", "source_type": "discrete_input", "address": 11787 },
+        { "key": "ho_service_tank_heater_interlock", "label": "TSH_D.O.service.tank", "source_type": "discrete_input", "address": 11625 },
+        { "key": "drain_tank_heater_switch", "label": "TSH_F.O. drain tank", "source_type": "discrete_input", "address": 11631 },
+        { "key": "ho_service_tank_upper_switch", "label": "TSH_H.O.service.tank", "source_type": "discrete_input", "address": 11624 },
+        { "key": "ho_settling_tank_heater_sensor", "label": "TSH_H.O.settling.tank", "source_type": "discrete_input", "address": 11622 }
       ]
     }
   }
