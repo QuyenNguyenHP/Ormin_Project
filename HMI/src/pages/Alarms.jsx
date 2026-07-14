@@ -67,10 +67,6 @@ const FALLBACK_ALARM_LABELS = [
   "Limit switch for change over valve #2",
   "Limit switch for change over valve #3",
   "Limit switch for change over valve #4",
-  "TEMP. SENSOR FOR RADIATOR 1",
-  "TEMP. SENSOR FOR RADIATOR 2",
-  "TEMP. SENSOR FOR RADIATOR 3",
-  "TEMP. SENSOR FOR RADIATOR 4",
   "Ready to start",
 ];
 

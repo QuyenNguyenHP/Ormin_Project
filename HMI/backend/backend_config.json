@@ -297,7 +297,7 @@
               "title": "PMS",
               "metrics": [
                 { "key": "generator_voltage", "label": "Generator Voltage", "source_type": "holding_register", "address": 40033, "scale": 1, "unit": "V" },
-                { "key": "generator_frequency", "label": "Generator Frequency", "source_type": "holding_register", "address": 40034, "scale": 0.01, "precision": 2, "unit": "Hz" },
+                { "key": "generator_frequency", "label": "Generator Frequency", "source_type": "holding_register", "address": 40034, "scale": 0.1, "precision": 2, "unit": "Hz" },
                 { "key": "generator_power_factor", "label": "Generator Power Factor", "source_type": "holding_register", "address": 40035, "scale": 0.01, "precision": 2, "unit": "" },
                 { "key": "generator_current", "label": "Generator Current", "source_type": "holding_register", "address": 40036, "scale": 1, "unit": "A" }
               ]
@@ -505,7 +505,7 @@
               "title": "PMS",
               "metrics": [
                 { "key": "generator_voltage", "label": "Generator Voltage", "source_type": "holding_register", "address": 40233, "scale": 1, "unit": "V" },
-                { "key": "generator_frequency", "label": "Generator Frequency", "source_type": "holding_register", "address": 40234, "scale": 0.01, "precision": 2, "unit": "Hz" },
+                { "key": "generator_frequency", "label": "Generator Frequency", "source_type": "holding_register", "address": 40234, "scale": 0.1, "precision": 2, "unit": "Hz" },
                 { "key": "generator_power_factor", "label": "Generator Power Factor", "source_type": "holding_register", "address": 40235, "scale": 0.01, "precision": 2, "unit": "" },
                 { "key": "generator_current", "label": "Generator Current", "source_type": "holding_register", "address": 40236, "scale": 1, "unit": "A" }
               ]
@@ -609,7 +609,7 @@
               "title": "PMS",
               "metrics": [
                 { "key": "generator_voltage", "label": "Generator Voltage", "source_type": "holding_register", "address": 40333, "scale": 1, "unit": "V" },
-                { "key": "generator_frequency", "label": "Generator Frequency", "source_type": "holding_register", "address": 40334, "scale": 0.01, "precision": 2, "unit": "Hz" },
+                { "key": "generator_frequency", "label": "Generator Frequency", "source_type": "holding_register", "address": 40334, "scale": 0.1, "precision": 2, "unit": "Hz" },
                 { "key": "generator_power_factor", "label": "Generator Power Factor", "source_type": "holding_register", "address": 40335, "scale": 0.01, "precision": 2, "unit": "" },
                 { "key": "generator_current", "label": "Generator Current", "source_type": "holding_register", "address": 40336, "scale": 1, "unit": "A" }
               ]
@@ -744,10 +744,6 @@
             { "key": "limit_switch_change_over_valve_2", "label": "Limit switch for change over valve #2", "source_type": "discrete_input", "address": 10058 },
             { "key": "limit_switch_change_over_valve_3", "label": "Limit switch for change over valve #3", "source_type": "discrete_input", "address": 10059 },
             { "key": "limit_switch_change_over_valve_4", "label": "Limit switch for change over valve #4", "source_type": "discrete_input", "address": 10060 },
-            { "key": "radiator_temp_sensor_1", "label": "TEMP. SENSOR FOR RADIATOR 1", "source_type": "discrete_input", "address": 50040 },
-            { "key": "radiator_temp_sensor_2", "label": "TEMP. SENSOR FOR RADIATOR 2", "source_type": "discrete_input", "address": 50041 },
-            { "key": "radiator_temp_sensor_3", "label": "TEMP. SENSOR FOR RADIATOR 3", "source_type": "discrete_input", "address": 50042 },
-            { "key": "radiator_temp_sensor_4", "label": "TEMP. SENSOR FOR RADIATOR 4", "source_type": "discrete_input", "address": 50043 },
             { "key": "ready_to_start", "label": "Ready to start", "source_type": "discrete_input", "address": 10068 }
           ]
         },
@@ -815,10 +811,6 @@
             { "key": "limit_switch_change_over_valve_2", "label": "Limit switch for change over valve #2", "source_type": "discrete_input", "address": 10458 },
             { "key": "limit_switch_change_over_valve_3", "label": "Limit switch for change over valve #3", "source_type": "discrete_input", "address": 10459 },
             { "key": "limit_switch_change_over_valve_4", "label": "Limit switch for change over valve #4", "source_type": "discrete_input", "address": 10460 },
-            { "key": "radiator_temp_sensor_1", "label": "TEMP. SENSOR FOR RADIATOR 1", "source_type": "discrete_input", "address": 50140 },
-            { "key": "radiator_temp_sensor_2", "label": "TEMP. SENSOR FOR RADIATOR 2", "source_type": "discrete_input", "address": 50141 },
-            { "key": "radiator_temp_sensor_3", "label": "TEMP. SENSOR FOR RADIATOR 3", "source_type": "discrete_input", "address": 50142 },
-            { "key": "radiator_temp_sensor_4", "label": "TEMP. SENSOR FOR RADIATOR 4", "source_type": "discrete_input", "address": 50143 },
             { "key": "ready_to_start", "label": "Ready to start", "source_type": "discrete_input", "address": 10468 }
           ]
         },
@@ -886,10 +878,6 @@
             { "key": "limit_switch_change_over_valve_2", "label": "Limit switch for change over valve #2", "source_type": "discrete_input", "address": 10858 },
             { "key": "limit_switch_change_over_valve_3", "label": "Limit switch for change over valve #3", "source_type": "discrete_input", "address": 10859 },
             { "key": "limit_switch_change_over_valve_4", "label": "Limit switch for change over valve #4", "source_type": "discrete_input", "address": 10860 },
-            { "key": "radiator_temp_sensor_1", "label": "TEMP. SENSOR FOR RADIATOR 1", "source_type": "discrete_input", "address": 50240 },
-            { "key": "radiator_temp_sensor_2", "label": "TEMP. SENSOR FOR RADIATOR 2", "source_type": "discrete_input", "address": 50241 },
-            { "key": "radiator_temp_sensor_3", "label": "TEMP. SENSOR FOR RADIATOR 3", "source_type": "discrete_input", "address": 50242 },
-            { "key": "radiator_temp_sensor_4", "label": "TEMP. SENSOR FOR RADIATOR 4", "source_type": "discrete_input", "address": 50243 },
             { "key": "ready_to_start", "label": "Ready to start", "source_type": "discrete_input", "address": 10868 }
           ]
         },
@@ -957,10 +945,6 @@
             { "key": "limit_switch_change_over_valve_2", "label": "Limit switch for change over valve #2", "source_type": "discrete_input", "address": 11258 },
             { "key": "limit_switch_change_over_valve_3", "label": "Limit switch for change over valve #3", "source_type": "discrete_input", "address": 11259 },
             { "key": "limit_switch_change_over_valve_4", "label": "Limit switch for change over valve #4", "source_type": "discrete_input", "address": 11260 },
-            { "key": "radiator_temp_sensor_1", "label": "TEMP. SENSOR FOR RADIATOR 1", "source_type": "discrete_input", "address": 50340 },
-            { "key": "radiator_temp_sensor_2", "label": "TEMP. SENSOR FOR RADIATOR 2", "source_type": "discrete_input", "address": 50341 },
-            { "key": "radiator_temp_sensor_3", "label": "TEMP. SENSOR FOR RADIATOR 3", "source_type": "discrete_input", "address": 50342 },
-            { "key": "radiator_temp_sensor_4", "label": "TEMP. SENSOR FOR RADIATOR 4", "source_type": "discrete_input", "address": 50343 },
             { "key": "ready_to_start", "label": "Ready to start", "source_type": "discrete_input", "address": 11268 }
           ]
         }

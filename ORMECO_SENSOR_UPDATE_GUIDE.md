@@ -78,7 +78,7 @@ Muc tieu:
 - File digital list dang dung dia chi goc kieu:
   - `1`, `401`, `801`, `1201`
   - `1601`, `1614`, `1646`
-  - `40040`, `40140`, `40240`, `40340`
+- Digital list updated hien tai KHONG con cac dong address bat dau bang `40xxx`.
 - Trong backend hien dang map theo quy uoc:
 
 `discrete_input_address = 10000 + raw_digital_address`
@@ -88,7 +88,7 @@ Vi du:
 - raw `1` -> backend `10001`
 - raw `401` -> backend `10401`
 - raw `1607` -> backend `11607`
-- raw `40040` -> backend `50040`
+- raw `1766` -> backend `11766`
 
 Luu y quan trong ve Modbus master:
 
@@ -257,6 +257,7 @@ Dieu nay giup khong bi man hinh trong khi mat ket noi Modbus.
 ### Gia dinh 1: Digital address cong 10000
 
 - Day la quy uoc mapping hien tai cua project.
+- Ap dung cho cac dia chi digital con lai trong list updated, vi du `1 -> 10001`, `401 -> 10401`, `1601 -> 11601`.
 - Neu sau nay xac nhan PLC tra truc tiep theo he address khac, can doi lai toan bo digital mapping.
 
 ### Gia dinh 2: Digital trung address trong sheet

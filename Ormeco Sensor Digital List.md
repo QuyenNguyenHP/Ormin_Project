@@ -442,13 +442,9 @@ Nguon: `C:\Users\DAIKAI VR\Desktop\Ormeco Sensor Digital List.xlsx`
 
 | D/G#1 | Limit switch for change over valve | Digital | 60 | Boolean |
 
-| D/G#1 | TEMP. SENSOR FOR RADIATOR 1 | Digital | 40040 | Boolean |
 
-| D/G#1 | TEMP. SENSOR FOR RADIATOR 2 | Digital | 40041 | Boolean |
 
-| D/G#1 | TEMP. SENSOR FOR RADIATOR 3 | Digital | 40042 | Boolean |
 
-| D/G#1 | TEMP. SENSOR FOR RADIATOR 4 | Digital | 40043 | Boolean |
 
 | D/G#1 | Ready to start | Digital | 68 | Boolean |
 
@@ -572,13 +568,9 @@ Nguon: `C:\Users\DAIKAI VR\Desktop\Ormeco Sensor Digital List.xlsx`
 
 | D/G#2 | Limit switch for change over valve | Digital | 460 | Boolean |
 
-| D/G#2 | TEMP. SENSOR FOR RADIATOR 1 | Digital | 40140 | Boolean |
 
-| D/G#2 | TEMP. SENSOR FOR RADIATOR 2 | Digital | 40141 | Boolean |
 
-| D/G#2 | TEMP. SENSOR FOR RADIATOR 3 | Digital | 40142 | Boolean |
 
-| D/G#2 | TEMP. SENSOR FOR RADIATOR 4 | Digital | 40143 | Boolean |
 
 | D/G#2 | Ready to start | Digital | 468 | Boolean |
 
@@ -702,13 +694,9 @@ Nguon: `C:\Users\DAIKAI VR\Desktop\Ormeco Sensor Digital List.xlsx`
 
 | D/G#3 | Limit switch for change over valve | Digital | 860 | Boolean |
 
-| D/G#3 | TEMP. SENSOR FOR RADIATOR 1 | Digital | 40240 | Boolean |
 
-| D/G#3 | TEMP. SENSOR FOR RADIATOR 2 | Digital | 40241 | Boolean |
 
-| D/G#3 | TEMP. SENSOR FOR RADIATOR 3 | Digital | 40242 | Boolean |
 
-| D/G#3 | TEMP. SENSOR FOR RADIATOR 4 | Digital | 40243 | Boolean |
 
 | D/G#3 | Ready to start | Digital | 868 | Boolean |
 
@@ -832,12 +820,8 @@ Nguon: `C:\Users\DAIKAI VR\Desktop\Ormeco Sensor Digital List.xlsx`
 
 | D/G#4 | Limit switch for change over valve | Digital | 1260 | Boolean |
 
-| D/G#4 | TEMP. SENSOR FOR RADIATOR 1 | Digital | 40340 | Boolean |
 
-| D/G#4 | TEMP. SENSOR FOR RADIATOR 2 | Digital | 40341 | Boolean |
 
-| D/G#4 | TEMP. SENSOR FOR RADIATOR 3 | Digital | 40342 | Boolean |
 
-| D/G#4 | TEMP. SENSOR FOR RADIATOR 4 | Digital | 40343 | Boolean |
 
 | D/G#4 | Ready to start | Digital | 1268 | Boolean |
