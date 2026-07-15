@@ -227,7 +227,7 @@ const NavigationSidebar = ({ className = "" }) => {
                 style={navIconStyle(isActive)}
               />
               <Box className="h-5 flex-1 flex items-start">
-                <div className="flex-1 relative leading-5 font-medium">Alarms</div>
+                <div className="flex-1 relative leading-5 font-medium">Engine Digital Signal</div>
               </Box>
               <Box className="h-5 w-[22.9px] rounded-[33554400px] bg-[#364153] shrink-0 flex items-start !pt-0.5 !pb-0.5 !pl-2 !pr-1.5 box-border text-center text-xs">
                 <Typography

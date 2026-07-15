@@ -6,27 +6,20 @@ import Footer from "../components/Footer";
 import DashboardButton from "../components/DashboardButton";
 import { usePolledPagePayload } from "../hooks/usePolledPagePayload";
 
-const FALLBACK_ALARM_LABELS = [
+const FALLBACK_SIGNAL_LABELS = [
   "Over Speed",
   "Engine Start Failure",
   "Turbo-charger gas outlet temp switch (2nd)",
   "Heavy fault of oil mist detector",
   "L.O press.switch for engine (2nd)",
   "Jacket water thermal switch (2nd)",
-  "L.O press.switch for turbo-charger (2nd)",
+  "L.O press.switch for turbo-charger(2nd)",
   "Jacket water press.switch (2nd)",
-  "DC control power supply failure",
-  "GAC Abnormal",
-  "Emergency stop",
   "Jacket water flow relay",
-  "Over voltage",
-  "Under voltage",
-  "Gen differential",
-  "Reverse power",
-  "Field failure",
+  "T/C L.O filter differential press switch",
   "Light fault of oil mist detector",
   "Light fault of oil mist detector system failure",
-  "LO press.switch for engine (1st)",
+  "LO press.switch for engine(1st)",
   "LO press.switch for priming",
   "Cooler water press switch",
   "L.O. press switch for turbo-charger (1st)",
@@ -36,24 +29,18 @@ const FALLBACK_ALARM_LABELS = [
   "L.O. sump tank level switch",
   "Jacket water press switch (1st)",
   "L.O. filter differential press switch",
-  "T/C L.O filter differential press switch",
   "F.O leak tank level switch",
   "Cooler water flow relay",
-  "Level switch for C.W. expansion tank #1",
-  "Level switch for C.W. expansion tank #2",
-  "Level switch for J.W. expansion tank #1",
-  "Level switch for J.W. expansion tank #2",
+  "Level switch for C.W. expansion tank",
+  "Level switch for C.W. expansion tank",
+  "Level switch for J.W. expansion tank",
+  "Level switch for J.W. expansion tank",
   "Level switch for DO service tank level high",
   "Level switch for DO service tank level low",
   "F.O press.switch",
-  "Display failure",
-  "DC100V source abnormal",
-  "DC24V source abnormal",
-  "Auto synchro failure",
-  "CB non-close",
   "Over Speed (mechanical side)",
-  "Thermal switch for alternator bearing (Fly-wheel side)",
-  "Thermal switch for alternator bearing (Anti-Fly-wheel side)",
+  "Thermal switch for alternator beaing(Fly-wheel side)",
+  "Thermal switch for alternator beaing<br>(Anti-Fly-wheel side)",
   "RATED SPEED",
   "LOW SPEED",
   "STARTING SOLENOID VALVE",
@@ -61,19 +48,21 @@ const FALLBACK_ALARM_LABELS = [
   "FUEL CONTROL PISTON MAGNETIC VALVE",
   "FUEL OIL CUT PISTON MAGNETIC VALVE",
   "GOVERNOR HANDLE SWITCH",
-  "TURNING HANDLE POSITION SWITCH",
+  "TURNING HANDLE POSITION SWITCH(ON AT TURNING DEVICE OUT)",
   "TURBO-CHARGER GAS OUTLET TEMP. SWITCH (1st)",
-  "Limit switch for change over valve #1",
-  "Limit switch for change over valve #2",
-  "Limit switch for change over valve #3",
-  "Limit switch for change over valve #4",
-  "Ready to start",
+  "Limit switch for change over valve",
+  "Limit switch for change over valve",
+  "Limit switch for change over valve",
+  "Limit switch for change over valve",
+  "VCB Status: Close",
+  "VCB Status: Open",
+  "VCB Status: Fault (Non-close)/trip",
 ];
 
 const FALLBACK_ENGINES = Array.from({ length: 4 }, (_, engineIndex) => ({
   key: `engine_${engineIndex + 1}`,
   title: `Engine ${engineIndex + 1}`,
-  bits: FALLBACK_ALARM_LABELS.map((label, bitIndex) => ({
+  bits: FALLBACK_SIGNAL_LABELS.map((label, bitIndex) => ({
     key: `fallback_bit_${engineIndex + 1}_${bitIndex + 1}`,
     label,
     value: false,
@@ -126,16 +115,21 @@ const chunkBitsIntoGroups = (bits, groupCount = 4) => {
     }
 
     return {
-      key: `alarm_group_${groupIndex + 1}`,
-      title: `ALARM LIST ${groupIndex + 1}`,
+      key: `signal_group_${groupIndex + 1}`,
+      title: `SIGNAL LIST ${groupIndex + 1}`,
       bits: groupBits,
       activeCount: groupBits.filter((bit) => bit.value).length,
     };
   }).filter(Boolean);
 };
 
-const SelectEngineButtons = ({ engineNames, selectedEngineName, onSelectEngine }) => (
-  <Box className="flex flex-wrap items-center gap-3">
+const SelectEngineButtons = ({
+  engineNames,
+  selectedEngineName,
+  onSelectEngine,
+  className = "",
+}) => (
+  <Box className={`flex flex-wrap items-center gap-3 ${className}`}>
     <Typography className="text-[#cbd5e1] font-medium">Select engines:</Typography>
     {engineNames.map((engineName) => (
       <DashboardButton
@@ -220,7 +214,15 @@ const Alarms = () => {
         <NavigationSidebar />
         <section className="h-[948px] w-[1696px] overflow-hidden shrink-0 flex items-start !p-4 box-border gap-4 max-w-full text-left text-[#f8fafc] font-[Roboto] mq925:h-auto">
           <Box className="min-h-[916px] flex-1 rounded-[10px] bg-[#1e2939] border-[#364153] border-solid border-[1px] box-border overflow-auto flex flex-col items-start !p-6 max-w-full shrink-0">
+            <Typography className="text-[26px] font-semibold tracking-[0.4px] text-[#f8fafc]">
+              Engine Digital Signal
+            </Typography>
+            <Typography className="mt-2 text-[13px] text-[#94a3b8]">
+              Live discrete input status mapped from Engine Digital Signals.
+            </Typography>
+
             <SelectEngineButtons
+              className="mt-6"
               engineNames={engineNames}
               selectedEngineName={effectiveSelectedEngineName}
               onSelectEngine={setSelectedEngineName}
@@ -268,13 +270,13 @@ const Alarms = () => {
                 <Box className="flex flex-wrap items-center justify-between gap-3">
                   {isLoading ? (
                     <Typography className="text-[13px] text-[#93c5fd]">
-                      Loading live Modbus alarm data...
+                      Loading live Modbus digital signal data...
                     </Typography>
                   ) : null}
 
                   {!isLoading && error ? (
                     <Typography className="text-[13px] text-[#fca5a5]">
-                      Backend unavailable. Showing fallback alarm names with NORMAL state until Modbus comes back.
+                      Backend unavailable. Showing fallback digital signal names with NORMAL state until Modbus comes back.
                     </Typography>
                   ) : null}
                 </Box>

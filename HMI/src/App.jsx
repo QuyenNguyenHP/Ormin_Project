@@ -62,8 +62,8 @@ function App() {
         metaDescription = "Heavy oil consumption history and flow comparison page.";
         break;
       case "/alarms":
-        title = "Alarms";
-        metaDescription = "System alarms page.";
+        title = "Engine Digital Signal";
+        metaDescription = "Engine digital signal monitoring page.";
         break;
       default:
         title = "Overview | P&ID";
