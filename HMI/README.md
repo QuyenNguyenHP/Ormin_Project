@@ -375,4 +375,3 @@ For customer-facing page descriptions, see:
 - The current frontend uses real route names for `Pressure Trend`, `Exh TempTrend`, `D.O Consumption`, and `H.O Consumption`
 - `Alarms` is still a placeholder
 - `fo-consumption` currently redirects to `do-consumption`
-

@@ -1,5 +1,6 @@
 {
   "version": 2,
+  "_note_modbus_addressing": "Addresses in this config use visible Modbus notation such as 40001/10001. The backend converts them to zero-based wire offsets before reading, for example 40001->0, 40038->37, 10001->0.",
   "database_path": "database/database",
   "modbus": {
     "host": "10.0.0.204",
@@ -928,7 +929,7 @@
         { "key": "H.O Outlet Flow DG#4", "name": "H.O Outlet Flow DG#4", "source_type": "holding_register", "address": 40361, "scale": 1, "unit": "L/H", "data_type": "int32", "register_count": 2 }
       ],
       "digitals": [
-        { "key": "no_1_do_transfer_pump", "label": "pump 1", "source_type": "discrete_input", "address": 11646 },
+        { "key": "no_1_do_transfer_pump", "label": "pump 1", "source_type": "discrete_input", "address": 11649 },
         { "key": "no_2_do_transfer_pump", "label": "pump 2", "source_type": "discrete_input", "address": 11651 },
         { "key": "no_1_do_feed_pump", "label": "pump 3", "source_type": "discrete_input", "address": 11656 },
         { "key": "no_2_do_feed_pump", "label": "pump 4", "source_type": "discrete_input", "address": 11661 },
