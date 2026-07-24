@@ -53,21 +53,21 @@ const PAndID = () => {
                 <img
                   className="absolute inset-0 h-full w-full object-contain"
                   alt="P&ID background"
-                  src="/P&IDbackgroundv3.png"
+                  src="/P&IDbackgroundv4.png"
                 />
                 <object
                   key={svgResetKey}
                   ref={svgObjectRef}
                   aria-label="Monitor items overlay"
                   className="absolute inset-0 h-full w-full"
-                  data="/Monitor_item_v3.svg"
+                  data="/Monitor_item_v4.svg"
                   onLoad={handleSvgLoad}
                   type="image/svg+xml"
                 >
                   <img
                     className="h-full w-full object-contain"
                     alt="Monitor items overlay"
-                    src="/Monitor_item_v3.svg"
+                    src="/Monitor_item_v4.svg"
                   />
                 </object>
               </Box>

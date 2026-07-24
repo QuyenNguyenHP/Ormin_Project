@@ -1,127 +1,281 @@
 export const FLOW_IDS = [
-  "D.O Transfer Flow",
-  "H.O Transfer Flow",
-  "D.O Inlet Flow DG#1",
-  "H.O Inlet Flow DG#1",
-  "D.O Inlet Flow DG#2",
-  "H.O Inlet Flow DG#2",
-  "D.O Inlet Flow DG#3",
-  "H.O Inlet Flow DG#3",
-  "D.O Inlet Flow DG#4",
-  "H.O Inlet Flow DG#4",
-  "D.O Outlet Flow DG#1",
-  "H.O Outlet Flow DG#1",
-  "D.O Outlet Flow DG#2",
-  "H.O Outlet Flow DG#2",
-  "D.O Outlet Flow DG#3",
-  "H.O Outlet Flow DG#3",
-  "D.O Outlet Flow DG#4",
-  "H.O Outlet Flow DG#4",
+  "DO_transfer_flow",
+  "HO_transfer_flow",
+  "DO_eninge_inlet_flow_1",
+  "HO_eninge_inlet_flow_1",
+  "DO_eninge_inlet_flow_2",
+  "HO_eninge_inlet_flow_2",
+  "DO_eninge_inlet_flow_3",
+  "HO_eninge_inlet_flow_3",
+  "DO_eninge_inlet_flow_4",
+  "HO_eninge_inlet_flow_4",
+  "DO_eninge_outlet_flow_1",
+  "HO_eninge_outlet_flow_1",
+  "DO_eninge_outlet_flow_2",
+  "HO_eninge_outlet_flow_2",
+  "DO_eninge_outlet_flow_3",
+  "HO_eninge_outlet_flow_3",
+  "DO_eninge_outlet_flow_4",
+  "HO_eninge_outlet_flow_4",
 ];
 
 export const FLOW_MAPPINGS = [
-  { id: "D.O Transfer Flow", register: 40051, scale: 1, unit: "L/H", dataType: "int32", registerCount: 2 },
-  { id: "H.O Transfer Flow", register: 40057, scale: 1, unit: "L/H", dataType: "int32", registerCount: 2 },
-  { id: "D.O Inlet Flow DG#1", register: 40053, scale: 1, unit: "L/H", dataType: "int32", registerCount: 2 },
-  { id: "H.O Inlet Flow DG#1", register: 40059, scale: 1, unit: "L/H", dataType: "int32", registerCount: 2 },
-  { id: "D.O Inlet Flow DG#2", register: 40153, scale: 1, unit: "L/H", dataType: "int32", registerCount: 2 },
-  { id: "H.O Inlet Flow DG#2", register: 40159, scale: 1, unit: "L/H", dataType: "int32", registerCount: 2 },
-  { id: "D.O Inlet Flow DG#3", register: 40253, scale: 1, unit: "L/H", dataType: "int32", registerCount: 2 },
-  { id: "H.O Inlet Flow DG#3", register: 40259, scale: 1, unit: "L/H", dataType: "int32", registerCount: 2 },
-  { id: "D.O Inlet Flow DG#4", register: 40353, scale: 1, unit: "L/H", dataType: "int32", registerCount: 2 },
-  { id: "H.O Inlet Flow DG#4", register: 40359, scale: 1, unit: "L/H", dataType: "int32", registerCount: 2 },
-  { id: "D.O Outlet Flow DG#1", register: 40055, scale: 1, unit: "L/H", dataType: "int32", registerCount: 2 },
-  { id: "H.O Outlet Flow DG#1", register: 40061, scale: 1, unit: "L/H", dataType: "int32", registerCount: 2 },
-  { id: "D.O Outlet Flow DG#2", register: 40155, scale: 1, unit: "L/H", dataType: "int32", registerCount: 2 },
-  { id: "H.O Outlet Flow DG#2", register: 40161, scale: 1, unit: "L/H", dataType: "int32", registerCount: 2 },
-  { id: "D.O Outlet Flow DG#3", register: 40255, scale: 1, unit: "L/H", dataType: "int32", registerCount: 2 },
-  { id: "H.O Outlet Flow DG#3", register: 40261, scale: 1, unit: "L/H", dataType: "int32", registerCount: 2 },
-  { id: "D.O Outlet Flow DG#4", register: 40355, scale: 1, unit: "L/H", dataType: "int32", registerCount: 2 },
-  { id: "H.O Outlet Flow DG#4", register: 40361, scale: 1, unit: "L/H", dataType: "int32", registerCount: 2 },
+  { id: "DO_transfer_flow", register: 40051, scale: 1, unit: "L/H", dataType: "int32", registerCount: 2 },
+  { id: "HO_transfer_flow", register: 40057, scale: 1, unit: "L/H", dataType: "int32", registerCount: 2 },
+  { id: "DO_eninge_inlet_flow_1", register: 40053, scale: 1, unit: "L/H", dataType: "int32", registerCount: 2 },
+  { id: "HO_eninge_inlet_flow_1", register: 40059, scale: 1, unit: "L/H", dataType: "int32", registerCount: 2 },
+  { id: "DO_eninge_inlet_flow_2", register: 40153, scale: 1, unit: "L/H", dataType: "int32", registerCount: 2 },
+  { id: "HO_eninge_inlet_flow_2", register: 40159, scale: 1, unit: "L/H", dataType: "int32", registerCount: 2 },
+  { id: "DO_eninge_inlet_flow_3", register: 40253, scale: 1, unit: "L/H", dataType: "int32", registerCount: 2 },
+  { id: "HO_eninge_inlet_flow_3", register: 40259, scale: 1, unit: "L/H", dataType: "int32", registerCount: 2 },
+  { id: "DO_eninge_inlet_flow_4", register: 40353, scale: 1, unit: "L/H", dataType: "int32", registerCount: 2 },
+  { id: "HO_eninge_inlet_flow_4", register: 40359, scale: 1, unit: "L/H", dataType: "int32", registerCount: 2 },
+  { id: "DO_eninge_outlet_flow_1", register: 40055, scale: 1, unit: "L/H", dataType: "int32", registerCount: 2 },
+  { id: "HO_eninge_outlet_flow_1", register: 40061, scale: 1, unit: "L/H", dataType: "int32", registerCount: 2 },
+  { id: "DO_eninge_outlet_flow_2", register: 40155, scale: 1, unit: "L/H", dataType: "int32", registerCount: 2 },
+  { id: "HO_eninge_outlet_flow_2", register: 40161, scale: 1, unit: "L/H", dataType: "int32", registerCount: 2 },
+  { id: "DO_eninge_outlet_flow_3", register: 40255, scale: 1, unit: "L/H", dataType: "int32", registerCount: 2 },
+  { id: "HO_eninge_outlet_flow_3", register: 40261, scale: 1, unit: "L/H", dataType: "int32", registerCount: 2 },
+  { id: "DO_eninge_outlet_flow_4", register: 40355, scale: 1, unit: "L/H", dataType: "int32", registerCount: 2 },
+  { id: "HO_eninge_outlet_flow_4", register: 40361, scale: 1, unit: "L/H", dataType: "int32", registerCount: 2 },
 ];
 
 export const DIGITAL_IDS = [
-  "pump 1",
-  "pump 2",
-  "pump 3",
-  "pump 4",
-  "pump 5",
-  "pump 6",
-  "pump 7",
-  "pump 8",
-  "pump 9",
-  "pump 10",
-  "pump 11",
-  "pump 12",
-  "pump 13",
-  "pump 14",
+  "DO_transfer_pump_1",
+  "DO_transfer_pump_2",
+  "DO_feed_pump_1",
+  "DO_feed_pump_2",
+  "HO_transfer_pump_1",
+  "HO_transfer_pump_2",
+  "HO_pressure_pump_1",
+  "HO_pressure_pump_2",
+  "HO_feed_pump_1",
+  "HO_feed_pump_2",
+  "HO_purifier_pump_1",
+  "HO_purifier_pump_2",
+  "Sludge_transfer_pump",
+  "FO_Drain_pump_1",
+  "FO_Drain_pump_2",
+  "DO_unloading_pump",
+  "HO_unloading_pump",
   "LC_D.O.service.tank",
   "LC_H.O.settling.tank",
   "LH_D.O.service.tank",
   "LH_F.O. drain tank",
   "LH_H.O.settling.tank",
   "LL_D.O.service.tank",
-  "LL_F.O. drain tank",
+  "LC_F.O. drain tank",
   "LL_H.O.service.tank",
   "LL_H.O.settling.tank",
   "LS_Sludge.tank",
-  "TS_D.O.service.tank",
   "TS_F.O. drain tank",
   "TS_H.O.purifier.No1",
   "TS_H.O.purifier.No2",
   "TS_H.O.purifier.No3",
   "TS_H.O.settling.tank",
+  "TS_H.O.settling.tank_2",
   "TS1_H.O.service.tank",
   "TS2_H.O.service.tank",
-  "TSH_D.O.service.tank",
   "TSH_F.O. drain tank",
   "TSH_H.O.service.tank",
   "TSH_H.O.settling.tank",
+  "HO_line_signal",
+  "DO_line_signal",
+  "Viscosity_controller_signal",
+  "inlet_change_valve_1_signal",
+  "outlet_change_valve_1_signal",
+  "inlet_change_valve_2_signal",
+  "outlet_change_valve_2_signal",
+  "inlet_change_valve_3_signal",
+  "outlet_change_valve_3_signal",
+  "inlet_change_valve_4_signal",
+  "outlet_change_valve_4_signal",
 ];
 
 export const DIGITAL_MAPPINGS = [
-  { id: "pump 1", bit: 11649 },
-  { id: "pump 2", bit: 11654 },
-  { id: "pump 3", bit: 11659 },
-  { id: "pump 4", bit: 11664 },
-  { id: "pump 5", bit: 11669 },
-  { id: "pump 6", bit: 11674 },
-  { id: "pump 7", bit: 11679 },
-  { id: "pump 8", bit: 11684 },
-  { id: "pump 9", bit: 11689 },
-  { id: "pump 10", bit: 11694 },
-  { id: "pump 11", bit: 11699 },
-  { id: "pump 12", bit: 11704 },
-  { id: "pump 13", bit: 11763 },
-  { id: "pump 14", bit: 11765 },
+  { id: "DO_transfer_pump_1", bit: 11649 },
+  { id: "DO_transfer_pump_2", bit: 11654 },
+  { id: "DO_feed_pump_1", bit: 11659 },
+  { id: "DO_feed_pump_2", bit: 11664 },
+  { id: "HO_transfer_pump_1", bit: 11669 },
+  { id: "HO_transfer_pump_2", bit: 11674 },
+  { id: "HO_pressure_pump_1", bit: 11679 },
+  { id: "HO_pressure_pump_2", bit: 11684 },
+  { id: "HO_feed_pump_1", bit: 11689 },
+  { id: "HO_feed_pump_2", bit: 11694 },
+  { id: "HO_purifier_pump_1", bit: 11779 },
+  { id: "HO_purifier_pump_2", bit: 11781 },
+  { id: "Sludge_transfer_pump", bit: 11827 },
+  { id: "FO_Drain_pump_1", bit: 11699 },
+  { id: "FO_Drain_pump_2", bit: 11704 },
+  { id: "DO_unloading_pump", bit: 11763 },
+  { id: "HO_unloading_pump", bit: 11765 },
   { id: "LC_D.O.service.tank", bit: 11607 },
   { id: "LC_H.O.settling.tank", bit: 11610 },
   { id: "LH_D.O.service.tank", bit: 10037 },
   { id: "LH_F.O. drain tank", bit: 11613 },
   { id: "LH_H.O.settling.tank", bit: 11608 },
   { id: "LL_D.O.service.tank", bit: 10038 },
-  { id: "LL_F.O. drain tank", bit: 11612 },
+  { id: "LC_F.O. drain tank", bit: 11612 },
   { id: "LL_H.O.service.tank", bit: 11611 },
   { id: "LL_H.O.settling.tank", bit: 11609 },
   { id: "LS_Sludge.tank", bit: 11635 },
-  { id: "TS_D.O.service.tank", bit: 11623 },
-  { id: "TS_F.O. drain tank", bit: 11630 },
+  { id: "TS_F.O. drain tank", bit: 11631 }, /* warning over temp 65 oC*/
   { id: "TS_H.O.purifier.No1", bit: 11776 },
   { id: "TS_H.O.purifier.No2", bit: 11777 },
   { id: "TS_H.O.purifier.No3", bit: 11633 },
-  { id: "TS_H.O.settling.tank", bit: 11621 },
-  { id: "TS1_H.O.service.tank", bit: 11782 },
-  { id: "TS2_H.O.service.tank", bit: 11787 },
-  { id: "TSH_D.O.service.tank", bit: 11625 },
-  { id: "TSH_F.O. drain tank", bit: 11631 },
-  { id: "TSH_H.O.service.tank", bit: 11624 },
-  { id: "TSH_H.O.settling.tank", bit: 11622 },
+  { id: "TS_H.O.settling.tank", bit: 11622 }, /* warning over temp 75 oC*/
+  { id: "TS_H.O.settling.tank_2", bit: 11621 },
+  { id: "TS1_H.O.service.tank", bit: 11624 }, /* monitoring temperature 85 -90 oC*/
+  { id: "TS2_H.O.service.tank", bit: 11625 }, /* warning over temp 105 oC*/
+  { id: "TSH_F.O. drain tank", bit: 11630 }, /* heater is on*/
+  { id: "TSH_H.O.service.tank", bit: 11623 },/* heater is on*/
+  { id: "TSH_H.O.settling.tank", bit: 11621 },/* heater is on*/
+  { id: "HO_line_signal", bit: 11628 },
+  { id: "DO_line_signal", bit: 11629 },
+  { id: "Viscosity_controller_signal", bit: 11759 },
+  { id: "inlet_change_valve_1_signal", bit: 10085 },
+  { id: "outlet_change_valve_1_signal", bit: 10087 },
+  { id: "inlet_change_valve_2_signal", bit: 10485 },
+  { id: "outlet_change_valve_2_signal", bit: 10487 },
+  { id: "inlet_change_valve_3_signal", bit: 10885 },
+  { id: "outlet_change_valve_3_signal", bit: 10887 },
+  { id: "inlet_change_valve_4_signal", bit: 11285 },
+  { id: "outlet_change_valve_4_signal", bit: 11287 },
 ];
 
-const DIGITAL_ON_COLOR = "#05DF72";
-const DIGITAL_OFF_COLOR = "#99A1AF";
-const DIGITAL_ON_FILL = "rgba(5, 223, 114, 0.32)";
-const DIGITAL_OFF_FILL = "rgba(255, 77, 80, 0)";
+const DEFAULT_DIGITAL_STYLE = {
+  onColor: "#05DF72",
+  offColor: "#99A1AF",
+  onFill: "rgba(5, 223, 114, 0.32)",
+  offFill: "rgba(255, 77, 80, 0)",
+};
+
+const BLUE_DIGITAL_STYLE = {
+  onColor: "#2563EB",
+  offColor: "#99A1AF",
+  onFill: "rgba(37, 99, 235, 0.24)",
+  offFill: "rgba(255, 77, 80, 0)",
+};
+
+const PURPLE_DIGITAL_STYLE = {
+  onColor: "#A855F7",
+  offColor: "#99A1AF",
+  onFill: "rgba(168, 85, 247, 0.24)",
+  offFill: "rgba(255, 77, 80, 0)",
+};
+
+const RED_DIGITAL_STYLE = {
+  onColor: "#EF4444",
+  offColor: "#99A1AF",
+  onFill: "rgba(239, 68, 68, 0.24)",
+  offFill: "rgba(255, 77, 80, 0)",
+};
+
+const ORANGE_DIGITAL_STYLE = {
+  onColor: "#F59E0B",
+  offColor: "#99A1AF",
+  onFill: "rgba(245, 158, 11, 0.24)",
+  offFill: "rgba(255, 77, 80, 0)",
+};
+
+const DEFAULT_FLOW_STYLE = {
+  onColor: "#05DF72",
+  warningColor: "#F59E0B",
+  offColor: "#FF0909",
+  overlayFill: "rgba(5, 223, 114, 0.18)",
+};
+
+const DIGITAL_STYLE_OVERRIDES = {
+  "TS_F.O. drain tank": RED_DIGITAL_STYLE,
+  "TS_H.O.settling.tank": RED_DIGITAL_STYLE,
+  "TS_H.O.settling.tank_2": RED_DIGITAL_STYLE,
+  "TS2_H.O.service.tank": RED_DIGITAL_STYLE,
+  "TSH_F.O. drain tank": ORANGE_DIGITAL_STYLE,
+  "TSH_H.O.service.tank": ORANGE_DIGITAL_STYLE,
+  "TSH_H.O.settling.tank": ORANGE_DIGITAL_STYLE,
+};
+
+const PID_GROUP_CONFIG = [
+  {
+    elementIds: ["DO-line"],
+    sourceType: "digital",
+    sourceIds: ["DO_line_signal"],
+    style: { ...BLUE_DIGITAL_STYLE },
+  },
+  {
+    elementIds: ["HO-line"],
+    sourceType: "digital",
+    sourceIds: ["HO_line_signal"],
+    style: { ...PURPLE_DIGITAL_STYLE },
+  },
+  {
+    elementIds: ["inlet_change _valve_1"],
+    sourceType: "digital",
+    sourceIds: ["inlet_change_valve_1_signal"],
+    style: { ...BLUE_DIGITAL_STYLE },
+  },
+  {
+    elementIds: ["inlet_change _valve_2"],
+    sourceType: "digital",
+    sourceIds: ["inlet_change_valve_2_signal"],
+    style: { ...BLUE_DIGITAL_STYLE },
+  },
+  {
+    elementIds: ["inlet_change _valve_3"],
+    sourceType: "digital",
+    sourceIds: ["inlet_change_valve_3_signal"],
+    style: { ...BLUE_DIGITAL_STYLE },
+  },
+  {
+    elementIds: ["inlet_change _valve_4"],
+    sourceType: "digital",
+    sourceIds: ["inlet_change_valve_4_signal"],
+    style: { ...BLUE_DIGITAL_STYLE },
+  },
+  {
+    elementIds: ["outlet_change _valve_1"],
+    sourceType: "digital",
+    sourceIds: ["outlet_change_valve_1_signal"],
+    style: { ...BLUE_DIGITAL_STYLE },
+  },
+  {
+    elementIds: ["outlet_change _valve_2"],
+    sourceType: "digital",
+    sourceIds: ["outlet_change_valve_2_signal"],
+    style: { ...BLUE_DIGITAL_STYLE },
+  },
+  {
+    elementIds: ["outlet_change _valve_3"],
+    sourceType: "digital",
+    sourceIds: ["outlet_change_valve_3_signal"],
+    style: { ...BLUE_DIGITAL_STYLE },
+  },
+  {
+    elementIds: ["outlet_change _valve_4"],
+    sourceType: "digital",
+    sourceIds: ["outlet_change_valve_4_signal"],
+    style: { ...BLUE_DIGITAL_STYLE },
+  },
+  {
+    elementIds: ["Heater 1"],
+    sourceType: "digital",
+    sourceIds: ["TSH_F.O. drain tank"],
+    style: { ...ORANGE_DIGITAL_STYLE },
+  },
+  {
+    elementIds: ["Heater 2"],
+    sourceType: "digital",
+    sourceIds: ["TSH_H.O.service.tank", "TSH_H.O.settling.tank"],
+    style: { ...ORANGE_DIGITAL_STYLE },
+  },
+  {
+    elementIds: ["Viscosity-Controller"],
+    sourceType: "digital",
+    sourceIds: ["Viscosity_controller_signal"],
+    style: { ...RED_DIGITAL_STYLE },
+  },
+];
 
 export const formatFlowValue = (value, unit = "L/H") =>
   `${Math.round(value)} ${unit}`;
@@ -130,6 +284,148 @@ export const getFlowColor = (value) => {
   if (value >= 90) return "#05DF72";
   if (value >= 70) return "#F59E0B";
   return "#FF0909";
+};
+
+const getFlowColorFromStyle = (value, style = DEFAULT_FLOW_STYLE) => {
+  if (value >= 90) return style.onColor;
+  if (value >= 70) return style.warningColor;
+  return style.offColor;
+};
+
+const getDigitalStyleForId = (digitalId) =>
+  DIGITAL_STYLE_OVERRIDES[digitalId] ?? DEFAULT_DIGITAL_STYLE;
+
+const getDigitalPresentation = (isOn, style = DEFAULT_DIGITAL_STYLE) => ({
+  value: isOn,
+  label: isOn ? "ON" : "OFF",
+  color: isOn ? style.onColor : style.offColor,
+  fill: isOn ? style.onFill : style.offFill,
+});
+
+const getShapeElements = (element) => {
+  if (!element) return [];
+
+  if (element.tagName.toLowerCase() !== "g") {
+    return [element];
+  }
+
+  return Array.from(
+    element.querySelectorAll("path, rect, line, polyline, polygon, circle, ellipse")
+  ).filter((childElement) => !childElement.closest("mask"));
+};
+
+const captureElementStyleSnapshot = (element) => ({
+  fill: element.getAttribute("fill"),
+  stroke: element.getAttribute("stroke"),
+});
+
+const ensureOriginalStyleSnapshot = (element) => {
+  if (!element) return;
+
+  if (element.dataset.originalStyleCaptured === "true") {
+    return;
+  }
+
+  const shapes = getShapeElements(element);
+  const snapshot = {
+    element: captureElementStyleSnapshot(element),
+    shapes: shapes.map((shapeElement) => ({
+      id: shapeElement.id || null,
+      snapshot: captureElementStyleSnapshot(shapeElement),
+    })),
+  };
+
+  element.dataset.originalStyleSnapshot = JSON.stringify(snapshot);
+  element.dataset.originalStyleCaptured = "true";
+};
+
+const restoreElementStyleSnapshot = (element) => {
+  if (!element) return;
+
+  const rawSnapshot = element.dataset.originalStyleSnapshot;
+  if (!rawSnapshot) return;
+
+  let snapshot;
+  try {
+    snapshot = JSON.parse(rawSnapshot);
+  } catch {
+    return;
+  }
+
+  const restoreAttributes = (targetElement, targetSnapshot) => {
+    if (!targetElement || !targetSnapshot) return;
+
+    if (targetSnapshot.fill == null) {
+      targetElement.removeAttribute("fill");
+    } else {
+      targetElement.setAttribute("fill", targetSnapshot.fill);
+    }
+
+    if (targetSnapshot.stroke == null) {
+      targetElement.removeAttribute("stroke");
+    } else {
+      targetElement.setAttribute("stroke", targetSnapshot.stroke);
+    }
+  };
+
+  restoreAttributes(element, snapshot.element);
+
+  const shapes = getShapeElements(element);
+  shapes.forEach((shapeElement, index) => {
+    const shapeSnapshot = snapshot.shapes?.[index]?.snapshot;
+    restoreAttributes(shapeElement, shapeSnapshot);
+  });
+};
+
+const applyColorToShape = (
+  element,
+  color,
+  fill = DEFAULT_DIGITAL_STYLE.offFill
+) => {
+  const tagName = element.tagName.toLowerCase();
+  const hasStroke = element.hasAttribute("stroke");
+  const hasFill = element.hasAttribute("fill");
+  const fillValue = String(element.getAttribute("fill") ?? "").toLowerCase();
+  const strokeValue = String(element.getAttribute("stroke") ?? "").toLowerCase();
+  const isWhiteMaskShape =
+    fillValue === "white" ||
+    fillValue === "#ffffff" ||
+    strokeValue === "white" ||
+    strokeValue === "#ffffff";
+
+  if (isWhiteMaskShape) {
+    return;
+  }
+
+  if (tagName === "line" || tagName === "polyline") {
+    element.setAttribute("stroke", color);
+    return;
+  }
+
+  if (tagName === "rect") {
+    element.setAttribute("stroke", color);
+    element.setAttribute("fill", fill);
+    return;
+  }
+
+  if (tagName === "circle" || tagName === "ellipse" || tagName === "polygon") {
+    if (hasStroke) {
+      element.setAttribute("stroke", color);
+    }
+    if (hasFill) {
+      element.setAttribute("fill", fill);
+    }
+    return;
+  }
+
+  if (tagName === "path") {
+    if (hasStroke) {
+      element.setAttribute("stroke", color);
+    }
+    if (hasFill || !hasStroke) {
+      element.setAttribute("fill", color);
+    }
+  }
 };
 
 const resolveFlowRawValue = (registerMap, flowMapping) => {
@@ -162,7 +458,7 @@ export const buildFlowDataFromRegisters = (registers) =>
     accumulator[flowId] = {
       value: registerValue,
       label: formatFlowValue(registerValue),
-      color: getFlowColor(registerValue),
+      color: getFlowColorFromStyle(registerValue),
     };
 
     return accumulator;
@@ -176,7 +472,7 @@ export const buildFlowDataFromAddressMap = (registerMap) =>
     accumulator[flowMapping.id] = {
       value: scaledValue,
       label: formatFlowValue(scaledValue, flowMapping.unit),
-      color: getFlowColor(scaledValue),
+      color: getFlowColorFromStyle(scaledValue),
       register: flowMapping.register,
       rawValue,
     };
@@ -188,12 +484,10 @@ export const buildDigitalDataFromBits = (bits) =>
   DIGITAL_IDS.reduce((accumulator, digitalId, index) => {
     const isOn = Boolean(bits[index]);
 
-    accumulator[digitalId] = {
-      value: isOn,
-      label: isOn ? "ON" : "OFF",
-      color: isOn ? DIGITAL_ON_COLOR : DIGITAL_OFF_COLOR,
-      fill: isOn ? DIGITAL_ON_FILL : DIGITAL_OFF_FILL,
-    };
+    accumulator[digitalId] = getDigitalPresentation(
+      isOn,
+      getDigitalStyleForId(digitalId)
+    );
 
     return accumulator;
   }, {});
@@ -203,10 +497,10 @@ export const buildDigitalDataFromAddressMap = (bitMap) =>
     const isOn = Boolean(bitMap[digitalMapping.bit]);
 
     accumulator[digitalMapping.id] = {
-      value: isOn,
-      label: isOn ? "ON" : "OFF",
-      color: isOn ? DIGITAL_ON_COLOR : DIGITAL_OFF_COLOR,
-      fill: isOn ? DIGITAL_ON_FILL : DIGITAL_OFF_FILL,
+      ...getDigitalPresentation(
+        isOn,
+        getDigitalStyleForId(digitalMapping.id)
+      ),
       bit: digitalMapping.bit,
       rawValue: isOn ? 1 : 0,
     };
@@ -248,7 +542,7 @@ export const buildPIDMonitorDataFromPagePayload = (payload = {}) => {
     accumulator[flowId] = {
       value: numericValue,
       label: formatFlowValue(numericValue, flowItem.unit),
-      color: getFlowColor(numericValue),
+      color: getFlowColorFromStyle(numericValue),
     };
 
     return accumulator;
@@ -262,12 +556,10 @@ export const buildPIDMonitorDataFromPagePayload = (payload = {}) => {
       return accumulator;
     }
 
-    accumulator[digitalId] = {
-      value: isOn,
-      label: isOn ? "ON" : "OFF",
-      color: isOn ? DIGITAL_ON_COLOR : DIGITAL_OFF_COLOR,
-      fill: isOn ? DIGITAL_ON_FILL : DIGITAL_OFF_FILL,
-    };
+    accumulator[digitalId] = getDigitalPresentation(
+      isOn,
+      getDigitalStyleForId(digitalId)
+    );
 
     return accumulator;
   }, {});
@@ -295,37 +587,77 @@ const setElementStateAttributes = (element, digitalValue) => {
 };
 
 const updateDigitalElementStyles = (element, digitalValue) => {
-  const tagName = element.tagName.toLowerCase();
-
+  ensureOriginalStyleSnapshot(element);
   setElementStateAttributes(element, digitalValue);
+  getShapeElements(element).forEach((shapeElement) =>
+    applyColorToShape(shapeElement, digitalValue.color, digitalValue.fill)
+  );
+};
 
-  if (tagName === "path") {
-    element.setAttribute("fill", digitalValue.color);
+const updateFlowElementStyles = (
+  element,
+  flowValue,
+  style = DEFAULT_FLOW_STYLE
+) => {
+  if (!element || !flowValue) return;
+
+  if (element.tagName.toLowerCase() !== "g") {
+    element.setAttribute("fill", flowValue.color);
     return;
   }
 
-  if (tagName === "rect") {
-    element.setAttribute("stroke", digitalValue.color);
-    element.setAttribute("fill", digitalValue.fill);
-    return;
+  getShapeElements(element).forEach((shapeElement) =>
+    applyColorToShape(shapeElement, flowValue.color, style.overlayFill)
+  );
+};
+
+const selectMostActiveFlowValue = (flowValues) =>
+  flowValues.reduce((selectedValue, candidateValue) => {
+    if (!candidateValue) return selectedValue;
+    if (!selectedValue) return candidateValue;
+    return candidateValue.value > selectedValue.value ? candidateValue : selectedValue;
+  }, null);
+
+const resolveConfiguredFlowValue = (flowData, sourceIds = [], style = DEFAULT_FLOW_STYLE) => {
+  const selectedValue = selectMostActiveFlowValue(
+    sourceIds.map((flowId) => flowData[flowId]).filter(Boolean)
+  );
+
+  if (!selectedValue) return null;
+
+  return {
+    ...selectedValue,
+    color: getFlowColorFromStyle(selectedValue.value, style),
+  };
+};
+
+const resolveConfiguredDigitalValue = (
+  digitalData,
+  sourceIds = [],
+  style = DEFAULT_DIGITAL_STYLE
+) => {
+  const sourceValue =
+    sourceIds.map((digitalId) => digitalData[digitalId]).find((value) => value?.value) ??
+    sourceIds.map((digitalId) => digitalData[digitalId]).find(Boolean);
+
+  if (!sourceValue) return null;
+
+  return getDigitalPresentation(Boolean(sourceValue.value), style);
+};
+
+const resolveGeneralLineValue = (digitalData) => {
+  const doLineValue = digitalData.DO_line_signal;
+  const hoLineValue = digitalData.HO_line_signal;
+
+  if (doLineValue?.value) {
+    return getDigitalPresentation(true, BLUE_DIGITAL_STYLE);
   }
 
-  if (tagName === "g") {
-    const childShapes = element.querySelectorAll("path, rect");
-
-    childShapes.forEach((childElement) => {
-      const childTagName = childElement.tagName.toLowerCase();
-
-      if (childTagName === "path") {
-        childElement.setAttribute("stroke", digitalValue.color);
-      }
-
-      if (childTagName === "rect") {
-        childElement.setAttribute("stroke", digitalValue.color);
-        childElement.setAttribute("fill", digitalValue.fill);
-      }
-    });
+  if (hoLineValue?.value) {
+    return getDigitalPresentation(true, PURPLE_DIGITAL_STYLE);
   }
+
+  return null;
 };
 
 export const updatePIDMonitorElements = (svgDocument, monitorData) => {
@@ -341,6 +673,39 @@ export const updatePIDMonitorElements = (svgDocument, monitorData) => {
 
     flowElement.textContent = flowValue.label;
     flowElement.setAttribute("fill", flowValue.color);
+  });
+
+  const generalLineElement = svgDocument.getElementById("General_line");
+  const generalLineValue = resolveGeneralLineValue(digitalData);
+  if (generalLineElement && generalLineValue) {
+    updateDigitalElementStyles(generalLineElement, generalLineValue);
+  } else if (generalLineElement) {
+    restoreElementStyleSnapshot(generalLineElement);
+  }
+
+  PID_GROUP_CONFIG.forEach((groupConfig) => {
+    const { elementIds, sourceIds, sourceType, style } = groupConfig;
+
+    if (sourceType === "flow") {
+      const flowValue = resolveConfiguredFlowValue(flowData, sourceIds, style);
+      if (!flowValue) return;
+
+      elementIds.forEach((targetId) => {
+        const targetElement = svgDocument.getElementById(targetId);
+        if (!targetElement) return;
+        updateFlowElementStyles(targetElement, flowValue, style);
+      });
+      return;
+    }
+
+    const digitalValue = resolveConfiguredDigitalValue(digitalData, sourceIds, style);
+    if (!digitalValue) return;
+
+    elementIds.forEach((targetId) => {
+      const targetElement = svgDocument.getElementById(targetId);
+      if (!targetElement) return;
+      updateDigitalElementStyles(targetElement, digitalValue);
+    });
   });
 
   DIGITAL_IDS.forEach((digitalId) => {
