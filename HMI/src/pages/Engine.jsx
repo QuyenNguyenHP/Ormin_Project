@@ -97,12 +97,12 @@ const engineGroupTemplates = [
   },
   {
     key: "cooling_water_system",
-    title: "COOLING WATER SYSTEM",
+    title: "C.W SYSTEM",
     metrics: [
-      { key: "jacket_water_pressure", label: "Jacket Water Pressure", unit: "bar", base: 3.6, step: 0.1, precision: 1 },
+      { key: "jacket_water_pressure", label: "J.W Pressure", unit: "bar", base: 3.6, step: 0.1, precision: 1 },
       { key: "cooler_water_pressure", label: "Cooler Water Pressure", unit: "bar", base: 2.8, step: 0.1, precision: 1 },
-      { key: "jacket_water_inlet_temp", label: "Jacket Water Inlet Temp", unit: "C", base: 74, step: 1 },
-      { key: "jacket_water_outlet_temp", label: "Jacket Water Outlet Temp", unit: "C", base: 81, step: 1 },
+      { key: "jacket_water_inlet_temp", label: "J.W Inlet Temp", unit: "C", base: 74, step: 1 },
+      { key: "jacket_water_outlet_temp", label: "J.W Outlet Temp", unit: "C", base: 81, step: 1 },
       { key: "cooler_water_inlet_temp", label: "Cooler Water Inlet Temp", unit: "C", base: 31, step: 1 },
       { key: "cooler_water_outlet_temp", label: "Cooler Water Outlet Temp", unit: "C", base: 38, step: 1 },
       { key: "cw_before_lo_cooler_temp", label: "CW Before LO Cooler Temp", unit: "C", base: 33, step: 1 },

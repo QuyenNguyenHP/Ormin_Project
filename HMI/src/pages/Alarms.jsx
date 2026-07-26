@@ -6,65 +6,76 @@ import Footer from "../components/Footer";
 import DashboardButton from "../components/DashboardButton";
 import { usePolledPagePayload } from "../hooks/usePolledPagePayload";
 
-const FALLBACK_SIGNAL_LABELS = [
-  "Over Speed",
-  "Engine Start Failure",
-  "Turbo-charger gas outlet temp switch (2nd)",
-  "Heavy fault of oil mist detector",
-  "L.O press.switch for engine (2nd)",
-  "Jacket water thermal switch (2nd)",
-  "L.O press.switch for turbo-charger(2nd)",
-  "Jacket water press.switch (2nd)",
-  "Jacket water flow relay",
-  "T/C L.O filter differential press switch",
-  "Light fault of oil mist detector",
-  "Light fault of oil mist detector system failure",
-  "LO press.switch for engine(1st)",
-  "LO press.switch for priming",
-  "Cooler water press switch",
-  "L.O. press switch for turbo-charger (1st)",
-  "Jacket water thermal switch (1st)",
-  "Cooler water thermal switch",
-  "L.O. thermal switch",
-  "L.O. sump tank level switch",
-  "Jacket water press switch (1st)",
-  "L.O. filter differential press switch",
-  "F.O leak tank level switch",
-  "Cooler water flow relay",
-  "Level switch for C.W. expansion tank",
-  "Level switch for C.W. expansion tank",
-  "Level switch for J.W. expansion tank",
-  "Level switch for J.W. expansion tank",
-  "Level switch for DO service tank level high",
-  "Level switch for DO service tank level low",
-  "F.O press.switch",
-  "Over Speed (mechanical side)",
-  "Thermal switch for alternator beaing(Fly-wheel side)",
-  "Thermal switch for alternator beaing<br>(Anti-Fly-wheel side)",
-  "RATED SPEED",
-  "LOW SPEED",
-  "STARTING SOLENOID VALVE",
-  "FUEL SHUT DOWN DEVICE",
-  "FUEL CONTROL PISTON MAGNETIC VALVE",
-  "FUEL OIL CUT PISTON MAGNETIC VALVE",
-  "GOVERNOR HANDLE SWITCH",
-  "TURNING HANDLE POSITION SWITCH(ON AT TURNING DEVICE OUT)",
-  "TURBO-CHARGER GAS OUTLET TEMP. SWITCH (1st)",
-  "Limit switch for change over valve",
-  "Limit switch for change over valve",
-  "Limit switch for change over valve",
-  "Limit switch for change over valve",
-  "VCB Status: Close",
-  "VCB Status: Open",
-  "VCB Status: Fault (Non-close)/trip",
+const ALARM_GROUP_TEMPLATES = [
+  { key: "machine_status", title: "ENGINE STATUS" },
+  { key: "lubrication_oil", title: "LUBRICATION OIL" },
+  { key: "cooling_water", title: "COOLING WATER" },
+  { key: "fuel_system", title: "FUEL SYSTEM" },
+  { key: "exhaust_system", title: "EXHAUST SYSTEM" },
+];
+
+const ALARM_GROUP_COLUMNS = {
+  machine_status: 0,
+  lubrication_oil: 1,
+  cooling_water: 2,
+  fuel_system: 3,
+  exhaust_system: 3,
+};
+
+const FALLBACK_SIGNAL_DEFINITIONS = [
+  ["Overspeed", "machine_status"],
+  ["Mechanical Overspeed", "machine_status"],
+  ["Start Failure", "machine_status"],
+  ["Low Speed", "machine_status"],
+  ["Rated Speed", "machine_status"],
+  ["Start Solenoid Valve", "machine_status"],
+  ["Governor Handle Switch", "machine_status"],
+  ["Turning Handle Out Position Switch", "machine_status"],
+
+  ["Oil Mist Detector Major Fault", "lubrication_oil"],
+  ["Oil Mist Detector Minor Fault", "lubrication_oil"],
+  ["Oil Mist Detector System Fault", "lubrication_oil"],
+  ["Engine LO Pressure Switch (1st)", "lubrication_oil"],
+  ["Engine LO Pressure Switch (2nd)", "lubrication_oil"],
+  ["T/C LO Pressure Switch (1st)", "lubrication_oil"],
+  ["T/C LO Pressure Switch (2nd)", "lubrication_oil"],
+  ["LO Priming Pressure Switch", "lubrication_oil"],
+  ["LO Temp Switch", "lubrication_oil"],
+  ["LO Sump Tank Level Switch", "lubrication_oil"],
+  ["LO Filter Differential Pressure Switch", "lubrication_oil"],
+  ["T/C LO Filter Differential Pressure Switch", "lubrication_oil"],
+
+  ["FO Pressure Switch", "fuel_system"],
+  ["FO Leak Tank Level Switch", "fuel_system"],
+  ["Fuel Shutdown Device", "fuel_system"],
+  ["Fuel Control Piston Solenoid Valve", "fuel_system"],
+  ["Fuel Cutoff Piston Solenoid Valve", "fuel_system"],
+  ["Changeover Valve Limit Switch", "fuel_system"],
+
+  ["J.W Flow", "cooling_water"],
+  ["J.W Temp Switch (1st)", "cooling_water"],
+  ["J.W Temp Switch (2nd)", "cooling_water"],
+  ["J.W Pressure Switch (1st)", "cooling_water"],
+  ["J.W Pressure Switch (2nd)", "cooling_water"],
+  ["C.W Pressure Switch", "cooling_water"],
+  ["C.W Temp Switch", "cooling_water"],
+  ["C.W Flow", "cooling_water"],
+  ["C.W Expansion Tank Level Switch", "cooling_water"],
+  ["C.W Expansion Tank Level Switch", "cooling_water"],
+  ["J.W Expansion Tank Level Switch", "cooling_water"],
+  ["J.W Expansion Tank Level Switch", "cooling_water"],
+
+  ["T/C Gas Outlet Temp Switch (1st)", "exhaust_system"],
+  ["T/C Gas Outlet Temp Switch (2nd)", "exhaust_system"],
 ];
 
 const FALLBACK_ENGINES = Array.from({ length: 4 }, (_, engineIndex) => ({
   key: `engine_${engineIndex + 1}`,
   title: `Engine ${engineIndex + 1}`,
-  bits: FALLBACK_SIGNAL_LABELS.map((label, bitIndex) => ({
+  bits: FALLBACK_SIGNAL_DEFINITIONS.map(([label, category], bitIndex) => ({
     key: `fallback_bit_${engineIndex + 1}_${bitIndex + 1}`,
     label,
+    category,
     value: false,
   })),
   activeCount: 0,
@@ -80,6 +91,7 @@ const normalizeEngines = (backendEngines) => {
     const normalizedBits = bits.map((bit, bitIndex) => ({
       key: bit.key ?? `bit_${bitIndex + 1}`,
       label: bit.label ?? `Bit ${bitIndex + 1}`,
+      category: bit.category ?? "other",
       value: Boolean(bit.value),
     }));
 
@@ -92,35 +104,30 @@ const normalizeEngines = (backendEngines) => {
   });
 };
 
-const chunkBitsIntoGroups = (bits, groupCount = 4) => {
+const buildAlarmGroups = (bits) => {
   if (!Array.isArray(bits) || bits.length === 0) {
     return [];
   }
 
-  const prioritizedBits = [...bits].sort((leftBit, rightBit) => {
-    if (leftBit.value === rightBit.value) {
-      return leftBit.label.localeCompare(rightBit.label);
-    }
-
-    return leftBit.value ? -1 : 1;
-  });
-  const chunkSize = Math.ceil(prioritizedBits.length / groupCount);
-
-  return Array.from({ length: groupCount }, (_, groupIndex) => {
-    const startIndex = groupIndex * chunkSize;
-    const groupBits = prioritizedBits.slice(startIndex, startIndex + chunkSize);
-
-    if (groupBits.length === 0) {
-      return null;
-    }
-
+  return ALARM_GROUP_TEMPLATES.map((group) => {
+    const groupBits = bits.filter((bit) => bit.category === group.key);
     return {
-      key: `signal_group_${groupIndex + 1}`,
-      title: `SIGNAL LIST ${groupIndex + 1}`,
+      ...group,
       bits: groupBits,
       activeCount: groupBits.filter((bit) => bit.value).length,
     };
-  }).filter(Boolean);
+  }).filter((group) => group.bits.length > 0);
+};
+
+const buildAlarmGroupColumns = (groups) => {
+  const columns = [[], [], [], []];
+
+  groups.forEach((group) => {
+    const columnIndex = ALARM_GROUP_COLUMNS[group.key] ?? 0;
+    columns[columnIndex].push(group);
+  });
+
+  return columns;
 };
 
 const SelectEngineButtons = ({
@@ -144,42 +151,46 @@ const SelectEngineButtons = ({
 );
 
 const AlarmBitRow = ({ bit }) => (
-  <Box className="grid grid-cols-[minmax(0,1fr)_78px] items-center gap-2 rounded-[10px] border border-[#334155] bg-[rgba(15,23,42,0.72)] px-3 py-2">
-    <Typography className="text-[12px] leading-4 text-[#e2e8f0]">
+  <Box className="flex min-h-[34px] items-center justify-between gap-2 border-b border-[#e2e8f014] py-1.5 last:border-b-0">
+    <Typography
+      title={bit.label}
+      className="min-w-0 overflow-hidden text-ellipsis whitespace-nowrap text-[12px] leading-4 text-[#dbe4ee]"
+    >
       {bit.label}
     </Typography>
-    <Box className="flex justify-end">
-      <Box
-        className={`min-w-[66px] rounded-full border px-2 py-1 text-center text-[10px] font-semibold tracking-[0.3px] ${
-          bit.value
-            ? "border-[#ef4444] bg-[rgba(239,68,68,0.18)] text-[#fecaca]"
-            : "border-[#22c55e] bg-[rgba(34,197,94,0.16)] text-[#bbf7d0]"
-        }`}
-      >
-        {bit.value ? "ACTIVE" : "NORMAL"}
-      </Box>
+    <Box
+      className={`min-w-[58px] shrink-0 rounded-[8px] px-1.5 py-0.5 text-center text-[9px] font-semibold leading-4 ${
+        bit.value
+          ? "bg-[#f14949cc] text-white"
+          : "bg-[rgba(34,197,94,0.18)] text-[#bbf7d0]"
+      }`}
+    >
+      {bit.value ? "ACTIVE" : "NORMAL"}
     </Box>
   </Box>
 );
 
-const AlarmGroupCard = ({ group }) => (
-  <Box className="rounded-[16px] border border-[#475569] bg-[rgba(15,23,42,0.74)] p-4 backdrop-blur-sm">
-    <Box className="mb-3 flex items-center justify-between gap-3">
-      <Typography className="text-[13px] font-semibold tracking-[0.45px] text-[#f8fafc]">
+const AlarmSignalGroupCard = ({ group }) => (
+  <Box
+    className="w-[350px] min-w-[350px] max-w-[350px] rounded-[14px] border border-[#cbd5e11a] bg-[#0f172a59] p-3 backdrop-blur-[0px]"
+    sx={{ boxShadow: "0 10px 22px rgba(15, 23, 42, 0.16)" }}
+  >
+    <Box className="flex w-full items-center justify-between gap-2 rounded-[10px] border border-[#e2e8f024] bg-[#7D8797] px-3 py-1.5">
+      <Typography className="overflow-hidden text-ellipsis whitespace-nowrap text-[13px] font-bold tracking-[0.04em] text-[#f8fafc]">
         {group.title}
       </Typography>
-      <Box
-        className={`rounded-full px-2.5 py-1 text-[10px] font-semibold ${
+      <Typography
+        className={`shrink-0 rounded-full px-2 py-0.5 text-[9px] font-semibold ${
           group.activeCount > 0
-            ? "bg-[rgba(239,68,68,0.18)] text-[#fecaca]"
-            : "bg-[rgba(34,197,94,0.16)] text-[#bbf7d0]"
+            ? "bg-[#f14949cc] text-white"
+            : "bg-[rgba(15,23,42,0.38)] text-[#dcfce7]"
         }`}
       >
         {group.activeCount}/{group.bits.length}
-      </Box>
+      </Typography>
     </Box>
 
-    <Box className="grid gap-2">
+    <Box className="mt-2 flex flex-col gap-1">
       {group.bits.map((bit) => (
         <AlarmBitRow key={bit.key} bit={bit} />
       ))}
@@ -203,8 +214,12 @@ const Alarms = () => {
     engines.find((engine) => engine.title === effectiveSelectedEngineName) ?? engines[0] ?? null;
 
   const alarmGroups = useMemo(
-    () => chunkBitsIntoGroups(selectedEngine?.bits ?? []),
+    () => buildAlarmGroups(selectedEngine?.bits ?? []),
     [selectedEngine]
+  );
+  const alarmGroupColumns = useMemo(
+    () => buildAlarmGroupColumns(alarmGroups),
+    [alarmGroups]
   );
 
   return (
@@ -213,22 +228,14 @@ const Alarms = () => {
       <main className="self-stretch h-[955px] overflow-hidden shrink-0 flex items-start [row-gap:20px] max-w-full mq1825:flex-wrap">
         <NavigationSidebar />
         <section className="h-[948px] w-[1696px] overflow-hidden shrink-0 flex items-start !p-4 box-border gap-4 max-w-full text-left text-[#f8fafc] font-[Roboto] mq925:h-auto">
-          <Box className="min-h-[916px] flex-1 rounded-[10px] bg-[#1e2939] border-[#364153] border-solid border-[1px] box-border overflow-auto flex flex-col items-start !p-6 max-w-full shrink-0">
-            <Typography className="text-[26px] font-semibold tracking-[0.4px] text-[#f8fafc]">
-              Engine Digital Signal
-            </Typography>
-            <Typography className="mt-2 text-[13px] text-[#94a3b8]">
-              Live discrete input status mapped from Engine Digital Signals.
-            </Typography>
-
+          <Box className="min-h-[916px] flex-1 rounded-[10px] bg-[#1e2939] border-[#364153] border-solid border-[1px] box-border overflow-auto flex flex-col items-start !p-5 max-w-full shrink-0">
             <SelectEngineButtons
-              className="mt-6"
               engineNames={engineNames}
               selectedEngineName={effectiveSelectedEngineName}
               onSelectEngine={setSelectedEngineName}
             />
 
-            <Box className="mt-6 w-full rounded-[18px] border border-[#475569] overflow-hidden relative">
+            <Box className="relative mt-4 h-[820px] w-full shrink-0 overflow-hidden rounded-[18px] border border-[#475569]">
               <Box
                 className="absolute inset-0"
                 sx={{
@@ -246,13 +253,12 @@ const Alarms = () => {
                       transform: "scale(1)",
                     },
                   },
-                  backgroundImage:
-                    "radial-gradient(circle at 18% 22%, rgba(239, 68, 68, 0.14), transparent 22%), radial-gradient(circle at 82% 18%, rgba(96, 165, 250, 0.14), transparent 24%), url('/engine_image.png')",
+                  backgroundImage: "url('/engine_image.png')",
                   backgroundPosition: "center",
                   backgroundRepeat: "no-repeat",
-                  backgroundSize: "cover, cover, 88%",
-                  opacity: 0.62,
-                  filter: "saturate(0.82)",
+                  backgroundSize: "contain",
+                  opacity: 0.6,
+                  filter: "saturate(0.9)",
                   transformOrigin: "center",
                   animation: "alarmCanvasPopIn 900ms ease-out",
                   willChange: "transform, opacity",
@@ -262,11 +268,11 @@ const Alarms = () => {
                 className="absolute inset-0"
                 sx={{
                   background:
-                    "radial-gradient(circle at top, rgba(248, 113, 113, 0.08), transparent 30%), linear-gradient(180deg, rgba(15, 23, 42, 0.18), rgba(15, 23, 42, 0.82))",
+                    "radial-gradient(circle at top, rgba(59, 130, 246, 0.08), transparent 34%), linear-gradient(180deg, rgba(15, 23, 42, 0.2), rgba(15, 23, 42, 0.74))",
                 }}
               />
 
-              <Box className="relative z-[1] p-5 md:p-6">
+              <Box className="relative z-[1] h-full p-4">
                 <Box className="flex flex-wrap items-center justify-between gap-3">
                   {isLoading ? (
                     <Typography className="text-[13px] text-[#93c5fd]">
@@ -282,14 +288,18 @@ const Alarms = () => {
                 </Box>
 
                 <Box className="mt-6 hidden items-start gap-4 xl:grid xl:grid-cols-4">
-                  {alarmGroups.map((group) => (
-                    <AlarmGroupCard key={group.key} group={group} />
+                  {alarmGroupColumns.map((columnGroups, columnIndex) => (
+                    <Box key={`alarm-column-${columnIndex + 1}`} className="flex flex-col gap-4">
+                      {columnGroups.map((group) => (
+                        <AlarmSignalGroupCard key={group.key} group={group} />
+                      ))}
+                    </Box>
                   ))}
                 </Box>
 
                 <Box className="mt-6 grid grid-cols-1 items-start gap-4 xl:hidden md:grid-cols-2">
                   {alarmGroups.map((group) => (
-                    <AlarmGroupCard key={group.key} group={group} />
+                    <AlarmSignalGroupCard key={group.key} group={group} />
                   ))}
                 </Box>
               </Box>
