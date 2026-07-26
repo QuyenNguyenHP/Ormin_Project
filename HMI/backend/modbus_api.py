@@ -95,10 +95,15 @@ def get_mapping_register_count(mapping: dict[str, Any]) -> int:
 
 
 def expand_mapping_addresses(mapping: dict[str, Any]) -> list[int]:
-    """Return every register address needed to resolve one mapping."""
+    """
+    Return every register address needed to resolve one mapping.
+
+    For multi-register values, the configured address is the high-word
+    register. Lower-order words are stored at the preceding addresses.
+    """
     address = int(mapping["address"])
     register_count = get_mapping_register_count(mapping)
-    return [address + offset for offset in range(register_count)]
+    return [address - offset for offset in range(register_count)]
 
 
 def flatten_mapping_nodes(config_node: Any) -> list[dict[str, Any]]:
@@ -265,7 +270,10 @@ def transform_mapping_value(
 
     if source_type == "holding_register":
         register_count = get_mapping_register_count(mapping)
-        raw_words = [holding_registers[address + offset] for offset in range(register_count)]
+        raw_words = [
+            holding_registers[register_address]
+            for register_address in expand_mapping_addresses(mapping)
+        ]
         data_type = str(mapping.get("data_type", "uint16")).lower()
 
         if register_count == 1:

@@ -121,7 +121,15 @@ def get_point_register_count(point: PointConfig) -> int:
 
 
 def expand_point_addresses(point: PointConfig) -> list[int]:
-    return [point.address + offset for offset in range(get_point_register_count(point))]
+    """
+    Return register addresses in high-word to low-word order.
+
+    The configured address identifies the high-word register; any lower-order
+    words are stored at the preceding addresses.
+    """
+    return [
+        point.address - offset for offset in range(get_point_register_count(point))
+    ]
 
 
 def parse_points(config: dict[str, Any]) -> list[PointConfig]:
@@ -244,7 +252,10 @@ def resolve_holding_register_value(
     holding_registers: dict[int, int],
 ) -> int:
     register_count = get_point_register_count(point)
-    raw_words = [holding_registers[point.address + offset] for offset in range(register_count)]
+    raw_words = [
+        holding_registers[register_address]
+        for register_address in expand_point_addresses(point)
+    ]
 
     if register_count == 1:
         return raw_words[0]
