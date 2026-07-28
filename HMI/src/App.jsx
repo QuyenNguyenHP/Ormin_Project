@@ -14,6 +14,7 @@ import ExhTempTrend from "./pages/ExhTempTrend";
 import DOConsumption from "./pages/DOConsumption";
 import HOConsumption from "./pages/HOConsumption";
 import PressureTrend from "./pages/PressureTrend";
+import DeviceStatus1 from "./pages/DeviceStatus1";
 
 
 function App() {
@@ -65,6 +66,10 @@ function App() {
         title = "Engine Digital Signal";
         metaDescription = "Engine digital signal monitoring page.";
         break;
+      case "/device-status-1":
+        title = "Device Status 1";
+        metaDescription = "Device status overview with configurable digital indicators.";
+        break;
       default:
         title = "Overview | P&ID";
         metaDescription = "System overview page.";
@@ -95,6 +100,7 @@ function App() {
       <Route path="/pressure_trend" element={<PressureTrend />} />
       <Route path="/exh_temp_trend" element={<ExhTempTrend />} />
       <Route path="/alarms" element={<Alarms />} />
+      <Route path="/device-status-1" element={<DeviceStatus1 />} />
     </Routes>
   );
 }

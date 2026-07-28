@@ -210,6 +210,30 @@ const NavigationSidebar = ({ className = "" }) => {
         </NavLink>
 
         <NavLink
+          to="/device-status-1"
+          className={navItemClass}
+          style={({ isActive }) => ({
+            borderLeft: isActive ? "4px solid #51A2FF" : undefined,
+            background: isActive ? "#155DFC" : undefined,
+            borderRadius: isActive ? "10px" : undefined,
+          })}
+        >
+          {({ isActive }) => (
+            <>
+              <img
+                className={navIconClass(isActive)}
+                alt=""
+                src="/alarm.svg"
+                style={navIconStyle(isActive)}
+              />
+              <Box className="h-5 flex-1 flex items-start">
+                <div className="flex-1 relative leading-5 font-medium">Device Status 1</div>
+              </Box>
+            </>
+          )}
+        </NavLink>
+
+        <NavLink
           to="/alarms"
           className={navItemClass}
           style={({ isActive }) => ({
