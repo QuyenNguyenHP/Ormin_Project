@@ -1,26 +1,19 @@
 # DRUMS HMI Dashboard
 
-React + Vite HMI frontend with a Flask backend for live Modbus monitoring and SQLite-backed historical trends.
+`HMI` is a React + Vite operator dashboard backed by Flask APIs for live Modbus monitoring and SQLite-based history/trend views.
 
-## Overview
+## What This Project Contains
 
-This project is an operator-facing dashboard for DRUMS engine and fuel system monitoring. It combines:
+- A Vite frontend in `src/`
+- A Flask backend in `backend/`
+- Public HMI assets in `public/`
+- A built production bundle in `build/`
 
-- Live operational data from Modbus TCP
-- Historical trend and consumption data from SQLite
-- A multi-page HMI interface for overview, diagnostics, process visualization, and fuel analysis
-
-The application is structured as:
-
-```text
-React + Vite frontend
-  -> calls /api/*
-Flask backend
-  -> modbus_api.py for live data
-  -> database_api.py for historical and trend data
-```
+The frontend talks to the backend through `/api/*` endpoints. During local development, Vite proxies those requests to `http://127.0.0.1:8001`.
 
 ## Tech Stack
+
+### Frontend
 
 - React 19
 - Vite 6
@@ -28,79 +21,16 @@ Flask backend
 - MUI 7
 - Tailwind CSS 4
 - ECharts 5
+- Recharts 2
+
+### Backend
+
 - Flask 3
+- Flask-CORS
 - pymodbus 3
 - SQLite
 
-## Current Pages
-
-- `/` - Overview
-- `/engine` - Engine details
-- `/pid` - P&ID process view
-- `/pressure_trend` - Pressure Trend
-- `/exh_temp_trend` - Exhaust Temperature Trend
-- `/do-consumption` - D.O Consumption
-- `/ho-consumption` - H.O Consumption
-- `/fo-consumption` - Redirects to `/do-consumption`
-- `/alarms` - Placeholder page
-
-## Data Architecture
-
-The frontend uses two data models.
-
-### 1. Live Modbus Pages
-
-These pages poll structured backend payloads:
-
-- Overview
-- Engine
-- P&ID
-
-Frontend flow:
-
-```text
-Page
-  -> usePolledPagePayload("page-name")
-  -> GET /api/<page-name>
-  -> backend/modbus_api.py
-  -> backend/backend_config.json
-  -> Modbus TCP device
-```
-
-The backend is responsible for:
-
-1. Reading page mappings from `backend/backend_config.json`
-2. Grouping Modbus addresses for efficient reads
-3. Reading holding registers and discrete inputs
-4. Applying scale, precision, and threshold logic
-5. Returning UI-ready payloads in `sections + meta` format
-
-### 2. Historical / Trend Pages
-
-These pages query history APIs backed by SQLite:
-
-- Pressure Trend
-- Exhaust Temperature Trend
-- D.O Consumption
-- H.O Consumption
-
-Frontend flow:
-
-```text
-Page
-  -> fetch history API
-  -> backend/database_api.py
-  -> SQLite database
-```
-
-These pages support:
-
-- UTC date/time range filtering
-- Engine selection where applicable
-- Historical chart rendering
-- Live update mode on trend screens
-
-## Directory Structure
+## Folder Layout
 
 ```text
 HMI/
@@ -111,41 +41,99 @@ HMI/
     backend_config.json
     requirements.txt
     database/
-      database
-      flow_meter_history.db
-      mock_do_flow_meter_data.csv
-      import_database.py
     data_collecting/
-      modbus_csv_db_collector.py
-      modbus_csv_db_collector_config.json
 
   public/
-    Monitoritem_v2.svg
+    Device_Status_1.png
+    Device_Status_2.png
+    Indicator1.svg
+    Indicator2.svg
     P&IDbackground.png
     engine_image.png
-    *.svg icons
+    overview.png
+    *.svg
 
   src/
     components/
     hooks/
     pages/
     services/
+    utils/
+
+  build/
+  package.json
+  vite.config.mjs
 ```
 
-## Main Frontend Services
+## Current Frontend Routes
 
-Core frontend API calls are defined in:
+These routes are registered in `src/App.jsx`.
 
-- `src/services/pidMonitorApi.js`
+- `/` -> `Overview`
+- `/pid` -> `PAndID`
+- `/engine` -> `Engine`
+- `/pressure_trend` -> `PressureTrend`
+- `/exh_temp_trend` -> `ExhTempTrend`
+- `/do-consumption` -> `DOConsumption`
+- `/ho-consumption` -> `HOConsumption`
+- `/fo-consumption` -> redirects to `/do-consumption`
+- `/alarms` -> `Alarms`
+- `/device-status-1` -> `DeviceStatus1`
 
-Main helpers include:
+## Main Screens
 
-- `fetchPagePayload(pageName)`
-- `fetchModbusStatus()`
-- `fetchPressureTrendHistory(...)`
-- `fetchExhTempTrendHistory(...)`
-- `fetchDOConsumptionHistory(...)`
-- `fetchHOConsumptionHistory(...)`
+### Overview
+
+- High-level system summary
+- Engine cards and overview visuals
+- Uses live `/api/overview` data
+
+### P&ID
+
+- Background diagram plus dynamic values/status overlays
+- Uses live `/api/pid` data
+
+### Engine
+
+- Detailed grouped engine metrics
+- Includes selectable engine buttons
+- Uses live `/api/engine` data
+
+### Device Status
+
+- Implemented in `src/pages/DeviceStatus1.jsx`
+- Currently contains selectable tabs for:
+- `Device list 1`
+- `Device list 2`
+- `Device list 3`
+- `Device list 4`
+
+Current asset mapping:
+
+- `Device list 1` -> `/Device_Status_1.png` + `/Indicator1.svg`
+- `Device list 2` -> `/Device_Status_2.png` + `/Indicator2.svg`
+- `Device list 3` -> currently points to list 1 assets as fallback
+- `Device list 4` -> currently points to list 1 assets as fallback
+
+Current API mapping:
+
+- `Device list 1` -> `/api/device_status_1`
+- `Device list 2` -> `/api/device_status_2`
+- `Device list 3` -> currently reuses `device_status_1`
+- `Device list 4` -> currently reuses `device_status_1`
+
+### Historical Pages
+
+- `PressureTrend`
+- `ExhTempTrend`
+- `DOConsumption`
+- `HOConsumption`
+
+These pages read from SQLite-backed Flask endpoints rather than live Modbus pages.
+
+## Frontend Data Flow
+
+### Live pages
 
 The common live polling hook is:
 
@@ -153,111 +141,156 @@ The common live polling hook is:
 
 It:
 
-- polls automatically using `meta.pollIntervalMs` when provided
-- falls back to `2000ms` on backend error
+- polls `GET /api/<pageName>`
+- uses `meta.pollIntervalMs` from the backend when available
+- falls back to `2000ms` when requests fail
 - returns `payload`, `isLoading`, `error`, `lastUpdated`, and `pollIntervalMs`
+
+Main frontend API service:
+
+- `src/services/pidMonitorApi.js`
+
+Important functions:
+
+- `fetchPagePayload(pageName)`
+- `fetchModbusStatus()`
+- `fetchDebugModbusSnapshot()`
+- `fetchPressureTrendHistory(...)`
+- `fetchExhTempTrendHistory(...)`
+- `fetchDOConsumptionHistory(...)`
+- `fetchHOConsumptionHistory(...)`
+
+### Device status overlay logic
+
+Device status indicator rendering is handled by:
+
+- `src/utils/deviceStatusMonitor.js`
+
+It:
+
+- converts `payload.sections.indicators` into SVG lookup data
+- updates SVG nodes by `id`
+- applies colors to `fill`
+- also applies colors to `stroke` for stroke-only indicator SVGs such as `Indicator2.svg`
+
+## Backend Architecture
+
+### App entry
+
+- `backend/app.py`
+
+This starts Flask on:
+
+```text
+http://0.0.0.0:8001
+```
+
+It registers:
+
+- `database_api`
+- `modbus_api`
+
+### Live Modbus backend
+
+- `backend/modbus_api.py`
+
+This module:
+
+- loads `backend/backend_config.json`
+- reads page configs from `CONFIG["pages"]`
+- opens a Modbus TCP client
+- groups contiguous addresses for efficient reads
+- reads holding registers and discrete inputs
+- transforms raw values into UI-ready payloads
+- serves page payloads through `GET /api/<page_name>`
+
+Important implementation detail:
+
+- `backend_config.json` is loaded once at startup into `CONFIG`
+- if you change page mappings or Modbus config, restart the Flask backend to pick up the changes
+
+### Historical backend
+
+- `backend/database_api.py`
+
+This module:
+
+- reads database-related config from `backend/backend_config.json`
+- resolves database paths
+- queries SQLite for trend and consumption data
+- returns records plus time-range metadata
 
 ## Backend API Summary
 
-### Live Status
+### Live utility endpoints
 
 - `GET /api/modbus-status`
+- `GET /api/debug/modbus-snapshot`
 
-### Live Page Endpoints
+### Live page endpoints
 
 - `GET /api/overview`
 - `GET /api/engine`
 - `GET /api/pid`
+- `GET /api/device_status_1`
+- `GET /api/device_status_2`
 
-### Historical Endpoints
+### Historical endpoints
 
+- `GET /api/do-consumption`
+- `GET /api/fo-consumption`
+- `GET /api/ho-consumption`
 - `GET /api/pressure_trend`
 - `GET /api/exh_temp_trend`
-- `GET /api/do-consumption`
-- `GET /api/ho-consumption`
-- `GET /api/fo-consumption`
 
-### Common History Query Parameters
+### Common history query parameters
 
 - `windowMinutes`
 - `startTime`
 - `endTime`
 - `engine`
-- `channelDescription` (repeated query parameter where applicable)
-
-Notes:
-
-- `startTime` and `endTime` must be supplied together when using an absolute range
-- if no absolute range is provided, the backend uses the configured default time window
-
-## Page Summary
-
-### Overview
-
-- Shows up to four engine summary cards
-- Displays a main gauge and key operating metrics for each engine
-- Intended for fast system-wide monitoring
-
-### Engine
-
-- Shows detailed grouped metrics for one selected engine
-- Groups include engine parameters, temperatures, fuel, lubrication, PMS, and cooling water
-- Some groups link to related trend pages
-
-### P&ID
-
-- Displays a background process diagram with a dynamic SVG overlay
-- Updates flow values and digital states in real time
-- Useful for process-oriented monitoring and demonstrations
-
-### Pressure Trend
-
-- Compares engine load with pressure-related values over time
-- Supports engine selection, UTC range selection, and live mode
-- Uses dual-axis charting for pressure and load
-
-### Exhaust Temperature Trend
-
-- Compares engine load with turbocharger and cylinder exhaust temperatures
-- Supports engine selection, UTC range selection, and live mode
-
-### D.O Consumption
-
-- Shows one chart card per engine
-- Compares D.O inlet flow, D.O outlet flow, and engine load
-- Calculates consumption from the flow difference over time
-
-### H.O Consumption
-
-- Same interaction model as D.O Consumption
-- Uses H.O-specific inlet and outlet flow history with engine load overlay
-
-### Alarms
-
-- Placeholder page reserved for future alarm features
+- `channelDescription` as a repeated query parameter for trend endpoints
 
 ## Backend Configuration
 
-Main backend settings are stored in:
+Main config file:
 
-- [backend/backend_config.json](./backend/backend_config.json)
+- `backend/backend_config.json`
 
-This file defines:
+This file contains:
 
 - Modbus connection settings
-- Per-page live mappings
-- Historical database settings
-- Consumption channel mappings
-- Display engine to source engine mapping
+- Poll interval settings
+- Live page mappings under `pages`
+- Device status indicator definitions
+- Consumption history settings
+- Pressure trend history settings
+- Exhaust temperature history settings
 
-Examples of configuration areas:
+Relevant live page keys currently present include:
 
-- `modbus`
-- `fo_consumption`
-- `ho_consumption`
-- `pressure_trend_history`
-- `exh_temp_trend_history`
-- `pages`
+- `overview`
+- `engine`
+- `pid`
+- `device_status_1`
+- `device_status_2`
+
+## Public Assets
+
+Notable assets currently in `public/`:
+
+- `overview.png`
+- `engine_image.png`
+- `P&IDbackground.png`
+- `Device_Status_1.png`
+- `Device_Status_2.png`
+- `Indicator1.svg`
+- `Indicator2.svg`
+- `Monitoritem_v2.svg`
+- `overview.svg`
+- `engine.svg`
+- `pressure_trend.svg`
+- `alarm.svg`
 
 ## Local Development
 
@@ -279,7 +312,7 @@ pip install -r backend/requirements.txt
 python backend/app.py
 ```
 
-Default backend address:
+Backend default address:
 
 ```text
 http://127.0.0.1:8001
@@ -291,87 +324,99 @@ http://127.0.0.1:8001
 npm run start
 ```
 
-Default frontend address:
+Frontend default address:
 
 ```text
 http://localhost:5173
 ```
 
-## Vite Proxy
+## Vite Development Proxy
 
-The frontend proxies API requests through Vite during development.
-
-See:
-
-- `vite.config.mjs`
-
-Typical behavior:
+Defined in `vite.config.mjs`:
 
 ```text
 /api/* -> http://127.0.0.1:8001
 ```
 
+The Vite dev server also ignores file watching inside:
+
+```text
+backend/database/
+```
+
 ## Build
+
+Create a production bundle with:
 
 ```bash
 npm run build
 ```
 
-The production bundle is generated in:
+The output is written to:
 
 ```text
 build/
 ```
 
-## Historical Data Import
+## Common Files To Know
 
-The repository includes a CSV import utility:
+### Frontend
 
-- `backend/database/import_database.py`
+- `src/App.jsx` -> route registration
+- `src/services/pidMonitorApi.js` -> frontend API calls
+- `src/hooks/usePolledPagePayload.js` -> shared polling hook
+- `src/utils/deviceStatusMonitor.js` -> device status SVG mapping
+- `src/components/` -> reusable UI pieces
 
-This script can import:
+### Backend
 
-- `backend/database/mock_do_flow_meter_data.csv`
-
-into the SQLite database used by the backend.
+- `backend/app.py` -> Flask entry point
+- `backend/modbus_api.py` -> live Modbus endpoints
+- `backend/database_api.py` -> history/trend endpoints
+- `backend/backend_config.json` -> main runtime config
 
 ## Troubleshooting
 
-### Frontend shows no data
+### The frontend shows `Backend unavailable, showing the latest available overlay.`
 
-- confirm the Flask backend is running
-- confirm the Vite proxy is correct
-- inspect `/api/*` requests in the browser dev tools
-- check whether the backend is returning an error payload
+This means the active `GET /api/<pageName>` request failed.
 
-### Modbus connection is unavailable
+Check:
 
-- verify `modbus.host`
-- verify `modbus.port`
-- verify `modbus.unit_id`
-- verify network routing and firewall access to the PLC or Modbus gateway
+- Flask backend is running
+- the selected page key exists in `backend/backend_config.json`
+- the backend was restarted after config changes
+- the Modbus server is reachable
+- the browser request to `/api/<pageName>` is not returning `404` or `500`
 
-### Trend or consumption pages show no history
+### Device status colors do not update
 
-- verify the SQLite database file exists
-- verify the configured table name
-- verify the selected UTC time range actually contains data
-- verify channel description names match the backend configuration
+Check:
 
-### P&ID values do not update correctly
+- the SVG nodes have stable `id` values
+- `svg_id` in `backend/backend_config.json` matches the SVG `id`
+- the backend returns `sections.indicators`
+- the selected device list points to the expected SVG and page key
 
-- verify `/api/pid` response content
-- verify SVG element IDs in `public/Monitoritem_v2.svg`
-- verify backend labels match the expected frontend IDs
+### Trend pages return no records
 
-## Additional Documentation
+Check:
 
-For customer-facing page descriptions, see:
+- the SQLite database exists
+- the configured table and column names match the real database
+- the selected time range contains data
+- the selected engine and channel descriptions exist in the database
 
-- [FRONTEND_PAGES_CLIENT_PRESENTATION_GUIDE.md](./FRONTEND_PAGES_CLIENT_PRESENTATION_GUIDE.md)
+### Config changes do not appear in the app
 
-## Notes
+Restart the Flask backend after editing:
 
-- The current frontend uses real route names for `Pressure Trend`, `Exh TempTrend`, `D.O Consumption`, and `H.O Consumption`
-- `Alarms` is still a placeholder
-- `fo-consumption` currently redirects to `do-consumption`
+- `backend/backend_config.json`
+
+because the file is loaded on backend startup.
+
+## Extra Docs
+
+For page-by-page presentation notes, see:
+
+- `FRONTEND_PAGES_CLIENT_PRESENTATION_GUIDE.md`

@@ -32,7 +32,15 @@ export const updateDeviceStatusMonitorElements = (svgDocument, monitorData) => {
     }
 
     const nextColor = indicator.isOn ? indicator.onColor : indicator.offColor;
+    const hasExplicitFill = targetElement.hasAttribute("fill");
+    const currentFill = targetElement.getAttribute("fill");
+    const fillIsUnset = !hasExplicitFill || currentFill === "none";
+    const hasStroke = targetElement.hasAttribute("stroke");
+
     targetElement.setAttribute("fill", nextColor);
+    if (fillIsUnset && hasStroke) {
+      targetElement.setAttribute("stroke", nextColor);
+    }
 
     const titleText = `${indicator.label}: ${indicator.isOn ? "ON" : "OFF"}`;
     const existingTitle = targetElement.querySelector("title");
