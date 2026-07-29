@@ -82,6 +82,53 @@ const NavigationSidebar = ({ className = "" }) => {
             </>
           )}
         </NavLink>
+                <NavLink
+          to="/alarms"
+          className={navItemClass}
+          style={({ isActive }) => ({
+            borderLeft: isActive ? "4px solid #51A2FF" : undefined,
+            background: isActive ? "#155DFC" : undefined,
+            borderRadius: isActive ? "10px" : undefined,
+          })}
+        >
+          {({ isActive }) => (
+            <>
+              <img
+                className={navIconClass(isActive)}
+                alt=""
+                src="/alarm.svg"
+                style={navIconStyle(isActive)}
+              />
+              <Box className="h-5 flex-1 flex items-start">
+                <div className="flex-1 relative leading-5 font-medium">Engine Status</div>
+              </Box>
+            </>
+          )}
+        </NavLink>
+
+        <NavLink
+          to="/device-status-1"
+          className={navItemClass}
+          style={({ isActive }) => ({
+            borderLeft: isActive ? "4px solid #51A2FF" : undefined,
+            background: isActive ? "#155DFC" : undefined,
+            borderRadius: isActive ? "10px" : undefined,
+          })}
+        >
+          {({ isActive }) => (
+            <>
+              <img
+                className={navIconClass(isActive)}
+                alt=""
+                src="/alarm.svg"
+                style={navIconStyle(isActive)}
+              />
+              <Box className="h-5 flex-1 flex items-start">
+                <div className="flex-1 relative leading-5 font-medium">Device Status</div>
+              </Box>
+            </>
+          )}
+        </NavLink>
 
         <NavLink
           to="/pid"
@@ -158,32 +205,6 @@ const NavigationSidebar = ({ className = "" }) => {
         </NavLink>
 
         <NavLink
-          to="/ho-consumption"
-          className={navItemClass}
-          style={({ isActive }) => ({
-            borderLeft: isActive ? "4px solid #51A2FF" : undefined,
-            background: isActive ? "#155DFC" : undefined,
-            borderRadius: isActive ? "10px" : undefined,
-          })}
-        >
-          {({ isActive }) => (
-            <>
-              <img
-                className={navIconClass(isActive)}
-                alt=""
-                src="/pressure_trend.svg"
-                style={navIconStyle(isActive)}
-              />
-              <Box className="min-h-5 flex-1 flex items-start">
-                <div className="flex-1 relative leading-5 font-medium">
-                  H.O Consumption
-                </div>
-              </Box>
-            </>
-          )}
-        </NavLink>
-
-        <NavLink
           to="/do-consumption"
           className={navItemClass}
           style={({ isActive }) => ({
@@ -209,63 +230,7 @@ const NavigationSidebar = ({ className = "" }) => {
           )}
         </NavLink>
 
-        <NavLink
-          to="/device-status-1"
-          className={navItemClass}
-          style={({ isActive }) => ({
-            borderLeft: isActive ? "4px solid #51A2FF" : undefined,
-            background: isActive ? "#155DFC" : undefined,
-            borderRadius: isActive ? "10px" : undefined,
-          })}
-        >
-          {({ isActive }) => (
-            <>
-              <img
-                className={navIconClass(isActive)}
-                alt=""
-                src="/alarm.svg"
-                style={navIconStyle(isActive)}
-              />
-              <Box className="h-5 flex-1 flex items-start">
-                <div className="flex-1 relative leading-5 font-medium">Device Status 1</div>
-              </Box>
-            </>
-          )}
-        </NavLink>
 
-        <NavLink
-          to="/alarms"
-          className={navItemClass}
-          style={({ isActive }) => ({
-            borderLeft: isActive ? "4px solid #51A2FF" : undefined,
-            background: isActive ? "#155DFC" : undefined,
-            borderRadius: isActive ? "10px" : undefined,
-          })}
-        >
-          {({ isActive }) => (
-            <>
-              <img
-                className={navIconClass(isActive)}
-                alt=""
-                src="/alarm.svg"
-                style={navIconStyle(isActive)}
-              />
-              <Box className="h-5 flex-1 flex items-start">
-                <div className="flex-1 relative leading-5 font-medium">Engine Digital Signal</div>
-              </Box>
-              <Box className="h-5 w-[22.9px] rounded-[33554400px] bg-[#364153] shrink-0 flex items-start !pt-0.5 !pb-0.5 !pl-2 !pr-1.5 box-border text-center text-xs">
-                <Typography
-                  className="relative"
-                  variant="inherit"
-                  variantMapping={{ inherit: "b" }}
-                  sx={{ lineHeight: "16px", fontWeight: "700" }}
-                >
-                  0
-                </Typography>
-              </Box>
-            </>
-          )}
-        </NavLink>
       </Box>
 
     </section>

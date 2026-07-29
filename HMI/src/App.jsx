@@ -9,7 +9,7 @@ import {
 import Overview from "./pages/Overview";
 import PAndID from "./pages/PAndID";
 import Engine from "./pages/Engine";
-import Alarms from "./pages/Alarms";
+import EngineStatus from "./pages/EngineStatus";
 import ExhTempTrend from "./pages/ExhTempTrend";
 import DOConsumption from "./pages/DOConsumption";
 import HOConsumption from "./pages/HOConsumption";
@@ -63,11 +63,11 @@ function App() {
         metaDescription = "Heavy oil consumption history and flow comparison page.";
         break;
       case "/alarms":
-        title = "Engine Digital Signal";
-        metaDescription = "Engine digital signal monitoring page.";
+        title = "Engine Status";
+        metaDescription = "Engine status monitoring page.";
         break;
       case "/device-status-1":
-        title = "Device Status 1";
+        title = "Device Status";
         metaDescription = "Device status overview with configurable digital indicators.";
         break;
       default:
@@ -99,7 +99,7 @@ function App() {
       <Route path="/ho-consumption" element={<HOConsumption />} />
       <Route path="/pressure_trend" element={<PressureTrend />} />
       <Route path="/exh_temp_trend" element={<ExhTempTrend />} />
-      <Route path="/alarms" element={<Alarms />} />
+      <Route path="/alarms" element={<EngineStatus />} />
       <Route path="/device-status-1" element={<DeviceStatus1 />} />
     </Routes>
   );

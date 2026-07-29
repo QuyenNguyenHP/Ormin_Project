@@ -152,11 +152,7 @@ const DeviceStatus1 = () => {
               />
 
               <Box className="relative z-[1] p-5 md:p-6">
-                <Box className="flex flex-wrap items-center justify-between gap-3">
-                  <Typography className="text-[14px] font-medium text-[#e2e8f0]">
-                    {selectedDevice.name}
-                  </Typography>
-
+                <Box className="flex flex-wrap items-center justify-end gap-3">
                   {error ? (
                     <Typography className="text-[13px] text-[#fca5a5]">
                       Backend unavailable, showing the latest available overlay.

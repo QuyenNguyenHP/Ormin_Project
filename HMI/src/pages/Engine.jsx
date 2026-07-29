@@ -243,7 +243,7 @@ const Engine = () => {
                   backgroundImage: "url('/engine_image.png')",
                   backgroundPosition: "center",
                   backgroundRepeat: "no-repeat",
-                  backgroundSize: "90%",
+                  backgroundSize: "75%",
                   opacity: 0.6,
                   filter: "saturate(0.9)",
                   transformOrigin: "center",
