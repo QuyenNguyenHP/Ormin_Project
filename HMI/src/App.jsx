@@ -15,6 +15,7 @@ import DOConsumption from "./pages/DOConsumption";
 import HOConsumption from "./pages/HOConsumption";
 import PressureTrend from "./pages/PressureTrend";
 import DeviceStatus1 from "./pages/DeviceStatus1";
+import Admin from "./pages/Admin";
 
 
 function App() {
@@ -70,6 +71,10 @@ function App() {
         title = "Device Status";
         metaDescription = "Device status overview with configurable digital indicators.";
         break;
+      case "/admin":
+        title = "Administration | ORMIN-ORMECO";
+        metaDescription = "Modbus administration settings.";
+        break;
       default:
         title = "Overview | P&ID";
         metaDescription = "System overview page.";
@@ -101,6 +106,7 @@ function App() {
       <Route path="/exh_temp_trend" element={<ExhTempTrend />} />
       <Route path="/alarms" element={<EngineStatus />} />
       <Route path="/device-status-1" element={<DeviceStatus1 />} />
+      <Route path="/admin" element={<Admin />} />
     </Routes>
   );
 }

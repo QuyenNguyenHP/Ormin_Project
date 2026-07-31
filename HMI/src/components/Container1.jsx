@@ -5,10 +5,10 @@ import EngineGauge from "./EngineGauge";
 const metricDefinitions = [
   { key: "runningHours", label: "Running hours", unit: "h" },
   { key: "engineSpeed", label: "Engine Speed", unit: "rpm" },
-  { key: "foPress", label: "F.O. press", unit: "MPa" },
-  { key: "loPress", label: "L.O Press", unit: "MPa" },
-  { key: "loTemp", label: "L.O Temp", unit: "°C" },
-  { key: "boostAir", label: "BOOST AIR", unit: "MPa" },
+  { key: "foPress", label: "Fuel Oil Pressure", unit: "MPa" },
+  { key: "loPress", label: "Lub Oil Pressure", unit: "MPa" },
+  { key: "loTemp", label: "Lub Oil Temperature", unit: "°C" },
+  { key: "generatorCurrent", label: "Generator Current", unit: "A" },
 ];
 
 const metricStateStyles = {
@@ -85,6 +85,8 @@ const Container1 = ({ engine, className = "" }) => {
         const metricValue = getMetricValue(metricPayload);
         const metricState = getMetricState(metricPayload);
         const stateStyle = metricStateStyles[metricState];
+        const metricLabel = metricPayload?.label ?? metric.label;
+        const metricUnit = metricPayload?.unit ?? metric.unit;
 
         return (
           <Box
@@ -97,7 +99,7 @@ const Container1 = ({ engine, className = "" }) => {
               variantMapping={{ inherit: "h3" }}
               sx={{ fontSize: "16px", fontWeight: "600", lineHeight: 1.25 }}
             >
-              {metric.label}
+              {metricLabel}
             </Typography>
             <Box
               className="rounded-[8px] !px-2 !py-1"
@@ -111,7 +113,7 @@ const Container1 = ({ engine, className = "" }) => {
                 variantMapping={{ inherit: "h3" }}
                 sx={{ fontSize: "16px", fontWeight: "600", lineHeight: 1.25 }}
               >
-                {formatMetricValue(metricValue, metric.unit)}
+                {formatMetricValue(metricValue, metricUnit)}
               </Typography>
             </Box>
           </Box>
@@ -141,7 +143,7 @@ const metricPayloadPropType = PropTypes.oneOfType([
 ]);
 
 const metricsPropType = PropTypes.shape({
-  boostAir: metricPayloadPropType,
+  generatorCurrent: metricPayloadPropType,
   engineSpeed: metricPayloadPropType,
   foPress: metricPayloadPropType,
   loPress: metricPayloadPropType,

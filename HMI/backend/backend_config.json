@@ -9,6 +9,10 @@
     "timeout_seconds": 3,
     "poll_interval_ms": 1000
   },
+  "admin_credentials": {
+    "username": "admin",
+    "password": "admin123"
+  },
   "fo_consumption": {
     "database_path": "database/database",
     "table_name": "database",
@@ -157,7 +161,7 @@
             "foPress": { "key": "fuel_oil_pressure", "label": "Fuel Oil Pressure", "source_type": "holding_register", "address": 40015, "scale": 0.1, "precision": 1, "unit": "MPa" },
             "loPress": { "key": "lub_oil_pressure", "label": "Lub Oil Pressure", "source_type": "holding_register", "address": 40018, "scale": 0.1, "precision": 1, "unit": "MPa" },
             "loTemp": { "key": "lub_oil_temperature", "label": "Lub Oil Temperature", "source_type": "holding_register", "address": 40026, "scale": 1, "unit": "°C" },
-            "boostAir": { "key": "boost_air_pressure", "label": "Boost Air Pressure", "source_type": "holding_register", "address": 40020, "scale": 0.01, "precision": 2, "unit": "MPa" }
+            "generatorCurrent": { "key": "generator_current", "label": "Generator Current", "source_type": "holding_register", "address": 40036, "scale": 1, "unit": "A" }
           }
         },
         {
@@ -171,7 +175,7 @@
             "foPress": { "key": "fuel_oil_pressure", "label": "Fuel Oil Pressure", "source_type": "holding_register", "address": 40115, "scale": 0.1, "precision": 1, "unit": "MPa" },
             "loPress": { "key": "lub_oil_pressure", "label": "Lub Oil Pressure", "source_type": "holding_register", "address": 40118, "scale": 0.1, "precision": 1, "unit": "MPa" },
             "loTemp": { "key": "lub_oil_temperature", "label": "Lub Oil Temperature", "source_type": "holding_register", "address": 40126, "scale": 1, "unit": "°C" },
-            "boostAir": { "key": "boost_air_pressure", "label": "Boost Air Pressure", "source_type": "holding_register", "address": 40120, "scale": 0.01, "precision": 2, "unit": "MPa" }
+            "generatorCurrent": { "key": "generator_current", "label": "Generator Current", "source_type": "holding_register", "address": 40136, "scale": 1, "unit": "A" }
           }
         },
         {
@@ -185,7 +189,7 @@
             "foPress": { "key": "fuel_oil_pressure", "label": "Fuel Oil Pressure", "source_type": "holding_register", "address": 40215, "scale": 0.1, "precision": 1, "unit": "MPa" },
             "loPress": { "key": "lub_oil_pressure", "label": "Lub Oil Pressure", "source_type": "holding_register", "address": 40218, "scale": 0.1, "precision": 1, "unit": "MPa" },
             "loTemp": { "key": "lub_oil_temperature", "label": "Lub Oil Temperature", "source_type": "holding_register", "address": 40226, "scale": 1, "unit": "°C" },
-            "boostAir": { "key": "boost_air_pressure", "label": "Boost Air Pressure", "source_type": "holding_register", "address": 40220, "scale": 0.01, "precision": 2, "unit": "MPa" }
+            "generatorCurrent": { "key": "generator_current", "label": "Generator Current", "source_type": "holding_register", "address": 40236, "scale": 1, "unit": "A" }
           }
         },
         {
@@ -199,7 +203,7 @@
             "foPress": { "key": "fuel_oil_pressure", "label": "Fuel Oil Pressure", "source_type": "holding_register", "address": 40315, "scale": 0.1, "precision": 1, "unit": "MPa" },
             "loPress": { "key": "lub_oil_pressure", "label": "Lub Oil Pressure", "source_type": "holding_register", "address": 40318, "scale": 0.1, "precision": 1, "unit": "MPa" },
             "loTemp": { "key": "lub_oil_temperature", "label": "Lub Oil Temperature", "source_type": "holding_register", "address": 40326, "scale": 1, "unit": "°C" },
-            "boostAir": { "key": "boost_air_pressure", "label": "Boost Air Pressure", "source_type": "holding_register", "address": 40320, "scale": 0.01, "precision": 2, "unit": "MPa" }
+            "generatorCurrent": { "key": "generator_current", "label": "Generator Current", "source_type": "holding_register", "address": 40336, "scale": 1, "unit": "A" }
           }
         }
       ],
@@ -209,7 +213,7 @@
         "fuel_oil_pressure": { "warning": 3.5, "alarm": 3.0, "direction": "low" },
         "lub_oil_pressure": { "warning": 3.5, "alarm": 3.0, "direction": "low" },
         "lub_oil_temperature": { "warning": 85, "alarm": 95, "direction": "high" },
-        "boost_air_pressure": { "warning": 0.2, "alarm": 0.15, "direction": "low" }
+        "generator_current": { "warning": 650, "alarm": 750, "direction": "high" }
       }
     },
     "engine": {

@@ -21,18 +21,14 @@ def load_config() -> dict[str, Any]:
         return json.load(config_file)
 
 
-CONFIG = load_config()
-MODBUS_CONFIG = CONFIG["modbus"]
-PAGE_CONFIGS = CONFIG["pages"]
-
-
-def build_meta() -> dict[str, Any]:
+def build_meta(modbus_config: dict[str, Any] | None = None) -> dict[str, Any]:
     """Return shared metadata included in every API response."""
+    modbus_config = modbus_config or load_config()["modbus"]
     return {
-        "host": MODBUS_CONFIG["host"],
-        "port": MODBUS_CONFIG["port"],
-        "unitId": MODBUS_CONFIG["unit_id"],
-        "pollIntervalMs": MODBUS_CONFIG["poll_interval_ms"],
+        "host": modbus_config["host"],
+        "port": modbus_config["port"],
+        "unitId": modbus_config["unit_id"],
+        "pollIntervalMs": modbus_config["poll_interval_ms"],
     }
 
 
@@ -169,24 +165,24 @@ def resolve_metric_state(
     return "normal"
 
 
-def open_modbus_client() -> ModbusTcpClient:
+def open_modbus_client(modbus_config: dict[str, Any]) -> ModbusTcpClient:
     """Create and connect a Modbus client using the configured connection settings."""
     client = ModbusTcpClient(
-        host=MODBUS_CONFIG["host"],
-        port=MODBUS_CONFIG["port"],
-        timeout=MODBUS_CONFIG["timeout_seconds"],
+        host=modbus_config["host"],
+        port=modbus_config["port"],
+        timeout=modbus_config["timeout_seconds"],
     )
 
     if not client.connect():
         raise ConnectionError(
-            f"Unable to connect to Modbus server {MODBUS_CONFIG['host']}:{MODBUS_CONFIG['port']}"
+            f"Unable to connect to Modbus server {modbus_config['host']}:{modbus_config['port']}"
         )
 
     return client
 
 
 def read_holding_register_map(
-    client: ModbusTcpClient, mappings: list[dict[str, Any]]
+    client: ModbusTcpClient, mappings: list[dict[str, Any]], unit_id: int
 ) -> dict[int, int]:
     """Read all holding registers needed by the current payload."""
     register_map: dict[int, int] = {}
@@ -202,7 +198,7 @@ def read_holding_register_map(
             response = client.read_holding_registers(
                 address=modbus_address_to_offset(chunk_start, HOLDING_REGISTER_START),
                 count=count,
-                slave=MODBUS_CONFIG["unit_id"],
+                slave=unit_id,
             )
             if response.isError():
                 raise RuntimeError(
@@ -216,7 +212,7 @@ def read_holding_register_map(
 
 
 def read_discrete_input_map(
-    client: ModbusTcpClient, mappings: list[dict[str, Any]]
+    client: ModbusTcpClient, mappings: list[dict[str, Any]], unit_id: int
 ) -> dict[int, int]:
     """Read all discrete inputs needed by the current payload."""
     bit_map: dict[int, int] = {}
@@ -227,7 +223,7 @@ def read_discrete_input_map(
         response = client.read_discrete_inputs(
             address=modbus_address_to_offset(group_start, DISCRETE_INPUT_START),
             count=count,
-            slave=MODBUS_CONFIG["unit_id"],
+            slave=unit_id,
         )
         if response.isError():
             raise RuntimeError(f"Failed to read discrete inputs {group_start}-{group_end}")
@@ -249,10 +245,11 @@ def read_modbus_maps(mappings: list[dict[str, Any]]) -> tuple[dict[int, int], di
     holding_mappings = filter_mappings_by_source_type(mappings, "holding_register")
     discrete_mappings = filter_mappings_by_source_type(mappings, "discrete_input")
 
-    client = open_modbus_client()
+    modbus_config = load_config()["modbus"]
+    client = open_modbus_client(modbus_config)
     try:
-        holding_registers = read_holding_register_map(client, holding_mappings)
-        discrete_inputs = read_discrete_input_map(client, discrete_mappings)
+        holding_registers = read_holding_register_map(client, holding_mappings, modbus_config["unit_id"])
+        discrete_inputs = read_discrete_input_map(client, discrete_mappings, modbus_config["unit_id"])
     finally:
         client.close()
 
@@ -365,7 +362,7 @@ def build_config_payload(
 
 def get_page_config(page_name: str) -> dict[str, Any]:
     """Fetch one page config and raise a readable error if it does not exist."""
-    page_config = PAGE_CONFIGS.get(page_name)
+    page_config = load_config()["pages"].get(page_name)
     if page_config is None:
         raise KeyError(f"Unknown page configuration: {page_name}")
     return page_config
@@ -403,7 +400,7 @@ def build_page_payload(page_name: str) -> dict[str, Any]:
 def collect_all_page_mappings() -> list[dict[str, Any]]:
     """Flatten mappings from every configured page for debug inspection."""
     all_mappings: list[dict[str, Any]] = []
-    for page_config in PAGE_CONFIGS.values():
+    for page_config in load_config()["pages"].values():
         all_mappings.extend(flatten_page_mappings(page_config))
     return all_mappings
 
@@ -429,17 +426,18 @@ def build_debug_modbus_snapshot() -> dict[str, Any]:
 
 def build_modbus_status_payload() -> dict[str, Any]:
     """Return the current Modbus connectivity state without reading page mappings."""
+    modbus_config = load_config()["modbus"]
     client = ModbusTcpClient(
-        host=MODBUS_CONFIG["host"],
-        port=MODBUS_CONFIG["port"],
-        timeout=MODBUS_CONFIG["timeout_seconds"],
+        host=modbus_config["host"],
+        port=modbus_config["port"],
+        timeout=modbus_config["timeout_seconds"],
     )
 
     try:
         is_connected = bool(client.connect())
         return {
             "connected": is_connected,
-            "meta": build_meta(),
+            "meta": build_meta(modbus_config),
         }
     finally:
         client.close()

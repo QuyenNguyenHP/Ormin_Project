@@ -13,7 +13,7 @@ const defaultEngineMetrics = {
   foPress: defaultMetricPayload,
   loPress: defaultMetricPayload,
   loTemp: defaultMetricPayload,
-  boostAir: defaultMetricPayload,
+  generatorCurrent: defaultMetricPayload,
 };
 
 const fallbackEngines = Array.from({ length: 4 }, (_, index) => ({
@@ -81,8 +81,8 @@ const normalizeEngine = (engine, index) => ({
       engine.metrics?.loTemp ?? engine.loTemp,
       defaultMetricPayload.value
     ),
-    boostAir: normalizeMetricPayload(
-      engine.metrics?.boostAir ?? engine.boostAir,
+    generatorCurrent: normalizeMetricPayload(
+      engine.metrics?.generatorCurrent ?? engine.generatorCurrent,
       defaultMetricPayload.value
     ),
   },

@@ -140,7 +140,13 @@ const Header = ({ className = "", modbusConnected = null }) => {
             {currentTime}
           </Typography>
         </Box>
-        <button className="cursor-pointer border-[#4a5565] border-solid border-[1px] !pt-0 !pb-0 !pl-[9px] !pr-[9px] bg-[#364153] h-10 w-10 rounded-[33554400px] box-border flex items-center justify-center">
+        <button
+          type="button"
+          aria-label="Open administration"
+          title="Administration"
+          onClick={() => navigate("/admin")}
+          className="cursor-pointer border-[#4a5565] border-solid border-[1px] !pt-0 !pb-0 !pl-[9px] !pr-[9px] bg-[#364153] h-10 w-10 rounded-[33554400px] box-border flex items-center justify-center"
+        >
           <img className="h-5 w-5 relative" alt="" src="/Icon.svg" />
         </button>
       </Box>
