@@ -125,10 +125,10 @@ def expand_point_addresses(point: PointConfig) -> list[int]:
     Return register addresses in high-word to low-word order.
 
     The configured address identifies the high-word register; any lower-order
-    words are stored at the preceding addresses.
+    words are stored at the following addresses.
     """
     return [
-        point.address - offset for offset in range(get_point_register_count(point))
+        point.address + offset for offset in range(get_point_register_count(point))
     ]
 
 
