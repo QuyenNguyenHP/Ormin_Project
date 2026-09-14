@@ -5,12 +5,14 @@ import json
 from pathlib import Path
 from tempfile import NamedTemporaryFile
 from typing import Any
+from threading import RLock
 
 from flask import Blueprint, jsonify, request, session
 
 BASE_DIR = Path(__file__).resolve().parent
 CONFIG_PATH = BASE_DIR / "backend_config.json"
 admin_api = Blueprint("admin_api", __name__)
+config_lock = RLock()
 
 
 def load_config() -> dict[str, Any]:
@@ -23,10 +25,26 @@ def write_config(config: dict[str, Any]) -> None:
     with NamedTemporaryFile(
         mode="w", encoding="utf-8", dir=BASE_DIR, delete=False, suffix=".json"
     ) as temporary_file:
-        json.dump(config, temporary_file, indent=2, ensure_ascii=False)
+        temporary_file.write(format_config(config))
         temporary_file.write("\n")
         temporary_path = Path(temporary_file.name)
     temporary_path.replace(CONFIG_PATH)
+
+
+def format_config(value: Any, depth: int = 0) -> str:
+    """Keep each signal on one line while indenting page/group structure."""
+    if isinstance(value, dict) and value:
+        if "source_type" in value and all(not isinstance(item, (dict, list)) for item in value.values()):
+            return json.dumps(value, ensure_ascii=False)
+        items = [f'{json.dumps(key, ensure_ascii=False)}: {format_config(item, depth + 1)}' for key, item in value.items()]
+        opening, closing = "{", "}"
+    elif isinstance(value, list) and value:
+        items = [format_config(item, depth + 1) for item in value]
+        opening, closing = "[", "]"
+    else:
+        return json.dumps(value, ensure_ascii=False)
+    indent = "  " * (depth + 1)
+    return opening + "\n" + indent + (",\n" + indent).join(items) + "\n" + "  " * depth + closing
 
 
 def current_credentials() -> tuple[str, str]:
@@ -137,7 +155,71 @@ def update_modbus_config() -> Any:
     except ValueError as exc:
         return jsonify({"error": str(exc)}), 400
 
-    config = load_config()
-    config["modbus"] = modbus_config
-    write_config(config)
+    with config_lock:
+        config = load_config()
+        config["modbus"] = modbus_config
+        write_config(config)
     return jsonify({"modbus": modbus_config, "message": "Modbus configuration saved."})
+
+
+def address_nodes(node: Any, path: str = "pages"):
+    """Expose stable paths so equal keys on different engines stay independent."""
+    if isinstance(node, dict):
+        if "source_type" in node and "address" in node:
+            yield path, node
+        else:
+            for key, value in node.items():
+                yield from address_nodes(value, f"{path}/{key}")
+    elif isinstance(node, list):
+        for index, value in enumerate(node):
+            yield from address_nodes(value, f"{path}/{index}")
+
+
+def address_rows(config):
+    return [
+        {"path": path, "page": path.split("/")[1],
+         "label": node.get("label", node.get("key", path)),
+         "key": node.get("key", ""), "source_type": node["source_type"],
+         "address": node["address"], "register_count": node.get("register_count", 1)}
+        for path, node in address_nodes(config.get("pages", {}))
+    ]
+
+
+@admin_api.get("/api/admin/addresses")
+def get_addresses():
+    denied = require_admin()
+    if denied:
+        return denied
+    return jsonify({"addresses": address_rows(load_config())})
+
+
+@admin_api.put("/api/admin/addresses")
+def update_addresses():
+    denied = require_admin()
+    if denied:
+        return denied
+    payload = request.get_json(silent=True)
+    if not isinstance(payload, dict) or not isinstance(payload.get("changes"), list) or not payload["changes"]:
+        return jsonify({"error": "Provide a non-empty changes list."}), 400
+    with config_lock:
+        config = load_config()
+        nodes = dict(address_nodes(config.get("pages", {})))
+        seen = set()
+        for change in payload["changes"]:
+            if not isinstance(change, dict) or not isinstance(change.get("path"), str):
+                return jsonify({"error": "Each change requires a mapping path."}), 400
+            path = change["path"]
+            if path not in nodes or path in seen:
+                return jsonify({"error": f"Unknown or duplicate mapping: {path}"}), 400
+            seen.add(path)
+            node = nodes[path]
+            if change.get("previous_address") != node["address"]:
+                return jsonify({"error": "Addresses changed since loading. Reload before saving."}), 409
+            address = change.get("address")
+            start = {"holding_register": 40001, "discrete_input": 10001}.get(node["source_type"])
+            count = int(node.get("register_count", 1)) if node["source_type"] == "holding_register" else 1
+            if start is None or type(address) is not int or not start <= address <= start + 65536 - count:
+                return jsonify({"error": f"Invalid address for {path}; use visible Modbus notation and a valid register span."}), 400
+            node["address"] = address
+        write_config(config)
+    return jsonify({"addresses": address_rows(config), "message": "Addresses saved. Changes apply on the next data poll."})

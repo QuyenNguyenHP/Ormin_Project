@@ -10,6 +10,7 @@ import {
 import Header from "../components/Header";
 import NavigationSidebar from "../components/NavigationSidebar";
 import Footer from "../components/Footer";
+import AdminAddresses from "../components/AdminAddresses";
 
 const emptyLogin = { username: "", password: "" };
 const emptyConfig = {
@@ -139,7 +140,7 @@ const Admin = () => {
           <Box className="h-full w-full overflow-auto rounded-[10px] bg-[#1e2939] border-[#364153] border-solid border-[1px] box-border flex flex-col !pt-8 !pb-8 !pl-10 !pr-10 text-left font-[Roboto] mq925:h-auto mq925:!p-6">
             <Box className="border-[#364153] border-solid border-b-[1px] !pb-6">
               <Typography variant="h4" className="!font-bold !text-[#f8fafc]">Administration</Typography>
-              <Typography className="!mt-2 !text-[#94a3b8]">Modbus connection configuration</Typography>
+              <Typography className="!mt-2 !text-[#94a3b8]">Modbus connection and signal addresses</Typography>
             </Box>
             <Box className="w-full max-w-[620px] !pt-7">
               {error && <Alert severity="error" className="!mb-5">{error}</Alert>}
@@ -191,6 +192,7 @@ const Admin = () => {
                 </Box>
               )}
             </Box>
+            {authenticated && <AdminAddresses requestJson={requestJson} fieldSx={fieldSx} />}
           </Box>
         </section>
       </main>
