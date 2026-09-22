@@ -1,359 +1,118 @@
 import { useEffect, useMemo, useState } from "react";
-import { Box, CircularProgress, MenuItem, TextField, ToggleButton, ToggleButtonGroup, Typography } from "@mui/material";
-import { useSearchParams } from "react-router-dom";
+import {
+  Box,
+  CircularProgress,
+  MenuItem,
+  TextField,
+  ToggleButton,
+  ToggleButtonGroup,
+  Typography,
+} from "@mui/material";
 import Header from "../components/Header";
 import NavigationSidebar from "../components/NavigationSidebar";
 import Footer from "../components/Footer";
-import FOConsumptionChart from "../components/FOConsumptionChart";
+import FuelConsumptionBarChart from "../components/FuelConsumptionBarChart";
 import DashboardButton from "../components/DashboardButton";
-import {
-  fetchDOConsumptionHistory,
-  fetchHOConsumptionHistory,
-  fetchModbusStatus,
-} from "../services/pidMonitorApi";
+import { fetchDailyFuelConsumption, fetchModbusStatus } from "../services/pidMonitorApi";
 
 const MODBUS_STATUS_POLL_INTERVAL_MS = 6000;
-const MAX_RANGE_MS = 7 * 24 * 3600000;
+const ENGINE_NUMBERS = [1, 2, 3, 4];
+const DAY_MS = 24 * 60 * 60 * 1000;
+const MAX_DAYS = 30;
 
-const pad = (value) => String(value).padStart(2, "0");
-
-const toUtcInputValue = (timestampMs) => {
-  if (!timestampMs) {
-    return "";
-  }
-
-  const date = new Date(timestampMs);
-  return [
-    `${date.getUTCFullYear()}-${pad(date.getUTCMonth() + 1)}-${pad(date.getUTCDate())}`,
-    `${pad(date.getUTCHours())}:${pad(date.getUTCMinutes())}`,
-  ].join("T");
-};
-
-const fromUtcInputValue = (inputValue) => {
-  if (!inputValue) {
-    return null;
-  }
-
-  return new Date(`${inputValue}:00Z`).getTime();
-};
-
-const shiftUtcInputValue = (inputValue, deltaHours) => {
-  const timestampMs = fromUtcInputValue(inputValue);
-  if (!timestampMs) {
-    return inputValue;
-  }
-
-  return toUtcInputValue(timestampMs + deltaHours * 3600000);
-};
-
-const isRangeTooLong = (startMs, endMs) => endMs - startMs >= MAX_RANGE_MS;
-
-const calculateConsumptionLitres = (points) => {
-  if (!Array.isArray(points) || points.length < 2) {
-    return 0;
-  }
-
-  return points.slice(1).reduce((total, point, index) => {
-    const previousPoint = points[index];
-    const durationHours =
-      (Number(point.timestampMs ?? 0) - Number(previousPoint.timestampMs ?? 0)) /
-      3600000;
-
-    if (!Number.isFinite(durationHours) || durationHours <= 0) {
-      return total;
-    }
-
-    const previousGap = Number(previousPoint.bandGap ?? 0);
-    const currentGap = Number(point.bandGap ?? 0);
-
-    return total + ((previousGap + currentGap) / 2) * durationHours;
-  }, 0);
-};
-
-const formatUtcLabel = (timestampMs) => {
-  const date = new Date(timestampMs);
-  return [
-    `${String(date.getUTCFullYear()).slice(-2)}-${pad(date.getUTCMonth() + 1)}.${pad(date.getUTCDate())}`,
-    `${pad(date.getUTCHours())}-${pad(date.getUTCMinutes())}-${pad(date.getUTCSeconds())}`,
-  ].join(" ");
-};
-
-const buildEngineSeriesConfigMap = (payload) => {
-  const displayEngines = Array.isArray(payload?.meta?.displayEngines)
-    ? payload.meta.displayEngines
-    : [];
-
-  return displayEngines.reduce((configMap, engineConfig) => {
-    const displayEngine = Number(engineConfig?.displayEngine);
-    if (!displayEngine) {
-      return configMap;
-    }
-
-    configMap[displayEngine] = {
-      inletChannelDescription: String(engineConfig?.inletChannelDescription ?? ""),
-      outletChannelDescription: String(engineConfig?.outletChannelDescription ?? ""),
-      powerChannelDescription: String(
-        engineConfig?.powerChannelDescription ?? payload?.meta?.powerChannelDescription ?? "Engine Power"
-      ),
-      powerDisplayLabel: String(engineConfig?.powerDisplayLabel ?? "Engine Load"),
-    };
-    return configMap;
-  }, {});
-};
-
-const buildEngineChartData = (records, engineSeriesConfig) => {
-  const timestampMap = new Map();
-
-  records.forEach((record) => {
-    const timestampMs = Number(record.timestampMs ?? 0);
-    const existingPoint = timestampMap.get(timestampMs) ?? {
-      timestampLabel: record.timestampLabel ?? formatUtcLabel(timestampMs),
-      timestampMs,
-      flowIn: 0,
-      flowOut: 0,
-      enginePower: null,
-      unit: record.unit ?? "L/h",
-      powerUnit: "kW",
-    };
-    const channelDescription = String(record.channelDescription ?? "");
-
-    if (channelDescription === engineSeriesConfig.powerChannelDescription) {
-      existingPoint.enginePower = Number(record.value ?? 0);
-      existingPoint.powerUnit = record.unit ?? "kW";
-    } else if (channelDescription === engineSeriesConfig.inletChannelDescription) {
-      existingPoint.flowIn = Number(record.value ?? 0);
-      existingPoint.unit = record.unit ?? existingPoint.unit ?? "L/h";
-    } else if (channelDescription === engineSeriesConfig.outletChannelDescription) {
-      existingPoint.flowOut = Number(record.value ?? 0);
-      existingPoint.unit = record.unit ?? existingPoint.unit ?? "L/h";
-    } else {
-      return;
-    }
-
-    existingPoint.bandBase = Math.min(existingPoint.flowIn, existingPoint.flowOut);
-    existingPoint.bandGap = Math.abs(existingPoint.flowIn - existingPoint.flowOut);
-    existingPoint.difference = existingPoint.flowIn - existingPoint.flowOut;
-    timestampMap.set(timestampMs, existingPoint);
-  });
-
-  const chartData = Array.from(timestampMap.values()).sort(
-    (left, right) => left.timestampMs - right.timestampMs
-  );
-
-  return {
-    chartData,
-    flowInLabel: engineSeriesConfig.inletChannelDescription,
-    flowOutLabel: engineSeriesConfig.outletChannelDescription,
-    unit: chartData[0]?.unit ?? records[0]?.unit ?? "L/h",
-    powerLabel: engineSeriesConfig.powerDisplayLabel ?? "Engine Load",
-    powerUnit:
-      chartData.find((point) => point.powerUnit)?.powerUnit ??
-      records.find(
-        (record) =>
-          String(record.channelDescription ?? "") ===
-          engineSeriesConfig.powerChannelDescription
-      )?.unit ??
-      "kW",
-  };
-};
-
-const buildEngineCards = (payload, fuelLabel) => {
-  const engines = Array.isArray(payload?.engines) ? payload.engines : [1, 2, 3, 4];
-  const records = Array.isArray(payload?.records) ? payload.records : [];
-  const rangeStartMs = payload?.meta?.rangeStartMs ?? null;
-  const rangeEndMs = payload?.meta?.rangeEndMs ?? null;
-  const engineSeriesConfigMap = buildEngineSeriesConfigMap(payload);
-
-  return engines.map((engineNumber) => {
-    const engineRecords = records.filter(
-      (record) => Number(record.engine) === Number(engineNumber)
-    );
-    const chartPayload = buildEngineChartData(engineRecords, {
-      inletChannelDescription:
-        engineSeriesConfigMap[engineNumber]?.inletChannelDescription ??
-        `${fuelLabel} Inlet Flow DG#${engineNumber}`,
-      outletChannelDescription:
-        engineSeriesConfigMap[engineNumber]?.outletChannelDescription ??
-        `${fuelLabel} Out Flow DG#${engineNumber}`,
-      powerChannelDescription:
-        engineSeriesConfigMap[engineNumber]?.powerChannelDescription ?? "Engine Power",
-      powerDisplayLabel:
-        engineSeriesConfigMap[engineNumber]?.powerDisplayLabel ??
-        `Engine ${engineNumber} Load`,
-    });
-
-    return {
-      engineNumber,
-      engineRecords,
-      rangeStartMs,
-      rangeEndMs,
-      totalConsumptionLitres: calculateConsumptionLitres(chartPayload.chartData),
-      latestPoint: chartPayload.chartData[chartPayload.chartData.length - 1] ?? null,
-      ...chartPayload,
-    };
-  });
-};
+const shiftDay = (day, offset) =>
+  new Date(Date.parse(`${day}T00:00:00Z`) + offset * DAY_MS).toISOString().slice(0, 10);
 
 const Consumption = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const fuelType = searchParams.get("fuel")?.toLowerCase() === "ho" ? "ho" : "do";
-  const fuelLabel = fuelType === "ho" ? "H.O" : "D.O";
-  const [payload, setPayload] = useState(null);
+  const [dailyPayload, setDailyPayload] = useState(null);
   const [modbusConnected, setModbusConnected] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
   const [lastUpdated, setLastUpdated] = useState(null);
-  const [pollIntervalMs, setPollIntervalMs] = useState(null);
-  const [draftStartInput, setDraftStartInput] = useState("");
-  const [draftEndInput, setDraftEndInput] = useState("");
+  const [draftStartDay, setDraftStartDay] = useState("");
+  const [draftEndDay, setDraftEndDay] = useState("");
   const [appliedRange, setAppliedRange] = useState(null);
   const [chartCount, setChartCount] = useState(4);
   const [selectedEngine, setSelectedEngine] = useState(1);
 
   useEffect(() => {
-    let isActive = true;
-
-    const loadModbusStatus = async () => {
+    let active = true;
+    const loadStatus = async () => {
       try {
-        const statusPayload = await fetchModbusStatus();
-
-        if (!isActive) {
-          return;
-        }
-
-        setModbusConnected(Boolean(statusPayload?.connected));
+        const status = await fetchModbusStatus();
+        if (active) setModbusConnected(Boolean(status?.connected));
       } catch {
-        if (isActive) {
-          setModbusConnected(false);
-        }
+        if (active) setModbusConnected(false);
       }
     };
-
-    loadModbusStatus();
-    const intervalId = window.setInterval(
-      loadModbusStatus,
-      MODBUS_STATUS_POLL_INTERVAL_MS
-    );
-
+    loadStatus();
+    const intervalId = window.setInterval(loadStatus, MODBUS_STATUS_POLL_INTERVAL_MS);
     return () => {
-      isActive = false;
+      active = false;
       window.clearInterval(intervalId);
     };
   }, []);
 
   useEffect(() => {
-    let isActive = true;
-
-    const load = async () => {
+    let active = true;
+    const loadDaily = async () => {
       setIsLoading(true);
-
       try {
-        const fetchHistory = fuelType === "ho"
-          ? fetchHOConsumptionHistory
-          : fetchDOConsumptionHistory;
-        const nextPayload = await fetchHistory(
-          appliedRange
-            ? {
-                startTime: new Date(appliedRange.startMs).toISOString(),
-                endTime: new Date(appliedRange.endMs).toISOString(),
-              }
-            : {}
-        );
-
-        if (!isActive) {
-          return;
-        }
-
-        setPayload(nextPayload);
-        setError("");
+        const nextPayload = await fetchDailyFuelConsumption(appliedRange ?? {});
+        if (!active) return;
+        setDailyPayload(nextPayload);
+        setDraftStartDay(nextPayload?.meta?.startDay ?? "");
+        setDraftEndDay(nextPayload?.meta?.endDay ?? "");
         setLastUpdated(new Date());
-        setPollIntervalMs(null);
-        setDraftStartInput((currentValue) =>
-          currentValue || toUtcInputValue(nextPayload?.meta?.rangeStartMs)
-        );
-        setDraftEndInput((currentValue) =>
-          currentValue || toUtcInputValue(nextPayload?.meta?.rangeEndMs)
-        );
+        setError("");
       } catch (loadError) {
-        if (!isActive) {
-          return;
+        if (active) {
+          setError(loadError instanceof Error ? loadError.message : "Failed to load daily fuel consumption.");
         }
-
-        setError(
-          loadError instanceof Error
-            ? loadError.message
-            : `Failed to load ${fuelLabel} consumption data.`
-        );
       } finally {
-        if (isActive) {
-          setIsLoading(false);
-        }
+        if (active) setIsLoading(false);
       }
     };
-
-    load();
-
-    return () => {
-      isActive = false;
-    };
-  }, [appliedRange, fuelType, fuelLabel]);
-
-  const engineCards = useMemo(() => buildEngineCards(payload, fuelLabel), [payload, fuelLabel]);
-  const visibleEngineCards = chartCount === 1
-    ? engineCards.filter((card) => card.engineNumber === selectedEngine)
-    : engineCards.slice(0, 4);
-
-  const handleFuelChange = (_, nextFuel) => {
-    if (!nextFuel || nextFuel === fuelType) return;
-    setSearchParams({ fuel: nextFuel });
-  };
+    loadDaily();
+    return () => { active = false; };
+  }, [appliedRange]);
 
   const handleApplyRange = () => {
-    const startMs = fromUtcInputValue(draftStartInput);
-    const endMs = fromUtcInputValue(draftEndInput);
-
-    if (!startMs || !endMs) {
-      setError("Both From (UTC) and To (UTC) are required.");
+    if (!draftStartDay || !draftEndDay) {
+      setError("Both From day and To day are required.");
       return;
     }
-
-    if (startMs >= endMs) {
-      setError("From (UTC) must be earlier than To (UTC).");
+    const daysApart = (Date.parse(`${draftEndDay}T00:00:00Z`) - Date.parse(`${draftStartDay}T00:00:00Z`)) / DAY_MS;
+    if (daysApart < 0) {
+      setError("From day must be on or before To day.");
       return;
     }
-
-    if (isRangeTooLong(startMs, endMs)) {
-      setError("Selected UTC range must be shorter than 7 days.");
+    if (daysApart >= MAX_DAYS) {
+      setError(`Select at most ${MAX_DAYS} UTC days.`);
       return;
     }
-
-    setError("");
-    setAppliedRange({ startMs, endMs });
+    setAppliedRange({ startDay: draftStartDay, endDay: draftEndDay });
   };
 
   const handleShiftRange = (direction) => {
-    const deltaHours = 24 * direction;
-    const nextStartInput = shiftUtcInputValue(draftStartInput, deltaHours);
-    const nextEndInput = shiftUtcInputValue(draftEndInput, deltaHours);
-    const nextStartMs = fromUtcInputValue(nextStartInput);
-    const nextEndMs = fromUtcInputValue(nextEndInput);
-
-    setDraftStartInput(nextStartInput);
-    setDraftEndInput(nextEndInput);
-
-    if (!nextStartMs || !nextEndMs || nextStartMs >= nextEndMs) {
-      setError("Unable to shift the selected UTC range.");
-      return;
-    }
-
-    if (isRangeTooLong(nextStartMs, nextEndMs)) {
-      setError("Selected UTC range must be shorter than 7 days.");
-      return;
-    }
-
-    setError("");
-    setAppliedRange({ startMs: nextStartMs, endMs: nextEndMs });
+    if (!draftStartDay || !draftEndDay) return;
+    const startDay = shiftDay(draftStartDay, direction);
+    const endDay = shiftDay(draftEndDay, direction);
+    setDraftStartDay(startDay);
+    setDraftEndDay(endDay);
+    setAppliedRange({ startDay, endDay });
   };
+
+  const visibleEngines = chartCount === 1 ? [selectedEngine] : ENGINE_NUMBERS;
+  const recordsByEngine = useMemo(() => {
+    const records = dailyPayload?.records ?? [];
+    return Object.fromEntries(
+      ENGINE_NUMBERS.map((engine) => [
+        engine,
+        records.filter((record) => Number(record.engine) === engine),
+      ])
+    );
+  }, [dailyPayload]);
 
   return (
     <Box className="min-h-screen relative bg-[#101828] w-full overflow-hidden shrink-0 flex flex-col items-start leading-[normal] tracking-[normal] mq925:h-auto">
@@ -362,92 +121,55 @@ const Consumption = () => {
         <NavigationSidebar />
         <section className="flex-1 overflow-hidden flex items-start justify-center !p-4 box-border gap-4 max-w-full text-left text-[#f8fafc] font-[Roboto] mq925:h-auto">
           <Box className="relative flex-1 min-h-[916px] overflow-auto rounded-[10px] bg-[#1e2939] border-[#364153] border-solid border-[1px] box-border flex flex-col items-start !p-6 max-w-full shrink-0">
-            {isLoading ? (
+            {isLoading && (
               <Box className="absolute inset-0 z-10 flex items-center justify-center rounded-[10px] bg-[#0f172ab3] backdrop-blur-[2px]">
-                <Box className="flex flex-col items-center gap-3 rounded-[14px] border border-[#334155] bg-[#111827] !px-6 !py-5 shadow-[0_18px_40px_rgba(15,23,42,0.45)]">
+                <Box className="flex flex-col items-center gap-3 rounded-[14px] border border-[#334155] bg-[#111827] !px-6 !py-5">
                   <CircularProgress size={40} thickness={4.5} sx={{ color: "#38bdf8" }} />
-                  <Typography className="text-[14px] font-semibold text-[#dbeafe]">
-                    Loading data
-                  </Typography>
+                  <Typography className="text-[14px] font-semibold text-[#dbeafe]">Loading data</Typography>
                 </Box>
               </Box>
-            ) : null}
+            )}
             <Box className="w-full flex flex-col gap-6">
+              {error && (
+                <Box role="alert" className="rounded-[10px] border border-[#ef4444] bg-[#7f1d1d] !p-3 text-[14px] text-[#fee2e2]">
+                  {error}
+                </Box>
+              )}
               <Box className="w-full rounded-[14px] border border-[#334155] bg-[#111827] !px-3 !py-3">
                 <Box className="flex flex-wrap items-center justify-between gap-3">
                   <Box className="flex flex-wrap items-center gap-3">
                     <Box className="flex items-center gap-2 rounded-[12px] border border-[#334155] bg-[#0b1220] !px-3 !py-2">
-                      <Typography className="text-[13px] font-semibold text-[#8fb4ef]">
-                        From (UTC)
-                      </Typography>
-                      <input
-                        type="datetime-local"
-                        className="min-w-[220px] border-0 bg-transparent text-[14px] font-semibold text-[#f8fafc] outline-none [color-scheme:dark]"
-                        value={draftStartInput}
-                        onChange={(event) => setDraftStartInput(event.target.value)}
-                      />
+                      <Typography className="text-[13px] font-semibold text-[#8fb4ef]">From day (UTC)</Typography>
+                      <input type="date" className="border-0 bg-transparent text-[14px] font-semibold text-[#f8fafc] outline-none [color-scheme:dark]" value={draftStartDay} onChange={(event) => setDraftStartDay(event.target.value)} />
                     </Box>
-
                     <Box className="flex items-center gap-2 rounded-[12px] border border-[#334155] bg-[#0b1220] !px-3 !py-2">
-                      <Typography className="text-[13px] font-semibold text-[#8fb4ef]">
-                        To (UTC)
-                      </Typography>
-                      <input
-                        type="datetime-local"
-                        className="min-w-[220px] border-0 bg-transparent text-[14px] font-semibold text-[#f8fafc] outline-none [color-scheme:dark]"
-                        value={draftEndInput}
-                        onChange={(event) => setDraftEndInput(event.target.value)}
-                      />
+                      <Typography className="text-[13px] font-semibold text-[#8fb4ef]">To day (UTC)</Typography>
+                      <input type="date" className="border-0 bg-transparent text-[14px] font-semibold text-[#f8fafc] outline-none [color-scheme:dark]" value={draftEndDay} onChange={(event) => setDraftEndDay(event.target.value)} />
                     </Box>
-
-                    <DashboardButton onClick={() => handleShiftRange(-1)} active>
-                      Prev 24h
-                    </DashboardButton>
-                    <DashboardButton onClick={() => handleShiftRange(1)} active>
-                      Next 24h
-                    </DashboardButton>
-                    <DashboardButton onClick={handleApplyRange} active>
-                      Apply
-                    </DashboardButton>
+                    <DashboardButton onClick={() => handleShiftRange(-1)} active>Prev day</DashboardButton>
+                    <DashboardButton onClick={() => handleShiftRange(1)} active>Next day</DashboardButton>
+                    <DashboardButton onClick={handleApplyRange} active>Apply</DashboardButton>
                   </Box>
                   <Box className="flex flex-wrap items-center gap-3">
-                    <ToggleButtonGroup exclusive size="small" value={fuelType} onChange={handleFuelChange} aria-label="Fuel type" sx={{ bgcolor: "#0b1220", "& .MuiToggleButton-root": { color: "#94a3b8", borderColor: "#334155", px: 2, textTransform: "none", "&.Mui-selected": { color: "#fff", bgcolor: "#155dfc", "&:hover": { bgcolor: "#1d4ed8" } } } }}>
-                      <ToggleButton value="do">D.O</ToggleButton>
-                      <ToggleButton value="ho">H.O</ToggleButton>
-                    </ToggleButtonGroup>
                     <ToggleButtonGroup exclusive size="small" value={chartCount} onChange={(_, value) => value && setChartCount(value)} aria-label="Number of graphs" sx={{ bgcolor: "#0b1220", "& .MuiToggleButton-root": { color: "#94a3b8", borderColor: "#334155", px: 2, textTransform: "none", "&.Mui-selected": { color: "#fff", bgcolor: "#155dfc", "&:hover": { bgcolor: "#1d4ed8" } } } }}>
                       <ToggleButton value={1}>1 graph</ToggleButton>
                       <ToggleButton value={4}>4 graphs</ToggleButton>
                     </ToggleButtonGroup>
-                    {chartCount === 1 && <TextField select size="small" label="Engine" value={selectedEngine} onChange={(event) => setSelectedEngine(Number(event.target.value))} sx={{ minWidth: 130, "& .MuiInputLabel-root": { color: "#94a3b8" }, "& .MuiOutlinedInput-root": { color: "#f8fafc", bgcolor: "#0b1220", "& fieldset": { borderColor: "#334155" } } }}>
-                      {engineCards.map((card) => <MenuItem key={card.engineNumber} value={card.engineNumber}>Engine {card.engineNumber}</MenuItem>)}
-                    </TextField>}
+                    {chartCount === 1 && (
+                      <TextField select size="small" label="Engine" value={selectedEngine} onChange={(event) => setSelectedEngine(Number(event.target.value))} sx={{ minWidth: 130, "& .MuiInputLabel-root": { color: "#94a3b8" }, "& .MuiOutlinedInput-root": { color: "#f8fafc", bgcolor: "#0b1220", "& fieldset": { borderColor: "#334155" } } }}>
+                        {ENGINE_NUMBERS.map((engine) => <MenuItem key={engine} value={engine}>Engine {engine}</MenuItem>)}
+                      </TextField>
+                    )}
                   </Box>
                 </Box>
               </Box>
               <Box className={`grid grid-cols-1 ${chartCount === 4 ? "xl:grid-cols-2" : ""} gap-4 w-full`}>
-                {visibleEngineCards.map((engineCard) => (
-                  <Box
-                    key={engineCard.engineNumber}
-                    className="rounded-[12px] border border-[#334155] bg-[#0f172a] !p-4"
-                  >
-                    <FOConsumptionChart
-                      chartData={engineCard.chartData}
-                      flowInLabel={engineCard.flowInLabel}
-                      flowOutLabel={engineCard.flowOutLabel}
-                      powerLabel={engineCard.powerLabel}
-                      powerUnit={engineCard.powerUnit}
-                      unit={engineCard.unit}
-                      rangeStartMs={engineCard.rangeStartMs}
-                      rangeEndMs={engineCard.rangeEndMs}
-                      chartHeight={chartCount === 1 ? 520 : 280}
-                      title={`Engine ${engineCard.engineNumber} ${fuelLabel} Consumption Trend`}
-                      subtitle={`${engineCard.flowInLabel} vs ${engineCard.flowOutLabel}`}
-                      emptyMessage={
-                        isLoading
-                          ? "Loading engine data..."
-                          : `No data returned for Engine ${engineCard.engineNumber} in the selected window.`
-                      }
+                {visibleEngines.map((engine) => (
+                  <Box key={engine} className="rounded-[12px] border border-[#334155] bg-[#0f172a] !p-4">
+                    <FuelConsumptionBarChart
+                      records={recordsByEngine[engine]}
+                      engineNumber={engine}
+                      height={chartCount === 1 ? 520 : 330}
                     />
                   </Box>
                 ))}
@@ -458,14 +180,8 @@ const Consumption = () => {
       </main>
       <Footer
         lastUpdated={lastUpdated}
-        networkStatus={
-          modbusConnected === false
-            ? "Disconnected"
-            : modbusConnected
-              ? "Connected"
-              : "Connecting..."
-        }
-        pollIntervalMs={pollIntervalMs}
+        networkStatus={modbusConnected === false ? "Disconnected" : modbusConnected ? "Connected" : "Connecting..."}
+        pollIntervalMs={null}
       />
     </Box>
   );

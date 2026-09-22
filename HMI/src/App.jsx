@@ -97,9 +97,9 @@ function App() {
       <Route path="/pid" element={<PAndID />} />
       <Route path="/engine" element={<Engine />} />
       <Route path="/consumption" element={<Consumption />} />
-      <Route path="/fo-consumption" element={<Navigate to="/consumption?fuel=do" replace />} />
-      <Route path="/do-consumption" element={<Navigate to="/consumption?fuel=do" replace />} />
-      <Route path="/ho-consumption" element={<Navigate to="/consumption?fuel=ho" replace />} />
+      <Route path="/fo-consumption" element={<Navigate to="/consumption" replace />} />
+      <Route path="/do-consumption" element={<Navigate to="/consumption" replace />} />
+      <Route path="/ho-consumption" element={<Navigate to="/consumption" replace />} />
       <Route path="/pressure_trend" element={<PressureTrend />} />
       <Route path="/exh_temp_trend" element={<ExhTempTrend />} />
       <Route path="/alarms" element={<EngineStatus />} />

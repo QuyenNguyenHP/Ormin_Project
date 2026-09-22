@@ -95,6 +95,21 @@ export const fetchDOConsumptionHistory = async (options = {}) =>
 export const fetchHOConsumptionHistory = async (options = {}) =>
   fetchConsumptionHistory("/api/ho-consumption", options);
 
+export const fetchDailyFuelConsumption = async ({ startDay, endDay } = {}) => {
+  const url = new URL("/api/fuel-consumption/daily", window.location.origin);
+  if (startDay && endDay) {
+    url.searchParams.set("startDay", startDay);
+    url.searchParams.set("endDay", endDay);
+  }
+
+  const response = await fetch(url.pathname + url.search);
+  if (!response.ok) {
+    const errorPayload = await response.json().catch(() => null);
+    throw new Error(errorPayload?.error || `Daily fuel consumption request failed with status ${response.status}`);
+  }
+  return response.json();
+};
+
 export const fetchFOConsumptionHistory = async (options = {}) =>
   fetchConsumptionHistory("/api/fo-consumption", options);
 

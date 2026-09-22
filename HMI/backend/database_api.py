@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 import sqlite3
+from datetime import date, timedelta
 from pathlib import Path
 from typing import Any
 
@@ -846,6 +847,61 @@ def build_exh_temp_trend_payload(
             "series": series,
         },
     }
+
+
+@database_api.get("/api/fuel-consumption/daily")
+def get_daily_fuel_consumption_route() -> Any:
+    """Return daily D.O and H.O litres for each display engine."""
+    try:
+        start_text = request.args.get("startDay")
+        end_text = request.args.get("endDay")
+        if bool(start_text) != bool(end_text):
+            raise ValueError("Both startDay and endDay are required.")
+        start_day = date.fromisoformat(start_text) if start_text else None
+        end_day = date.fromisoformat(end_text) if end_text else None
+        if start_day and start_day > end_day:
+            raise ValueError("startDay must be on or before endDay.")
+        if start_day and (end_day - start_day).days >= 30:
+            raise ValueError("Select at most 30 UTC days.")
+        if not SHARED_DATABASE_PATH.is_file():
+            raise FileNotFoundError(f"SQLite database not found: {SHARED_DATABASE_PATH}")
+
+        with sqlite3.connect(SHARED_DATABASE_PATH.as_uri() + "?mode=ro", uri=True) as connection:
+            connection.row_factory = sqlite3.Row
+            if connection.execute(
+                "SELECT 1 FROM sqlite_master WHERE type = 'table' AND name = 'fuel_consumption'"
+            ).fetchone() is None:
+                return jsonify({"records": [], "meta": {"unit": "L"}})
+
+            if start_day is None:
+                latest = connection.execute(
+                    'SELECT MAX("Day") FROM "fuel_consumption"'
+                ).fetchone()[0]
+                if latest is None:
+                    return jsonify({"records": [], "meta": {"unit": "L"}})
+                end_day = date.fromisoformat(latest)
+                start_day = end_day - timedelta(days=29)
+
+            records = connection.execute(
+                """
+                SELECT "Engine" AS engine,
+                       "Day" AS day,
+                       "Fuel_type" AS fuelType,
+                       "Consumption (L)" AS consumption
+                FROM "fuel_consumption"
+                WHERE "Day" BETWEEN ? AND ?
+                ORDER BY "Day", "Engine", "Fuel_type"
+                """,
+                (start_day.isoformat(), end_day.isoformat()),
+            ).fetchall()
+        return jsonify({
+            "records": [dict(record) for record in records],
+            "meta": {"unit": "L", "startDay": start_day.isoformat(), "endDay": end_day.isoformat()},
+        })
+    except ValueError as exc:
+        return jsonify({"error": str(exc)}), 400
+    except Exception as exc:  # pragma: no cover - runtime error surface
+        return jsonify({"error": str(exc)}), 500
 
 
 @database_api.get("/api/do-consumption")
