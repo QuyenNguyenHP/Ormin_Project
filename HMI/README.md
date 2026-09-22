@@ -74,9 +74,8 @@ These routes are registered in `src/App.jsx`.
 - `/engine` -> `Engine`
 - `/pressure_trend` -> `PressureTrend`
 - `/exh_temp_trend` -> `ExhTempTrend`
-- `/do-consumption` -> `DOConsumption`
-- `/ho-consumption` -> `HOConsumption`
-- `/fo-consumption` -> redirects to `/do-consumption`
+- `/consumption` -> unified `Consumption` page with D.O/H.O and 1/4 graph selectors
+- `/do-consumption`, `/ho-consumption`, and `/fo-consumption` -> redirect to the unified page with the matching fuel selected
 - `/alarms` -> `Alarms`
 - `/device-status-1` -> `DeviceStatus1`
 
@@ -126,8 +125,7 @@ Current API mapping:
 
 - `PressureTrend`
 - `ExhTempTrend`
-- `DOConsumption`
-- `HOConsumption`
+- `Consumption` (implemented in `DOConsumption.jsx`)
 
 These pages read from SQLite-backed Flask endpoints rather than live Modbus pages.
 
@@ -197,7 +195,7 @@ It registers:
 This module:
 
 - loads `backend/backend_config.json`
-- reads page configs from `CONFIG["pages"]`
+- resolves page references against the shared `signals` registry
 - opens a Modbus TCP client
 - groups contiguous addresses for efficient reads
 - reads holding registers and discrete inputs
@@ -206,8 +204,8 @@ This module:
 
 Important implementation detail:
 
-- `backend_config.json` is loaded once at startup into `CONFIG`
-- if you change page mappings or Modbus config, restart the Flask backend to pick up the changes
+- Modbus settings and signal definitions are reloaded for each request.
+- Address changes apply on the next poll to every page referencing that signal.
 
 ### Historical backend
 
@@ -219,6 +217,39 @@ This module:
 - resolves database paths
 - queries SQLite for trend and consumption data
 - returns records plus time-range metadata
+
+### How SQLite history is used
+
+The shared history file defaults to `backend/database/database` (it has no `.db`
+extension, but it is a normal SQLite database):
+
+1. `backend/data_collector/modbus_csv_db_collector.py` polls the configured
+   Modbus points, appends a CSV snapshot, and upserts the same rows into SQLite.
+2. Each history row contains `Engine`, `Channel Description`, `Timestamp`,
+   `Value`, and `Unit`. The combination of engine, channel, and timestamp is
+   unique, so polling the same timestamp updates that row instead of duplicating it.
+3. `backend/database/import_database.py` can create/populate the same schema from
+   an existing CSV file.
+4. `backend/database_api.py` reads this database for D.O/H.O consumption,
+   pressure trends, and exhaust-temperature trends. Live monitoring pages read
+   Modbus directly and do not depend on SQLite.
+
+### Database administration
+
+After signing in at `/admin`, open the **Database** tab. The configured history
+database and its first data table are selected automatically. It provides:
+
+- configured database files, their consumers, file/WAL sizes, tables, columns,
+  indexes, journal mode, row counts, and available timestamp range;
+- Engine and Channel Description selectors populated from values currently in
+  SQLite, plus start/end time filters and 50-row pagination;
+- CSV export of up to 10,000 filtered rows;
+- `PRAGMA quick_check` integrity verification;
+- a consistent downloadable SQLite backup created with SQLite's online backup API.
+
+The management API opens source databases in query-only mode. It deliberately
+does not expose SQL execution, row deletion, table changes, vacuum, or restore.
+All `/api/admin/sqlite/*` endpoints require an authenticated administrator session.
 
 ## Backend API Summary
 
@@ -261,7 +292,7 @@ This file contains:
 
 - Modbus connection settings
 - Poll interval settings
-- Live page mappings under `pages`
+- Shared Modbus definitions under `signals` and page references under `pages`
 - Device status indicator definitions
 - Consumption history settings
 - Pressure trend history settings
@@ -274,6 +305,41 @@ Relevant live page keys currently present include:
 - `pid`
 - `device_status_1`
 - `device_status_2`
+
+### Shared signal addresses (configuration version 3)
+
+Declare each signal's address and decoding settings once in `signals`:
+
+```json
+"signals": {
+  "engine_1.engine_power": {
+    "label": "Engine Power",
+    "source_type": "holding_register",
+    "address": 40038,
+    "scale": 1
+  }
+}
+```
+
+Overview and Engine both reference that ID in their page mappings:
+
+```json
+{"signal": "engine_1.engine_power", "key": "engine_power", "label": "Engine Power", "unit": "kW"}
+```
+
+- Edit `signals.engine_1.engine_power.address` (the literal JSON key is `engine_1.engine_power`), or use **Admin → Signal addresses → Save addresses**. Both pages use the new address on the next poll.
+- Engine 2, 3 and 4 have separate IDs, such as `engine_2.engine_power`, so their addresses remain independent.
+- Keep `source_type`, `address`, `scale`, `data_type`, and `register_count` in the shared definition. Page references cannot override these fields.
+- Keep display settings (`key`, `label`, `unit`, `precision`, gauge colors, SVG IDs, and thresholds) in the relevant page. Existing page API payloads are preserved.
+- Admin lists each signal once. **Used by** lists all affected pages; filtering by a page still edits the shared definition. Searching also matches labels and keys used by other pages.
+- To add a signal, add a stable, unique ID under `signals`, then reference it from any page. Use semantic IDs rather than embedding the address in the name.
+- Separate PID signals that currently happen to use the same address remain separate definitions when their names describe different devices. Address equality alone does not establish that they are the same signal.
+
+Run backend regression checks from `HMI/backend`:
+
+```bash
+python -m unittest test_admin_addresses test_signal_config -v
+```
 
 ## Public Assets
 

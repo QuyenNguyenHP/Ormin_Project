@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
-import { Box, CircularProgress, Typography } from "@mui/material";
+import { Box, CircularProgress, MenuItem, TextField, ToggleButton, ToggleButtonGroup, Typography } from "@mui/material";
+import { useSearchParams } from "react-router-dom";
 import Header from "../components/Header";
 import NavigationSidebar from "../components/NavigationSidebar";
 import Footer from "../components/Footer";
@@ -7,6 +8,7 @@ import FOConsumptionChart from "../components/FOConsumptionChart";
 import DashboardButton from "../components/DashboardButton";
 import {
   fetchDOConsumptionHistory,
+  fetchHOConsumptionHistory,
   fetchModbusStatus,
 } from "../services/pidMonitorApi";
 
@@ -155,7 +157,7 @@ const buildEngineChartData = (records, engineSeriesConfig) => {
   };
 };
 
-const buildEngineCards = (payload) => {
+const buildEngineCards = (payload, fuelLabel) => {
   const engines = Array.isArray(payload?.engines) ? payload.engines : [1, 2, 3, 4];
   const records = Array.isArray(payload?.records) ? payload.records : [];
   const rangeStartMs = payload?.meta?.rangeStartMs ?? null;
@@ -169,10 +171,10 @@ const buildEngineCards = (payload) => {
     const chartPayload = buildEngineChartData(engineRecords, {
       inletChannelDescription:
         engineSeriesConfigMap[engineNumber]?.inletChannelDescription ??
-        `D.O Inlet Flow DG#${engineNumber}`,
+        `${fuelLabel} Inlet Flow DG#${engineNumber}`,
       outletChannelDescription:
         engineSeriesConfigMap[engineNumber]?.outletChannelDescription ??
-        `D.O Out Flow DG#${engineNumber}`,
+        `${fuelLabel} Out Flow DG#${engineNumber}`,
       powerChannelDescription:
         engineSeriesConfigMap[engineNumber]?.powerChannelDescription ?? "Engine Power",
       powerDisplayLabel:
@@ -192,7 +194,10 @@ const buildEngineCards = (payload) => {
   });
 };
 
-const DOConsumption = () => {
+const Consumption = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const fuelType = searchParams.get("fuel")?.toLowerCase() === "ho" ? "ho" : "do";
+  const fuelLabel = fuelType === "ho" ? "H.O" : "D.O";
   const [payload, setPayload] = useState(null);
   const [modbusConnected, setModbusConnected] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -202,6 +207,8 @@ const DOConsumption = () => {
   const [draftStartInput, setDraftStartInput] = useState("");
   const [draftEndInput, setDraftEndInput] = useState("");
   const [appliedRange, setAppliedRange] = useState(null);
+  const [chartCount, setChartCount] = useState(4);
+  const [selectedEngine, setSelectedEngine] = useState(1);
 
   useEffect(() => {
     let isActive = true;
@@ -241,7 +248,10 @@ const DOConsumption = () => {
       setIsLoading(true);
 
       try {
-        const nextPayload = await fetchDOConsumptionHistory(
+        const fetchHistory = fuelType === "ho"
+          ? fetchHOConsumptionHistory
+          : fetchDOConsumptionHistory;
+        const nextPayload = await fetchHistory(
           appliedRange
             ? {
                 startTime: new Date(appliedRange.startMs).toISOString(),
@@ -272,7 +282,7 @@ const DOConsumption = () => {
         setError(
           loadError instanceof Error
             ? loadError.message
-            : "Failed to load D.O. consumption data."
+            : `Failed to load ${fuelLabel} consumption data.`
         );
       } finally {
         if (isActive) {
@@ -286,9 +296,17 @@ const DOConsumption = () => {
     return () => {
       isActive = false;
     };
-  }, [appliedRange]);
+  }, [appliedRange, fuelType, fuelLabel]);
 
-  const engineCards = useMemo(() => buildEngineCards(payload), [payload]);
+  const engineCards = useMemo(() => buildEngineCards(payload, fuelLabel), [payload, fuelLabel]);
+  const visibleEngineCards = chartCount === 1
+    ? engineCards.filter((card) => card.engineNumber === selectedEngine)
+    : engineCards.slice(0, 4);
+
+  const handleFuelChange = (_, nextFuel) => {
+    if (!nextFuel || nextFuel === fuelType) return;
+    setSearchParams({ fuel: nextFuel });
+  };
 
   const handleApplyRange = () => {
     const startMs = fromUtcInputValue(draftStartInput);
@@ -355,18 +373,8 @@ const DOConsumption = () => {
               </Box>
             ) : null}
             <Box className="w-full flex flex-col gap-6">
-              <Box className="flex items-center justify-between gap-4">
-                <Box>
-                  <Typography className="text-[24px] font-semibold text-[#f8fafc]">
-                    D.O Consumption
-                  </Typography>
-                  <Typography className="text-[13px] text-[#94a3b8]">
-                    Compare inlet flow, outlet flow and engine power for DG#1 to DG#4.
-                  </Typography>
-                </Box>
-              </Box>
-              <Box className="w-full flex flex-col xl:flex-row xl:items-start xl:justify-between gap-5">
-                <Box className="w-full xl:w-auto rounded-[14px] border border-[#334155] bg-[#111827] !px-3 !py-3">
+              <Box className="w-full rounded-[14px] border border-[#334155] bg-[#111827] !px-3 !py-3">
+                <Box className="flex flex-wrap items-center justify-between gap-3">
                   <Box className="flex flex-wrap items-center gap-3">
                     <Box className="flex items-center gap-2 rounded-[12px] border border-[#334155] bg-[#0b1220] !px-3 !py-2">
                       <Typography className="text-[13px] font-semibold text-[#8fb4ef]">
@@ -402,10 +410,23 @@ const DOConsumption = () => {
                       Apply
                     </DashboardButton>
                   </Box>
+                  <Box className="flex flex-wrap items-center gap-3">
+                    <ToggleButtonGroup exclusive size="small" value={fuelType} onChange={handleFuelChange} aria-label="Fuel type" sx={{ bgcolor: "#0b1220", "& .MuiToggleButton-root": { color: "#94a3b8", borderColor: "#334155", px: 2, textTransform: "none", "&.Mui-selected": { color: "#fff", bgcolor: "#155dfc", "&:hover": { bgcolor: "#1d4ed8" } } } }}>
+                      <ToggleButton value="do">D.O</ToggleButton>
+                      <ToggleButton value="ho">H.O</ToggleButton>
+                    </ToggleButtonGroup>
+                    <ToggleButtonGroup exclusive size="small" value={chartCount} onChange={(_, value) => value && setChartCount(value)} aria-label="Number of graphs" sx={{ bgcolor: "#0b1220", "& .MuiToggleButton-root": { color: "#94a3b8", borderColor: "#334155", px: 2, textTransform: "none", "&.Mui-selected": { color: "#fff", bgcolor: "#155dfc", "&:hover": { bgcolor: "#1d4ed8" } } } }}>
+                      <ToggleButton value={1}>1 graph</ToggleButton>
+                      <ToggleButton value={4}>4 graphs</ToggleButton>
+                    </ToggleButtonGroup>
+                    {chartCount === 1 && <TextField select size="small" label="Engine" value={selectedEngine} onChange={(event) => setSelectedEngine(Number(event.target.value))} sx={{ minWidth: 130, "& .MuiInputLabel-root": { color: "#94a3b8" }, "& .MuiOutlinedInput-root": { color: "#f8fafc", bgcolor: "#0b1220", "& fieldset": { borderColor: "#334155" } } }}>
+                      {engineCards.map((card) => <MenuItem key={card.engineNumber} value={card.engineNumber}>Engine {card.engineNumber}</MenuItem>)}
+                    </TextField>}
+                  </Box>
                 </Box>
               </Box>
-              <Box className="grid grid-cols-1 xl:grid-cols-2 gap-4 w-full">
-                {engineCards.map((engineCard) => (
+              <Box className={`grid grid-cols-1 ${chartCount === 4 ? "xl:grid-cols-2" : ""} gap-4 w-full`}>
+                {visibleEngineCards.map((engineCard) => (
                   <Box
                     key={engineCard.engineNumber}
                     className="rounded-[12px] border border-[#334155] bg-[#0f172a] !p-4"
@@ -419,8 +440,8 @@ const DOConsumption = () => {
                       unit={engineCard.unit}
                       rangeStartMs={engineCard.rangeStartMs}
                       rangeEndMs={engineCard.rangeEndMs}
-                      chartHeight={280}
-                      title={`Engine ${engineCard.engineNumber} D.O Consumption Trend`}
+                      chartHeight={chartCount === 1 ? 520 : 280}
+                      title={`Engine ${engineCard.engineNumber} ${fuelLabel} Consumption Trend`}
                       subtitle={`${engineCard.flowInLabel} vs ${engineCard.flowOutLabel}`}
                       emptyMessage={
                         isLoading
@@ -450,4 +471,4 @@ const DOConsumption = () => {
   );
 };
 
-export default DOConsumption;
+export default Consumption;

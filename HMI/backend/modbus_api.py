@@ -6,6 +6,7 @@ from typing import Any
 
 from flask import Blueprint, jsonify
 from pymodbus.client import ModbusTcpClient
+from signal_config import resolve_signals
 
 HOLDING_REGISTER_START = 40001
 DISCRETE_INPUT_START = 10001
@@ -16,9 +17,11 @@ modbus_api = Blueprint("modbus_api", __name__)
 
 
 def load_config() -> dict[str, Any]:
-    """Load the backend configuration once at startup."""
+    """Reload settings and resolve shared signals for each request."""
     with CONFIG_PATH.open("r", encoding="utf-8") as config_file:
-        return json.load(config_file)
+        config = json.load(config_file)
+    config["pages"] = resolve_signals(config.get("pages", {}), config.get("signals", {}))
+    return config
 
 
 def build_meta(modbus_config: dict[str, Any] | None = None) -> dict[str, Any]:

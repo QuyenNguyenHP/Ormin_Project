@@ -8,6 +8,7 @@ from typing import Any
 from threading import RLock
 
 from flask import Blueprint, jsonify, request, session
+from signal_config import editable_address_nodes, mapping_nodes, reference_nodes
 
 BASE_DIR = Path(__file__).resolve().parent
 CONFIG_PATH = BASE_DIR / "backend_config.json"
@@ -34,7 +35,7 @@ def write_config(config: dict[str, Any]) -> None:
 def format_config(value: Any, depth: int = 0) -> str:
     """Keep each signal on one line while indenting page/group structure."""
     if isinstance(value, dict) and value:
-        if "source_type" in value and all(not isinstance(item, (dict, list)) for item in value.values()):
+        if ("source_type" in value or "signal" in value) and all(not isinstance(item, (dict, list)) for item in value.values()):
             return json.dumps(value, ensure_ascii=False)
         items = [f'{json.dumps(key, ensure_ascii=False)}: {format_config(item, depth + 1)}' for key, item in value.items()]
         opening, closing = "{", "}"
@@ -163,26 +164,33 @@ def update_modbus_config() -> Any:
 
 
 def address_nodes(node: Any, path: str = "pages"):
-    """Expose stable paths so equal keys on different engines stay independent."""
-    if isinstance(node, dict):
-        if "source_type" in node and "address" in node:
-            yield path, node
-        else:
-            for key, value in node.items():
-                yield from address_nodes(value, f"{path}/{key}")
-    elif isinstance(node, list):
-        for index, value in enumerate(node):
-            yield from address_nodes(value, f"{path}/{index}")
+    """Compatibility helper for inline mapping inspection."""
+    yield from mapping_nodes(node, path)
 
 
 def address_rows(config):
-    return [
-        {"path": path, "page": path.split("/")[1],
-         "label": node.get("label", node.get("key", path)),
-         "key": node.get("key", ""), "source_type": node["source_type"],
-         "address": node["address"], "register_count": node.get("register_count", 1)}
-        for path, node in address_nodes(config.get("pages", {}))
-    ]
+    usages = {}
+    for path, node in reference_nodes(config.get("pages", {})):
+        usages.setdefault(node["signal"], []).append({
+            "path": path, "page": path.split("/")[1],
+            "label": node.get("label", node.get("key", "")), "key": node.get("key", ""),
+        })
+    rows = []
+    for path, node in editable_address_nodes(config):
+        shared = path.startswith("signals/")
+        signal_id = path.removeprefix("signals/") if shared else None
+        used_by = usages.get(signal_id, []) if shared else [{
+            "path": path, "page": path.split("/")[1],
+            "label": node.get("label", ""), "key": node.get("key", ""),
+        }]
+        pages = sorted({usage["page"] for usage in used_by})
+        rows.append({
+            "path": path, "signal_id": signal_id, "pages": pages, "page": ", ".join(pages),
+            "usages": used_by, "label": node.get("label", node.get("key", signal_id or path)),
+            "key": signal_id or node.get("key", ""), "source_type": node["source_type"],
+            "address": node["address"], "register_count": node.get("register_count", 1),
+        })
+    return rows
 
 
 @admin_api.get("/api/admin/addresses")
@@ -203,7 +211,7 @@ def update_addresses():
         return jsonify({"error": "Provide a non-empty changes list."}), 400
     with config_lock:
         config = load_config()
-        nodes = dict(address_nodes(config.get("pages", {})))
+        nodes = dict(editable_address_nodes(config))
         seen = set()
         for change in payload["changes"]:
             if not isinstance(change, dict) or not isinstance(change.get("path"), str):
@@ -222,4 +230,4 @@ def update_addresses():
                 return jsonify({"error": f"Invalid address for {path}; use visible Modbus notation and a valid register span."}), 400
             node["address"] = address
         write_config(config)
-    return jsonify({"addresses": address_rows(config), "message": "Addresses saved. Changes apply on the next data poll."})
+    return jsonify({"addresses": address_rows(config), "message": "Addresses saved. All pages using these signals update on the next data poll."})

@@ -11,8 +11,7 @@ import PAndID from "./pages/PAndID";
 import Engine from "./pages/Engine";
 import EngineStatus from "./pages/EngineStatus";
 import ExhTempTrend from "./pages/ExhTempTrend";
-import DOConsumption from "./pages/DOConsumption";
-import HOConsumption from "./pages/HOConsumption";
+import Consumption from "./pages/DOConsumption";
 import PressureTrend from "./pages/PressureTrend";
 import DeviceStatus1 from "./pages/DeviceStatus1";
 import Admin from "./pages/Admin";
@@ -56,12 +55,10 @@ function App() {
         break;
       case "/fo-consumption":
       case "/do-consumption":
-        title = "D.O Consumption";
-        metaDescription = "Diesel oil consumption history and flow comparison page.";
-        break;
       case "/ho-consumption":
-        title = "H.O Consumption";
-        metaDescription = "Heavy oil consumption history and flow comparison page.";
+      case "/consumption":
+        title = "Fuel Consumption";
+        metaDescription = "D.O and H.O consumption history and flow comparison page.";
         break;
       case "/alarms":
         title = "Engine Status";
@@ -99,9 +96,10 @@ function App() {
       <Route path="/" element={<Overview />} />
       <Route path="/pid" element={<PAndID />} />
       <Route path="/engine" element={<Engine />} />
-      <Route path="/fo-consumption" element={<Navigate to="/do-consumption" replace />} />
-      <Route path="/do-consumption" element={<DOConsumption />} />
-      <Route path="/ho-consumption" element={<HOConsumption />} />
+      <Route path="/consumption" element={<Consumption />} />
+      <Route path="/fo-consumption" element={<Navigate to="/consumption?fuel=do" replace />} />
+      <Route path="/do-consumption" element={<Navigate to="/consumption?fuel=do" replace />} />
+      <Route path="/ho-consumption" element={<Navigate to="/consumption?fuel=ho" replace />} />
       <Route path="/pressure_trend" element={<PressureTrend />} />
       <Route path="/exh_temp_trend" element={<ExhTempTrend />} />
       <Route path="/alarms" element={<EngineStatus />} />

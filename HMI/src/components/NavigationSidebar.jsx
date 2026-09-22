@@ -205,7 +205,7 @@ const NavigationSidebar = ({ className = "" }) => {
         </NavLink>
 
         <NavLink
-          to="/do-consumption"
+          to="/consumption"
           className={navItemClass}
           style={({ isActive }) => ({
             borderLeft: isActive ? "4px solid #51A2FF" : undefined,
@@ -223,7 +223,7 @@ const NavigationSidebar = ({ className = "" }) => {
               />
               <Box className="min-h-5 flex-1 flex items-start">
                 <div className="flex-1 relative leading-5 font-medium">
-                  D.O Consumption
+                  Fuel Consumption
                 </div>
               </Box>
             </>
