@@ -52,6 +52,14 @@ def parse_args() -> argparse.Namespace:
         action="store_true",
         help="Collect one snapshot only, then exit.",
     )
+    parser.add_argument(
+        "--backend-config",
+        type=Path,
+        help=(
+            "Optional backend_config.json whose Modbus connection settings "
+            "override the collector config."
+        ),
+    )
     return parser.parse_args()
 
 
@@ -425,21 +433,45 @@ def print_snapshot_summary(
     print(f"Updated rows: {updated_count}")
 
 
-def run_collection(config_path: Path, once: bool) -> None:
+def apply_backend_modbus_config(
+    config: dict[str, Any], backend_config_path: Path | None
+) -> None:
+    if backend_config_path is None:
+        return
+
+    backend_config_path = backend_config_path.resolve()
+    with backend_config_path.open("r", encoding="utf-8") as config_file:
+        backend_config = json.load(config_file)
+
+    backend_modbus = backend_config.get("modbus")
+    if not isinstance(backend_modbus, dict):
+        raise ValueError(f"Modbus settings not found in {backend_config_path}")
+
+    collector_modbus = config.setdefault("modbus", {})
+    for key in ("host", "port", "unit_id", "timeout_seconds"):
+        if key in backend_modbus:
+            collector_modbus[key] = backend_modbus[key]
+
+
+def run_collection(
+    config_path: Path, once: bool, backend_config_path: Path | None = None
+) -> None:
     config_path = config_path.resolve()
     if not config_path.exists():
         raise FileNotFoundError(f"Collector config not found: {config_path}")
 
     config = load_json_config(config_path)
+    apply_backend_modbus_config(config, backend_config_path)
     base_dir = config_path.parent
     points = parse_points(config)
 
     csv_path = resolve_path(base_dir, str(config["output"]["csv_path"]))
     database_path = resolve_path(base_dir, str(config["output"]["database_path"]))
     table_name = str(config["output"].get("table_name", "database"))
-    poll_interval_seconds = max(1.0, float(config["modbus"].get("poll_interval_seconds", 5)))
+    poll_interval_seconds = max(0.1, float(config["modbus"].get("poll_interval_seconds", 5)))
 
     while True:
+        collection_started_at = time.monotonic()
         rows = read_snapshot(config["modbus"], points)
         append_rows_to_csv(csv_path, rows)
         inserted_count, updated_count = import_rows_to_database(
@@ -459,12 +491,13 @@ def run_collection(config_path: Path, once: bool) -> None:
         if once:
             return
 
-        time.sleep(poll_interval_seconds)
+        collection_duration = time.monotonic() - collection_started_at
+        time.sleep(max(0.0, poll_interval_seconds - collection_duration))
 
 
 def main() -> None:
     args = parse_args()
-    run_collection(args.config, args.once)
+    run_collection(args.config, args.once, args.backend_config)
 
 
 if __name__ == "__main__":

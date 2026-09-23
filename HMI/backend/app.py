@@ -9,6 +9,7 @@ from database_api import database_api
 from modbus_api import modbus_api
 from admin_api import admin_api
 from sqlite_admin_api import sqlite_admin_api
+from collector_admin_api import collector_admin_api
 
 
 app = Flask(__name__)
@@ -24,6 +25,7 @@ app.register_blueprint(database_api)
 app.register_blueprint(modbus_api)
 app.register_blueprint(admin_api)
 app.register_blueprint(sqlite_admin_api)
+app.register_blueprint(collector_admin_api)
 
 
 if __name__ == "__main__":

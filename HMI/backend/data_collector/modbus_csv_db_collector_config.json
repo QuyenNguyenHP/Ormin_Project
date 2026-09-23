@@ -4,7 +4,7 @@
     "port": 502,
     "unit_id": 20,
     "timeout_seconds": 3,
-    "poll_interval_seconds": 1,
+    "poll_interval_seconds": 5,
     "timestamp_format": "%Y-%m-%d %H:%M:%S"
   },
   "output": {

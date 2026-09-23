@@ -14,6 +14,10 @@ import NavigationSidebar from "../components/NavigationSidebar";
 import Footer from "../components/Footer";
 import AdminAddresses from "../components/AdminAddresses";
 import AdminDatabase from "../components/AdminDatabase";
+import AdminDataCollector from "../components/AdminDataCollector";
+import { fetchModbusStatus } from "../services/pidMonitorApi";
+
+const MODBUS_STATUS_POLL_INTERVAL_MS = 6000;
 
 const emptyLogin = { username: "", password: "" };
 const emptyConfig = {
@@ -50,6 +54,7 @@ const fieldSx = {
 
 const Admin = () => {
   const [authenticated, setAuthenticated] = useState(false);
+  const [modbusConnected, setModbusConnected] = useState(null);
   const [checkingSession, setCheckingSession] = useState(true);
   const [login, setLogin] = useState(emptyLogin);
   const [config, setConfig] = useState(emptyConfig);
@@ -57,13 +62,37 @@ const Admin = () => {
   const [success, setSuccess] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [loginInputsEnabled, setLoginInputsEnabled] = useState(false);
-  const [section, setSection] = useState("signals");
+  const [section, setSection] = useState("modbus");
 
   useEffect(() => {
     const clearAutofill = () => setLogin({ username: "", password: "" });
     clearAutofill();
     const timeoutId = window.setTimeout(clearAutofill, 150);
     return () => window.clearTimeout(timeoutId);
+  }, []);
+
+  useEffect(() => {
+    let active = true;
+
+    const loadModbusStatus = async () => {
+      try {
+        const status = await fetchModbusStatus();
+        if (active) setModbusConnected(Boolean(status?.connected));
+      } catch {
+        if (active) setModbusConnected(false);
+      }
+    };
+
+    loadModbusStatus();
+    const intervalId = window.setInterval(
+      loadModbusStatus,
+      MODBUS_STATUS_POLL_INTERVAL_MS
+    );
+
+    return () => {
+      active = false;
+      window.clearInterval(intervalId);
+    };
   }, []);
 
   const loadConfig = async () => {
@@ -93,6 +122,7 @@ const Admin = () => {
     try {
       await requestJson("/api/admin/login", { method: "POST", body: JSON.stringify(login) });
       await loadConfig();
+      setSection("modbus");
       setAuthenticated(true);
       setLogin(emptyLogin);
     } catch (requestError) {
@@ -120,6 +150,7 @@ const Admin = () => {
 
   const handleLogout = async () => {
     await requestJson("/api/admin/session", { method: "DELETE" });
+    setSection("modbus");
     setAuthenticated(false);
     setSuccess("");
     setError("");
@@ -137,7 +168,7 @@ const Admin = () => {
 
   return (
     <Box className="min-h-screen bg-[#101828] w-full flex flex-col items-start">
-      <Header />
+      <Header modbusConnected={modbusConnected} />
       <main className="self-stretch flex-1 flex items-start max-w-full mq1825:flex-wrap">
         <NavigationSidebar />
         <section className="flex-1 min-w-0 flex items-start !p-4 box-border max-w-full">
@@ -150,11 +181,13 @@ const Admin = () => {
               {authenticated && <Button variant="outlined" onClick={handleLogout} disabled={submitting} sx={{ borderColor: "#475569", color: "#cbd5e1", textTransform: "none" }}>Sign out</Button>}
             </Box>
             {authenticated && <Tabs value={section} onChange={(_, value) => setSection(value)} variant="scrollable" scrollButtons="auto" sx={{ mb: 3, minHeight: 42, borderBottom: "1px solid #364153", "& .MuiTab-root": { color: "#94a3b8", minHeight: 42, textTransform: "none" }, "& .Mui-selected": { color: "#93c5fd !important" } }}>
-              <Tab value="signals" label="Modbus & signal addresses" />
+              <Tab value="modbus" label="Modbus TCP settings" />
+              <Tab value="signals" label="Signal addresses" />
+              <Tab value="collector" label="Data collection" />
               <Tab value="sqlite" label="Database" />
             </Tabs>}
-            <Box sx={{ display: "grid", gridTemplateColumns: !authenticated || section === "signals" ? { xs: "minmax(0, 1fr)", lg: authenticated ? "300px minmax(0, 1fr)" : "minmax(0, 460px)" } : "minmax(0, 1fr)", gap: 3, alignItems: "start" }}>
-              {(!authenticated || section === "signals") && <Box sx={{ minWidth: 0, p: 2.5, border: "1px solid #364153", borderRadius: 2, bgcolor: "#182231" }}>
+            <Box sx={{ display: "grid", gridTemplateColumns: "minmax(0, 1fr)", gap: 3, alignItems: "start" }}>
+              {(!authenticated || section === "modbus") && <Box sx={{ width: "100%", maxWidth: authenticated ? 620 : 460, minWidth: 0, p: 2.5, border: "1px solid #364153", borderRadius: 2, bgcolor: "#182231" }}>
                 {error && <Alert severity="error" className="!mb-5">{error}</Alert>}
                 {success && <Alert severity="success" className="!mb-5">{success}</Alert>}
                 {!authenticated ? (
@@ -207,6 +240,7 @@ const Admin = () => {
                 )}
               </Box>}
               {authenticated && section === "signals" && <AdminAddresses requestJson={requestJson} fieldSx={fieldSx} />}
+              {authenticated && section === "collector" && <AdminDataCollector requestJson={requestJson} fieldSx={fieldSx} />}
               {authenticated && section === "sqlite" && <AdminDatabase requestJson={requestJson} fieldSx={fieldSx} />}
             </Box>
           </Box>
