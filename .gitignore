@@ -1,0 +1,9 @@
+# Runtime databases and collected history
+HMI/backend/database/database
+HMI/backend/database/*.db
+HMI/backend/database/modbus_history.csv
+HMI/backend/database/csv_history/
+
+# Python runtime files
+__pycache__/
+*.py[cod]

@@ -200,9 +200,9 @@ Wants=network-online.target
 [Service]
 Type=simple
 User=drums
-WorkingDirectory=/home/drums/Ormin_Project_V5/HMI
+WorkingDirectory=/home/drums/Ormin_Project/HMI
 Environment=PYTHONUNBUFFERED=1
-ExecStart=/usr/bin/python3 /home/drums/Ormin_Project_V5/HMI/backend/app.py
+ExecStart=/usr/bin/python3 /home/drums/Ormin_Project/HMI/backend/app.py
 Restart=always
 RestartSec=3
 
@@ -249,20 +249,16 @@ npm install
 
 ### 8.2 Build the app
 
-```bash
-npm run build
-```
-
 According to `vite.config.mjs`, the frontend output is:
 
 ```text
-/home/drums/Ormin_Project_V5/HMI/build
+npm run build
 ```
 
 Verify it:
 
 ```bash
-ls /home/drums/Ormin_Project_V5/HMI/build
+ls /home/drums/Ormin_Project/HMI/build
 ```
 
 You should see at least:
@@ -292,9 +288,9 @@ Use this content:
 ```apache
 <VirtualHost *:80>
     ServerAdmin webmaster@localhost
-    DocumentRoot /home/drums/Ormin_Project_V5/HMI/build
+    DocumentRoot /home/drums/Ormin_Project/HMI/build
 
-    <Directory /home/drums/Ormin_Project_V5/HMI/build>
+    <Directory /home/drums/Ormin_Project/HMI/build>
         Options Indexes FollowSymLinks
         AllowOverride All
         Require all granted
@@ -356,7 +352,7 @@ If the frontend does not load static files, make sure directory permissions allo
 
 ```bash
 sudo chmod o+rx /home/drums
-sudo chmod -R o+rX /home/drums/Ormin_Project_V5/HMI/build
+sudo chmod -R o+rX /home/drums/Ormin_Project/HMI/build
 ```
 
 If needed, you can also fix ownership:

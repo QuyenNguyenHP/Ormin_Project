@@ -3,12 +3,14 @@
 from __future__ import annotations
 
 import atexit
+import json
 import subprocess
 import sys
 from collections import deque
 from datetime import date, datetime, timezone
 from pathlib import Path
 from threading import RLock, Thread
+from tempfile import NamedTemporaryFile
 from typing import Any
 
 from flask import Blueprint, jsonify, request
@@ -19,8 +21,62 @@ from admin_api import require_admin
 BASE_DIR = Path(__file__).resolve().parent
 COLLECTOR_DIR = BASE_DIR / "data_collector"
 COLLECTOR_SCRIPT = COLLECTOR_DIR / "modbus_csv_db_collector.py"
+COLLECTOR_CONFIG = COLLECTOR_DIR / "modbus_csv_db_collector_config.json"
 FUEL_SCRIPT = COLLECTOR_DIR / "daily_fuel_consumption.py"
 collector_admin_api = Blueprint("collector_admin_api", __name__)
+collector_config_lock = RLock()
+
+
+def load_collector_settings() -> dict[str, Any]:
+    with COLLECTOR_CONFIG.open("r", encoding="utf-8") as config_file:
+        config = json.load(config_file)
+    output = config.get("output", {})
+    legacy_csv_path = str(output.get("csv_path", "../database/modbus_history.csv"))
+    return {
+        "collection_interval_seconds": int(
+            config.get("modbus", {}).get("poll_interval_seconds", 30)
+        ),
+        "csv_directory": str(
+            output.get("csv_directory", str(Path(legacy_csv_path).parent))
+        ),
+    }
+
+
+def validate_collector_settings(payload: Any) -> dict[str, Any]:
+    if not isinstance(payload, dict):
+        raise ValueError("Request body must be a JSON object.")
+    try:
+        interval = int(payload.get("collection_interval_seconds"))
+    except (TypeError, ValueError) as exc:
+        raise ValueError("Collection interval must be 15 or 30 seconds.") from exc
+    if interval not in (15, 30):
+        raise ValueError("Collection interval must be 15 or 30 seconds.")
+    csv_directory = str(payload.get("csv_directory", "")).strip()
+    if not csv_directory or len(csv_directory) > 2048:
+        raise ValueError("CSV directory is required and must not exceed 2048 characters.")
+    return {
+        "collection_interval_seconds": interval,
+        "csv_directory": csv_directory,
+    }
+
+
+def save_collector_settings(settings: dict[str, Any]) -> None:
+    with collector_config_lock:
+        with COLLECTOR_CONFIG.open("r", encoding="utf-8") as config_file:
+            config = json.load(config_file)
+        config.setdefault("modbus", {})["poll_interval_seconds"] = settings[
+            "collection_interval_seconds"
+        ]
+        output = config.setdefault("output", {})
+        output["csv_directory"] = settings["csv_directory"]
+        output.pop("csv_path", None)
+        with NamedTemporaryFile(
+            mode="w", encoding="utf-8", dir=COLLECTOR_CONFIG.parent, delete=False, suffix=".json"
+        ) as temporary_file:
+            json.dump(config, temporary_file, ensure_ascii=False, indent=2)
+            temporary_file.write("\n")
+            temporary_path = Path(temporary_file.name)
+        temporary_path.replace(COLLECTOR_CONFIG)
 
 
 class ManagedProcess:
@@ -125,6 +181,7 @@ def combined_status() -> dict[str, Any]:
     return {
         "collector": history_collector.status(),
         "fuel_calculation": fuel_calculator.status(),
+        "settings": load_collector_settings(),
     }
 
 
@@ -134,6 +191,23 @@ def get_status() -> Any:
     if denied:
         return denied
     return jsonify(combined_status())
+
+
+@collector_admin_api.put("/api/admin/data-collector/settings")
+def update_collector_settings() -> Any:
+    denied = require_admin()
+    if denied:
+        return denied
+    if history_collector.status()["running"]:
+        return jsonify({"error": "Stop data collection before changing its settings."}), 409
+    try:
+        settings = validate_collector_settings(request.get_json(silent=True))
+        save_collector_settings(settings)
+    except ValueError as exc:
+        return jsonify({"error": str(exc)}), 400
+    except (OSError, json.JSONDecodeError) as exc:
+        return jsonify({"error": f"Unable to save collector settings: {exc}"}), 500
+    return jsonify({**combined_status(), "message": "Data collection settings saved."})
 
 
 @collector_admin_api.post("/api/admin/data-collector/start")

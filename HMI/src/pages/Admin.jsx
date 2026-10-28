@@ -25,7 +25,7 @@ const emptyConfig = {
   port: "502",
   unit_id: "1",
   timeout_seconds: "3",
-  poll_interval_ms: "1000",
+  poll_interval_ms: "2000",
 };
 
 const requestJson = async (url, options = {}) => {
@@ -231,7 +231,7 @@ const Admin = () => {
                       <TextField required sx={fieldSx} name="port" label="Port" type="number" inputProps={{ min: 1, max: 65535 }} value={config.port} onChange={updateField(setConfig)} />
                       <TextField required sx={fieldSx} name="unit_id" label="Unit ID" type="number" inputProps={{ min: 0, max: 247 }} value={config.unit_id} onChange={updateField(setConfig)} />
                       <TextField required sx={fieldSx} name="timeout_seconds" label="Timeout (s)" type="number" inputProps={{ min: 0.1, max: 120, step: 0.1 }} value={config.timeout_seconds} onChange={updateField(setConfig)} />
-                      <TextField required sx={fieldSx} name="poll_interval_ms" label="Poll (ms)" type="number" inputProps={{ min: 100, max: 3600000 }} value={config.poll_interval_ms} onChange={updateField(setConfig)} />
+                      <TextField required sx={fieldSx} name="poll_interval_ms" label="Query interval (ms)" type="number" inputProps={{ min: 100, max: 3600000, step: 100 }} helperText="Default: 2000 ms" value={config.poll_interval_ms} onChange={updateField(setConfig)} />
                     </Box>
                     <Box className="flex flex-wrap gap-3 pt-2">
                       <Button fullWidth type="submit" variant="contained" disabled={submitting} className="!h-11 !rounded-md !bg-[#155dfc] hover:!bg-[#1d4ed8]" sx={{ textTransform: "none" }}>{submitting ? "Saving..." : "Save configuration"}</Button>

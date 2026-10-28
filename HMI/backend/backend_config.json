@@ -3,11 +3,11 @@
   "_note_modbus_addressing": "Addresses in this config use visible Modbus notation such as 40001/10001. The backend converts them to zero-based wire offsets before reading, for example 40001->0, 40038->37, 10001->0.",
   "database_path": "database/database",
   "modbus": {
-    "host": "10.0.0.204",
+    "host": "192.168.0.53",
     "port": 502,
     "unit_id": 20,
     "timeout_seconds": 3.0,
-    "poll_interval_ms": 1000
+    "poll_interval_ms": 2000
   },
   "admin_credentials": {
     "username": "admin",

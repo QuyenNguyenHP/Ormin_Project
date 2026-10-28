@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import { Alert, Box, Button, Chip, TextField, Typography } from "@mui/material";
+import { Alert, Box, Button, Chip, MenuItem, TextField, Typography } from "@mui/material";
 
 const emptyStatus = {
   collector: { running: false, output: [] },
@@ -43,10 +43,13 @@ export default function AdminDataCollector({ requestJson, fieldSx }) {
   const [error, setError] = useState("");
   const [message, setMessage] = useState("");
   const [day, setDay] = useState("");
+  const [settings, setSettings] = useState(null);
 
   const refresh = useCallback(async (showError = false) => {
     try {
-      setStatus(await requestJson("/api/admin/data-collector/status"));
+      const payload = await requestJson("/api/admin/data-collector/status");
+      setStatus(payload);
+      setSettings((current) => current ?? payload.settings ?? null);
     } catch (requestError) {
       if (showError) setError(requestError.message);
     }
@@ -85,6 +88,11 @@ export default function AdminDataCollector({ requestJson, fieldSx }) {
   const collector = status.collector ?? emptyStatus.collector;
   const fuel = status.fuel_calculation ?? emptyStatus.fuel_calculation;
 
+  const updateSetting = (event) => {
+    const { name, value } = event.target;
+    setSettings((current) => ({ ...current, [name]: value }));
+  };
+
   return (
     <Box sx={{ display: "flex", flexDirection: "column", gap: 3, minWidth: 0 }}>
       {error && <Alert severity="error">{error}</Alert>}
@@ -93,9 +101,43 @@ export default function AdminDataCollector({ requestJson, fieldSx }) {
       <Box sx={{ p: 2.5, border: "1px solid #364153", borderRadius: 2, bgcolor: "#182231" }}>
         <Typography sx={{ color: "#e2e8f0", fontWeight: 600 }}>History data collection</Typography>
         <Typography sx={{ color: "#94a3b8", fontSize: 13, mt: 0.5, mb: 2 }}>
-          Continuously reads configured Modbus points using the connection settings saved in Admin, then writes them to CSV and SQLite.
+          Reads the configured Modbus points every 15 or 30 seconds. Each snapshot is written to a new timestamped CSV file and to SQLite.
         </Typography>
+        {settings && (
+          <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", md: "220px minmax(280px, 1fr)" }, gap: 2, mb: 2 }}>
+            <TextField
+              select
+              sx={fieldSx}
+              name="collection_interval_seconds"
+              label="Collection interval"
+              value={String(settings.collection_interval_seconds)}
+              onChange={updateSetting}
+              disabled={collector.running || Boolean(busy)}
+            >
+              <MenuItem value="15">Every 15 seconds</MenuItem>
+              <MenuItem value="30">Every 30 seconds</MenuItem>
+            </TextField>
+            <TextField
+              required
+              sx={fieldSx}
+              name="csv_directory"
+              label="CSV storage directory"
+              value={settings.csv_directory}
+              onChange={updateSetting}
+              disabled={collector.running || Boolean(busy)}
+              helperText="Relative paths are resolved from backend/data_collector; absolute paths are also supported."
+            />
+          </Box>
+        )}
         <Box sx={{ display: "flex", gap: 1.5, flexWrap: "wrap" }}>
+          <Button
+            variant="outlined"
+            disabled={!settings || collector.running || Boolean(busy)}
+            onClick={() => runAction("collector-save", "/api/admin/data-collector/settings", { method: "PUT", body: JSON.stringify(settings) })}
+            sx={{ textTransform: "none" }}
+          >
+            {busy === "collector-save" ? "Saving..." : "Save settings"}
+          </Button>
           <Button
             variant="contained"
             disabled={collector.running || Boolean(busy)}

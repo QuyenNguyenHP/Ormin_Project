@@ -120,7 +120,7 @@ const NavigationSidebar = ({ className = "" }) => {
               <img
                 className={navIconClass(isActive)}
                 alt=""
-                src="/alarm.svg"
+                src="/device-status.svg"
                 style={navIconStyle(isActive)}
               />
               <Box className="h-5 flex-1 flex items-start">
@@ -218,7 +218,7 @@ const NavigationSidebar = ({ className = "" }) => {
               <img
                 className={navIconClass(isActive)}
                 alt=""
-                src="/pressure_trend.svg"
+                src="/fuel-consumption.svg"
                 style={navIconStyle(isActive)}
               />
               <Box className="min-h-5 flex-1 flex items-start">
@@ -244,7 +244,7 @@ const NavigationSidebar = ({ className = "" }) => {
               <img
                 className={navIconClass(isActive)}
                 alt=""
-                src="/Icon.svg"
+                src="/administration.svg"
                 style={navIconStyle(isActive)}
               />
               <Box className="min-h-5 flex-1 flex items-start">

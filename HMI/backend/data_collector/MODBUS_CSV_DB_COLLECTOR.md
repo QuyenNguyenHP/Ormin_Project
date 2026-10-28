@@ -318,3 +318,4 @@ Nên dùng khi bạn muốn:
 - chuẩn hóa snapshot
 - lưu đồng thời vào CSV và SQLite
 - hỗ trợ chạy một lần hoặc chạy poll liên tục
+- tự động thu thập các tín hiệu digital của trang Engine Status từ `backend_config.json`; giá trị được lưu dưới dạng `0/1` với unit `state`

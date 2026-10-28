@@ -4,11 +4,12 @@
     "port": 502,
     "unit_id": 20,
     "timeout_seconds": 3,
-    "poll_interval_seconds": 5,
+    "poll_interval_seconds": 30,
     "timestamp_format": "%Y-%m-%d %H:%M:%S"
   },
   "output": {
-    "csv_path": "../database/modbus_history.csv",
+    "csv_directory": "../database/csv_history",
+    "csv_filename_prefix": "modbus_history",
     "database_path": "../database/database",
     "table_name": "database"
   },

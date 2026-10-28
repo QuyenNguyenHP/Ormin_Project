@@ -37,7 +37,7 @@ class PointConfig:
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description=(
-            "Read Modbus points from a JSON configuration, append them to CSV, "
+            "Read Modbus points from a JSON configuration, write each snapshot to a new CSV, "
             "and upsert them into the SQLite database used by the backend."
         )
     )
@@ -317,23 +317,23 @@ def read_snapshot(
     return rows
 
 
-def ensure_csv_header(csv_path: Path) -> None:
-    ensure_parent_directory(csv_path)
-    if csv_path.exists() and csv_path.stat().st_size > 0:
-        return
-
-    with csv_path.open("w", encoding="utf-8-sig", newline="") as csv_file:
+def write_rows_to_new_csv(
+    csv_directory: Path,
+    rows: list[tuple[int, str, str, float, str]],
+    filename_prefix: str = "modbus_history",
+) -> Path:
+    csv_directory.mkdir(parents=True, exist_ok=True)
+    timestamp = datetime.now(timezone.utc).strftime("%Y%m%d_%H%M%S")
+    csv_path = csv_directory / f"{filename_prefix}_{timestamp}.csv"
+    sequence = 1
+    while csv_path.exists():
+        csv_path = csv_directory / f"{filename_prefix}_{timestamp}_{sequence:02d}.csv"
+        sequence += 1
+    with csv_path.open("x", encoding="utf-8-sig", newline="") as csv_file:
         writer = csv.writer(csv_file)
         writer.writerow(CSV_COLUMNS)
-
-
-def append_rows_to_csv(
-    csv_path: Path, rows: list[tuple[int, str, str, float, str]]
-) -> None:
-    ensure_csv_header(csv_path)
-    with csv_path.open("a", encoding="utf-8-sig", newline="") as csv_file:
-        writer = csv.writer(csv_file)
         writer.writerows(rows)
+    return csv_path
 
 
 def create_table(connection: sqlite3.Connection, table_name: str) -> None:
@@ -452,6 +452,65 @@ def apply_backend_modbus_config(
         if key in backend_modbus:
             collector_modbus[key] = backend_modbus[key]
 
+    sync_engine_status_points(config, backend_config)
+
+
+def sync_engine_status_points(
+    collector_config: dict[str, Any], backend_config: dict[str, Any]
+) -> int:
+    """Mirror the Engine Status digital inputs into the collector point list."""
+    signals = backend_config.get("signals", {})
+    alarm_engines = backend_config.get("pages", {}).get("alarm", {}).get("engines", [])
+    if not isinstance(signals, dict) or not isinstance(alarm_engines, list):
+        raise ValueError("Engine Status signal configuration is missing or invalid.")
+
+    existing_points = [
+        point
+        for point in collector_config.get("points", [])
+        if point.get("managed_by") != "backend_engine_status"
+    ]
+    digital_points: list[dict[str, Any]] = []
+    seen: set[tuple[int, str]] = set()
+
+    for engine_index, engine_config in enumerate(alarm_engines, start=1):
+        if not isinstance(engine_config, dict):
+            continue
+        engine_key = str(engine_config.get("key", ""))
+        try:
+            engine_number = int(engine_key.rsplit("_", 1)[-1])
+        except ValueError:
+            engine_number = engine_index
+
+        for bit in engine_config.get("bits", []):
+            if not isinstance(bit, dict):
+                continue
+            signal_id = str(bit.get("signal", ""))
+            signal = signals.get(signal_id)
+            if not isinstance(signal, dict) or signal.get("source_type") != "discrete_input":
+                continue
+            identity = (engine_number, signal_id)
+            if identity in seen:
+                continue
+            seen.add(identity)
+            address = int(signal["address"])
+            label = str(bit.get("label") or signal.get("label") or signal_id).strip()
+            digital_points.append({
+                "engine": engine_number,
+                "channel_description": f"{label} [DI {address}]",
+                "source_type": "discrete_input",
+                "address": address,
+                "scale": 1,
+                "unit": "state",
+                "enabled": True,
+                "managed_by": "backend_engine_status",
+                "signal_id": signal_id,
+            })
+
+    if not digital_points:
+        raise ValueError("No Engine Status digital inputs were found in backend config.")
+    collector_config["points"] = existing_points + digital_points
+    return len(digital_points)
+
 
 def run_collection(
     config_path: Path, once: bool, backend_config_path: Path | None = None
@@ -465,7 +524,13 @@ def run_collection(
     base_dir = config_path.parent
     points = parse_points(config)
 
-    csv_path = resolve_path(base_dir, str(config["output"]["csv_path"]))
+    output_config = config["output"]
+    legacy_csv_path = str(output_config.get("csv_path", "../database/modbus_history.csv"))
+    csv_directory = resolve_path(
+        base_dir,
+        str(output_config.get("csv_directory", Path(legacy_csv_path).parent)),
+    )
+    csv_filename_prefix = str(output_config.get("csv_filename_prefix", "modbus_history"))
     database_path = resolve_path(base_dir, str(config["output"]["database_path"]))
     table_name = str(config["output"].get("table_name", "database"))
     poll_interval_seconds = max(0.1, float(config["modbus"].get("poll_interval_seconds", 5)))
@@ -473,7 +538,7 @@ def run_collection(
     while True:
         collection_started_at = time.monotonic()
         rows = read_snapshot(config["modbus"], points)
-        append_rows_to_csv(csv_path, rows)
+        csv_path = write_rows_to_new_csv(csv_directory, rows, csv_filename_prefix)
         inserted_count, updated_count = import_rows_to_database(
             database_path,
             table_name,
