@@ -39,25 +39,25 @@
 <rect id="TSH_H.O.service.tank" x="577.422" y="447" width="45" height="18" stroke="#99A1AF" stroke-width="2"/>
 <rect id="LL_H.O.service.tank" x="632.198" y="422.703" width="11.5833" height="11.5833" stroke="#99A1AF" stroke-width="2"/>
 
-<text id="HO_eninge_outlet_flow_4" x="1504.42" y="679.891" fill="#fdfdfd00" font-family="Consolas, monospace" font-size="12" font-weight="700" dominant-baseline="hanging">100 L/H</text>
-<text id="DO_eninge_outlet_flow_4" x="1504.42" y="628.953" fill="#fdfdfd00" font-family="Consolas, monospace" font-size="12" font-weight="700" dominant-baseline="hanging">100 L/H</text>
-<text id="HO_eninge_outlet_flow_3" x="1504.42" y="487.177" fill="#fdfdfd00" font-family="Consolas, monospace" font-size="12" font-weight="700" dominant-baseline="hanging">100 L/H</text>
-<text id="DO_eninge_outlet_flow_3" x="1502.72" y="435.391" fill="#fdfdfd00" font-family="Consolas, monospace" font-size="12" font-weight="700" dominant-baseline="hanging">100 L/H</text>
-<text id="HO_eninge_outlet_flow_2" x="1505.27" y="293.615" fill="#fdfdfd00" font-family="Consolas, monospace" font-size="12" font-weight="700" dominant-baseline="hanging">100 L/H</text>
-<text id="DO_eninge_outlet_flow_2" x="1504.42" y="242.677" fill="#fdfdfd00" font-family="Consolas, monospace" font-size="12" font-weight="700" dominant-baseline="hanging">100 L/H</text>
-<text id="HO_eninge_outlet_flow_1" x="1502.72" y="99.2031" fill="#fdfdfd00" font-family="Consolas, monospace" font-size="12" font-weight="700" dominant-baseline="hanging">100 L/H</text>
-<text id="DO_eninge_outlet_flow_1" x="1501.87" y="48.2656" fill="#fdfdfd00" font-family="Consolas, monospace" font-size="12" font-weight="700" dominant-baseline="hanging">100 L/H</text>
-<text id="HO_eninge_inlet_flow_4" x="1155.5" y="733.375" fill="#fdfdfd00" font-family="Consolas, monospace" font-size="12" font-weight="700" dominant-baseline="hanging">100 L/H</text>
-<text id="DO_eninge_inlet_flow_4" x="1155.5" y="679.891" fill="#fdfdfd00" font-family="Consolas, monospace" font-size="12" font-weight="700" dominant-baseline="hanging">100 L/H</text>
-<text id="HO_eninge_inlet_flow_3" x="1158.04" y="539.812" fill="#fdfdfd00" font-family="Consolas, monospace" font-size="12" font-weight="700" dominant-baseline="hanging">100 L/H</text>
-<text id="DO_eninge_inlet_flow_3" x="1158.04" y="484.63" fill="#fdfdfd00" font-family="Consolas, monospace" font-size="12" font-weight="700" dominant-baseline="hanging">100 L/H</text>
-<text id="HO_eninge_inlet_flow_2" x="1157.2" y="347.099" fill="#fdfdfd00" font-family="Consolas, monospace" font-size="12" font-weight="700" dominant-baseline="hanging">100 L/H</text>
-<text id="DO_eninge_inlet_flow_2" x="1157.2" y="290.219" fill="#fdfdfd00" font-family="Consolas, monospace" font-size="12" font-weight="700" dominant-baseline="hanging">100 L/H</text>
-<text id="HO_eninge_inlet_flow_1" x="1158.04" y="145" fill="#fdfdfd00" font-family="Consolas, monospace" font-size="12" font-weight="700" dominant-baseline="hanging">100 L/H</text>
-<text id="DO_eninge_inlet_flow_1" x="1158.04" y="90" fill="#fdfdfd00" font-family="Consolas, monospace" font-size="12" font-weight="700" dominant-baseline="hanging">100 L/H</text>
-<text id="HO_transfer_flow" x="329.04" y="450.672" fill="#fdfdfd00" font-family="Consolas, monospace" font-size="12" font-weight="700" dominant-baseline="hanging">100 L/H</text>
-<text id="DO_transfer_flow" x="329.462" y="162.026" fill="#fdfdfd00" font-family="Consolas, monospace" font-size="12" font-weight="700" dominant-baseline="hanging">100 L/H</text>
-  
+<text id="HO_eninge_outlet_flow_4" x="1522.42" y="715" fill="#fdfdfd00" font-family="Consolas, monospace" font-size="18" font-weight="700" dominant-baseline="hanging">100 </text>
+<text id="DO_eninge_outlet_flow_4" x="1506.42" y="620.953" fill="#fdfdfd00" font-family="Consolas, monospace" font-size="18" font-weight="700" dominant-baseline="hanging">100 </text>
+<text id="HO_eninge_outlet_flow_3" x="1522.42" y="523" fill="#fdfdfd00" font-family="Consolas, monospace" font-size="18" font-weight="700" dominant-baseline="hanging">100 </text>
+<text id="DO_eninge_outlet_flow_3" x="1506.72" y="427.391" fill="#fdfdfd00" font-family="Consolas, monospace" font-size="18" font-weight="700" dominant-baseline="hanging">100 </text>
+<text id="HO_eninge_outlet_flow_2" x="1522.27" y="329.615" fill="#fdfdfd00" font-family="Consolas, monospace" font-size="18" font-weight="700" dominant-baseline="hanging">100 </text>
+<text id="DO_eninge_outlet_flow_2" x="1506.42" y="234.677" fill="#fdfdfd00" font-family="Consolas, monospace" font-size="18" font-weight="700" dominant-baseline="hanging">100 </text>
+<text id="HO_eninge_outlet_flow_1" x="1522.42" y="135" fill="#fdfdfd00" font-family="Consolas, monospace" font-size="18" font-weight="700" dominant-baseline="hanging">100 </text>
+<text id="DO_eninge_outlet_flow_1" x="1506.87" y="40" fill="#fdfdfd00" font-family="Consolas, monospace" font-size="18" font-weight="700" dominant-baseline="hanging">100 </text>
+<text id="HO_eninge_inlet_flow_4" x="1160" y="772" fill="#fdfdfd00" font-family="Consolas, monospace" font-size="18" font-weight="700" dominant-baseline="hanging">100 </text>
+<text id="DO_eninge_inlet_flow_4" x="1160" y="670" fill="#fdfdfd00" font-family="Consolas, monospace" font-size="18" font-weight="700" dominant-baseline="hanging">100 </text>
+<text id="HO_eninge_inlet_flow_3" x="1160" y="580" fill="#fdfdfd00" font-family="Consolas, monospace" font-size="18" font-weight="700" dominant-baseline="hanging">100 </text>
+<text id="DO_eninge_inlet_flow_3" x="1160" y="475" fill="#fdfdfd00" font-family="Consolas, monospace" font-size="18" font-weight="700" dominant-baseline="hanging">100 </text>
+<text id="HO_eninge_inlet_flow_2" x="1160" y="388" fill="#fdfdfd00" font-family="Consolas, monospace" font-size="18" font-weight="700" dominant-baseline="hanging">100 </text>
+<text id="DO_eninge_inlet_flow_2" x="1160" y="288" fill="#fdfdfd00" font-family="Consolas, monospace" font-size="18" font-weight="700" dominant-baseline="hanging">100 </text>
+<text id="HO_eninge_inlet_flow_1" x="1160" y="190" fill="#fdfdfd00" font-family="Consolas, monospace" font-size="18" font-weight="700" dominant-baseline="hanging">100 </text>
+<text id="DO_eninge_inlet_flow_1" x="1160" y="85" fill="#fdfdfd00" font-family="Consolas, monospace" font-size="18" font-weight="700" dominant-baseline="hanging">100 </text>
+<text id="HO_transfer_flow" x="329.04" y="450.672" fill="#fdfdfd00" font-family="Consolas, monospace" font-size="18" font-weight="700" dominant-baseline="hanging">100 </text>
+<text id="DO_transfer_flow" x="329.462" y="162.026" fill="#fdfdfd00" font-family="Consolas, monospace" font-size="18" font-weight="700" dominant-baseline="hanging">100 </text>
+
 <g id="Viscosity-Controller">
 <rect id="LL" x="952.422" y="656" width="14.9792" height="16.6771" stroke="#99A1AF" stroke-width="2"/>
 <rect id="LL_2" x="974.495" y="656" width="34.5052" height="16.6771" stroke="#99A1AF" stroke-width="2"/>

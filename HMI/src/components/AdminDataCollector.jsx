@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import { Alert, Box, Button, Chip, MenuItem, TextField, Typography } from "@mui/material";
+import { Alert, Box, Button, Checkbox, Chip, FormControlLabel, MenuItem, TextField, Typography } from "@mui/material";
 
 const emptyStatus = {
   collector: { running: false, output: [] },
@@ -104,7 +104,29 @@ export default function AdminDataCollector({ requestJson, fieldSx }) {
           Reads the configured Modbus points every 15 or 30 seconds. Each snapshot is written to a new timestamped CSV file and to SQLite.
         </Typography>
         {settings && (
-          <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", md: "220px minmax(280px, 1fr)" }, gap: 2, mb: 2 }}>
+          <Box sx={{ mb: 2 }}>
+            <FormControlLabel
+              sx={{ color: "#e2e8f0", mb: 1.5 }}
+              control={
+                <Checkbox
+                  checked={Boolean(settings.auto_start)}
+                  disabled={Boolean(busy)}
+                  onChange={(event) => {
+                    const enabled = event.target.checked;
+                    setSettings((current) => ({ ...current, auto_start: enabled }));
+                    runAction("collector-auto-start", "/api/admin/data-collector/auto-start", {
+                      method: "PUT",
+                      body: JSON.stringify({ enabled }),
+                    });
+                  }}
+                />
+              }
+              label="Automatically collect data after backend startup"
+            />
+            <Typography sx={{ color: "#94a3b8", fontSize: 12, mb: 2 }}>
+              This setting is saved across reboots. If Modbus is unavailable, collection stays active and retries every 60 seconds.
+            </Typography>
+            <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", md: "220px minmax(280px, 1fr)" }, gap: 2 }}>
             <TextField
               select
               sx={fieldSx}
@@ -127,6 +149,7 @@ export default function AdminDataCollector({ requestJson, fieldSx }) {
               disabled={collector.running || Boolean(busy)}
               helperText="Relative paths are resolved from backend/data_collector; absolute paths are also supported."
             />
+            </Box>
           </Box>
         )}
         <Box sx={{ display: "flex", gap: 1.5, flexWrap: "wrap" }}>

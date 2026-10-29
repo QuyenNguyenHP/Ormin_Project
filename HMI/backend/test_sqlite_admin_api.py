@@ -55,6 +55,7 @@ class SqliteAdminApiTests(unittest.TestCase):
             ("get", "/api/admin/sqlite/options"),
             ("get", "/api/admin/sqlite/rows"),
             ("get", "/api/admin/sqlite/export"),
+            ("delete", "/api/admin/sqlite/rows"),
             ("post", "/api/admin/sqlite/check"),
             ("get", "/api/admin/sqlite/backup"),
         ):
@@ -129,6 +130,44 @@ class SqliteAdminApiTests(unittest.TestCase):
             with self.subTest(values=values):
                 response = self.client.get("/api/admin/sqlite/rows", query_string={**base, **values})
                 self.assertEqual(response.status_code, 400)
+
+    def test_delete_rows_in_selected_time_range(self):
+        self.authenticate()
+        response = self.client.delete("/api/admin/sqlite/rows", query_string={
+            "db": self.database_id,
+            "table": "database",
+            "mode": "range",
+            "start": "2026-09-15T10:30",
+            "end": "2026-09-15T11:30",
+        })
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json["deleted"], 1)
+        with closing(sqlite3.connect(self.database)) as connection:
+            remaining = connection.execute(
+                'SELECT "Timestamp" FROM "database" ORDER BY "Timestamp"'
+            ).fetchall()
+        self.assertEqual([row[0] for row in remaining], [
+            "2026-09-15 10:00:00", "2026-09-15 12:00:00"
+        ])
+
+    def test_retention_deletes_only_rows_older_than_60_days(self):
+        with closing(sqlite3.connect(self.database)) as connection:
+            connection.execute(
+                'INSERT INTO "database" VALUES (?, ?, ?, ?, ?)',
+                (1, "Old", "2020-01-01 00:00:00", 1, "state"),
+            )
+            connection.commit()
+        self.authenticate()
+        response = self.client.delete("/api/admin/sqlite/rows", query_string={
+            "db": self.database_id, "table": "database", "mode": "retention",
+        })
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json["deleted"], 1)
+        with closing(sqlite3.connect(self.database)) as connection:
+            self.assertEqual(connection.execute(
+                'SELECT COUNT(*) FROM "database" WHERE "Channel Description" = ?',
+                ("Old",),
+            ).fetchone()[0], 0)
 
 
 if __name__ == "__main__":

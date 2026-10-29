@@ -71,7 +71,7 @@ const Container1 = ({ engine, className = "" }) => {
       <Box className="self-stretch shrink-0">
         <EngineGauge
           title={gauge.title ?? title}
-          subtitle={gauge.subtitle ?? "Live engine data"}
+          subtitle={gauge.subtitle ?? ""}
           value={Number(gauge.value ?? 0)}
           min={Number(gauge.min ?? 0)}
           max={Number(gauge.max ?? 100)}
@@ -97,7 +97,7 @@ const Container1 = ({ engine, className = "" }) => {
               className="!m-0 flex-1 relative inline-block shrink-0"
               variant="inherit"
               variantMapping={{ inherit: "h3" }}
-              sx={{ fontSize: "16px", fontWeight: "600", lineHeight: 1.25 }}
+              sx={{ fontSize: "20px", fontWeight: "600", lineHeight: 1.25 }}
             >
               {metricLabel}
             </Typography>
@@ -111,7 +111,7 @@ const Container1 = ({ engine, className = "" }) => {
                 className="!m-0 relative text-right"
                 variant="inherit"
                 variantMapping={{ inherit: "h3" }}
-                sx={{ fontSize: "16px", fontWeight: "600", lineHeight: 1.25 }}
+                sx={{ fontSize: "22px", fontWeight: "600", lineHeight: 1.25 }}
               >
                 {formatMetricValue(metricValue, metricUnit)}
               </Typography>

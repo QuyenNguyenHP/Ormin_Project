@@ -1,6 +1,13 @@
 import unittest
+import sqlite3
+import tempfile
+from contextlib import closing
+from datetime import datetime, timedelta, timezone
+from pathlib import Path
 
-from data_collector.modbus_csv_db_collector import parse_points, sync_engine_status_points
+from data_collector.modbus_csv_db_collector import (
+    import_rows_to_database, parse_points, sync_engine_status_points,
+)
 
 
 class EngineStatusCollectorTests(unittest.TestCase):
@@ -69,6 +76,25 @@ class EngineStatusCollectorTests(unittest.TestCase):
 
         self.assertEqual(len(collector["points"]), 1)
         self.assertEqual(collector["points"][0]["address"], 10005)
+
+    def test_database_import_automatically_keeps_latest_60_days(self):
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            database = Path(temporary_directory) / "history.sqlite3"
+            now = datetime.now(timezone.utc).replace(tzinfo=None)
+            old = (now - timedelta(days=61)).isoformat(sep=" ", timespec="seconds")
+            recent = now.isoformat(sep=" ", timespec="seconds")
+            rows = [
+                (1, "Old status", old, 0.0, "state"),
+                (1, "Recent status", recent, 1.0, "state"),
+            ]
+
+            import_rows_to_database(database, "database", rows, retention_days=60)
+
+            with closing(sqlite3.connect(database)) as connection:
+                channels = [row[0] for row in connection.execute(
+                    'SELECT "Channel Description" FROM "database"'
+                )]
+            self.assertEqual(channels, ["Recent status"])
 
 
 if __name__ == "__main__":

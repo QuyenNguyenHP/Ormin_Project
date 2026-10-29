@@ -54,6 +54,7 @@ class CollectorAdminApiTests(unittest.TestCase):
         self.collector_config = Path(self.temporary_directory.name) / "collector.json"
         self.collector_config.write_text(json.dumps({
             "modbus": {"poll_interval_seconds": 30},
+            "auto_start": False,
             "output": {"csv_directory": "../database/csv_history"},
             "points": [],
         }), encoding="utf-8")
@@ -77,12 +78,39 @@ class CollectorAdminApiTests(unittest.TestCase):
             ("get", "/api/admin/data-collector/status"),
             ("put", "/api/admin/data-collector/settings"),
             ("post", "/api/admin/data-collector/start"),
+            ("put", "/api/admin/data-collector/auto-start"),
             ("delete", "/api/admin/data-collector"),
             ("post", "/api/admin/fuel-calculation/start"),
             ("delete", "/api/admin/fuel-calculation"),
         ):
             with self.subTest(path=path):
                 self.assertEqual(getattr(self.client, method)(path).status_code, 401)
+
+    def test_public_collector_log_does_not_require_authentication(self):
+        self.collector.status = lambda: {
+            "running": True,
+            "pid": 123,
+            "started_at": None,
+            "finished_at": None,
+            "last_exit_code": None,
+            "output": ["older log", "latest log"],
+        }
+        response = self.client.get("/api/data-collector/log")
+
+        self.assertEqual(response.status_code, 200)
+        self.assertTrue(response.json["collector"]["running"])
+        self.assertEqual(
+            response.json["collector"]["output"], ["latest log", "older log"]
+        )
+        self.assertNotIn("settings", response.json)
+
+    def test_managed_process_keeps_at_most_200_log_lines(self):
+        process = collector_admin_api.ManagedProcess("Test process")
+        process.output.extend(f"log {index}" for index in range(205))
+
+        self.assertEqual(len(process.output), 200)
+        self.assertEqual(process.output[0], "log 5")
+        self.assertEqual(process.output[-1], "log 204")
 
     def test_start_collector_uses_backend_modbus_config(self):
         self.authenticate()
@@ -118,6 +146,32 @@ class CollectorAdminApiTests(unittest.TestCase):
             json={"collection_interval_seconds": 30, "csv_directory": "history"},
         )
         self.assertEqual(response.status_code, 409)
+
+    def test_auto_start_is_persisted_and_controls_collector(self):
+        self.authenticate()
+        enabled = self.client.put(
+            "/api/admin/data-collector/auto-start", json={"enabled": True}
+        )
+        self.assertEqual(enabled.status_code, 200)
+        self.assertTrue(self.collector.running)
+        self.assertTrue(enabled.json["settings"]["auto_start"])
+        saved = json.loads(self.collector_config.read_text(encoding="utf-8"))
+        self.assertTrue(saved["auto_start"])
+
+        disabled = self.client.put(
+            "/api/admin/data-collector/auto-start", json={"enabled": False}
+        )
+        self.assertEqual(disabled.status_code, 200)
+        self.assertFalse(self.collector.running)
+        self.assertFalse(disabled.json["settings"]["auto_start"])
+
+    def test_initialize_auto_start_starts_persisted_collector(self):
+        config = json.loads(self.collector_config.read_text(encoding="utf-8"))
+        config["auto_start"] = True
+        self.collector_config.write_text(json.dumps(config), encoding="utf-8")
+
+        self.assertTrue(collector_admin_api.initialize_collector_auto_start())
+        self.assertTrue(self.collector.running)
 
     def test_fuel_calculation_validates_and_passes_day(self):
         self.authenticate()

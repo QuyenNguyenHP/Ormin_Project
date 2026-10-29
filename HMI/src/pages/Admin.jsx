@@ -3,6 +3,7 @@ import {
   Alert,
   Box,
   Button,
+  Chip,
   CircularProgress,
   Tab,
   Tabs,
@@ -18,6 +19,7 @@ import AdminDataCollector from "../components/AdminDataCollector";
 import { fetchModbusStatus } from "../services/pidMonitorApi";
 
 const MODBUS_STATUS_POLL_INTERVAL_MS = 6000;
+const COLLECTOR_LOG_POLL_INTERVAL_MS = 2000;
 
 const emptyLogin = { username: "", password: "" };
 const emptyConfig = {
@@ -63,6 +65,8 @@ const Admin = () => {
   const [submitting, setSubmitting] = useState(false);
   const [loginInputsEnabled, setLoginInputsEnabled] = useState(false);
   const [section, setSection] = useState("modbus");
+  const [collectorStatus, setCollectorStatus] = useState({ running: false, output: [] });
+  const [collectorLogError, setCollectorLogError] = useState("");
 
   useEffect(() => {
     const clearAutofill = () => setLogin({ username: "", password: "" });
@@ -70,6 +74,30 @@ const Admin = () => {
     const timeoutId = window.setTimeout(clearAutofill, 150);
     return () => window.clearTimeout(timeoutId);
   }, []);
+
+  useEffect(() => {
+    if (authenticated) return undefined;
+    let active = true;
+
+    const loadCollectorLog = async () => {
+      try {
+        const payload = await requestJson("/api/data-collector/log");
+        if (active) {
+          setCollectorStatus(payload.collector ?? { running: false, output: [] });
+          setCollectorLogError("");
+        }
+      } catch (requestError) {
+        if (active) setCollectorLogError(requestError.message);
+      }
+    };
+
+    loadCollectorLog();
+    const intervalId = window.setInterval(loadCollectorLog, COLLECTOR_LOG_POLL_INTERVAL_MS);
+    return () => {
+      active = false;
+      window.clearInterval(intervalId);
+    };
+  }, [authenticated]);
 
   useEffect(() => {
     let active = true;
@@ -186,7 +214,7 @@ const Admin = () => {
               <Tab value="collector" label="Data collection" />
               <Tab value="sqlite" label="Database" />
             </Tabs>}
-            <Box sx={{ display: "grid", gridTemplateColumns: "minmax(0, 1fr)", gap: 3, alignItems: "start" }}>
+            <Box sx={{ display: "grid", gridTemplateColumns: !authenticated ? { xs: "minmax(0, 1fr)", lg: "460px minmax(0, 1fr)" } : "minmax(0, 1fr)", gap: 3, alignItems: "start" }}>
               {(!authenticated || section === "modbus") && <Box sx={{ width: "100%", maxWidth: authenticated ? 620 : 460, minWidth: 0, p: 2.5, border: "1px solid #364153", borderRadius: 2, bgcolor: "#182231" }}>
                 {error && <Alert severity="error" className="!mb-5">{error}</Alert>}
                 {success && <Alert severity="success" className="!mb-5">{success}</Alert>}
@@ -239,6 +267,31 @@ const Admin = () => {
                   </Box>
                 )}
               </Box>}
+              {!authenticated && (
+                <Box sx={{ minWidth: 0, p: 2.5, border: "1px solid #364153", borderRadius: 2, bgcolor: "#182231" }}>
+                  <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 2, mb: 2 }}>
+                    <Box>
+                      <Typography sx={{ color: "#e2e8f0", fontWeight: 600 }}>Data collector log</Typography>
+                      <Typography sx={{ color: "#94a3b8", fontSize: 13, mt: 0.5 }}>Live collector output · latest first</Typography>
+                    </Box>
+                    <Chip
+                      size="small"
+                      label={collectorStatus.running ? `Running · PID ${collectorStatus.pid}` : "Stopped"}
+                      color={collectorStatus.running ? "success" : "default"}
+                      sx={{ color: collectorStatus.running ? undefined : "#cbd5e1", bgcolor: collectorStatus.running ? undefined : "#334155" }}
+                    />
+                  </Box>
+                  {collectorLogError && <Alert severity="warning" sx={{ mb: 2 }}>{collectorLogError}</Alert>}
+                  <Box
+                    component="pre"
+                    sx={{ m: 0, p: 1.5, minHeight: 220, maxHeight: 420, overflow: "auto", whiteSpace: "pre-wrap", overflowWrap: "anywhere", borderRadius: 1.5, bgcolor: "#0b1220", border: "1px solid #334155", color: "#cbd5e1", fontSize: 12, lineHeight: 1.55 }}
+                  >
+                    {(collectorStatus.output ?? []).length
+                      ? collectorStatus.output.join("\n")
+                      : "No collector output yet."}
+                  </Box>
+                </Box>
+              )}
               {authenticated && section === "signals" && <AdminAddresses requestJson={requestJson} fieldSx={fieldSx} />}
               {authenticated && section === "collector" && <AdminDataCollector requestJson={requestJson} fieldSx={fieldSx} />}
               {authenticated && section === "sqlite" && <AdminDatabase requestJson={requestJson} fieldSx={fieldSx} />}

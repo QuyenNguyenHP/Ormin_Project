@@ -5,6 +5,7 @@ import csv
 import json
 import sqlite3
 import time
+from contextlib import closing
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
@@ -362,6 +363,7 @@ def import_rows_to_database(
     database_path: Path,
     table_name: str,
     rows: list[tuple[int, str, str, float, str]],
+    retention_days: int | None = 60,
 ) -> tuple[int, int]:
     ensure_parent_directory(database_path)
 
@@ -369,7 +371,7 @@ def import_rows_to_database(
     updated_count = 0
     quoted_table = quote_identifier(table_name)
 
-    with sqlite3.connect(database_path) as connection:
+    with closing(sqlite3.connect(database_path)) as connection:
         create_table(connection, table_name)
         cursor = connection.cursor()
 
@@ -409,6 +411,12 @@ def import_rows_to_database(
 
             if float(existing_row[0]) != row[3] or str(existing_row[1]) != row[4]:
                 updated_count += 1
+
+        if retention_days is not None and retention_days > 0:
+            connection.execute(
+                f'DELETE FROM {quoted_table} WHERE "Timestamp" < datetime(?, ?)',
+                ("now", f"-{int(retention_days)} days"),
+            )
 
         connection.commit()
 
@@ -533,16 +541,29 @@ def run_collection(
     csv_filename_prefix = str(output_config.get("csv_filename_prefix", "modbus_history"))
     database_path = resolve_path(base_dir, str(config["output"]["database_path"]))
     table_name = str(config["output"].get("table_name", "database"))
+    retention_days = int(config["output"].get("retention_days", 60))
     poll_interval_seconds = max(0.1, float(config["modbus"].get("poll_interval_seconds", 5)))
+    retry_interval_seconds = 60.0
 
     while True:
         collection_started_at = time.monotonic()
-        rows = read_snapshot(config["modbus"], points)
+        try:
+            rows = read_snapshot(config["modbus"], points)
+        except (ConnectionError, TimeoutError, OSError, RuntimeError) as exc:
+            if once:
+                raise
+            print(
+                f"Modbus collection failed: {exc}. Retrying in 60 seconds.",
+                flush=True,
+            )
+            time.sleep(retry_interval_seconds)
+            continue
         csv_path = write_rows_to_new_csv(csv_directory, rows, csv_filename_prefix)
         inserted_count, updated_count = import_rows_to_database(
             database_path,
             table_name,
             rows,
+            retention_days,
         )
         print_snapshot_summary(
             rows,

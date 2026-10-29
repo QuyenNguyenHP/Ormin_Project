@@ -33,6 +33,7 @@ def load_collector_settings() -> dict[str, Any]:
     output = config.get("output", {})
     legacy_csv_path = str(output.get("csv_path", "../database/modbus_history.csv"))
     return {
+        "auto_start": bool(config.get("auto_start", False)),
         "collection_interval_seconds": int(
             config.get("modbus", {}).get("poll_interval_seconds", 30)
         ),
@@ -79,6 +80,21 @@ def save_collector_settings(settings: dict[str, Any]) -> None:
         temporary_path.replace(COLLECTOR_CONFIG)
 
 
+def save_collector_auto_start(enabled: bool) -> None:
+    """Persist whether collection should run whenever the backend starts."""
+    with collector_config_lock:
+        with COLLECTOR_CONFIG.open("r", encoding="utf-8") as config_file:
+            config = json.load(config_file)
+        config["auto_start"] = enabled
+        with NamedTemporaryFile(
+            mode="w", encoding="utf-8", dir=COLLECTOR_CONFIG.parent, delete=False, suffix=".json"
+        ) as temporary_file:
+            json.dump(config, temporary_file, ensure_ascii=False, indent=2)
+            temporary_file.write("\n")
+            temporary_path = Path(temporary_file.name)
+        temporary_path.replace(COLLECTOR_CONFIG)
+
+
 class ManagedProcess:
     """Own one child process and retain a small, bounded output history."""
 
@@ -89,7 +105,7 @@ class ManagedProcess:
         self.started_at: str | None = None
         self.finished_at: str | None = None
         self.last_exit_code: int | None = None
-        self.output: deque[str] = deque(maxlen=80)
+        self.output: deque[str] = deque(maxlen=200)
 
     @staticmethod
     def timestamp() -> str:
@@ -177,12 +193,43 @@ history_collector = ManagedProcess("Data collector")
 fuel_calculator = ManagedProcess("Fuel calculation")
 
 
+def collector_command() -> list[str]:
+    return [
+        sys.executable,
+        "-u",
+        str(COLLECTOR_SCRIPT),
+        "--backend-config",
+        str(BASE_DIR / "backend_config.json"),
+    ]
+
+
+def initialize_collector_auto_start() -> bool:
+    """Start the collector after backend startup when the persisted option is enabled."""
+    try:
+        enabled = load_collector_settings()["auto_start"]
+        if enabled and not history_collector.status()["running"]:
+            history_collector.start(collector_command())
+        return bool(enabled)
+    except (OSError, ValueError, json.JSONDecodeError, RuntimeError) as exc:
+        print(f"Unable to auto-start data collector: {exc}", flush=True)
+        return False
+
+
 def combined_status() -> dict[str, Any]:
     return {
         "collector": history_collector.status(),
         "fuel_calculation": fuel_calculator.status(),
         "settings": load_collector_settings(),
     }
+
+
+@collector_admin_api.get("/api/data-collector/log")
+def get_public_collector_log() -> Any:
+    """Expose read-only collector health and recent output on the login screen."""
+    collector_status = history_collector.status()
+    recent_output = collector_status.get("output", [])[-200:]
+    collector_status["output"] = list(reversed(recent_output))
+    return jsonify({"collector": collector_status})
 
 
 @collector_admin_api.get("/api/admin/data-collector/status")
@@ -218,18 +265,42 @@ def start_collector() -> Any:
     if not COLLECTOR_SCRIPT.is_file():
         return jsonify({"error": f"Collector script not found: {COLLECTOR_SCRIPT}"}), 500
     try:
-        history_collector.start([
-            sys.executable,
-            "-u",
-            str(COLLECTOR_SCRIPT),
-            "--backend-config",
-            str(BASE_DIR / "backend_config.json"),
-        ])
+        history_collector.start(collector_command())
     except RuntimeError as exc:
         return jsonify({"error": str(exc)}), 409
     except OSError as exc:
         return jsonify({"error": f"Unable to start data collector: {exc}"}), 500
     return jsonify({**combined_status(), "message": "Data collection started."}), 201
+
+
+@collector_admin_api.put("/api/admin/data-collector/auto-start")
+def update_collector_auto_start() -> Any:
+    denied = require_admin()
+    if denied:
+        return denied
+    payload = request.get_json(silent=True)
+    if not isinstance(payload, dict) or not isinstance(payload.get("enabled"), bool):
+        return jsonify({"error": "enabled must be true or false."}), 400
+
+    enabled = payload["enabled"]
+    try:
+        save_collector_auto_start(enabled)
+        running = history_collector.status()["running"]
+        if enabled and not running:
+            if not COLLECTOR_SCRIPT.is_file():
+                raise OSError(f"Collector script not found: {COLLECTOR_SCRIPT}")
+            history_collector.start(collector_command())
+        elif not enabled and running:
+            history_collector.stop()
+    except (OSError, json.JSONDecodeError, RuntimeError) as exc:
+        return jsonify({"error": f"Unable to update automatic collection: {exc}"}), 500
+
+    message = (
+        "Automatic collection enabled and collector started."
+        if enabled
+        else "Automatic collection disabled and collector stopped."
+    )
+    return jsonify({**combined_status(), "message": message})
 
 
 @collector_admin_api.delete("/api/admin/data-collector")

@@ -22,7 +22,7 @@ const fallbackEngines = Array.from({ length: 4 }, (_, index) => ({
   serialNo: index + 1,
   gauge: {
     title: `Engine ${index + 1}`,
-    subtitle: "Awaiting backend mapping",
+    subtitle: "",
     value: 0,
     min: 0,
     max: 100,
@@ -53,7 +53,7 @@ const normalizeEngine = (engine, index) => ({
   serialNo: engine.serialNo ?? index + 1,
   gauge: {
     title: engine.gauge?.title ?? engine.title ?? `Engine ${index + 1}`,
-    subtitle: engine.gauge?.subtitle ?? engine.subtitle ?? "Live engine data",
+    subtitle: engine.gauge?.subtitle ?? engine.subtitle ?? "",
     value: Number(engine.gauge?.value ?? engine.value ?? 0),
     min: Number(engine.gauge?.min ?? engine.min ?? 0),
     max: Number(engine.gauge?.max ?? engine.max ?? 100),

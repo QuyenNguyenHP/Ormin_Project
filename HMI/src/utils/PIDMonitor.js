@@ -204,8 +204,7 @@ const PID_GROUP_CONFIG = [
   },
 ];
 
-const formatFlowValue = (value, unit = "L/H") =>
-  `${Math.round(value)} ${unit}`;
+const formatFlowValue = (value) => `${Math.round(value)}`;
 
 const getFlowColorFromStyle = (value, style = DEFAULT_FLOW_STYLE) => {
   if (value >= 90) return style.onColor;
@@ -363,7 +362,7 @@ export const buildPIDMonitorDataFromPagePayload = (payload = {}) => {
 
     accumulator[flowId] = {
       value: numericValue,
-      label: formatFlowValue(numericValue, flowItem.unit),
+      label: formatFlowValue(numericValue),
       color: getFlowColorFromStyle(numericValue),
     };
 

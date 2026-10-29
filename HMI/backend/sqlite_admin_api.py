@@ -9,7 +9,7 @@ import sqlite3
 import tempfile
 import time
 from contextlib import contextmanager
-from datetime import datetime
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 from flask import Blueprint, Response, jsonify, request
@@ -90,6 +90,22 @@ def connect(path, seconds=10):
         connection.close()
 
 
+@contextmanager
+def connect_writable(path, seconds=30):
+    connection = sqlite3.connect(path, timeout=5)
+    try:
+        connection.row_factory = sqlite3.Row
+        deadline = time.monotonic() + seconds
+        connection.set_progress_handler(lambda: int(time.monotonic() > deadline), 10000)
+        yield connection
+        connection.commit()
+    except Exception:
+        connection.rollback()
+        raise
+    finally:
+        connection.close()
+
+
 def quote(name):
     return '"' + name.replace('"', '""') + '"'
 
@@ -137,6 +153,19 @@ def filters(columns):
         if datetime.fromisoformat(request.args["start"]) > datetime.fromisoformat(request.args["end"]):
             raise ValueError("Start time must not be after end time.")
     return (" WHERE " + " AND ".join(clauses) if clauses else ""), values
+
+
+def parsed_timestamp_argument(name):
+    value = request.args.get(name, "").strip()
+    if not value:
+        raise ValueError(f"{name.capitalize()} time is required.")
+    try:
+        parsed = datetime.fromisoformat(value)
+        if parsed.tzinfo is not None:
+            raise ValueError()
+        return parsed
+    except ValueError:
+        raise ValueError("Use a valid date/time in the database's local time.") from None
 
 
 def order_by(columns):
@@ -213,6 +242,45 @@ def options():
                 'WHERE "Channel Description" IS NOT NULL ORDER BY "Channel Description" COLLATE NOCASE'
             )]
         return jsonify(engines=engines, channels=channels)
+
+
+@sqlite_admin_api.delete("/api/admin/sqlite/rows")
+def delete_rows():
+    mode = request.args.get("mode", "range")
+    if mode not in {"range", "retention"}:
+        raise ValueError("Delete mode must be range or retention.")
+
+    with connect_writable(selected_database()) as connection:
+        name, columns = selected_table(connection)
+        if "Timestamp" not in {column["name"] for column in columns}:
+            raise ValueError("This table has no Timestamp column.")
+
+        if mode == "range":
+            start = parsed_timestamp_argument("start")
+            end = parsed_timestamp_argument("end")
+            if start > end:
+                raise ValueError("Start time must not be after end time.")
+            where = '"Timestamp" >= ? AND "Timestamp" <= ?'
+            parameters = [
+                start.isoformat(sep=" ", timespec="seconds"),
+                end.isoformat(sep=" ", timespec="seconds"),
+            ]
+            description = f"between {parameters[0]} and {parameters[1]}"
+        else:
+            cutoff = datetime.now(timezone.utc).replace(tzinfo=None) - timedelta(days=60)
+            where = '"Timestamp" < ?'
+            parameters = [cutoff.isoformat(sep=" ", timespec="seconds")]
+            description = f"older than {parameters[0]} (60-day retention)"
+
+        cursor = connection.execute(
+            f"DELETE FROM {quote(name)} WHERE {where}", parameters
+        )
+        deleted = max(cursor.rowcount, 0)
+    return jsonify(
+        deleted=deleted,
+        mode=mode,
+        message=f"Deleted {deleted:,} row(s) {description}.",
+    )
 
 
 @sqlite_admin_api.get("/api/admin/sqlite/export")

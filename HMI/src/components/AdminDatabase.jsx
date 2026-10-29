@@ -18,6 +18,7 @@ export default function AdminDatabase({ requestJson, fieldSx }) {
   const [actionBusy, setActionBusy] = useState("");
   const [error, setError] = useState("");
   const [message, setMessage] = useState("");
+  const [refreshKey, setRefreshKey] = useState(0);
   const limit = 50;
 
   const query = useCallback((extra = {}) => {
@@ -73,7 +74,7 @@ export default function AdminDatabase({ requestJson, fieldSx }) {
       .catch((requestError) => active && setError(requestError.message))
       .finally(() => active && setBusy(false));
     return () => { active = false; };
-  }, [databaseId, table, offset, appliedFilters, query, requestJson]);
+  }, [databaseId, table, offset, appliedFilters, query, requestJson, refreshKey]);
 
   const columns = result?.columns ?? [];
   const columnNames = useMemo(() => new Set(columns.map((column) => column.name)), [columns]);
@@ -134,6 +135,36 @@ export default function AdminDatabase({ requestJson, fieldSx }) {
     }
   };
 
+  const deleteData = async (mode) => {
+    if (mode === "range" && (!filters.start || !filters.end)) {
+      setError("Select both From and To before deleting a time range.");
+      return;
+    }
+    const description = mode === "range"
+      ? `all rows from ${filters.start} through ${filters.end}`
+      : "all rows older than 60 days";
+    if (!window.confirm(`Permanently delete ${description}? This action cannot be undone.`)) return;
+
+    setActionBusy(`delete-${mode}`);
+    setError("");
+    setMessage("");
+    try {
+      const parameters = new URLSearchParams({ db: databaseId, table, mode });
+      if (mode === "range") {
+        parameters.set("start", filters.start);
+        parameters.set("end", filters.end);
+      }
+      const data = await requestJson(`/api/admin/sqlite/rows?${parameters}`, { method: "DELETE" });
+      setMessage(data.message);
+      setOffset(0);
+      setRefreshKey((current) => current + 1);
+    } catch (requestError) {
+      setError(requestError.message);
+    } finally {
+      setActionBusy("");
+    }
+  };
+
   return (
     <Box sx={{ minWidth: 0, border: "1px solid #364153", borderRadius: 2, overflow: "hidden", bgcolor: "#182231" }}>
       <Box sx={{ p: 2.5, display: "flex", flexDirection: "column", gap: 2 }}>
@@ -164,6 +195,21 @@ export default function AdminDatabase({ requestJson, fieldSx }) {
           <Box sx={{ display: "flex", gap: 1 }}>
             <Button type="submit" variant="contained" disabled={busy || !table} sx={{ textTransform: "none", whiteSpace: "nowrap" }}>Apply</Button>
             <Button type="button" onClick={clearFilters} disabled={busy} sx={{ color: "#94a3b8", textTransform: "none" }}>Clear</Button>
+          </Box>
+        </Box>
+
+        <Box sx={{ p: 1.5, border: "1px solid #7f1d1d", borderRadius: 1.5, bgcolor: "rgba(127,29,29,0.12)", display: "flex", justifyContent: "space-between", alignItems: "center", gap: 1.5, flexWrap: "wrap" }}>
+          <Box>
+            <Typography sx={{ color: "#fecaca", fontSize: 13, fontWeight: 600 }}>Data retention</Typography>
+            <Typography sx={{ color: "#94a3b8", fontSize: 12, mt: 0.25 }}>The collector automatically keeps only the latest 60 days. You can also delete the selected From–To range or run cleanup now.</Typography>
+          </Box>
+          <Box sx={{ display: "flex", gap: 1, flexWrap: "wrap" }}>
+            <Button size="small" variant="outlined" color="error" disabled={!table || !filters.start || !filters.end || Boolean(actionBusy)} onClick={() => deleteData("range")} sx={{ textTransform: "none" }}>
+              {actionBusy === "delete-range" ? "Deleting..." : "Delete selected range"}
+            </Button>
+            <Button size="small" variant="contained" color="error" disabled={!table || Boolean(actionBusy)} onClick={() => deleteData("retention")} sx={{ textTransform: "none" }}>
+              {actionBusy === "delete-retention" ? "Cleaning..." : "Delete older than 60 days"}
+            </Button>
           </Box>
         </Box>
       </Box>
