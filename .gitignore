@@ -7,3 +7,6 @@ HMI/backend/database/csv_history/
 # Python runtime files
 __pycache__/
 *.py[cod]
+
+# Local Python virtual environments
+HMI/.venv/
