@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 
 const NavigationSidebar = ({ className = "" }) => {
   const navItemClass = ({ isActive }) =>
-    `group self-stretch h-11 flex items-center !pt-3 !pb-3 !pl-4 !pr-4 box-border gap-3 text-[#99A1AF] no-underline hover:no-underline border border-transparent transition-all duration-300 hover:border-[#64748b] hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(0,0,0,0.35)] hover:bg-[#1e293b] hover:text-[#fff] cursor-pointer ${
+    `navigation-link group self-stretch h-12 flex items-center !pt-3 !pb-3 !pl-4 !pr-4 box-border gap-3 text-[#99A1AF] no-underline border border-transparent transition-all duration-300 cursor-pointer ${
       isActive ? "bg-[#155dfc] text-[#fff]" : ""
     }`;
 

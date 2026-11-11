@@ -62,11 +62,13 @@ const EngineMetricGroupCard = ({ group, className = "", sx = {}, titleTo = "" })
           textDecoration: "none",
           cursor: titleIsLink ? "pointer" : "default",
           transition: "transform 180ms ease, filter 180ms ease, box-shadow 180ms ease",
-          "&:hover": titleIsLink
+          "@media (hover: hover) and (pointer: fine)": titleIsLink
             ? {
-                transform: "translateY(-1px) scale(1.01)",
-                filter: "brightness(1.08)",
-                boxShadow: "0 8px 20px rgba(15, 23, 42, 0.18)",
+                "&:hover": {
+                  transform: "translateY(-1px) scale(1.01)",
+                  filter: "brightness(1.08)",
+                  boxShadow: "0 8px 20px rgba(15, 23, 42, 0.18)",
+                },
               }
             : undefined,
         }}

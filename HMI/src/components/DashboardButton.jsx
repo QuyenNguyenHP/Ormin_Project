@@ -13,7 +13,7 @@ const DashboardButton = ({
     component="button"
     type={type}
     onClick={onClick}
-    className={`rounded-[10px] border border-solid !px-4 !py-2 text-[14px] font-semibold transition-all duration-200 ${className}`}
+    className={`min-h-12 rounded-[10px] border border-solid !px-4 !py-2 text-[14px] font-semibold transition-all duration-200 ${className}`}
     sx={{
       background: active
         ? "linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%)"

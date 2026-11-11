@@ -10,6 +10,12 @@ body {
   @apply leading-[normal] m-0;
   font-family: "Roboto", sans-serif;
 }
+
+html {
+  /* Let Chromium treat taps as direct activation instead of waiting for gestures. */
+  touch-action: manipulation;
+}
+
 @layer base {
   *,
   *::before,
@@ -22,5 +28,29 @@ body {
   select,
   textarea {
     font: inherit;
+  }
+
+  button,
+  a,
+  [role="button"] {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  button,
+  [role="button"] {
+    user-select: none;
+  }
+}
+
+/* Hover movement is useful with a mouse, but can consume the first tap on a
+   touchscreen. Keep the effect entirely out of coarse-pointer devices. */
+@media (hover: hover) and (pointer: fine) {
+  .navigation-link:hover {
+    border-color: #64748b;
+    background-color: #1e293b;
+    color: #fff;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+    transform: translateY(-0.25rem);
   }
 }
