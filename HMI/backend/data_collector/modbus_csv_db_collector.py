@@ -3,6 +3,7 @@ from __future__ import annotations
 import argparse
 import csv
 import json
+import re
 import sqlite3
 import time
 from contextlib import closing
@@ -16,7 +17,7 @@ from pymodbus.client import ModbusTcpClient
 
 HOLDING_REGISTER_START = 40001
 DISCRETE_INPUT_START = 10001
-DEFAULT_CONFIG_PATH = Path(__file__).resolve().with_name("modbus_csv_db_collector_config.json")
+DEFAULT_CONFIG_PATH = Path(__file__).resolve().parent.parent / "backend_config.json"
 DEFAULT_TIMESTAMP_FORMAT = "%Y-%m-%d %H:%M:%S"
 CSV_COLUMNS = ["Engine", "Channel Description", "Timestamp", "Value", "Unit"]
 
@@ -52,14 +53,6 @@ def parse_args() -> argparse.Namespace:
         "--once",
         action="store_true",
         help="Collect one snapshot only, then exit.",
-    )
-    parser.add_argument(
-        "--backend-config",
-        type=Path,
-        help=(
-            "Optional backend_config.json whose Modbus connection settings "
-            "override the collector config."
-        ),
     )
     return parser.parse_args()
 
@@ -441,94 +434,40 @@ def print_snapshot_summary(
     print(f"Updated rows: {updated_count}")
 
 
-def apply_backend_modbus_config(
-    config: dict[str, Any], backend_config_path: Path | None
-) -> None:
-    if backend_config_path is None:
-        return
-
-    backend_config_path = backend_config_path.resolve()
-    with backend_config_path.open("r", encoding="utf-8") as config_file:
-        backend_config = json.load(config_file)
-
-    backend_modbus = backend_config.get("modbus")
-    if not isinstance(backend_modbus, dict):
-        raise ValueError(f"Modbus settings not found in {backend_config_path}")
-
-    collector_modbus = config.setdefault("modbus", {})
-    for key in ("host", "port", "unit_id", "timeout_seconds"):
-        if key in backend_modbus:
-            collector_modbus[key] = backend_modbus[key]
-
-    sync_engine_status_points(config, backend_config)
-
-
-def sync_engine_status_points(
-    collector_config: dict[str, Any], backend_config: dict[str, Any]
-) -> int:
-    """Mirror the Engine Status digital inputs into the collector point list."""
-    signals = backend_config.get("signals", {})
-    alarm_engines = backend_config.get("pages", {}).get("alarm", {}).get("engines", [])
-    if not isinstance(signals, dict) or not isinstance(alarm_engines, list):
-        raise ValueError("Engine Status signal configuration is missing or invalid.")
-
-    existing_points = [
-        point
-        for point in collector_config.get("points", [])
-        if point.get("managed_by") != "backend_engine_status"
-    ]
-    digital_points: list[dict[str, Any]] = []
-    seen: set[tuple[int, str]] = set()
-
-    for engine_index, engine_config in enumerate(alarm_engines, start=1):
-        if not isinstance(engine_config, dict):
+def collection_config(backend: dict[str, Any]) -> dict[str, Any]:
+    """Collect every shared signal, including any legacy history aliases."""
+    config = dict(backend["data_collector"])
+    config["modbus"] = {**backend["modbus"], **config.get("modbus", {})}
+    config["output"] = {**config["output"], "database_path": backend["database_path"]}
+    points = []
+    for signal_id, signal in backend["signals"].items():
+        history = signal.get("history", {})
+        if not history.get("enabled", True):
             continue
-        engine_key = str(engine_config.get("key", ""))
-        try:
-            engine_number = int(engine_key.rsplit("_", 1)[-1])
-        except ValueError:
-            engine_number = engine_index
-
-        for bit in engine_config.get("bits", []):
-            if not isinstance(bit, dict):
-                continue
-            signal_id = str(bit.get("signal", ""))
-            signal = signals.get(signal_id)
-            if not isinstance(signal, dict) or signal.get("source_type") != "discrete_input":
-                continue
-            identity = (engine_number, signal_id)
-            if identity in seen:
-                continue
-            seen.add(identity)
-            address = int(signal["address"])
-            label = str(bit.get("label") or signal.get("label") or signal_id).strip()
-            digital_points.append({
-                "engine": engine_number,
-                "channel_description": f"{label} [DI {address}]",
-                "source_type": "discrete_input",
-                "address": address,
-                "scale": 1,
-                "unit": "state",
-                "enabled": True,
-                "managed_by": "backend_engine_status",
-                "signal_id": signal_id,
-            })
-
-    if not digital_points:
-        raise ValueError("No Engine Status digital inputs were found in backend config.")
-    collector_config["points"] = existing_points + digital_points
-    return len(digital_points)
+        match = re.search(r"(?:^|\.)engine_(\d+)(?:[._]|$)", signal_id)
+        point = {
+            **signal,
+            "signal_id": signal_id,
+            "engine": int(match[1]) if match else 0,
+            "channel_description": signal.get("label") or signal_id,
+            "unit": signal.get("unit", "state" if signal["source_type"] == "discrete_input" else "-"),
+            **{key: value for key, value in history.items() if key != "aliases"},
+        }
+        points.append(point)
+        for alias in history.get("aliases", []):
+            points.append({**point, **alias})
+    config["points"] = points
+    return config
 
 
 def run_collection(
-    config_path: Path, once: bool, backend_config_path: Path | None = None
+    config_path: Path, once: bool
 ) -> None:
     config_path = config_path.resolve()
     if not config_path.exists():
         raise FileNotFoundError(f"Collector config not found: {config_path}")
 
-    config = load_json_config(config_path)
-    apply_backend_modbus_config(config, backend_config_path)
+    config = collection_config(load_json_config(config_path))
     base_dir = config_path.parent
     points = parse_points(config)
 
@@ -583,7 +522,7 @@ def run_collection(
 
 def main() -> None:
     args = parse_args()
-    run_collection(args.config, args.once, args.backend_config)
+    run_collection(args.config, args.once)
 
 
 if __name__ == "__main__":

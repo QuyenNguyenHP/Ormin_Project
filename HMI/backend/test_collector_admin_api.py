@@ -52,12 +52,12 @@ class CollectorAdminApiTests(unittest.TestCase):
         self.temporary_directory = tempfile.TemporaryDirectory()
         self.addCleanup(self.temporary_directory.cleanup)
         self.collector_config = Path(self.temporary_directory.name) / "collector.json"
-        self.collector_config.write_text(json.dumps({
+        self.collector_config.write_text(json.dumps({"signals": {"keep": {}}, "data_collector": {
             "modbus": {"poll_interval_seconds": 30},
             "auto_start": False,
             "output": {"csv_directory": "../database/csv_history"},
             "points": [],
-        }), encoding="utf-8")
+        }}), encoding="utf-8")
         config_patch = patch.object(
             collector_admin_api, "COLLECTOR_CONFIG", self.collector_config
         )
@@ -117,8 +117,8 @@ class CollectorAdminApiTests(unittest.TestCase):
         response = self.client.post("/api/admin/data-collector/start")
         self.assertEqual(response.status_code, 201)
         self.assertTrue(self.collector.running)
-        self.assertIn("--backend-config", self.collector.command)
-        self.assertTrue(self.collector.command[-1].endswith("backend_config.json"))
+        self.assertIn("--config", self.collector.command)
+        self.assertEqual(self.collector.command[-1], str(self.collector_config))
 
     def test_collector_settings_are_validated_and_saved(self):
         self.authenticate()
@@ -135,8 +135,9 @@ class CollectorAdminApiTests(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.json["settings"]["collection_interval_seconds"], 15)
         saved = json.loads(self.collector_config.read_text(encoding="utf-8"))
-        self.assertEqual(saved["modbus"]["poll_interval_seconds"], 15)
-        self.assertEqual(saved["output"]["csv_directory"], "D:/history")
+        self.assertEqual(saved["signals"], {"keep": {}})
+        self.assertEqual(saved["data_collector"]["modbus"]["poll_interval_seconds"], 15)
+        self.assertEqual(saved["data_collector"]["output"]["csv_directory"], "D:/history")
 
     def test_collector_settings_cannot_change_while_running(self):
         self.authenticate()
@@ -156,7 +157,7 @@ class CollectorAdminApiTests(unittest.TestCase):
         self.assertTrue(self.collector.running)
         self.assertTrue(enabled.json["settings"]["auto_start"])
         saved = json.loads(self.collector_config.read_text(encoding="utf-8"))
-        self.assertTrue(saved["auto_start"])
+        self.assertTrue(saved["data_collector"]["auto_start"])
 
         disabled = self.client.put(
             "/api/admin/data-collector/auto-start", json={"enabled": False}
@@ -167,7 +168,7 @@ class CollectorAdminApiTests(unittest.TestCase):
 
     def test_initialize_auto_start_starts_persisted_collector(self):
         config = json.loads(self.collector_config.read_text(encoding="utf-8"))
-        config["auto_start"] = True
+        config["data_collector"]["auto_start"] = True
         self.collector_config.write_text(json.dumps(config), encoding="utf-8")
 
         self.assertTrue(collector_admin_api.initialize_collector_auto_start())

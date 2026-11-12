@@ -35,7 +35,7 @@ def write_config(config: dict[str, Any]) -> None:
 def format_config(value: Any, depth: int = 0) -> str:
     """Keep each signal on one line while indenting page/group structure."""
     if isinstance(value, dict) and value:
-        if ("source_type" in value or "signal" in value) and all(not isinstance(item, (dict, list)) for item in value.values()):
+        if "source_type" in value or ("signal" in value and all(not isinstance(item, (dict, list)) for item in value.values())):
             return json.dumps(value, ensure_ascii=False)
         items = [f'{json.dumps(key, ensure_ascii=False)}: {format_config(item, depth + 1)}' for key, item in value.items()]
         opening, closing = "{", "}"

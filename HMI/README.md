@@ -234,6 +234,20 @@ extension, but it is a normal SQLite database):
    pressure trends, and exhaust-temperature trends. Live monitoring pages read
    Modbus directly and do not depend on SQLite.
 
+Backend and collector use only `backend/backend_config.json`. Shared connection
+settings are in `modbus`, the SQLite path is in `database_path`, and `signals`
+is the only collection point list. Every signal is collected automatically.
+Signal entries define address, scale, type, unit, and optional precision.
+Optional `history` metadata controls `engine`, `channel_description`, `enabled`,
+and legacy `aliases`. Set `history.enabled` to false to skip collection of a
+signal and its aliases. Engine numbers default to those in the signal ID;
+other signals use engine 0. Existing aliases preserve fuel/history queries.
+The `data_collector` section only contains auto-start, polling options in
+`modbus`, and CSV/table/retention settings in `output`. Restart the collector
+after changes. Relative paths are resolved from the backend directory.
+Digital values are 0/1 with unit `state`. The default interval is 30 seconds;
+SQLite retention is 60 days.
+
 ### Database administration
 
 After signing in at `/admin`, open the **Database** tab. The configured history

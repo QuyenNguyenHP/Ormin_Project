@@ -1,0 +1,533 @@
+﻿signal_id,label,source_type,address,scale,unit,data_type,register_count,precision,history_enabled
+alarm.engine_1_signal_1,Overspeed,discrete_input,10001,1,state,bool,,,True
+alarm.engine_1_signal_10,T/C LO Filter Differential Pressure Switch,discrete_input,10030,1,state,bool,,,True
+alarm.engine_1_signal_11,Oil Mist Detector Minor Fault,discrete_input,10018,1,state,bool,,,True
+alarm.engine_1_signal_12,Oil Mist Detector System Fault,discrete_input,10019,1,state,bool,,,True
+alarm.engine_1_signal_13,Engine LO Pressure Switch (1st),discrete_input,10020,1,state,bool,,,True
+alarm.engine_1_signal_14,LO Priming Pressure Switch,discrete_input,10021,1,state,bool,,,True
+alarm.engine_1_signal_15,C.W Pressure Switch,discrete_input,10022,1,state,bool,,,True
+alarm.engine_1_signal_16,T/C LO Pressure Switch (1st),discrete_input,10023,1,state,bool,,,True
+alarm.engine_1_signal_17,J.W Temp Switch (1st),discrete_input,10024,1,state,bool,,,True
+alarm.engine_1_signal_18,C.W Temp Switch,discrete_input,10025,1,state,bool,,,True
+alarm.engine_1_signal_19,LO Temp Switch,discrete_input,10026,1,state,bool,,,True
+alarm.engine_1_signal_2,Start Failure,discrete_input,10002,1,state,bool,,,True
+alarm.engine_1_signal_20,LO Sump Tank Level Switch,discrete_input,10027,1,state,bool,,,True
+alarm.engine_1_signal_21,J.W Pressure Switch (1st),discrete_input,10028,1,state,bool,,,True
+alarm.engine_1_signal_22,LO Filter Differential Pressure Switch,discrete_input,10029,1,state,bool,,,True
+alarm.engine_1_signal_23,FO Leak Tank Level Switch,discrete_input,10031,1,state,bool,,,True
+alarm.engine_1_signal_24,C.W Flow,discrete_input,10032,1,state,bool,,,True
+alarm.engine_1_signal_25,C.W Expansion Tank Level Switch,discrete_input,10033,1,state,bool,,,True
+alarm.engine_1_signal_26,C.W Expansion Tank Level Switch,discrete_input,10034,1,state,bool,,,True
+alarm.engine_1_signal_27,J.W Expansion Tank Level Switch,discrete_input,10035,1,state,bool,,,True
+alarm.engine_1_signal_28,J.W Expansion Tank Level Switch,discrete_input,10036,1,state,bool,,,True
+alarm.engine_1_signal_3,T/C Gas Outlet Temp Switch (2nd),discrete_input,10003,1,state,bool,,,True
+alarm.engine_1_signal_31,FO Pressure Switch,discrete_input,10039,1,state,bool,,,True
+alarm.engine_1_signal_32,Mechanical Overspeed,discrete_input,10045,1,state,bool,,,True
+alarm.engine_1_signal_35,Rated Speed,discrete_input,10048,1,state,bool,,,True
+alarm.engine_1_signal_36,Low Speed,discrete_input,10049,1,state,bool,,,True
+alarm.engine_1_signal_37,Start Solenoid Valve,discrete_input,10050,1,state,bool,,,True
+alarm.engine_1_signal_38,Fuel Shutdown Device,discrete_input,10051,1,state,bool,,,True
+alarm.engine_1_signal_39,Fuel Control Piston Solenoid Valve,discrete_input,10052,1,state,bool,,,True
+alarm.engine_1_signal_4,Oil Mist Detector Major Fault,discrete_input,10004,1,state,bool,,,True
+alarm.engine_1_signal_40,Fuel Cutoff Piston Solenoid Valve,discrete_input,10053,1,state,bool,,,True
+alarm.engine_1_signal_41,Governor Handle Switch,discrete_input,10054,1,state,bool,,,True
+alarm.engine_1_signal_42,Turning Handle Out Position Switch,discrete_input,10055,1,state,bool,,,True
+alarm.engine_1_signal_43,T/C Gas Outlet Temp Switch (1st),discrete_input,10056,1,state,bool,,,True
+alarm.engine_1_signal_44,Changeover Valve Limit Switch,discrete_input,10057,1,state,bool,,,True
+alarm.engine_1_signal_5,Engine LO Pressure Switch (2nd),discrete_input,10005,1,state,bool,,,True
+alarm.engine_1_signal_6,J.W Temp Switch (2nd),discrete_input,10006,1,state,bool,,,True
+alarm.engine_1_signal_7,T/C LO Pressure Switch (2nd),discrete_input,10007,1,state,bool,,,True
+alarm.engine_1_signal_8,J.W Pressure Switch (2nd),discrete_input,10008,1,state,bool,,,True
+alarm.engine_1_signal_9,J.W Flow,discrete_input,10012,1,state,bool,,,True
+alarm.engine_2_signal_1,Overspeed,discrete_input,10401,1,state,bool,,,True
+alarm.engine_2_signal_10,T/C LO Filter Differential Pressure Switch,discrete_input,10430,1,state,bool,,,True
+alarm.engine_2_signal_11,Oil Mist Detector Minor Fault,discrete_input,10418,1,state,bool,,,True
+alarm.engine_2_signal_12,Oil Mist Detector System Fault,discrete_input,10419,1,state,bool,,,True
+alarm.engine_2_signal_13,Engine LO Pressure Switch (1st),discrete_input,10420,1,state,bool,,,True
+alarm.engine_2_signal_14,LO Priming Pressure Switch,discrete_input,10421,1,state,bool,,,True
+alarm.engine_2_signal_15,C.W Pressure Switch,discrete_input,10422,1,state,bool,,,True
+alarm.engine_2_signal_16,T/C LO Pressure Switch (1st),discrete_input,10423,1,state,bool,,,True
+alarm.engine_2_signal_17,J.W Temp Switch (1st),discrete_input,10424,1,state,bool,,,True
+alarm.engine_2_signal_18,C.W Temp Switch,discrete_input,10425,1,state,bool,,,True
+alarm.engine_2_signal_19,LO Temp Switch,discrete_input,10426,1,state,bool,,,True
+alarm.engine_2_signal_2,Start Failure,discrete_input,10402,1,state,bool,,,True
+alarm.engine_2_signal_20,LO Sump Tank Level Switch,discrete_input,10427,1,state,bool,,,True
+alarm.engine_2_signal_21,J.W Pressure Switch (1st),discrete_input,10428,1,state,bool,,,True
+alarm.engine_2_signal_22,LO Filter Differential Pressure Switch,discrete_input,10429,1,state,bool,,,True
+alarm.engine_2_signal_23,FO Leak Tank Level Switch,discrete_input,10431,1,state,bool,,,True
+alarm.engine_2_signal_24,C.W Flow,discrete_input,10432,1,state,bool,,,True
+alarm.engine_2_signal_25,C.W Expansion Tank Level Switch,discrete_input,10433,1,state,bool,,,True
+alarm.engine_2_signal_26,C.W Expansion Tank Level Switch,discrete_input,10434,1,state,bool,,,True
+alarm.engine_2_signal_27,J.W Expansion Tank Level Switch,discrete_input,10435,1,state,bool,,,True
+alarm.engine_2_signal_28,J.W Expansion Tank Level Switch,discrete_input,10436,1,state,bool,,,True
+alarm.engine_2_signal_3,T/C Gas Outlet Temp Switch (2nd),discrete_input,10403,1,state,bool,,,True
+alarm.engine_2_signal_31,FO Pressure Switch,discrete_input,10439,1,state,bool,,,True
+alarm.engine_2_signal_32,Mechanical Overspeed,discrete_input,10445,1,state,bool,,,True
+alarm.engine_2_signal_35,Rated Speed,discrete_input,10448,1,state,bool,,,True
+alarm.engine_2_signal_36,Low Speed,discrete_input,10449,1,state,bool,,,True
+alarm.engine_2_signal_37,Start Solenoid Valve,discrete_input,10450,1,state,bool,,,True
+alarm.engine_2_signal_38,Fuel Shutdown Device,discrete_input,10451,1,state,bool,,,True
+alarm.engine_2_signal_39,Fuel Control Piston Solenoid Valve,discrete_input,10452,1,state,bool,,,True
+alarm.engine_2_signal_4,Oil Mist Detector Major Fault,discrete_input,10404,1,state,bool,,,True
+alarm.engine_2_signal_40,Fuel Cutoff Piston Solenoid Valve,discrete_input,10453,1,state,bool,,,True
+alarm.engine_2_signal_41,Governor Handle Switch,discrete_input,10454,1,state,bool,,,True
+alarm.engine_2_signal_42,Turning Handle Out Position Switch,discrete_input,10455,1,state,bool,,,True
+alarm.engine_2_signal_43,T/C Gas Outlet Temp Switch (1st),discrete_input,10456,1,state,bool,,,True
+alarm.engine_2_signal_44,Changeover Valve Limit Switch,discrete_input,10457,1,state,bool,,,True
+alarm.engine_2_signal_5,Engine LO Pressure Switch (2nd),discrete_input,10405,1,state,bool,,,True
+alarm.engine_2_signal_6,J.W Temp Switch (2nd),discrete_input,10406,1,state,bool,,,True
+alarm.engine_2_signal_7,T/C LO Pressure Switch (2nd),discrete_input,10407,1,state,bool,,,True
+alarm.engine_2_signal_8,J.W Pressure Switch (2nd),discrete_input,10408,1,state,bool,,,True
+alarm.engine_2_signal_9,J.W Flow,discrete_input,10412,1,state,bool,,,True
+alarm.engine_3_signal_1,Overspeed,discrete_input,10801,1,state,bool,,,True
+alarm.engine_3_signal_10,T/C LO Filter Differential Pressure Switch,discrete_input,10830,1,state,bool,,,True
+alarm.engine_3_signal_11,Oil Mist Detector Minor Fault,discrete_input,10818,1,state,bool,,,True
+alarm.engine_3_signal_12,Oil Mist Detector System Fault,discrete_input,10819,1,state,bool,,,True
+alarm.engine_3_signal_13,Engine LO Pressure Switch (1st),discrete_input,10820,1,state,bool,,,True
+alarm.engine_3_signal_14,LO Priming Pressure Switch,discrete_input,10821,1,state,bool,,,True
+alarm.engine_3_signal_15,C.W Pressure Switch,discrete_input,10822,1,state,bool,,,True
+alarm.engine_3_signal_16,T/C LO Pressure Switch (1st),discrete_input,10823,1,state,bool,,,True
+alarm.engine_3_signal_17,J.W Temp Switch (1st),discrete_input,10824,1,state,bool,,,True
+alarm.engine_3_signal_18,C.W Temp Switch,discrete_input,10825,1,state,bool,,,True
+alarm.engine_3_signal_19,LO Temp Switch,discrete_input,10826,1,state,bool,,,True
+alarm.engine_3_signal_2,Start Failure,discrete_input,10802,1,state,bool,,,True
+alarm.engine_3_signal_20,LO Sump Tank Level Switch,discrete_input,10827,1,state,bool,,,True
+alarm.engine_3_signal_21,J.W Pressure Switch (1st),discrete_input,10828,1,state,bool,,,True
+alarm.engine_3_signal_22,LO Filter Differential Pressure Switch,discrete_input,10829,1,state,bool,,,True
+alarm.engine_3_signal_23,FO Leak Tank Level Switch,discrete_input,10831,1,state,bool,,,True
+alarm.engine_3_signal_24,C.W Flow,discrete_input,10832,1,state,bool,,,True
+alarm.engine_3_signal_25,C.W Expansion Tank Level Switch,discrete_input,10833,1,state,bool,,,True
+alarm.engine_3_signal_26,C.W Expansion Tank Level Switch,discrete_input,10834,1,state,bool,,,True
+alarm.engine_3_signal_27,J.W Expansion Tank Level Switch,discrete_input,10835,1,state,bool,,,True
+alarm.engine_3_signal_28,J.W Expansion Tank Level Switch,discrete_input,10836,1,state,bool,,,True
+alarm.engine_3_signal_3,T/C Gas Outlet Temp Switch (2nd),discrete_input,10803,1,state,bool,,,True
+alarm.engine_3_signal_31,FO Pressure Switch,discrete_input,10839,1,state,bool,,,True
+alarm.engine_3_signal_32,Mechanical Overspeed,discrete_input,10845,1,state,bool,,,True
+alarm.engine_3_signal_35,Rated Speed,discrete_input,10848,1,state,bool,,,True
+alarm.engine_3_signal_36,Low Speed,discrete_input,10849,1,state,bool,,,True
+alarm.engine_3_signal_37,Start Solenoid Valve,discrete_input,10850,1,state,bool,,,True
+alarm.engine_3_signal_38,Fuel Shutdown Device,discrete_input,10851,1,state,bool,,,True
+alarm.engine_3_signal_39,Fuel Control Piston Solenoid Valve,discrete_input,10852,1,state,bool,,,True
+alarm.engine_3_signal_4,Oil Mist Detector Major Fault,discrete_input,10804,1,state,bool,,,True
+alarm.engine_3_signal_40,Fuel Cutoff Piston Solenoid Valve,discrete_input,10853,1,state,bool,,,True
+alarm.engine_3_signal_41,Governor Handle Switch,discrete_input,10854,1,state,bool,,,True
+alarm.engine_3_signal_42,Turning Handle Out Position Switch,discrete_input,10855,1,state,bool,,,True
+alarm.engine_3_signal_43,T/C Gas Outlet Temp Switch (1st),discrete_input,10856,1,state,bool,,,True
+alarm.engine_3_signal_44,Changeover Valve Limit Switch,discrete_input,10857,1,state,bool,,,True
+alarm.engine_3_signal_5,Engine LO Pressure Switch (2nd),discrete_input,10805,1,state,bool,,,True
+alarm.engine_3_signal_6,J.W Temp Switch (2nd),discrete_input,10806,1,state,bool,,,True
+alarm.engine_3_signal_7,T/C LO Pressure Switch (2nd),discrete_input,10807,1,state,bool,,,True
+alarm.engine_3_signal_8,J.W Pressure Switch (2nd),discrete_input,10808,1,state,bool,,,True
+alarm.engine_3_signal_9,J.W Flow,discrete_input,10812,1,state,bool,,,True
+alarm.engine_4_signal_1,Overspeed,discrete_input,11201,1,state,bool,,,True
+alarm.engine_4_signal_10,Oil Mist Detector Minor Fault,discrete_input,11218,1,state,bool,,,True
+alarm.engine_4_signal_11,Oil Mist Detector System Fault,discrete_input,11219,1,state,bool,,,True
+alarm.engine_4_signal_12,Engine LO Pressure Switch (1st),discrete_input,11220,1,state,bool,,,True
+alarm.engine_4_signal_13,LO Priming Pressure Switch,discrete_input,11221,1,state,bool,,,True
+alarm.engine_4_signal_14,C.W Pressure Switch,discrete_input,11222,1,state,bool,,,True
+alarm.engine_4_signal_15,T/C LO Pressure Switch (1st),discrete_input,11223,1,state,bool,,,True
+alarm.engine_4_signal_16,J.W Temp Switch (1st),discrete_input,11224,1,state,bool,,,True
+alarm.engine_4_signal_17,C.W Temp Switch,discrete_input,11225,1,state,bool,,,True
+alarm.engine_4_signal_18,LO Temp Switch,discrete_input,11226,1,state,bool,,,True
+alarm.engine_4_signal_19,LO Sump Tank Level Switch,discrete_input,11227,1,state,bool,,,True
+alarm.engine_4_signal_2,Start Failure,discrete_input,11202,1,state,bool,,,True
+alarm.engine_4_signal_20,J.W Pressure Switch (1st),discrete_input,11228,1,state,bool,,,True
+alarm.engine_4_signal_21,LO Filter Differential Pressure Switch,discrete_input,11229,1,state,bool,,,True
+alarm.engine_4_signal_22,T/C LO Filter Differential Pressure Switch,discrete_input,11230,1,state,bool,,,True
+alarm.engine_4_signal_23,FO Leak Tank Level Switch,discrete_input,11231,1,state,bool,,,True
+alarm.engine_4_signal_24,C.W Flow,discrete_input,11232,1,state,bool,,,True
+alarm.engine_4_signal_25,C.W Expansion Tank Level Switch,discrete_input,11233,1,state,bool,,,True
+alarm.engine_4_signal_26,C.W Expansion Tank Level Switch,discrete_input,11234,1,state,bool,,,True
+alarm.engine_4_signal_27,J.W Expansion Tank Level Switch,discrete_input,11235,1,state,bool,,,True
+alarm.engine_4_signal_28,J.W Expansion Tank Level Switch,discrete_input,11236,1,state,bool,,,True
+alarm.engine_4_signal_3,T/C Gas Outlet Temp Switch (2nd),discrete_input,11203,1,state,bool,,,True
+alarm.engine_4_signal_31,FO Pressure Switch,discrete_input,11239,1,state,bool,,,True
+alarm.engine_4_signal_32,Mechanical Overspeed,discrete_input,11245,1,state,bool,,,True
+alarm.engine_4_signal_35,Rated Speed,discrete_input,11248,1,state,bool,,,True
+alarm.engine_4_signal_36,Low Speed,discrete_input,11249,1,state,bool,,,True
+alarm.engine_4_signal_37,Start Solenoid Valve,discrete_input,11250,1,state,bool,,,True
+alarm.engine_4_signal_38,Fuel Shutdown Device,discrete_input,11251,1,state,bool,,,True
+alarm.engine_4_signal_39,Fuel Control Piston Solenoid Valve,discrete_input,11252,1,state,bool,,,True
+alarm.engine_4_signal_4,Oil Mist Detector Major Fault,discrete_input,11204,1,state,bool,,,True
+alarm.engine_4_signal_40,Fuel Cutoff Piston Solenoid Valve,discrete_input,11253,1,state,bool,,,True
+alarm.engine_4_signal_41,Governor Handle Switch,discrete_input,11254,1,state,bool,,,True
+alarm.engine_4_signal_42,Turning Handle Out Position Switch,discrete_input,11255,1,state,bool,,,True
+alarm.engine_4_signal_43,T/C Gas Outlet Temp Switch (1st),discrete_input,11256,1,state,bool,,,True
+alarm.engine_4_signal_44,Changeover Valve Limit Switch,discrete_input,11257,1,state,bool,,,True
+alarm.engine_4_signal_5,Engine LO Pressure Switch (2nd),discrete_input,11205,1,state,bool,,,True
+alarm.engine_4_signal_6,J.W Temp Switch (2nd),discrete_input,11206,1,state,bool,,,True
+alarm.engine_4_signal_7,T/C LO Pressure Switch (2nd),discrete_input,11207,1,state,bool,,,True
+alarm.engine_4_signal_8,J.W Pressure Switch (2nd),discrete_input,11208,1,state,bool,,,True
+alarm.engine_4_signal_9,J.W Flow,discrete_input,11212,1,state,bool,,,True
+devices.air_compressor_1_abnormal_trip,Air Compressor 1 Abnormal Trip,discrete_input,11638,1,state,bool,,,True
+devices.air_compressor_1_auto_mode,Air Compressor 1 Auto Mode,discrete_input,11616,1,state,bool,,,True
+devices.air_compressor_1_auto_start,Air Compressor 1 Auto Start,discrete_input,11636,1,state,bool,,,True
+devices.air_compressor_1_auto_stop,Air Compressor 1 Auto Stop,discrete_input,11637,1,state,bool,,,True
+devices.air_compressor_1_running,Air Compressor 1 Running,discrete_input,11639,1,state,bool,,,True
+devices.air_compressor_2_abnormal_trip,Air Compressor 2 Abnormal Trip,discrete_input,11643,1,state,bool,,,True
+devices.air_compressor_2_auto_mode,Air Compressor 2 Auto Mode,discrete_input,11645,1,state,bool,,,True
+devices.air_compressor_2_auto_start,Air Compressor 2 Auto Start,discrete_input,11617,1,state,bool,,,True
+devices.air_compressor_2_auto_stop,Air Compressor 2 Auto Stop,discrete_input,11642,1,state,bool,,,True
+devices.air_compressor_2_running,Air Compressor 2 Running,discrete_input,11644,1,state,bool,,,True
+devices.engine_1_alternator_space_heater_abnormal_trip,Engine 1 Alternator Space Heater Abnormal Trip,discrete_input,10091,1,state,bool,,,True
+devices.engine_1_alternator_space_heater_auto_mode,Engine 1 Alternator Space Heater Auto Mode,discrete_input,10093,1,state,bool,,,True
+devices.engine_1_alternator_space_heater_auto_start,Engine 1 Alternator Space Heater Auto Start,discrete_input,10089,1,state,bool,,,True
+devices.engine_1_alternator_space_heater_auto_stop,Engine 1 Alternator Space Heater Auto Stop,discrete_input,10090,1,state,bool,,,True
+devices.engine_1_alternator_space_heater_running,Engine 1 Alternator Space Heater Running,discrete_input,10092,1,state,bool,,,True
+devices.engine_1_do_ho_inlet_changeover_valve_energized,Engine 1 DO/HO Inlet Changeover Valve Energized,discrete_input,10085,1,state,bool,,,True
+devices.engine_1_do_ho_outlet_changeover_valve_energized,Engine 1 DO/HO Outlet Changeover Valve Energized,discrete_input,10087,1,state,bool,,,True
+devices.engine_1_lo_priming_pump_abnormal_trip,Engine 1 LO Priming Pump Abnormal Trip,discrete_input,10075,1,state,bool,,,True
+devices.engine_1_lo_priming_pump_auto_mode,Engine 1 LO Priming Pump Auto Mode,discrete_input,10077,1,state,bool,,,True
+devices.engine_1_lo_priming_pump_auto_start,Engine 1 LO Priming Pump Auto Start,discrete_input,10073,1,state,bool,,,True
+devices.engine_1_lo_priming_pump_auto_stop,Engine 1 LO Priming Pump Auto Stop,discrete_input,10074,1,state,bool,,,True
+devices.engine_1_lo_priming_pump_running,Engine 1 LO Priming Pump Running,discrete_input,10076,1,state,bool,,,True
+devices.engine_1_turning_motor_abnormal_trip,Engine 1 Turning Motor Abnormal Trip,discrete_input,10069,1,state,bool,,,True
+devices.engine_1_turning_motor_fwd_running,Engine 1 Turning Motor FWD Running,discrete_input,10070,1,state,bool,,,True
+devices.engine_1_turning_motor_remote_mode,Engine 1 Turning Motor Remote Mode,discrete_input,10072,1,state,bool,,,True
+devices.engine_1_turning_motor_rev_running,Engine 1 Turning Motor Rev Running,discrete_input,10071,1,state,bool,,,True
+devices.engine_2_alternator_space_heater_abnormal_trip,Engine 2 Alternator Space Heater Abnormal Trip,discrete_input,10491,1,state,bool,,,True
+devices.engine_2_alternator_space_heater_auto_mode,Engine 2 Alternator Space Heater Auto Mode,discrete_input,10493,1,state,bool,,,True
+devices.engine_2_alternator_space_heater_auto_start,Engine 2 Alternator Space Heater Auto Start,discrete_input,10489,1,state,bool,,,True
+devices.engine_2_alternator_space_heater_auto_stop,Engine 2 Alternator Space Heater Auto Stop,discrete_input,10490,1,state,bool,,,True
+devices.engine_2_alternator_space_heater_running,Engine 2 Alternator Space Heater Running,discrete_input,10492,1,state,bool,,,True
+devices.engine_2_do_ho_inlet_changeover_valve_energized,Engine 2 DO/HO Inlet Changeover Valve Energized,discrete_input,10485,1,state,bool,,,True
+devices.engine_2_do_ho_outlet_changeover_valve_energized,Engine 2 DO/HO Outlet Changeover Valve Energized,discrete_input,10487,1,state,bool,,,True
+devices.engine_2_lo_priming_pump_abnormal_trip,Engine 2 LO Priming Pump Abnormal Trip,discrete_input,10475,1,state,bool,,,True
+devices.engine_2_lo_priming_pump_auto_mode,Engine 2 LO Priming Pump Auto Mode,discrete_input,10477,1,state,bool,,,True
+devices.engine_2_lo_priming_pump_auto_start,Engine 2 LO Priming Pump Auto Start,discrete_input,10473,1,state,bool,,,True
+devices.engine_2_lo_priming_pump_auto_stop,Engine 2 LO Priming Pump Auto Stop,discrete_input,10474,1,state,bool,,,True
+devices.engine_2_lo_priming_pump_running,Engine 2 LO Priming Pump Running,discrete_input,10476,1,state,bool,,,True
+devices.engine_2_turning_motor_abnormal_trip,Engine 2 Turning Motor Abnormal Trip,discrete_input,10469,1,state,bool,,,True
+devices.engine_2_turning_motor_fwd_running,Engine 2 Turning Motor FWD Running,discrete_input,10470,1,state,bool,,,True
+devices.engine_2_turning_motor_remote_mode,Engine 2 Turning Motor Remote Mode,discrete_input,10472,1,state,bool,,,True
+devices.engine_2_turning_motor_rev_running,Engine 2 Turning Motor Rev Running,discrete_input,10471,1,state,bool,,,True
+devices.engine_3_alternator_space_heater_abnormal_trip,Engine 3 Alternator Space Heater Abnormal Trip,discrete_input,10891,1,state,bool,,,True
+devices.engine_3_alternator_space_heater_auto_mode,Engine 3 Alternator Space Heater Auto Mode,discrete_input,10893,1,state,bool,,,True
+devices.engine_3_alternator_space_heater_auto_start,Engine 3 Alternator Space Heater Auto Start,discrete_input,10889,1,state,bool,,,True
+devices.engine_3_alternator_space_heater_auto_stop,Engine 3 Alternator Space Heater Auto Stop,discrete_input,10890,1,state,bool,,,True
+devices.engine_3_alternator_space_heater_running,Engine 3 Alternator Space Heater Running,discrete_input,10892,1,state,bool,,,True
+devices.engine_3_do_ho_inlet_changeover_valve_energized,Engine 3 DO/HO Inlet Changeover Valve Energized,discrete_input,10885,1,state,bool,,,True
+devices.engine_3_do_ho_outlet_changeover_valve_energized,Engine 3 DO/HO Outlet Changeover Valve Energized,discrete_input,10887,1,state,bool,,,True
+devices.engine_3_lo_priming_pump_abnormal_trip,Engine 3 LO Priming Pump Abnormal Trip,discrete_input,10875,1,state,bool,,,True
+devices.engine_3_lo_priming_pump_auto_mode,Engine 3 LO Priming Pump Auto Mode,discrete_input,10877,1,state,bool,,,True
+devices.engine_3_lo_priming_pump_auto_start,Engine 3 LO Priming Pump Auto Start,discrete_input,10873,1,state,bool,,,True
+devices.engine_3_lo_priming_pump_auto_stop,Engine 3 LO Priming Pump Auto Stop,discrete_input,10874,1,state,bool,,,True
+devices.engine_3_lo_priming_pump_running,Engine 3 LO Priming Pump Running,discrete_input,10876,1,state,bool,,,True
+devices.engine_3_turning_motor_abnormal_trip,Engine 3 Turning Motor Abnormal Trip,discrete_input,10869,1,state,bool,,,True
+devices.engine_3_turning_motor_fwd_running,Engine 3 Turning Motor FWD Running,discrete_input,10870,1,state,bool,,,True
+devices.engine_3_turning_motor_remote_mode,Engine 3 Turning Motor Remote Mode,discrete_input,10872,1,state,bool,,,True
+devices.engine_3_turning_motor_rev_running,Engine 3 Turning Motor Rev Running,discrete_input,10871,1,state,bool,,,True
+devices.engine_4_alternator_space_heater_abnormal_trip,Engine 4 Alternator Space Heater Abnormal Trip,discrete_input,11291,1,state,bool,,,True
+devices.engine_4_alternator_space_heater_auto_mode,Engine 4 Alternator Space Heater Auto Mode,discrete_input,11293,1,state,bool,,,True
+devices.engine_4_alternator_space_heater_auto_start,Engine 4 Alternator Space Heater Auto Start,discrete_input,11289,1,state,bool,,,True
+devices.engine_4_alternator_space_heater_auto_stop,Engine 4 Alternator Space Heater Auto Stop,discrete_input,11290,1,state,bool,,,True
+devices.engine_4_alternator_space_heater_running,Engine 4 Alternator Space Heater Running,discrete_input,11292,1,state,bool,,,True
+devices.engine_4_do_ho_inlet_changeover_valve_energized,Engine 4 DO/HO Inlet Changeover Valve Energized,discrete_input,11285,1,state,bool,,,True
+devices.engine_4_do_ho_outlet_changeover_valve_energized,Engine 4 DO/HO Outlet Changeover Valve Energized,discrete_input,11287,1,state,bool,,,True
+devices.engine_4_lo_priming_pump_abnormal_trip,Engine 4 LO Priming Pump Abnormal Trip,discrete_input,11275,1,state,bool,,,True
+devices.engine_4_lo_priming_pump_auto_mode,Engine 4 LO Priming Pump Auto Mode,discrete_input,11277,1,state,bool,,,True
+devices.engine_4_lo_priming_pump_auto_start,Engine 4 LO Priming Pump Auto Start,discrete_input,11273,1,state,bool,,,True
+devices.engine_4_lo_priming_pump_auto_stop,Engine 4 LO Priming Pump Auto Stop,discrete_input,11274,1,state,bool,,,True
+devices.engine_4_lo_priming_pump_running,Engine 4 LO Priming Pump Running,discrete_input,11276,1,state,bool,,,True
+devices.engine_4_turning_motor_abnormal_trip,Engine 4 Turning Motor Abnormal Trip,discrete_input,11269,1,state,bool,,,True
+devices.engine_4_turning_motor_fwd_running,Engine 4 Turning Motor FWD Running,discrete_input,11270,1,state,bool,,,True
+devices.engine_4_turning_motor_remote_mode,Engine 4 Turning Motor Remote Mode,discrete_input,11272,1,state,bool,,,True
+devices.engine_4_turning_motor_rev_running,Engine 4 Turning Motor Rev Running,discrete_input,11271,1,state,bool,,,True
+devices.inline_heater_abnormal_trip,Inline Heater Abnormal Trip,discrete_input,11768,1,state,bool,,,True
+devices.inline_heater_auto_mode,Inline Heater Auto Mode,discrete_input,11770,1,state,bool,,,True
+devices.inline_heater_auto_start,Inline Heater Auto Start,discrete_input,11766,1,state,bool,,,True
+devices.inline_heater_auto_stop,Inline Heater Auto Stop,discrete_input,11767,1,state,bool,,,True
+devices.inline_heater_running,Inline Heater Running,discrete_input,11769,1,state,bool,,,True
+devices.no_1_inlet_fan_abnormal_trip,No.1 Inlet Fan Abnormal Trip,discrete_input,11708,1,state,bool,,,True
+devices.no_1_inlet_fan_auto_mode,No.1 Inlet Fan Auto Mode,discrete_input,11710,1,state,bool,,,True
+devices.no_1_inlet_fan_auto_start,No.1 Inlet Fan Auto Start,discrete_input,11706,1,state,bool,,,True
+devices.no_1_inlet_fan_auto_stop,No.1 Inlet Fan Auto Stop,discrete_input,11707,1,state,bool,,,True
+devices.no_1_inlet_fan_running,No.1 Inlet Fan Running,discrete_input,11709,1,state,bool,,,True
+devices.no_1_mist_fan_abnormal_trip,No.1 Mist Fan Abnormal Trip,discrete_input,10082,1,state,bool,,,True
+devices.no_1_mist_fan_auto_mode,No.1 Mist Fan Auto Mode,discrete_input,10084,1,state,bool,,,True
+devices.no_1_mist_fan_auto_start,No.1 Mist Fan Auto Start,discrete_input,10080,1,state,bool,,,True
+devices.no_1_mist_fan_auto_stop,No.1 Mist Fan Auto Stop,discrete_input,10081,1,state,bool,,,True
+devices.no_1_mist_fan_running,No.1 Mist Fan Running,discrete_input,10083,1,state,bool,,,True
+devices.no_1_outlet_fan_abnormal_trip,No.1 Outlet Fan Abnormal Trip,discrete_input,11733,1,state,bool,,,True
+devices.no_1_outlet_fan_auto_mode,No.1 Outlet Fan Auto Mode,discrete_input,11735,1,state,bool,,,True
+devices.no_1_outlet_fan_auto_start,No.1 Outlet Fan Auto Start,discrete_input,11731,1,state,bool,,,True
+devices.no_1_outlet_fan_auto_stop,No.1 Outlet Fan Auto Stop,discrete_input,11732,1,state,bool,,,True
+devices.no_1_outlet_fan_running,No.1 Outlet Fan Running,discrete_input,11734,1,state,bool,,,True
+devices.no_2_inlet_fan_abnormal_trip,No.2 Inlet Fan Abnormal Trip,discrete_input,11713,1,state,bool,,,True
+devices.no_2_inlet_fan_auto_mode,No.2 Inlet Fan Auto Mode,discrete_input,11715,1,state,bool,,,True
+devices.no_2_inlet_fan_auto_start,No.2 Inlet Fan Auto Start,discrete_input,11711,1,state,bool,,,True
+devices.no_2_inlet_fan_auto_stop,No.2 Inlet Fan Auto Stop,discrete_input,11712,1,state,bool,,,True
+devices.no_2_inlet_fan_running,No.2 Inlet Fan Running,discrete_input,11714,1,state,bool,,,True
+devices.no_2_mist_fan_abnormal_trip,No.2 Mist Fan Abnormal Trip,discrete_input,10482,1,state,bool,,,True
+devices.no_2_mist_fan_auto_mode,No.2 Mist Fan Auto Mode,discrete_input,10484,1,state,bool,,,True
+devices.no_2_mist_fan_auto_start,No.2 Mist Fan Auto Start,discrete_input,10480,1,state,bool,,,True
+devices.no_2_mist_fan_auto_stop,No.2 Mist Fan Auto Stop,discrete_input,10481,1,state,bool,,,True
+devices.no_2_mist_fan_running,No.2 Mist Fan Running,discrete_input,10483,1,state,bool,,,True
+devices.no_2_outlet_fan_abnormal_trip,No.2 Outlet Fan Abnormal Trip,discrete_input,11738,1,state,bool,,,True
+devices.no_2_outlet_fan_auto_mode,No.2 Outlet Fan Auto Mode,discrete_input,11740,1,state,bool,,,True
+devices.no_2_outlet_fan_auto_start,No.2 Outlet Fan Auto Start,discrete_input,11736,1,state,bool,,,True
+devices.no_2_outlet_fan_auto_stop,No.2 Outlet Fan Auto Stop,discrete_input,11737,1,state,bool,,,True
+devices.no_2_outlet_fan_running,No.2 Outlet Fan Running,discrete_input,11739,1,state,bool,,,True
+devices.no_3_inlet_fan_abnormal_trip,No.3 Inlet Fan Abnormal Trip,discrete_input,11718,1,state,bool,,,True
+devices.no_3_inlet_fan_auto_mode,No.3 Inlet Fan Auto Mode,discrete_input,11720,1,state,bool,,,True
+devices.no_3_inlet_fan_auto_start,No.3 Inlet Fan Auto Start,discrete_input,11716,1,state,bool,,,True
+devices.no_3_inlet_fan_auto_stop,No.3 Inlet Fan Auto Stop,discrete_input,11717,1,state,bool,,,True
+devices.no_3_inlet_fan_running,No.3 Inlet Fan Running,discrete_input,11719,1,state,bool,,,True
+devices.no_3_mist_fan_abnormal_trip,No.3 Mist Fan Abnormal Trip,discrete_input,10882,1,state,bool,,,True
+devices.no_3_mist_fan_auto_mode,No.3 Mist Fan Auto Mode,discrete_input,10884,1,state,bool,,,True
+devices.no_3_mist_fan_auto_start,No.3 Mist Fan Auto Start,discrete_input,10880,1,state,bool,,,True
+devices.no_3_mist_fan_auto_stop,No.3 Mist Fan Auto Stop,discrete_input,10881,1,state,bool,,,True
+devices.no_3_mist_fan_running,No.3 Mist Fan Running,discrete_input,10883,1,state,bool,,,True
+devices.no_3_outlet_fan_abnormal_trip,No.3 Outlet Fan Abnormal Trip,discrete_input,11743,1,state,bool,,,True
+devices.no_3_outlet_fan_auto_mode,No.3 Outlet Fan Auto Mode,discrete_input,11745,1,state,bool,,,True
+devices.no_3_outlet_fan_auto_start,No.3 Outlet Fan Auto Start,discrete_input,11741,1,state,bool,,,True
+devices.no_3_outlet_fan_auto_stop,No.3 Outlet Fan Auto Stop,discrete_input,11742,1,state,bool,,,True
+devices.no_3_outlet_fan_running,No.3 Outlet Fan Running,discrete_input,11744,1,state,bool,,,True
+devices.no_4_inlet_fan_abnormal_trip,No.4 Inlet Fan Abnormal Trip,discrete_input,11723,1,state,bool,,,True
+devices.no_4_inlet_fan_auto_mode,No.4 Inlet Fan Auto Mode,discrete_input,11725,1,state,bool,,,True
+devices.no_4_inlet_fan_auto_start,No.4 Inlet Fan Auto Start,discrete_input,11721,1,state,bool,,,True
+devices.no_4_inlet_fan_auto_stop,No.4 Inlet Fan Auto Stop,discrete_input,11722,1,state,bool,,,True
+devices.no_4_inlet_fan_running,No.4 Inlet Fan Running,discrete_input,11724,1,state,bool,,,True
+devices.no_4_mist_fan_abnormal_trip,No.4 Mist Fan Abnormal Trip,discrete_input,11282,1,state,bool,,,True
+devices.no_4_mist_fan_auto_mode,No.4 Mist Fan Auto Mode,discrete_input,11284,1,state,bool,,,True
+devices.no_4_mist_fan_auto_start,No.4 Mist Fan Auto Start,discrete_input,11280,1,state,bool,,,True
+devices.no_4_mist_fan_auto_stop,No.4 Mist Fan Auto Stop,discrete_input,11281,1,state,bool,,,True
+devices.no_4_mist_fan_running,No.4 Mist Fan Running,discrete_input,11283,1,state,bool,,,True
+devices.no_4_outlet_fan_abnormal_trip,No.4 Outlet Fan Abnormal Trip,discrete_input,11748,1,state,bool,,,True
+devices.no_4_outlet_fan_auto_mode,No.4 Outlet Fan Auto Mode,discrete_input,11750,1,state,bool,,,True
+devices.no_4_outlet_fan_auto_start,No.4 Outlet Fan Auto Start,discrete_input,11746,1,state,bool,,,True
+devices.no_4_outlet_fan_auto_stop,No.4 Outlet Fan Auto Stop,discrete_input,11747,1,state,bool,,,True
+devices.no_4_outlet_fan_running,No.4 Outlet Fan Running,discrete_input,11749,1,state,bool,,,True
+devices.no_5_inlet_fan_abnormal_trip,No.5 Inlet Fan Abnormal Trip,discrete_input,11728,1,state,bool,,,True
+devices.no_5_inlet_fan_auto_mode,No.5 Inlet Fan Auto Mode,discrete_input,11730,1,state,bool,,,True
+devices.no_5_inlet_fan_auto_start,No.5 Inlet Fan Auto Start,discrete_input,11726,1,state,bool,,,True
+devices.no_5_inlet_fan_auto_stop,No.5 Inlet Fan Auto Stop,discrete_input,11727,1,state,bool,,,True
+devices.no_5_inlet_fan_running,No.5 Inlet Fan Running,discrete_input,11729,1,state,bool,,,True
+devices.no_5_outlet_fan_abnormal_trip,No.5 Outlet Fan Abnormal Trip,discrete_input,11753,1,state,bool,,,True
+devices.no_5_outlet_fan_auto_mode,No.5 Outlet Fan Auto Mode,discrete_input,11755,1,state,bool,,,True
+devices.no_5_outlet_fan_auto_start,No.5 Outlet Fan Auto Start,discrete_input,11751,1,state,bool,,,True
+devices.no_5_outlet_fan_auto_stop,No.5 Outlet Fan Auto Stop,discrete_input,11752,1,state,bool,,,True
+devices.no_5_outlet_fan_running,No.5 Outlet Fan Running,discrete_input,11754,1,state,bool,,,True
+engine_1.cooler_water_inlet_temp,Cooler Water Inlet Temp,holding_register,40023,1,°C,uint16,1,,True
+engine_1.cooler_water_outlet_temp,Cooler Water Outlet Temp,holding_register,40024,1,°C,uint16,1,,True
+engine_1.cooler_water_pressure,Cooler Water Pressure,holding_register,40017,0.1,MPa,uint16,1,1,True
+engine_1.cw_before_lo_cooler_temp,CW Before LO Cooler Temp,holding_register,40027,1,°C,uint16,1,,True
+engine_1.cyl_1_exhaust_temp,Cyl 1 Exhaust Temp,holding_register,40008,1,°C,uint16,1,,True
+engine_1.cyl_2_exhaust_temp,Cyl 2 Exhaust Temp,holding_register,40009,1,°C,uint16,1,,True
+engine_1.cyl_3_exhaust_temp,Cyl 3 Exhaust Temp,holding_register,40010,1,°C,uint16,1,,True
+engine_1.cyl_4_exhaust_temp,Cyl 4 Exhaust Temp,holding_register,40011,1,°C,uint16,1,,True
+engine_1.cyl_5_exhaust_temp,Cyl 5 Exhaust Temp,holding_register,40012,1,°C,uint16,1,,True
+engine_1.cyl_6_exhaust_temp,Cyl 6 Exhaust Temp,holding_register,40013,1,°C,uint16,1,,True
+engine_1.de_bearing_temp,DE Bearing Temp,holding_register,40006,1,°C,uint16,1,,True
+engine_1.do_engine_inlet_flow,DO Engine Inlet Flow,holding_register,40053,1,L/h,int32,2,,True
+engine_1.do_engine_inlet_temp,DO Engine Inlet Temp,holding_register,40028,1,°C,uint16,1,,True
+engine_1.do_engine_return_flow,DO Engine Return Flow,holding_register,40055,1,L/h,int32,2,,True
+engine_1.do_engine_return_temp,DO Engine Return Temp,holding_register,40029,1,°C,uint16,1,,True
+engine_1.do_transfer_flow,DO Transfer Flow,holding_register,40051,1,L/h,int32,2,,True
+engine_1.engine_lo_pressure,Engine LO Pressure,holding_register,40018,0.1,MPa,uint16,1,1,True
+engine_1.engine_power,Engine Power,holding_register,40038,1,kW,uint16,1,,True
+engine_1.engine_running_hours,Engine Running Hours,holding_register,40063,1,h,int32,2,,True
+engine_1.engine_speed,Engine Speed,holding_register,40039,1,rpm,uint16,1,,True
+engine_1.fuel_oil_pressure,Fuel Oil Pressure,holding_register,40015,0.1,MPa,uint16,1,1,True
+engine_1.generator_current,Generator Current,holding_register,40036,1,A,uint16,1,,True
+engine_1.generator_frequency,Generator Frequency,holding_register,40034,0.1,Hz,uint16,1,2,True
+engine_1.generator_power_factor,Generator Power Factor,holding_register,40035,0.01,-,uint16,1,2,True
+engine_1.generator_voltage,Generator Voltage,holding_register,40033,1,V,uint16,1,,True
+engine_1.ho_engine_inlet_flow,HO Engine Inlet Flow,holding_register,40059,1,L/h,int32,2,,True
+engine_1.ho_engine_inlet_temp,HO Engine Inlet Temp,holding_register,40030,1,°C,uint16,1,,True
+engine_1.ho_engine_return_flow,HO Engine Return Flow,holding_register,40061,1,L/h,int32,2,,True
+engine_1.ho_engine_return_temp,HO Engine Return Temp,holding_register,40031,1,°C,uint16,1,,True
+engine_1.ho_transfer_flow,HO Transfer Flow,holding_register,40057,1,L/h,int32,2,,True
+engine_1.intake_air_pressure,Intake Air Pressure,holding_register,40020,0.01,MPa,uint16,1,2,True
+engine_1.jacket_water_inlet_temp,J.W Inlet Temp,holding_register,40021,1,°C,uint16,1,,True
+engine_1.jacket_water_outlet_temp,J.W Outlet Temp,holding_register,40022,1,°C,uint16,1,,True
+engine_1.jacket_water_pressure,J.W Pressure,holding_register,40016,0.1,MPa,uint16,1,1,True
+engine_1.lo_cooler_inlet_temp,LO Cooler Inlet Temp,holding_register,40025,1,°C,uint16,1,,True
+engine_1.lo_cooler_outlet_temp,LO Cooler Outlet Temp,holding_register,40026,1,°C,uint16,1,,True
+engine_1.nde_bearing_temp,NDE Bearing Temp,holding_register,40007,1,°C,uint16,1,,True
+engine_1.oil_mist_level,Oil Mist Level,holding_register,40002,1,%,uint16,1,,True
+engine_1.omd_analog_signal,OMD Analog Signal,holding_register,40032,0.1,mA,uint16,1,1,True
+engine_1.stator_winding_temp_u,Stator Winding Temp U,holding_register,40003,1,°C,uint16,1,,True
+engine_1.stator_winding_temp_v,Stator Winding Temp V,holding_register,40004,1,°C,uint16,1,,True
+engine_1.stator_winding_temp_w,Stator Winding Temp W,holding_register,40005,1,°C,uint16,1,,True
+engine_1.tc_inlet_temp,T/C Inlet Temp,holding_register,40014,1,°C,uint16,1,,True
+engine_1.tc_outlet_temp,T/C Outlet Temp,holding_register,40001,1,°C,uint16,1,,True
+engine_1.turbo_lo_pressure,Turbo LO Pressure,holding_register,40019,0.1,MPa,uint16,1,1,True
+engine_2.cooler_water_inlet_temp,Cooler Water Inlet Temp,holding_register,40123,1,°C,uint16,1,,True
+engine_2.cooler_water_outlet_temp,Cooler Water Outlet Temp,holding_register,40124,1,°C,uint16,1,,True
+engine_2.cooler_water_pressure,Cooler Water Pressure,holding_register,40117,0.1,MPa,uint16,1,1,True
+engine_2.cw_before_lo_cooler_temp,CW Before LO Cooler Temp,holding_register,40127,1,°C,uint16,1,,True
+engine_2.cyl_1_exhaust_temp,Cyl 1 Exhaust Temp,holding_register,40108,1,°C,uint16,1,,True
+engine_2.cyl_2_exhaust_temp,Cyl 2 Exhaust Temp,holding_register,40109,1,°C,uint16,1,,True
+engine_2.cyl_3_exhaust_temp,Cyl 3 Exhaust Temp,holding_register,40110,1,°C,uint16,1,,True
+engine_2.cyl_4_exhaust_temp,Cyl 4 Exhaust Temp,holding_register,40111,1,°C,uint16,1,,True
+engine_2.cyl_5_exhaust_temp,Cyl 5 Exhaust Temp,holding_register,40112,1,°C,uint16,1,,True
+engine_2.cyl_6_exhaust_temp,Cyl 6 Exhaust Temp,holding_register,40113,1,°C,uint16,1,,True
+engine_2.de_bearing_temp,DE Bearing Temp,holding_register,40106,1,°C,uint16,1,,True
+engine_2.do_engine_inlet_flow,DO Engine Inlet Flow,holding_register,40153,1,L/h,int32,2,,True
+engine_2.do_engine_inlet_temp,DO Engine Inlet Temp,holding_register,40128,1,°C,uint16,1,,True
+engine_2.do_engine_return_flow,DO Engine Return Flow,holding_register,40155,1,L/h,int32,2,,True
+engine_2.do_engine_return_temp,DO Engine Return Temp,holding_register,40129,1,°C,uint16,1,,True
+engine_2.do_transfer_flow,DO Transfer Flow,holding_register,40151,1,L/h,int32,2,,True
+engine_2.engine_lo_pressure,Engine LO Pressure,holding_register,40118,0.1,MPa,uint16,1,1,True
+engine_2.engine_power,Engine Power,holding_register,40138,1,kW,uint16,1,,True
+engine_2.engine_running_hours,Engine Running Hours,holding_register,40163,1,h,int32,2,,True
+engine_2.engine_speed,Engine Speed,holding_register,40139,1,rpm,uint16,1,,True
+engine_2.fuel_oil_pressure,Fuel Oil Pressure,holding_register,40115,0.1,MPa,uint16,1,1,True
+engine_2.generator_current,Generator Current,holding_register,40136,1,A,uint16,1,,True
+engine_2.generator_frequency,Generator Frequency,holding_register,40134,0.01,Hz,uint16,1,2,True
+engine_2.generator_power_factor,Generator Power Factor,holding_register,40135,0.01,-,uint16,1,2,True
+engine_2.generator_voltage,Generator Voltage,holding_register,40133,1,V,uint16,1,,True
+engine_2.ho_engine_inlet_flow,HO Engine Inlet Flow,holding_register,40159,1,L/h,int32,2,,True
+engine_2.ho_engine_inlet_temp,HO Engine Inlet Temp,holding_register,40130,1,°C,uint16,1,,True
+engine_2.ho_engine_return_flow,HO Engine Return Flow,holding_register,40161,1,L/h,int32,2,,True
+engine_2.ho_engine_return_temp,HO Engine Return Temp,holding_register,40131,1,°C,uint16,1,,True
+engine_2.ho_transfer_flow,HO Transfer Flow,holding_register,40157,1,L/h,int32,2,,True
+engine_2.intake_air_pressure,Intake Air Pressure,holding_register,40120,0.01,MPa,uint16,1,2,True
+engine_2.jacket_water_inlet_temp,J.W Inlet Temp,holding_register,40121,1,°C,uint16,1,,True
+engine_2.jacket_water_outlet_temp,J.W Outlet Temp,holding_register,40122,1,°C,uint16,1,,True
+engine_2.jacket_water_pressure,J.W Pressure,holding_register,40116,0.1,MPa,uint16,1,1,True
+engine_2.lo_cooler_inlet_temp,LO Cooler Inlet Temp,holding_register,40125,1,°C,uint16,1,,True
+engine_2.lo_cooler_outlet_temp,LO Cooler Outlet Temp,holding_register,40126,1,°C,uint16,1,,True
+engine_2.nde_bearing_temp,NDE Bearing Temp,holding_register,40107,1,°C,uint16,1,,True
+engine_2.oil_mist_level,Oil Mist Level,holding_register,40102,1,%,uint16,1,,True
+engine_2.omd_analog_signal,OMD Analog Signal,holding_register,40132,0.1,mA,uint16,1,1,True
+engine_2.stator_winding_temp_u,Stator Winding Temp U,holding_register,40103,1,°C,uint16,1,,True
+engine_2.stator_winding_temp_v,Stator Winding Temp V,holding_register,40104,1,°C,uint16,1,,True
+engine_2.stator_winding_temp_w,Stator Winding Temp W,holding_register,40105,1,°C,uint16,1,,True
+engine_2.tc_inlet_temp,T/C Inlet Temp,holding_register,40114,1,°C,uint16,1,,True
+engine_2.tc_outlet_temp,T/C Outlet Temp,holding_register,40101,1,°C,uint16,1,,True
+engine_2.turbo_lo_pressure,Turbo LO Pressure,holding_register,40119,0.1,MPa,uint16,1,1,True
+engine_3.cooler_water_inlet_temp,Cooler Water Inlet Temp,holding_register,40223,1,°C,uint16,1,,True
+engine_3.cooler_water_outlet_temp,Cooler Water Outlet Temp,holding_register,40224,1,°C,uint16,1,,True
+engine_3.cooler_water_pressure,Cooler Water Pressure,holding_register,40217,0.1,MPa,uint16,1,1,True
+engine_3.cw_before_lo_cooler_temp,CW Before LO Cooler Temp,holding_register,40227,1,°C,uint16,1,,True
+engine_3.cyl_1_exhaust_temp,Cyl 1 Exhaust Temp,holding_register,40208,1,°C,uint16,1,,True
+engine_3.cyl_2_exhaust_temp,Cyl 2 Exhaust Temp,holding_register,40209,1,°C,uint16,1,,True
+engine_3.cyl_3_exhaust_temp,Cyl 3 Exhaust Temp,holding_register,40210,1,°C,uint16,1,,True
+engine_3.cyl_4_exhaust_temp,Cyl 4 Exhaust Temp,holding_register,40211,1,°C,uint16,1,,True
+engine_3.cyl_5_exhaust_temp,Cyl 5 Exhaust Temp,holding_register,40212,1,°C,uint16,1,,True
+engine_3.cyl_6_exhaust_temp,Cyl 6 Exhaust Temp,holding_register,40213,1,°C,uint16,1,,True
+engine_3.de_bearing_temp,DE Bearing Temp,holding_register,40206,1,°C,uint16,1,,True
+engine_3.do_engine_inlet_flow,DO Engine Inlet Flow,holding_register,40253,1,L/h,int32,2,,True
+engine_3.do_engine_inlet_temp,DO Engine Inlet Temp,holding_register,40228,1,°C,uint16,1,,True
+engine_3.do_engine_return_flow,DO Engine Return Flow,holding_register,40255,1,L/h,int32,2,,True
+engine_3.do_engine_return_temp,DO Engine Return Temp,holding_register,40229,1,°C,uint16,1,,True
+engine_3.do_transfer_flow,DO Transfer Flow,holding_register,40251,1,L/h,int32,2,,True
+engine_3.engine_lo_pressure,Engine LO Pressure,holding_register,40218,0.1,MPa,uint16,1,1,True
+engine_3.engine_power,Engine Power,holding_register,40238,1,kW,uint16,1,,True
+engine_3.engine_running_hours,Engine Running Hours,holding_register,40263,1,h,int32,2,,True
+engine_3.engine_speed,Engine Speed,holding_register,40239,1,rpm,uint16,1,,True
+engine_3.fuel_oil_pressure,Fuel Oil Pressure,holding_register,40215,0.1,MPa,uint16,1,1,True
+engine_3.generator_current,Generator Current,holding_register,40236,1,A,uint16,1,,True
+engine_3.generator_frequency,Generator Frequency,holding_register,40234,0.1,Hz,uint16,1,2,True
+engine_3.generator_power_factor,Generator Power Factor,holding_register,40235,0.01,-,uint16,1,2,True
+engine_3.generator_voltage,Generator Voltage,holding_register,40233,1,V,uint16,1,,True
+engine_3.ho_engine_inlet_flow,HO Engine Inlet Flow,holding_register,40259,1,L/h,int32,2,,True
+engine_3.ho_engine_inlet_temp,HO Engine Inlet Temp,holding_register,40230,1,°C,uint16,1,,True
+engine_3.ho_engine_return_flow,HO Engine Return Flow,holding_register,40261,1,L/h,int32,2,,True
+engine_3.ho_engine_return_temp,HO Engine Return Temp,holding_register,40231,1,°C,uint16,1,,True
+engine_3.ho_transfer_flow,HO Transfer Flow,holding_register,40257,1,L/h,int32,2,,True
+engine_3.intake_air_pressure,Intake Air Pressure,holding_register,40220,0.01,MPa,uint16,1,2,True
+engine_3.jacket_water_inlet_temp,J.W Inlet Temp,holding_register,40221,1,°C,uint16,1,,True
+engine_3.jacket_water_outlet_temp,J.W Outlet Temp,holding_register,40222,1,°C,uint16,1,,True
+engine_3.jacket_water_pressure,J.W Pressure,holding_register,40216,0.1,MPa,uint16,1,1,True
+engine_3.lo_cooler_inlet_temp,LO Cooler Inlet Temp,holding_register,40225,1,°C,uint16,1,,True
+engine_3.lo_cooler_outlet_temp,LO Cooler Outlet Temp,holding_register,40226,1,°C,uint16,1,,True
+engine_3.nde_bearing_temp,NDE Bearing Temp,holding_register,40207,1,°C,uint16,1,,True
+engine_3.oil_mist_level,Oil Mist Level,holding_register,40202,1,%,uint16,1,,True
+engine_3.omd_analog_signal,OMD Analog Signal,holding_register,40232,0.1,mA,uint16,1,1,True
+engine_3.stator_winding_temp_u,Stator Winding Temp U,holding_register,40203,1,°C,uint16,1,,True
+engine_3.stator_winding_temp_v,Stator Winding Temp V,holding_register,40204,1,°C,uint16,1,,True
+engine_3.stator_winding_temp_w,Stator Winding Temp W,holding_register,40205,1,°C,uint16,1,,True
+engine_3.tc_inlet_temp,T/C Inlet Temp,holding_register,40214,1,°C,uint16,1,,True
+engine_3.tc_outlet_temp,T/C Outlet Temp,holding_register,40201,1,°C,uint16,1,,True
+engine_3.turbo_lo_pressure,Turbo LO Pressure,holding_register,40219,0.1,MPa,uint16,1,1,True
+engine_4.cooler_water_inlet_temp,Cooler Water Inlet Temp,holding_register,40323,1,°C,uint16,1,,True
+engine_4.cooler_water_outlet_temp,Cooler Water Outlet Temp,holding_register,40324,1,°C,uint16,1,,True
+engine_4.cooler_water_pressure,Cooler Water Pressure,holding_register,40317,0.1,MPa,uint16,1,1,True
+engine_4.cw_before_lo_cooler_temp,CW Before LO Cooler Temp,holding_register,40327,1,°C,uint16,1,,True
+engine_4.cyl_1_exhaust_temp,Cyl 1 Exhaust Temp,holding_register,40308,1,°C,uint16,1,,True
+engine_4.cyl_2_exhaust_temp,Cyl 2 Exhaust Temp,holding_register,40309,1,°C,uint16,1,,True
+engine_4.cyl_3_exhaust_temp,Cyl 3 Exhaust Temp,holding_register,40310,1,°C,uint16,1,,True
+engine_4.cyl_4_exhaust_temp,Cyl 4 Exhaust Temp,holding_register,40311,1,°C,uint16,1,,True
+engine_4.cyl_5_exhaust_temp,Cyl 5 Exhaust Temp,holding_register,40312,1,°C,uint16,1,,True
+engine_4.cyl_6_exhaust_temp,Cyl 6 Exhaust Temp,holding_register,40313,1,°C,uint16,1,,True
+engine_4.de_bearing_temp,DE Bearing Temp,holding_register,40306,1,°C,uint16,1,,True
+engine_4.do_engine_inlet_flow,DO Engine Inlet Flow,holding_register,40353,1,L/h,int32,2,,True
+engine_4.do_engine_inlet_temp,DO Engine Inlet Temp,holding_register,40328,1,°C,uint16,1,,True
+engine_4.do_engine_return_flow,DO Engine Return Flow,holding_register,40355,1,L/h,int32,2,,True
+engine_4.do_engine_return_temp,DO Engine Return Temp,holding_register,40329,1,°C,uint16,1,,True
+engine_4.do_transfer_flow,DO Transfer Flow,holding_register,40351,1,L/h,int32,2,,True
+engine_4.engine_lo_pressure,Engine LO Pressure,holding_register,40318,0.1,MPa,uint16,1,1,True
+engine_4.engine_power,Engine Power,holding_register,40338,1,kW,uint16,1,,True
+engine_4.engine_running_hours,Engine Running Hours,holding_register,40363,1,h,int32,2,,True
+engine_4.engine_speed,Engine Speed,holding_register,40339,1,rpm,uint16,1,,True
+engine_4.fuel_oil_pressure,Fuel Oil Pressure,holding_register,40315,0.1,MPa,uint16,1,1,True
+engine_4.generator_current,Generator Current,holding_register,40336,1,A,uint16,1,,True
+engine_4.generator_frequency,Generator Frequency,holding_register,40334,0.1,Hz,uint16,1,2,True
+engine_4.generator_power_factor,Generator Power Factor,holding_register,40335,0.01,-,uint16,1,2,True
+engine_4.generator_voltage,Generator Voltage,holding_register,40333,1,V,uint16,1,,True
+engine_4.ho_engine_inlet_flow,HO Engine Inlet Flow,holding_register,40359,1,L/h,int32,2,,True
+engine_4.ho_engine_inlet_temp,HO Engine Inlet Temp,holding_register,40330,1,°C,uint16,1,,True
+engine_4.ho_engine_return_flow,HO Engine Return Flow,holding_register,40361,1,L/h,int32,2,,True
+engine_4.ho_engine_return_temp,HO Engine Return Temp,holding_register,40331,1,°C,uint16,1,,True
+engine_4.ho_transfer_flow,HO Transfer Flow,holding_register,40357,1,L/h,int32,2,,True
+engine_4.intake_air_pressure,Intake Air Pressure,holding_register,40320,0.01,MPa,uint16,1,2,True
+engine_4.jacket_water_inlet_temp,J.W Inlet Temp,holding_register,40321,1,°C,uint16,1,,True
+engine_4.jacket_water_outlet_temp,J.W Outlet Temp,holding_register,40322,1,°C,uint16,1,,True
+engine_4.jacket_water_pressure,J.W Pressure,holding_register,40316,0.1,MPa,uint16,1,1,True
+engine_4.lo_cooler_inlet_temp,LO Cooler Inlet Temp,holding_register,40325,1,°C,uint16,1,,True
+engine_4.lo_cooler_outlet_temp,LO Cooler Outlet Temp,holding_register,40326,1,°C,uint16,1,,True
+engine_4.nde_bearing_temp,NDE Bearing Temp,holding_register,40307,1,°C,uint16,1,,True
+engine_4.oil_mist_level,Oil Mist Level,holding_register,40302,1,%,uint16,1,,True
+engine_4.omd_analog_signal,OMD Analog Signal,holding_register,40332,0.1,mA,uint16,1,1,True
+engine_4.stator_winding_temp_u,Stator Winding Temp U,holding_register,40303,1,°C,uint16,1,,True
+engine_4.stator_winding_temp_v,Stator Winding Temp V,holding_register,40304,1,°C,uint16,1,,True
+engine_4.stator_winding_temp_w,Stator Winding Temp W,holding_register,40305,1,°C,uint16,1,,True
+engine_4.tc_inlet_temp,T/C Inlet Temp,holding_register,40314,1,°C,uint16,1,,True
+engine_4.tc_outlet_temp,T/C Outlet Temp,holding_register,40301,1,°C,uint16,1,,True
+engine_4.turbo_lo_pressure,Turbo LO Pressure,holding_register,40319,0.1,MPa,uint16,1,1,True
+pid.do_line_signal,DO_line_signal,discrete_input,11629,1,state,bool,,,True
+pid.do_service_tank_level_control,LC_D.O.service.tank,discrete_input,11607,1,state,bool,,,True
+pid.do_service_tank_level_high,LH_D.O.service.tank,discrete_input,10037,1,state,bool,,,True
+pid.do_service_tank_level_low,LL_D.O.service.tank,discrete_input,10038,1,state,bool,,,True
+pid.do_unloading_pump,DO_unloading_pump,discrete_input,11763,1,state,bool,,,True
+pid.drain_tank_heater_switch,TSH_F.O. drain tank,discrete_input,11630,1,state,bool,,,True
+pid.drain_tank_thermostat_switch,TS_F.O. drain tank,discrete_input,11631,1,state,bool,,,True
+pid.fo_drain_tank_level_control,LC_F.O. drain tank,discrete_input,11612,1,state,bool,,,True
+pid.fo_drain_tank_level_status,LH_F.O. drain tank,discrete_input,11613,1,state,bool,,,True
+pid.ho_line_signal,HO_line_signal,discrete_input,11628,1,state,bool,,,True
+pid.ho_purifier_abnormal,TS_H.O.purifier.No3,discrete_input,11633,1,state,bool,,,True
+pid.ho_purifier_heater_no_1,TS_H.O.purifier.No1,discrete_input,11776,1,state,bool,,,True
+pid.ho_purifier_heater_no_2,TS_H.O.purifier.No2,discrete_input,11777,1,state,bool,,,True
+pid.ho_service_tank_heater_interlock,TSH_D.O.service.tank,discrete_input,11625,1,state,bool,,,True
+pid.ho_service_tank_heater_no_1,TS1_H.O.service.tank,discrete_input,11624,1,state,bool,,,True
+pid.ho_service_tank_heater_no_2,TS2_H.O.service.tank,discrete_input,11625,1,state,bool,,,True
+pid.ho_service_tank_heater_switch,TS_D.O.service.tank,discrete_input,11623,1,state,bool,,,True
+pid.ho_service_tank_level_low,LL_H.O.service.tank,discrete_input,11611,1,state,bool,,,True
+pid.ho_service_tank_upper_switch,TSH_H.O.service.tank,discrete_input,11623,1,state,bool,,,True
+pid.ho_settling_tank_heater_sensor,TSH_H.O.settling.tank,discrete_input,11621,1,state,bool,,,True
+pid.ho_settling_tank_level_control,LC_H.O.settling.tank,discrete_input,11610,1,state,bool,,,True
+pid.ho_settling_tank_level_high,LH_H.O.settling.tank,discrete_input,11608,1,state,bool,,,True
+pid.ho_settling_tank_level_low,LL_H.O.settling.tank,discrete_input,11609,1,state,bool,,,True
+pid.ho_settling_tank_thermostat_sensor,TS_H.O.settling.tank,discrete_input,11622,1,state,bool,,,True
+pid.ho_settling_tank_thermostat_sensor_backup,TS_H.O.settling.tank_2,discrete_input,11622,1,state,bool,,,True
+pid.ho_unloading_pump,HO_unloading_pump,discrete_input,11765,1,state,bool,,,True
+pid.no_1_do_feed_pump,DO_feed_pump_1,discrete_input,11659,1,state,bool,,,True
+pid.no_1_do_transfer_pump,DO_transfer_pump_1,discrete_input,11649,1,state,bool,,,True
+pid.no_1_fo_drain_pump,FO_Drain_pump_1,discrete_input,11699,1,state,bool,,,True
+pid.no_1_ho_feed_pump,HO_feed_pump_1,discrete_input,11689,1,state,bool,,,True
+pid.no_1_ho_pressure_pump,HO_pressure_pump_1,discrete_input,11679,1,state,bool,,,True
+pid.no_1_ho_purifier_pump,HO_purifier_pump_1,discrete_input,11779,1,state,bool,,,True
+pid.no_1_ho_transfer_pump,HO_transfer_pump_1,discrete_input,11669,1,state,bool,,,True
+pid.no_2_do_feed_pump,DO_feed_pump_2,discrete_input,11664,1,state,bool,,,True
+pid.no_2_do_transfer_pump,DO_transfer_pump_2,discrete_input,11654,1,state,bool,,,True
+pid.no_2_fo_drain_pump,FO_Drain_pump_2,discrete_input,11704,1,state,bool,,,True
+pid.no_2_ho_feed_pump,HO_feed_pump_2,discrete_input,11694,1,state,bool,,,True
+pid.no_2_ho_pressure_pump,HO_pressure_pump_2,discrete_input,11684,1,state,bool,,,True
+pid.no_2_ho_purifier_pump,HO_purifier_pump_2,discrete_input,11781,1,state,bool,,,True
+pid.no_2_ho_transfer_pump,HO_transfer_pump_2,discrete_input,11674,1,state,bool,,,True
+pid.sludge_tank_level_switch,LS_Sludge.tank,discrete_input,11635,1,state,bool,,,True
+pid.sludge_transfer_pump,Sludge_transfer_pump,discrete_input,11827,1,state,bool,,,True
+pid.viscosity_controller_signal,Viscosity_controller_signal,discrete_input,11759,1,state,bool,,,True

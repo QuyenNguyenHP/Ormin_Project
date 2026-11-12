@@ -15,23 +15,23 @@ from typing import Any
 
 from flask import Blueprint, jsonify, request
 
-from admin_api import require_admin
+from admin_api import require_admin, config_lock
 
 
 BASE_DIR = Path(__file__).resolve().parent
 COLLECTOR_DIR = BASE_DIR / "data_collector"
 COLLECTOR_SCRIPT = COLLECTOR_DIR / "modbus_csv_db_collector.py"
-COLLECTOR_CONFIG = COLLECTOR_DIR / "modbus_csv_db_collector_config.json"
+COLLECTOR_CONFIG = BASE_DIR / "backend_config.json"
 FUEL_SCRIPT = COLLECTOR_DIR / "daily_fuel_consumption.py"
 collector_admin_api = Blueprint("collector_admin_api", __name__)
-collector_config_lock = RLock()
+collector_config_lock = config_lock
 
 
 def load_collector_settings() -> dict[str, Any]:
     with COLLECTOR_CONFIG.open("r", encoding="utf-8") as config_file:
-        config = json.load(config_file)
+        config = json.load(config_file)["data_collector"]
     output = config.get("output", {})
-    legacy_csv_path = str(output.get("csv_path", "../database/modbus_history.csv"))
+    legacy_csv_path = str(output.get("csv_path", "database/modbus_history.csv"))
     return {
         "auto_start": bool(config.get("auto_start", False)),
         "collection_interval_seconds": int(
@@ -65,10 +65,10 @@ def save_collector_settings(settings: dict[str, Any]) -> None:
     with collector_config_lock:
         with COLLECTOR_CONFIG.open("r", encoding="utf-8") as config_file:
             config = json.load(config_file)
-        config.setdefault("modbus", {})["poll_interval_seconds"] = settings[
+        config["data_collector"].setdefault("modbus", {})["poll_interval_seconds"] = settings[
             "collection_interval_seconds"
         ]
-        output = config.setdefault("output", {})
+        output = config["data_collector"].setdefault("output", {})
         output["csv_directory"] = settings["csv_directory"]
         output.pop("csv_path", None)
         with NamedTemporaryFile(
@@ -85,7 +85,7 @@ def save_collector_auto_start(enabled: bool) -> None:
     with collector_config_lock:
         with COLLECTOR_CONFIG.open("r", encoding="utf-8") as config_file:
             config = json.load(config_file)
-        config["auto_start"] = enabled
+        config["data_collector"]["auto_start"] = enabled
         with NamedTemporaryFile(
             mode="w", encoding="utf-8", dir=COLLECTOR_CONFIG.parent, delete=False, suffix=".json"
         ) as temporary_file:
@@ -198,8 +198,8 @@ def collector_command() -> list[str]:
         sys.executable,
         "-u",
         str(COLLECTOR_SCRIPT),
-        "--backend-config",
-        str(BASE_DIR / "backend_config.json"),
+        "--config",
+        str(COLLECTOR_CONFIG),
     ]
 
 

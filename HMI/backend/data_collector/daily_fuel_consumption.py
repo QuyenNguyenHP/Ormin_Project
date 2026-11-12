@@ -14,7 +14,6 @@ from pathlib import Path
 
 
 BASE_DIR = Path(__file__).resolve().parent
-COLLECTOR_CONFIG = BASE_DIR / "modbus_csv_db_collector_config.json"
 BACKEND_CONFIG = BASE_DIR.parent / "backend_config.json"
 DESTINATION_TABLE = "fuel_consumption"
 LEGACY_TABLE = "Fuel_Consumpotion"
@@ -36,13 +35,11 @@ def parse_args() -> argparse.Namespace:
 
 
 def read_configuration() -> tuple[Path, str, list[tuple[int, str, int, str, str]]]:
-    with COLLECTOR_CONFIG.open(encoding="utf-8") as file:
-        collector = json.load(file)
     with BACKEND_CONFIG.open(encoding="utf-8") as file:
         backend = json.load(file)
 
-    output = collector["output"]
-    database_path = (BASE_DIR / output["database_path"]).resolve()
+    output = backend["data_collector"]["output"]
+    database_path = (BACKEND_CONFIG.parent / backend["database_path"]).resolve()
     source_table = str(output["table_name"])
     mappings: list[tuple[int, str, int, str, str]] = []
     for fuel_type, config_key in (("D.O", "fo_consumption"), ("H.O", "ho_consumption")):

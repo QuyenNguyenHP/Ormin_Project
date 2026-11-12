@@ -28,12 +28,12 @@ def databases():
         ("Pressure trend", history.PRESSURE_TREND_DATABASE_PATH),
         ("Exhaust temperature trend", history.EXH_TEMP_TREND_DATABASE_PATH),
     ]
-    collector = history.BASE_DIR / "data_collector/modbus_csv_db_collector_config.json"
+    collector = history.BASE_DIR / "backend_config.json"
     if collector.is_file():
         config = json.loads(collector.read_text(encoding="utf-8"))
-        output = config.get("output", {}).get("database_path")
+        output = config.get("database_path")
         if output:
-            candidates.append(("Modbus collector (default config)", collector.parent / output))
+            candidates.append(("Modbus collector", collector.parent / output))
     result = {}
     for usage, path in candidates:
         path = Path(path).resolve()
